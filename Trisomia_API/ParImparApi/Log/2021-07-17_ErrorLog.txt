@@ -1,0 +1,168 @@
+2021-07-17 13:22:32.1210 - ERROR - 80000003-0007-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NzhkMzEwNS05MDdkLTQ2NmUtOGNjNS0wZjdlYjJmNjQzZjMiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVYMmc1TFM1Q3RacHRhVlRRUC9WdERGYzhicGpGQ2VwTUdMTVFOWjh3aURRWnBwaXB0cGp3emU1bnVzOVNEWlByVHQxZWxLTUdhRDBkZVkvc0hDbjdiWGlPYk5hSGx4VkN3WXVWVEE1dS83WUE5WWtrcFpHZ3RrdXFBWlJ0NEI5bitLaFZLOXhiL0tWQzhpTkZkb3lMa3c9IiwibmJmIjoxNjI2NTM4NzY4LCJleHAiOjE2MjY2MjUxNjgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.QsyeO_wucSobPUOsvyB7Px_HtlxzMHla_xiGxUGQ6Ig", 
+
+2021-07-17 13:36:25.3785 - ERROR - 80000003-0002-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NzhkMzEwNS05MDdkLTQ2NmUtOGNjNS0wZjdlYjJmNjQzZjMiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVYMmc1TFM1Q3RacHRhVlRRUC9WdERGYzhicGpGQ2VwTUdMTVFOWjh3aURRWnBwaXB0cGp3emU1bnVzOVNEWlByVHQxZWxLTUdhRDBkZVkvc0hDbjdiWGlPYk5hSGx4VkN3WXVWVEE1dS83WUE5WWtrcFpHZ3RrdXFBWlJ0NEI5bitLaFZLOXhiL0tWQzhpTkZkb3lMa3c9IiwibmJmIjoxNjI2NTM4NzY4LCJleHAiOjE2MjY2MjUxNjgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.QsyeO_wucSobPUOsvyB7Px_HtlxzMHla_xiGxUGQ6Ig", 
+
+2021-07-17 13:43:04.9780 - ERROR - 8000000f-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:44:18.8593 - ERROR - 80000010-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:44:36.0500 - ERROR - 80000011-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:49:56.1749 - ERROR - 80000010-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:50:23.9517 - ERROR - 80000011-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:50:53.9877 - ERROR - 80000012-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:51:47.3175 - ERROR - 80000013-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 13:58:53.4784 - ERROR - 80000007-0000-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetRefreshTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 100
+   at ParImparApi.Common.Functions.GetRefreshTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 38
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 56
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:00:07.8372 - ERROR - 80000008-0000-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetRefreshTokenClaimAsync(HttpContext context, String token, String key)
+   at ParImparApi.Common.Functions.GetRefreshTokenClaimAsync(HttpContext context, String key)
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken)
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken)
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:03:09.9985 - ERROR - 8000000e-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 57
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:04:41.8900 - ERROR - 80000015-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 58
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:09:42.2510 - ERROR - 80000011-0006-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 66
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 33
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 58
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:27:58.3403 - ERROR - 80000004-0002-fc00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String token, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 78
+   at ParImparApi.Common.Functions.GetTokenClaimAsync(HttpContext context, String key) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\CustomObjects\Common\Functions.cs:line 45
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 54
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:29:33.3618 - ERROR - 80000010-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: ObjectKey
+     Exception: ObjectKey
+     StackTrace:    at ParImparApi.Services.TokensDbService.ValidateUpdate(TokenDTO token) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\TokensDbService.cs:line 300
+   at ParImparApi.Services.TokensDbService.ValidateUpdate(TokenDTO token) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\TokensDbService.cs:line 308
+   at ParImparApi.Services.AuthService.Update(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 85
+   at ParImparApi.Controllers.AuthController.RegenerateToken(ChangeTokenRequestDTO changeToken) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 85
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzRhOTRhNC1mZGNhLTRhNGYtYWU3MS0wMjhjZTZmM2FiYjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYUdrR1djR3VsUzNFbEpGclo0by8yWGJqWUF6Wm15UjE5Zm9HWFY5cnJUNDI2TU40Q2JoVC9jQlhFVkhFVEF6cm14RnprdGZHbDdJcmdnbGhPaGZFaHpFcVdlQUU4eGtEYkl1N01GK0VqMUFpbDEvdkhlQk5ralB3UlZGa0JCT1FYZDVUbDhyYWpocnhURDdkQnFrZzA9IiwibmJmIjoxNjI2NTQwMTU4LCJleHAiOjE2MjY2MjY1NTgsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.uEuYuCoFo62YwCdxfrHJiQX3793TAwdgF2h_iyuZKjU", 
+
+2021-07-17 14:42:53.6001 - INFO - 80000019-0005-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NzdiMDYzMC0yZWVmLTRkMTktYjhkNi0yYjQ1YjY5MjY5MjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVkMXJGQXJobXhiR0RlaXFQdWV5aWlsQlBmZkFmQmVjMnZNYytCNEVjVUVlQTQxaktGa2lTUlFDQUxGVmRUaytIMkFyNzN1dHJDR1ZpMHZtZUNRSTB3OEJnYWdLWVJHcStNRFRON1ZYZEN4V29sd1NyekdNUTh4SzgxcDlpNmpJWnNWdnR0U0lTZFVRQmJLWUV1Sk9MUTFlcmlDaXhwcVhmT2hxcTlBanNRWlM2WUFHSWQvamphWkpmbWVhd3pqb09TNEJYaHAxeVpQZnh6NmxYemRhZGVtQXlXUTF0RkRRenpxT09XSnVYTGo5bEQ2WG9ZNkFnMTdveGsyOHJmS3BVZXRtSUw2N1RtZVRQOU5IMW9ocTJsUT0iLCJuYmYiOjE2MjY1NDM1MDIsImV4cCI6MTYyNjYyOTkwMiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.14MqdGUDIzfLC_AZ4ejVR6HMKnYxELyGL0AQbneOeI8", 
+
+2021-07-17 14:43:00.3703 - INFO - 8000001e-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NzdiMDYzMC0yZWVmLTRkMTktYjhkNi0yYjQ1YjY5MjY5MjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVkMXJGQXJobXhiR0RlaXFQdWV5aWlsQlBmZkFmQmVjMnZNYytCNEVjVUVlQTQxaktGa2lTUlFDQUxGVmRUaytIMkFyNzN1dHJDR1ZpMHZtZUNRSTB3OEJnYWdLWVJHcStNRFRON1ZYZEN4V29sd1NyekdNUTh4SzgxcDlpNmpJWnNWdnR0U0lTZFVRQmJLWUV1Sk9MUTFlcmlDaXhwcVhmT2hxcTlBanNRWlM2WUFHSWQvamphWkpmbWVhd3pqb09TNEJYaHAxeVpQZnh6NmxYemRhZGVtQXlXUTF0RkRRenpxT09XSnVYTGo5bEQ2WG9ZNkFnMTdveGsyOHJmS3BVZXRtSUw2N1RtZVRQOU5IMW9ocTJsUT0iLCJuYmYiOjE2MjY1NDM1MDIsImV4cCI6MTYyNjYyOTkwMiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.14MqdGUDIzfLC_AZ4ejVR6HMKnYxELyGL0AQbneOeI8", 
+
+2021-07-17 14:44:30.3663 - INFO - 80000018-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NzdiMDYzMC0yZWVmLTRkMTktYjhkNi0yYjQ1YjY5MjY5MjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVkMXJGQXJobXhiR0RlaXFQdWV5aWlsQlBmZkFmQmVjMnZNYytCNEVjVUVlQTQxaktGa2lTUlFDQUxGVmRUaytIMkFyNzN1dHJDR1ZpMHZtZUNRSTB3OEJnYWdLWVJHcStNRFRON1ZYZEN4V29sd1NyekdNUTh4SzgxcDlpNmpJWnNWdnR0U0lTZFVRQmJLWUV1Sk9MUTFlcmlDaXhwcVhmT2hxcTlBanNRWlM2WUFHSWQvamphWkpmbWVhd3pqb09TNEJYaHAxeVpQZnh6NmxYemRhZGVtQXlXUTF0RkRRenpxT09XSnVYTGo5bEQ2WG9ZNkFnMTdveGsyOHJmS3BVZXRtSUw2N1RtZVRQOU5IMW9ocTJsUT0iLCJuYmYiOjE2MjY1NDM1MDIsImV4cCI6MTYyNjYyOTkwMiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.14MqdGUDIzfLC_AZ4ejVR6HMKnYxELyGL0AQbneOeI8", 
+
+2021-07-17 14:44:35.8821 - INFO - 8000000b-0007-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NzdiMDYzMC0yZWVmLTRkMTktYjhkNi0yYjQ1YjY5MjY5MjQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVkMXJGQXJobXhiR0RlaXFQdWV5aWlsQlBmZkFmQmVjMnZNYytCNEVjVUVlQTQxaktGa2lTUlFDQUxGVmRUaytIMkFyNzN1dHJDR1ZpMHZtZUNRSTB3OEJnYWdLWVJHcStNRFRON1ZYZEN4V29sd1NyekdNUTh4SzgxcDlpNmpJWnNWdnR0U0lTZFVRQmJLWUV1Sk9MUTFlcmlDaXhwcVhmT2hxcTlBanNRWlM2WUFHSWQvamphWkpmbWVhd3pqb09TNEJYaHAxeVpQZnh6NmxYemRhZGVtQXlXUTF0RkRRenpxT09XSnVYTGo5bEQ2WG9ZNkFnMTdveGsyOHJmS3BVZXRtSUw2N1RtZVRQOU5IMW9ocTJsUT0iLCJuYmYiOjE2MjY1NDM1MDIsImV4cCI6MTYyNjYyOTkwMiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.14MqdGUDIzfLC_AZ4ejVR6HMKnYxELyGL0AQbneOeI8", 
+
+2021-07-17 14:47:48.2609 - INFO - 80000019-0006-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhZGExNjY3OC0wZTNiLTRiMTYtOGVhYy1mMDZkODYxODlhMDYiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVXdnp6cHN6SFYyWU1LQTNyNUVmVTFQM3F4clFFR1ZBMmdBcE9Kb0dhRVpMeTRKWHBRdTY1MEI0Z0M3c3pyeXVHdFZwNzFWVlZXTzBTdnVWVWVHYnk2ZjJiZ1RnbXNlb2MzUG11eGd6L0ZHL0U3dFhKR3JMN3pGTDFOMlo5RUpDajBzcFhPdXhFQjNLWUdIWGx0RGs0Mkk9IiwibmJmIjoxNjI2NTQzMDIxLCJleHAiOjE2MjY2Mjk0MjEsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.to8_so44ipxmLAbKOq1oPX495tZW7fuTbDcxYcIS4Q0", 
+
+2021-07-17 14:48:31.3524 - INFO - 80000020-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNTNlNWFmMC1iN2U0LTQyNzItYTIwMS0wNzY3Y2I0MzcyMDEiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVYVFdqaW82Zi9pTS9BR2IvSzBlSURjMnJQY2R5aG53b3I4bFVXN3N4K1cvZkVZMk04bDArdkpXeWZuaEtJenFPUVNZME1TVHdPeXFhVEJVbVVtcWxEWWdwMlhCN1pPU0NPWGdiT2x5M3l0elIxS0g5aitNR2dLeGlMcG5sZk4zeVhWVnI5djhwLzRqRTdpaGpSTlhtVkc4ZExabm5YNWlxVXB5cldCYU1JL1pyajBIdkF5eXFmbWFaRlRRMDFXSTVDZENBTENVNmpXVlpEYy8vN01XbTNvZ25CY2dmUUVsSm9CWGEwNEVBVldMbUVvWnBEYlJBdTVYaG9QR3EwOXNIeFlrZi9MT3o0MmZ3b3dnMG5tc3J3QT0iLCJuYmYiOjE2MjY1NDM5ODgsImV4cCI6MTYyNjYzMDM4OCwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.eJXJLeA-DIejF2tHu72RjVtiDV7z8P24Y-5Enbn-Tsc", 
+

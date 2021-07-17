@@ -1,0 +1,20 @@
+2021-07-13 18:57:18.8798 - ERROR - 80000004-0007-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Procedure or function 'Contact_CredentialsLogin' expects parameter '@Email', which was not supplied.
+     Exception: Procedure or function 'Contact_CredentialsLogin' expects parameter '@Email', which was not supplied.
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 206
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 214
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"test@gmail.com","Password":"test123!","KeepLoggedIn":true}
+
+2021-07-13 19:09:52.9664 - ERROR - 80000003-0002-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Could not find stored procedure 'Contacts_CredentialsLogin'.
+     Exception: Could not find stored procedure 'Contacts_CredentialsLogin'.
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 207
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 215
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\git\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"test@gmail.com","Password":"test123!","KeepLoggedIn":true}
+

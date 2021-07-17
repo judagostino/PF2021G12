@@ -1,0 +1,40 @@
+2021-07-14 08:23:18.7761 - ERROR - 80000007-0006-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     Exception: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 207
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 215
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"mgiorda@serbal.com.ar","Password":"123456789","KeepLoggedIn":false}
+
+2021-07-14 08:40:19.9723 - ERROR - 80000004-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/auth/CredentialsLogin (ver: ) - ::1
+     Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     Exception: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 207
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 215
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"mgiorda@serbal.com.ar","Password":"123456789","KeepLoggedIn":false}
+
+2021-07-14 08:41:50.8851 - ERROR - 80000002-0003-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     Exception: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 207
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 215
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"mgiorda@serbal.com.ar","Password":"123456789","KeepLoggedIn":false}
+
+2021-07-14 08:41:50.9500 - ERROR - 80000006-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     Exception: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 207
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 215
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in D:\Qvix\ParImparApi\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"mgiorda@serbal.com.ar","Password":"123456789","KeepLoggedIn":false}
+
