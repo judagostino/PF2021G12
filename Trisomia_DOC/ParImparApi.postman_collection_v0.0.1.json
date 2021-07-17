@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "94f1d140-8c6f-4394-bd65-19812d8a479f",
+		"name": "ParImparApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Aurth_CredencialLogin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"User\": \"test@gmail.com\",\r\n    \"Password\": \"test123!\",\r\n    \"KeepLoggedIn\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Auth/CredentialsLogin",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Auth",
+								"CredentialsLogin"
+							]
+						},
+						"description": "Metodo encargado para logrear un usuario, los errores que pueden dar son: \n<br><br>\n401 no autorizado,\n<br>\n500: error interno del Store"
+					},
+					"response": []
+				},
+				{
+					"name": "Aurth_UpdateToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ZjZmZTZlMC03NjIzLTQ2ZGUtOGUzMi0xODNiYzU4OTk5YWIiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVjY21KUFpmRU1ZYUorWkwrRXhPSCt5ZmxNRGIzbjljRlVscDhTRUE0cGRwcXlrQm40RVJEZGkrVHZFZ2RCVGRPWGh6aCsrUk5IM0c0OVdqRUZTbVlKNm5Uc3k5cjZWVVJDU3l1RnFsMjhsMW1rUEloc2RlWGVZdGl0ay93ejZJR3hqckhma0ZPRktKQzNoZG0ycHpBZDA9IiwibmJmIjoxNjI2NTQ0MDcyLCJleHAiOjE2MjY2MzA0NzIsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.fz-y-geETdi2urnqQca49HDpBDJ2mtIFLJlow7vmewk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NTIzODQwYy05MDcyLTQwZGYtODFhMC1mYjEzNTIwMTkzMmMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjI2NTQ0MDcyLCJleHAiOjE2MjY1NDQ5NzIsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.6Kv3bHQuFyyrOftn6Bfw422-ChVzrOeCD4ovBeKOgFE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Auth/Update",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Auth",
+								"Update"
+							]
+						},
+						"description": "Metodo encargado para mantener una sesion activa mientras el usuario use el sistema actualizando su token de acceso, los errores que pueden dar son: \n<br><br>\n401 no autorizado,<br>\n5902 token de acceso invalido,<br>\n5903 ip invalida,<br>\n5905 user-agent invalido,<br>\n500: error interno del Store"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
