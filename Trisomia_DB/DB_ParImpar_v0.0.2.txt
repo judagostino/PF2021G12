@@ -1,0 +1,107 @@
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Contacts ADD
+	UserName varchar(100) NULL,
+	DateBrirth date NULL
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+USE [ParImpar]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Contact_Regisrter]
+(
+	@Email VARCHAR(100),
+	@UserName VARCHAR(100),
+	@LastName VARCHAR(100),
+	@FistName VARCHAR(100),
+	@Password VARCHAR(100),
+	@DateBrirth Date,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @Email VARCHAR(100)
+DECLARE @Password VARCHAR(100)
+DECLARE @LastName VARCHAR(100)
+DECLARE @UserName VARCHAR(100)
+DECLARE @FistName VARCHAR(100)
+DECLARE @DateBrirth Date
+DECLARE @ResultCode INT
+
+SET @Email = 'Gastonvottero@gmail.com'
+SET @Password = 'GQfx8ucJ62jDe7AbgeEW5A=='
+SET @LastName = 'Test'
+SET @FistName = 'Test'
+SET @UserName = 'Test'
+SET @DateBrirth = GETDATE()
+*/
+
+SET @ResultCode = 200
+
+IF (@UserName IS NULL OR @UserName = '')
+	BEGIN
+		SET @ResultCode = 5001
+	END
+
+IF (@Password IS NULL OR @Password = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5002
+	END
+
+IF (@Email IS NULL OR @Email = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5003
+	END
+
+IF (@FistName IS NULL OR @FistName = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5004
+	END
+
+IF (@LastName IS NULL OR @LastName = '') AND @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5005
+	END
+
+
+
+IF (SELECT  COUNT(ContactId) FROM Contacts WHERE Email = @Email) > 0 AND @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5906
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		INSERT INTO Contacts (FistName, LastName, Email, [Password], UserName, DateBrirth, dateEntered) 
+		VALUES (@FistName, @LastName, @Email,@Password, @UserName, @DateBrirth, GETDATE())
+
+		IF @@ROWCOUNT = 0 
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+	END
+
+SELECT @ResultCode

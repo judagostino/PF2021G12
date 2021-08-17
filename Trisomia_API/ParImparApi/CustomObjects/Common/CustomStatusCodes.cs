@@ -15,7 +15,12 @@ namespace ParImparApi.Common
         [Description("Internal server error")] InternalServerError = 500,
 
         // Required fields
-        [Description("Field is required")] RequiredField = 5000,
+        [Description("Field is required")] RequiredRequiredField = 5000,
+        [Description("User name is required")] UserNameRequiredField = 5001,
+        [Description("Password is required")] PasswordRequiredField = 5002,
+        [Description("Email is required")] EmailRequiredField = 5003,
+        [Description("Fisrt name is required")] FirstNameRequiredField = 5004,
+        [Description("Last name is required")] LastNameRequiredField = 5005,
 
         // Item not exists
         [Description("Item not found")] ItemNotFound = 5100,
@@ -28,6 +33,10 @@ namespace ParImparApi.Common
         [Description("Invalid token")] InvalidToken = 5902,
         [Description("Unauthorized IP")] UnauthorizedIp = 5903,
         [Description("User-Agent is invalid")] UserAgentInvalid = 5905,
+        [Description("Email exist")] EmailExist = 5906,
+        [Description("Distint Emails")] DistintEmail = 5907,
+        [Description("Distint passwords")] DistintPassword = 5908,
+        [Description("Incorrect format password")] IncorretFormatPassword = 5909,
     }
 
     internal static class Extensions

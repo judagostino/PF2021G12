@@ -173,6 +173,103 @@ namespace ParImparApi.Services
             }
         }
 
+
+        public async Task<ApiResponse> RegistrerUser(RegisterUserDTO registerUser)
+        {
+
+            if(registerUser.Email != registerUser.ConfirmEmail)
+            {
+                return new ApiResponse()
+                {
+                    Status = CustomStatusCodes.DistintEmail
+                };
+            }
+
+
+            if (registerUser.Password != registerUser.ConfirmPassword)
+            {
+                return new ApiResponse()
+                {
+                    Status = CustomStatusCodes.DistintPassword
+                };
+            }
+
+            if (registerUser.Password != registerUser.ConfirmPassword)
+            {
+                return new ApiResponse()
+                {
+                    Status = CustomStatusCodes.DistintPassword
+                };
+            }
+
+            if (!validateFormatPassword(registerUser.Password))
+            {
+                return new ApiResponse()
+                {
+                    Status = CustomStatusCodes.IncorretFormatPassword
+                };
+            }
+
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_Regisrter", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@Email", registerUser.Email));
+                        cmd.Parameters.Add(new SqlParameter("@UserName", registerUser.UserName));
+                        cmd.Parameters.Add(new SqlParameter("@LastName", registerUser.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@FistName", registerUser.FistName));
+                        cmd.Parameters.Add(new SqlParameter("@Password", Crypto.EncryptGeneric(registerUser.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt)));
+                        
+                        
+                        if(registerUser.DateBrirth != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@DateBrirth", registerUser.DateBrirth));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@DateBrirth", DBNull.Value));
+                        }
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName= "@ResultCode",
+                            SqlDbType= System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
         private async Task<LoginDataDTO> ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
@@ -185,7 +282,6 @@ namespace ParImparApi.Services
 
                         #region [SP Parameters]
                         cmd.Parameters.Add(new SqlParameter("@Email", credentialsLoginRequest.User));
-                        string a = Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt);
                         cmd.Parameters.Add(new SqlParameter("@UserPassword", Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt)));
                         #endregion
 
@@ -457,6 +553,47 @@ namespace ParImparApi.Services
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private bool validateFormatPassword(string password)
+        {
+            if (password.Trim().Length < 8) {
+                return false;
+            }
+
+            bool existNumber = false;
+            bool existCapitalLetter = false;
+            bool existLowerLetter = false;
+
+            foreach( char letter in password )
+            {
+                if (Char.IsDigit(letter))
+                {
+                    existNumber = true;
+                    continue;
+                }
+
+                else if (letter.ToString() == letter.ToString().ToUpper())
+                {
+                    existCapitalLetter = true;
+                    continue;
+                }
+
+                else if (letter.ToString() == letter.ToString().ToLower())
+                {
+                    existLowerLetter = true;
+                    continue;
+                }
+            }
+
+            if (existNumber && existCapitalLetter && existLowerLetter)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+ 
         }
     }
 }

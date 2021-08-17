@@ -1,0 +1,28 @@
+2021-08-17 18:45:38.6823 - INFO - 80000002-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Incorrect format password
+     Headers: Authorization="", 
+     Body: {"Email":"gastonadmin@gmail.com","ConfirmEmail":"gastonadmin@gmail.com","UserName":"gaston_vottero","LastName":"Vottero","FistName":"Gaston","Password":"123456789","ConfirmPassword":"123456789","DateBrirth":"1995-11-03T00:00:00"}
+
+2021-08-17 18:45:45.1793 - INFO - 80000003-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Distint passwords
+     Headers: Authorization="", 
+     Body: {"Email":"gastonadmin@gmail.com","ConfirmEmail":"gastonadmin@gmail.com","UserName":"gaston_vottero","LastName":"Vottero","FistName":"Gaston","Password":"123456789M","ConfirmPassword":"123456789","DateBrirth":"1995-11-03T00:00:00"}
+
+2021-08-17 18:45:51.4404 - ERROR - 80000004-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Procedure or function 'Contact_Regisrter' expects parameter '@Password', which was not supplied.
+     Exception: Procedure or function 'Contact_Regisrter' expects parameter '@Password', which was not supplied.
+     StackTrace:    at ParImparApi.Services.AuthService.RegistrerUser(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Trisomia_API\ParImparApi\Services\AuthService.cs:line 260
+   at ParImparApi.Services.AuthService.RegistrerUser(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Trisomia_API\ParImparApi\Services\AuthService.cs:line 268
+   at ParImparApi.Controllers.ContactController.CredentialsLogin(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Trisomia_API\ParImparApi\Controllers\ContactController.cs:line 61
+     Headers: Authorization="", 
+     Body: {"Email":"gastonadmin@gmail.com","ConfirmEmail":"gastonadmin@gmail.com","UserName":"gaston_vottero","LastName":"Vottero","FistName":"Gaston","Password":"123456789M","ConfirmPassword":"123456789M","DateBrirth":"1995-11-03T00:00:00"}
+
+2021-08-17 18:48:25.9411 - ERROR - 80000002-0006-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Procedure or function 'Contact_Regisrter' expects parameter '@Password', which was not supplied.
+     Exception: Procedure or function 'Contact_Regisrter' expects parameter '@Password', which was not supplied.
+     StackTrace:    at ParImparApi.Services.AuthService.RegistrerUser(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Trisomia_API\ParImparApi\Services\AuthService.cs:line 260
+   at ParImparApi.Services.AuthService.RegistrerUser(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Trisomia_API\ParImparApi\Services\AuthService.cs:line 268
+   at ParImparApi.Controllers.ContactController.CredentialsLogin(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Trisomia_API\ParImparApi\Controllers\ContactController.cs:line 61
+     Headers: Authorization="", 
+     Body: {"Email":"gastonadmin@gmail.com","ConfirmEmail":"gastonadmin@gmail.com","UserName":"gaston_vottero","LastName":"Vottero","FistName":"Gaston","Password":"123456789M","ConfirmPassword":"123456789M","DateBrirth":"1995-11-03T00:00:00"}
+
