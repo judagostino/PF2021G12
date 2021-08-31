@@ -214,6 +214,42 @@ namespace ParImparApi.Common
             return await GetSessionValuesAsync(context, null, keys);
         }
 
+        public static async Task<string> GetSessionValuesAsync(HttpContext context, string key)
+        {
+            return await GetSessionValuesAsync(context, null, key);
+        }
+
+
+        public static async Task<string> GetSessionValuesAsync(HttpContext context, string scheme, string key)
+        {
+            Dictionary<string, string> values = new Dictionary<string, string>();
+
+            var token = await GetTokenAsync(context, scheme);
+
+            if (token != null)
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jwtToken = handler.ReadToken(token) as JwtSecurityToken;
+
+                Claim claim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == key);
+
+                if (claim == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return claim.Value;
+                }
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("Token not exists");
+            }
+
+            
+        }
+
         public static async Task<Dictionary<string, string>> GetSessionValuesAsync(HttpContext context, string scheme, string[] keys)
         {
             Dictionary<string, string> values = new Dictionary<string, string>();

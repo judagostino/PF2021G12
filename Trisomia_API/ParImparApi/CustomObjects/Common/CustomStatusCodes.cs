@@ -21,7 +21,11 @@ namespace ParImparApi.Common
         [Description("Email is required")] EmailRequiredField = 5003,
         [Description("Fisrt name is required")] FirstNameRequiredField = 5004,
         [Description("Last name is required")] LastNameRequiredField = 5005,
+        [Description("Id is required")] RequiredId = 5006,
+        [Description("Start date is required")] StartDateRequired = 5007,
+        [Description("Title is required")] TitleRequired = 5008,
 
+        
         // Item not exists
         [Description("Item not found")] ItemNotFound = 5100,
 
@@ -37,6 +41,7 @@ namespace ParImparApi.Common
         [Description("Distint Emails")] DistintEmail = 5907,
         [Description("Distint passwords")] DistintPassword = 5908,
         [Description("Incorrect format password")] IncorretFormatPassword = 5909,
+        [Description("unauthorized action ")] unauthorizedAction = 5910,
     }
 
     internal static class Extensions
