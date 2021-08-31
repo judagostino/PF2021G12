@@ -4,14 +4,22 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { HttpParImparInterceptor } from './interceptor/http-par-impar.interceptor';
 import { ConfigService } from './services';
+import { LoginComponent } from './pages/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ABMEventsComponent } from './pages/abm-events/abm-events.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    NavbarComponent,
+    RegisterComponent,
+    ABMEventsComponent
   ],
   imports: [
     BrowserModule,
