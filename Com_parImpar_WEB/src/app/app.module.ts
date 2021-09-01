@@ -1,10 +1,11 @@
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HomeComponent } from './pages/home/home.component';
 import { HttpParImparInterceptor } from './interceptor/http-par-impar.interceptor';
 import { ConfigService } from './services';
@@ -13,6 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ABMEventsComponent } from './pages/abm-events/abm-events.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatInputModule,
-    MatFormFieldModule,
+    FormsModule,
+    MaterialModule,
     BrowserAnimationsModule
   ],
   providers: [
