@@ -1,1 +1,37 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark"style="background-color: #3282b8;">
+    <div class="container-fluid">
+        <a class="navbar-brand logo" href="#">
+            <img src="/assets/image/icon.png" alt="" width="50" height="50" class="d-inline-block align-text-top"> 
+          </a>
+        <a class="navbar-brand titles"  href="#">Comunidad ParImpar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active opcionMenu" aria-current="page" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link opcionMenu" href="#">Eventos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link opcionMenu" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+          <div class="d-flex">
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Clearable input</mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+          </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>

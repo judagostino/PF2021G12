@@ -12,14 +12,15 @@ export class ConfigService {
   }
 
   public load(): Promise<void> {
-    return new Promise((resolve) => {
-      this.reAuthenticate().pipe(
-        mergeMap((isLooged: boolean) => {
-          this.isLooged = isLooged;
-          return of(isLooged);
-        })
-      ).subscribe((loadData) => resolve());
-    });
+    // return new Promise((resolve) => {
+    //   this.reAuthenticate().pipe(
+    //     mergeMap((isLooged: boolean) => {
+    //       this.isLooged = isLooged;
+    //       return of(isLooged);
+    //     })
+    //   ).subscribe((loadData) => resolve());
+    // });
+    return new Promise((resolve) => resolve(null))
   }
 
   private reAuthenticate(): Observable<boolean> {
