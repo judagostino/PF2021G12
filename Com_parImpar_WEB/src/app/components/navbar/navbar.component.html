@@ -15,19 +15,12 @@
           <li class="nav-item">
             <a class="nav-link opcionMenu" href="#">Eventos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link opcionMenu" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-          <div class="d-flex">
-            <mat-form-field class="example-form-field" appearance="fill">
-                <mat-label>Clearable input</mat-label>
+          <div class="d-flex flex-row-reverse" id="SearchBarNavbar1">
+            <mat-form-field class="example-form-field" appearance="fill" id="SearchBarNavbar1">
+                <mat-label>Buscar</mat-label>
                 <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                  <mat-icon>close</mat-icon>
-                </button>
+                <mat-icon matSuffix style="cursor:pointer;">search</mat-icon>
+               
               </mat-form-field>
           </div>
           
