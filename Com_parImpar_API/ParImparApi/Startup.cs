@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -92,6 +93,21 @@ namespace ParImparApi
                         )
                     };
                 })
+                  .AddJwtBearer("AccessToken", options =>
+                  {
+                      options.TokenValidationParameters = new TokenValidationParameters()
+                      {
+                          ValidateIssuer = true,
+                          ValidateAudience = true,
+                          ValidateLifetime = true,
+                          ValidateIssuerSigningKey = true,
+                          ValidIssuer = Configuration["AuthSettings:Default:AccessToken:Issuer"],
+                          ValidAudience = Configuration["AuthSettings:Default:AccessToken:Audience"],
+                          IssuerSigningKey = new SymmetricSecurityKey(
+                              Encoding.UTF8.GetBytes(Configuration["AuthSettings:Default:AccessToken:SigningKey"])
+                          )
+                      };
+                  })
                 .AddJwtBearer("RefreshAuth",options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters()
@@ -120,12 +136,23 @@ namespace ParImparApi
                 })
                 .AddAuthorization(options =>
                 {
+                    options.AddPolicy("AccessToken", policy =>
+                    {
+                        policy.RequireAuthenticatedUser();
+                        policy.AuthenticationSchemes.Add("AccessToken");
+                    });
                     options.AddPolicy("RefreshAuth", policy =>
                     {
                         policy.RequireAuthenticatedUser();
                         policy.AuthenticationSchemes.Add("RefreshAuth");
                     });
                 });
+
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

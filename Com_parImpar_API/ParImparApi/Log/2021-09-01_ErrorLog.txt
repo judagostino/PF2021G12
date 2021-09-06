@@ -1,0 +1,10 @@
+2021-09-01 22:03:16.0006 - INFO - 80000018-0000-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Events (ver: ) - ::1
+     Message: Start date is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwMmE2NTM1MC0xNTk1LTQ1N2UtODBkNC0xYzcxOTA5Y2I5YzEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjMwNTQ0MzMxLCJleHAiOjE2MzA1NDUyMzEsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.F8iKQ3ZTLg38WMqWhOnRwJdL35AMD5ZV68MQpyM9TFk", 
+     Body: {"Id":null,"DateEntered":null,"StartDate":"2020-03-01T00:00:00","EndDate":"2020-03-02T00:00:00","Title":"Test title","Description":"Test description","State":null,"ContactCreate":null,"ContactAudit":null}
+
+2021-09-01 22:27:45.6418 - INFO - 80000008-0007-ff00-b63f-84710c7967bb - (PUT) https://localhost/api/v1/Events/12 (ver: ) - ::1
+     Message: Id is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMmJmNzc3Ni00MDU0LTQzZTItODIyYy0zMzFiOGI5ZjllNTUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjMwNTQ1NzU1LCJleHAiOjE2MzA1NDY2NTUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.j7xH_cR03r9WAzRJWbQnm-x9lyfAxtWDIP3QiHLxrVM", 
+     Body: {"Id":null,"DateEntered":null,"StartDate":"2020-03-01T00:00:00","EndDate":"2020-03-02T00:00:00","Title":"Test title","Description":"Test description","State":null,"ContactCreate":null,"ContactAudit":null}
+

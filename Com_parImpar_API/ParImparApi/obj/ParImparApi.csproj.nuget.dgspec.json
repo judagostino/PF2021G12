@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\ParImparApi.csproj": {}
+    "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\ParImparApi.csproj": {
+    "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\ParImparApi.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
         "projectName": "ParImparApi",
-        "projectPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\ParImparApi.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -31,20 +31,20 @@ namespace ParImparApi.Controllers
 
         #region [Insert]
         // POST: api/v1/Events
-        [HttpPost()]
-        [Authorize]
+        [HttpPost]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> Insert([FromBody] EventRequestDTO eventRequest)
         {
             try
             {
-                if (eventRequest.StartDate != null)
+                if (eventRequest.StartDate == null)
                 {
-                    return BadRequest(CustomStatusCodes.StartDateRequired);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.StartDateRequired, eventRequest));
                 }
 
                 if (string.IsNullOrWhiteSpace(eventRequest.Title))
                 {
-                    return BadRequest(CustomStatusCodes.TitleRequired);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.TitleRequired, eventRequest));
                 }
 
                 ApiResponse response = await _eventsService.Insert(eventRequest);
@@ -56,6 +56,8 @@ namespace ParImparApi.Controllers
                             return Ok(response.Data);
                         }
                     case CustomStatusCodes.NotFound:
+                    case CustomStatusCodes.StartDateRequired:
+                    case CustomStatusCodes.TitleRequired:
                         {
                             return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventRequest));
                         }
@@ -73,16 +75,26 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [Update]
-        // POST: api/v1/Events/EventId
+        // PUT: api/v1/Events/EventId
         [HttpPut("{EventId}")]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> Update(int eventId, [FromBody] EventRequestDTO eventRequest)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(eventRequest.Description))
+                if (eventId <= 0)
                 {
-                    return BadRequest(CustomStatusCodes.EmailRequiredField);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, eventRequest));
+                }
+
+                if (eventRequest.StartDate == null)
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.StartDateRequired, eventRequest));
+                }
+
+                if (string.IsNullOrWhiteSpace(eventRequest.Title))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.TitleRequired, eventRequest));
                 }
 
                 ApiResponse response = await _eventsService.Update(eventId, eventRequest);
@@ -95,8 +107,11 @@ namespace ParImparApi.Controllers
                         }
                     case CustomStatusCodes.NotFound:
                         {
-                            return NotFound();
+                            return NotFound(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventRequest));
                         }
+                    case CustomStatusCodes.StartDateRequired:
+                    case CustomStatusCodes.TitleRequired:
+                    case CustomStatusCodes.RequiredId:
                     case CustomStatusCodes.BadRequest:
                         {
                             return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventRequest));
@@ -115,16 +130,16 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [Delete]
-        // POST: api/v1/Events/EventId
+        // DELETE: api/v1/Events/EventId
         [HttpDelete("{EventId}")]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> Delete(int eventId)
         {
             try
             {
                 if (eventId != null && eventId <= 0)
                 {
-                    return BadRequest(CustomStatusCodes.RequiredId);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, eventId));
                 }
 
                 ApiResponse response = await _eventsService.Delete(eventId);
@@ -157,9 +172,9 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [GetById]
-        // POST: api/v1/Events/EventId
+        // GET: api/v1/Events/EventId
         [HttpGet("{EventId}")]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> GetById(int eventId)
         {
             try
@@ -199,9 +214,9 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [GetAll]
-        // POST: api/v1/Events
+        // GET: api/v1/Events
         [HttpGet]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> GetAll()
         {
             try
@@ -239,12 +254,12 @@ namespace ParImparApi.Controllers
         #region [Authorize]
         // POST: api/v1/Events/Authorize
         [HttpPost("{EventId}/Autorize")]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> Autorize(int eventId)
         {
             try
             {
-                ApiResponse response = await _eventsService.Authorize();
+                ApiResponse response = await _eventsService.Autorize(eventId);
 
                 switch (response.Status)
                 {
@@ -254,21 +269,22 @@ namespace ParImparApi.Controllers
                         }
                     case CustomStatusCodes.NotFound:
                         {
-                            return NotFound();
+                            return NotFound(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
                         }
+                    case CustomStatusCodes.unauthorizedAction:
                     case CustomStatusCodes.BadRequest:
                         {
-                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
                         }
                     default:
                         {
-                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
                         }
                 }
             }
             catch (Exception exc)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, eventId));
             }
         }
         #endregion
@@ -276,12 +292,12 @@ namespace ParImparApi.Controllers
         #region [Deny]
         // POST: api/v1/Events/Deny
         [HttpPost("{EventId}/Deny")]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> Deny(int eventId)
         {
             try
             {
-                ApiResponse response = await _eventsService.Deny();
+                ApiResponse response = await _eventsService.Deny(eventId);
 
                 switch (response.Status)
                 {
@@ -291,21 +307,22 @@ namespace ParImparApi.Controllers
                         }
                     case CustomStatusCodes.NotFound:
                         {
-                            return NotFound();
+                            return NotFound(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
                         }
+                    case CustomStatusCodes.unauthorizedAction:
                     case CustomStatusCodes.BadRequest:
                         {
-                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
                         }
                     default:
                         {
-                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
                         }
                 }
             }
             catch (Exception exc)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, eventId));
             }
         }
         #endregion

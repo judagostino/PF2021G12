@@ -39,23 +39,23 @@ namespace ParImparApi.Controllers
             {
                 if (string.IsNullOrWhiteSpace(registerUser.Email) || string.IsNullOrWhiteSpace(registerUser.ConfirmEmail))
                 {
-                    return BadRequest(CustomStatusCodes.EmailRequiredField);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.EmailRequiredField, registerUser));
                 }
                 if (string.IsNullOrWhiteSpace(registerUser.UserName))
                 {
-                    return BadRequest(CustomStatusCodes.UserNameRequiredField);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.UserNameRequiredField, registerUser));
                 }
                 if (string.IsNullOrWhiteSpace(registerUser.FistName))
                 {
-                    return BadRequest(CustomStatusCodes.FirstNameRequiredField);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.FirstNameRequiredField, registerUser));
                 }
                 if (string.IsNullOrWhiteSpace(registerUser.LastName))
                 {
-                    return BadRequest(CustomStatusCodes.LastNameRequiredField);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.LastNameRequiredField, registerUser));
                 }
                 if (string.IsNullOrWhiteSpace(registerUser.Password) || string.IsNullOrWhiteSpace(registerUser.ConfirmPassword))
                 {
-                    return BadRequest(CustomStatusCodes.PasswordRequiredField);
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.PasswordRequiredField, registerUser));
                 }
 
                 ApiResponse response = await _authService.RegistrerUser(registerUser);

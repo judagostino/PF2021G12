@@ -173,7 +173,6 @@ namespace ParImparApi.Services
             }
         }
 
-
         public async Task<ApiResponse> RegistrerUser(RegisterUserDTO registerUser)
         {
 
