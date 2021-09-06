@@ -1,0 +1,22 @@
+#SearchBarNavbar1 {
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-right: 20px;
+}
+
+@media (max-width: 992px) {
+    #SearchBarNavbar1 {
+        justify-content: flex-start !important;
+ 
+    }
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,1);
+   
+}

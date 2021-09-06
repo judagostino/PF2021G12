@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+.titles {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+.opcionMenu {
+    font-family: 'Quicksand', sans-serif;
+    font-size: large;
+    font-weight: 200;
+}
+
+body {
+    background-color:#E0E0E0
+}
+
+// .logo {
+//     background: rgb(41,41,41);
+//     background: radial-gradient(circle, rgba(41,41,41,1) 0%, rgba(50,130,184,0.5942576859845501) 84%);
+// }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
