@@ -7307,19 +7307,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\Maca\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\ParImparApi.csproj",
+      "projectUniqueName": "D:\\Maca\\Documents\\Proyecto\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
       "projectName": "ParImparApi",
-      "projectPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\ParImparApi.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Trisomia_API\\ParImparApi\\obj\\",
+      "projectPath": "D:\\Maca\\Documents\\Proyecto\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
+      "packagesPath": "C:\\Users\\Maca\\.nuget\\packages\\",
+      "outputPath": "D:\\Maca\\Documents\\Proyecto\\PF2021G12\\Com_parImpar_API\\ParImparApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Maca\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7331,7 +7331,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -7343,7 +7342,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Certificate": {
             "target": "Package",
@@ -7396,7 +7394,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
