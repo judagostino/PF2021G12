@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Events } from 'src/app/models/events';
+import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-events',
@@ -98,6 +99,12 @@ export class ABMEventsComponent implements OnInit {
     }
 
     this.form.reset(new Events());
+
+    Swal.fire(
+      'Good job!',
+      'You clicked the button!',
+      'success'
+    )
   }
 
   public btn_NewEvent(): void {
