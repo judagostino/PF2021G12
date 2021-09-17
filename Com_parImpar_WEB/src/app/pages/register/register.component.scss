@@ -1,10 +1,159 @@
-mat-card{
-  background-color: #3282b8;
-  margin: 10%;
-  padding: 50px 30px;
+// mat-card{
+//   background-color: #ECECEC;
+//   margin: 20%;
+//   padding: 50px 30px;
+// }
+
+// .center{
+//   text-align: center;
+// }
+ 
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: normal;
+  font-size: 100%;
+  color: #1b262c;
+  
+  margin: 0;
+  
 }
 
-.center{
+#contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background: rgb(2,0,36);
+background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+#central {
+  max-width: 320px;
+  width: 100%;
+}
+
+.titulo {
+  font-size: 250%;
+  color:#48a7e5;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#login {
+  width: 400px;
+  height: 500px;
+  padding: 50px 30px;
+  background-color: #ECECEC;
+  
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  
+  box-sizing: border-box;
+  width: 600px;
+  height: 460px;
+}
+
+.matInput {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 110%;
+  color: #1b262c;
+  
+  display:block;
+  width: 80%;
+  height: 40px;
+  
+  margin-bottom: 10px;
+  padding: 5px 5px 5px 10px;
+  
+  box-sizing: border-box;
+  
+  border: none;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  margin-top: 35px;
+  margin-left: 35px;
+}
+
+#login input::placeholder {
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #E4E4E4;
+}
+
+#login button {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 130%;
+  color:#0f4c75;
+  width: 80%;
+  height: 40px;
+  border: none;
+  margin-left: 35px;
+  margin-top: 20px;
+  margin-bottom: auto;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+
+  background-color: #bbe1fa;
+  
+  margin-top: 20px;
+}
+#login button:hover {
+  background-color: #0f4c75;
+  color:#bbe1fa;
+}
+
+.pie-form {
+  font-size: 90%;
+  text-align: center;    
+  margin-top: 38px;
+}
+
+.pie-form a {
+  display: block;
+  text-decoration: none;
+  color: #3f88b3;
+  margin-bottom: 10px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 130%;
+}
+
+.pie-form a:hover {
+  color: #48a7e5;
+}
+
+.inferior {
+  margin-top: 10px;
+  font-size: 90%;
   text-align: center;
 }
- 
+
+.inferior a {
+ justify-content: center;
+  display: block;
+  text-decoration: none;
+  color: #48a7e5;
+  font-size:150%;
+  margin-bottom: 3px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  margin-left: 230px;
+}
+
+.inferior a:hover {
+  color: #3282b8;
+}
+
+.input {
+  width: 92%;
+}
