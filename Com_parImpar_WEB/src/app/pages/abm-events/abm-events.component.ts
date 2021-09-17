@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Events } from 'src/app/models/events';
 import { EventsService } from 'src/app/services';
+import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-events',
@@ -81,6 +82,11 @@ export class ABMEventsComponent implements OnInit {
     this.eventsService.insert(event).subscribe(resp => {
       this.form.reset(resp)
       this.getGrid();
+      Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      )
     });
   }
 
@@ -88,6 +94,11 @@ export class ABMEventsComponent implements OnInit {
     this.eventsService.update(event.id,event).subscribe(resp => {
       this.form.reset(resp)
       this.getGrid();
+      Swal.fire(
+        'Good job!',
+        'You clicked the button!',
+        'success'
+      )
     });
   }
 }
