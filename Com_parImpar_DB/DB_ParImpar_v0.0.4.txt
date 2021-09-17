@@ -489,5 +489,411 @@ WHERE
 		@IsAuditor = 'True'
 GO
 
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_GetByDate]    Script Date: 14/9/2021 19:53:44 ******/
+DROP PROCEDURE [dbo].[Events_GetByDate]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_GetByDate]    Script Date: 14/9/2021 19:53:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Events_GetByDate]
+(
+	@Date Datetime
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @Date Datetime = '2021-8-5'
+*/
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	CC.LastName + ', ' + CC.FistName AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FistName ELSE NULL END 'NameAudit',
+	E.StateId,
+	s.[Description] 'DescriptionState'
+FROM [Events] E (NOLOCK)
+	INNER JOIN Contacts (NOLOCK) CC
+	ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+	ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+	ON CA.ContactId = E.ContactAudit
+WHERE 
+		MONTH(e.StartDate) = MONTH(@Date)
+	 AND
+		YEAR(e.StartDate) = YEAR(@Date)
+	 AND
+		e.StateId = 2
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_ChangePassword]    Script Date: 15/9/2021 19:22:51 ******/
+DROP PROCEDURE [dbo].[Contact_ChangePassword]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_ChangePassword]    Script Date: 15/9/2021 19:22:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_ChangePassword]
+(
+	@ContactId INT,
+	@LastPassword VARCHAR(100),
+	@NewPassword VARCHAR(100),
+	@ResultCode INT OUTPUT
+)
+AS
+
+SET @ResultCode = 200
+
+IF (SELECT COUNT(ContactId) FROM Contacts (NOLOCK) WHERE ContactId = @ContactId AND @NewPassword = [Password]) <> 0
+	BEGIN
+		SET @ResultCode = 5911
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		UPDATE Contacts 
+		SET [Password] = @NewPassword
+		WHERE ContactId = @ContactId
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+		  ELSE 
+			BEGIN
+				SET @ResultCode = 200 
+			END
+	END
+GO
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Contacts ADD
+	Confim bit NULL,
+	ConfirrmCode varchar(100) NULL
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+EXECUTE sp_rename N'dbo.Contacts.FistName', N'Tmp_FirstName', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.Contacts.Confim', N'Tmp_Confirm_1', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.Contacts.Tmp_FirstName', N'FirstName', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.Contacts.Tmp_Confirm_1', N'Confirm', 'COLUMN' 
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+USE [ParImpar]
+GO
+UPDATE Contacts SET [Confirm] = 'True'
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+EXECUTE sp_rename N'dbo.Contacts.ConfirrmCode', N'Tmp_ConfirmCode_4', 'COLUMN' 
+GO
+EXECUTE sp_rename N'dbo.Contacts.Tmp_ConfirmCode_4', N'ConfirmCode', 'COLUMN' 
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+USE [ParImpar]
+GO
+/****** Object:  StoredProcedure [dbo].[Contact_Regisrter]    Script Date: 15/9/2021 21:02:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[Contact_Regisrter]
+(
+	@Email VARCHAR(100),
+	@UserName VARCHAR(100),
+	@LastName VARCHAR(100),
+	@FirstName VARCHAR(100),
+	@Password VARCHAR(100),
+	@DateBrirth Date,
+	@ConfirmCode VARCHAR(100) OUTPUT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+--para test
+DECLARE @Email VARCHAR(100)
+DECLARE @Password VARCHAR(100)
+DECLARE @LastName VARCHAR(100)
+DECLARE @UserName VARCHAR(100)
+DECLARE @FistName VARCHAR(100)
+DECLARE @DateBrirth Date
+DECLARE @ResultCode INT
+
+SET @Email = 'Gastonvottero@gmail.com'
+SET @Password = 'GQfx8ucJ62jDe7AbgeEW5A=='
+SET @LastName = 'Test'
+SET @FistName = 'Test'
+SET @UserName = 'Test'
+SET @DateBrirth = GETDATE()
+*/
+
+SET @ConfirmCode = NEWID()
+SET @ResultCode = 200
+DECLARE @ContactAux INT = 0;
+
+IF (@UserName IS NULL OR @UserName = '')
+	BEGIN
+		SET @ResultCode = 5001
+	END
+
+IF (@Password IS NULL OR @Password = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5002
+	END
+
+IF (@Email IS NULL OR @Email = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5003
+	END
+
+IF (@FirstName IS NULL OR @FirstName = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5004
+	END
+
+IF (@LastName IS NULL OR @LastName = '') AND @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5005
+	END
+
+
+IF (SELECT  COUNT(ContactId) FROM Contacts (NOLOCK) WHERE Email = @Email AND ISNULL([Confirm], 'False') <> 'False') > 0 AND @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5906
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		SELECT TOP 1 @ContactAux = ISNULL(ContactId,0) FROM Contacts (NOLOCK) WHERE Email = @Email AND ISNULL([Confirm], 'False') = 'False'
+		IF @ContactAux <> 0
+			BEGIN
+				UPDATE Contacts
+				SET
+					FirstName = @FirstName, 
+					LastName = @LastName, 
+					Email = @Email, 
+					[Password] = @Password, 
+					UserName = @UserName, 
+					DateBrirth =  @DateBrirth, 
+					[Confirm] = 'False',
+					ConfirmCode = @ConfirmCode, 
+					dateEntered = GETDATE()
+				WHERE ContactId = @ContactAux
+			END
+		  ELSE
+			BEGIN
+				INSERT INTO Contacts (FirstName, LastName, Email, [Password], UserName, DateBrirth, [Confirm], ConfirmCode, dateEntered) 
+				VALUES (@FirstName, @LastName, @Email,@Password, @UserName, @DateBrirth, 'False', @ConfirmCode, GETDATE())
+
+			END
+		IF @@ROWCOUNT = 0 
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+	END
+
+
+USE [ParImpar]
+GO
+/****** Object:  StoredProcedure [dbo].[Contact_CredentialsLogin]    Script Date: 15/9/2021 21:00:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[Contact_CredentialsLogin]
+(
+	@Email VARCHAR(100),
+	@UserPassword VARCHAR(100)
+)
+
+AS
+
+/*
+--para test
+DECLARE @Email VARCHAR(100)
+SET @Email = 'test@gmail.com'
+DECLARE @UserPassword VARCHAR(100)
+SET @UserPassword = 'GQfx8ucJ62jDe7AbgeEW5A=='
+*/
+
+SELECT TOP 1 ContactId 
+FROM Contacts (NOLOCK) C
+WHERE @Email = C.Email 
+	AND @UserPassword = C.Password
+	AND ISNULL([Confirm], 'False') <> 'False'
+
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_Confirm]    Script Date: 16/9/2021 20:00:00 ******/
+DROP PROCEDURE [dbo].[Contact_Confirm]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_Confirm]    Script Date: 16/9/2021 20:00:00 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_Confirm]
+(
+	@ContactId INT,
+	@ConfirmCode VARCHAR(100),
+	@ResultCode INT OUTPUT
+)
+AS
+
+SET @ResultCode = 200
+
+UPDATE Contacts 
+		SET [Confirm] = 'True'
+		WHERE 
+			ContactId = @ContactId
+			AND
+			ConfirmCode = @ConfirmCode
+GO
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Contacts ADD
+	ExpiredRecover datetime NULL,
+	CodeRecover varchar(100) NULL
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_RecoverPassword]    Script Date: 17/9/2021 20:03:38 ******/
+DROP PROCEDURE [dbo].[Contact_RecoverPassword]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_RecoverPassword]    Script Date: 17/9/2021 20:03:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Contact_RecoverPassword]
+(
+	@Email VARCHAR(100),
+	@CodeRecover VARCHAR(100),
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+SET @ResultCode = 200
+SET @CodeRecover = NEWID()
+
+DECLARE @ContactId INT = 0
+
+SELECT TOP 1 @ContactId = ContactId FROM Contacts WHERE Email = @Email
+
+IF @ContactId <> 0
+	BEGIN
+		UPDATE Contacts 
+			SET [CodeRecover] = @CodeRecover,
+			ExpiredRecover = DATEADD(hh, 4, GETDATE())
+			WHERE ContactId = @ContactId
+	END
+GO
+
 
 

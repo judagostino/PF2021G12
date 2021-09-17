@@ -24,6 +24,8 @@ namespace ParImparApi.Common
         [Description("Id is required")] RequiredId = 5006,
         [Description("Start date is required")] StartDateRequired = 5007,
         [Description("Title is required")] TitleRequired = 5008,
+        [Description("New Password is required")] NewPasswordRequired = 5009,
+        [Description("Confirm Password is required")] ConfirmPasswordRequired = 5010,
 
         
         // Item not exists
@@ -42,6 +44,7 @@ namespace ParImparApi.Common
         [Description("Distint passwords")] DistintPassword = 5908,
         [Description("Incorrect format password")] IncorretFormatPassword = 5909,
         [Description("unauthorized action ")] unauthorizedAction = 5910,
+        [Description("Password not change")] NotChangePassword = 5911,
     }
 
     internal static class Extensions

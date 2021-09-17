@@ -17,13 +17,15 @@ namespace ParImparApi.Controllers
     public class ContactController : ControllerBase
     {
         private readonly AuthService _authService;
+        private readonly EmailService _emailService;
         private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILog _logger;
 
-        public ContactController(AuthService authService, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, ILog logger)
+        public ContactController(AuthService authService, EmailService emailService, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, ILog logger)
         {
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -33,7 +35,7 @@ namespace ParImparApi.Controllers
         // POST: api/v1/Contact/Register
         [HttpPost("Register")]
         [AllowAnonymous]
-        public async Task<IActionResult> CredentialsLogin([FromBody] RegisterUserDTO registerUser)
+        public async Task<IActionResult> RegistrerUser([FromBody] RegisterUserDTO registerUser)
         {
             try
             {
@@ -45,7 +47,7 @@ namespace ParImparApi.Controllers
                 {
                     return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.UserNameRequiredField, registerUser));
                 }
-                if (string.IsNullOrWhiteSpace(registerUser.FistName))
+                if (string.IsNullOrWhiteSpace(registerUser.FirstName))
                 {
                     return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.FirstNameRequiredField, registerUser));
                 }
@@ -60,11 +62,23 @@ namespace ParImparApi.Controllers
 
                 ApiResponse response = await _authService.RegistrerUser(registerUser);
 
+                // Send email to user
+                ApiResponse emailResponse = await _emailService.SendEmailConfirmAsync(registerUser);
+
+
+
                 switch (response.Status)
                 {
                     case CustomStatusCodes.Success:
                         {
-                            return Ok(response.Data);
+                            if (emailResponse.Status == CustomStatusCodes.Success)
+                            {
+                                return Ok(response.Data);
+                            }
+                            else
+                            {
+                                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, emailResponse.Status, registerUser));
+                            }
                         }
                     case CustomStatusCodes.DistintEmail:
                     case CustomStatusCodes.EmailExist:
@@ -86,6 +100,151 @@ namespace ParImparApi.Controllers
             catch (Exception exc)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, registerUser));
+            }
+        }
+        #endregion
+
+        #region [RecoverPassword]
+        // POST: api/v1/Contact/Recover
+        [HttpPost("Recover")]
+        [AllowAnonymous]
+        public async Task<IActionResult> RecoverPassword([FromBody] RegisterUserDTO registerUser)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(registerUser.Email) || string.IsNullOrWhiteSpace(registerUser.ConfirmEmail))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.EmailRequiredField, registerUser));
+                }
+            
+                ApiResponse response = await _authService.RecoverPassword(registerUser);
+
+                // Send email to user
+                ApiResponse emailResponse = await _emailService.SendEmailConfirmAsync(registerUser);
+
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            if (emailResponse.Status == CustomStatusCodes.Success)
+                            {
+                                return Ok(response.Data);
+                            }
+                            else
+                            {
+                                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, emailResponse.Status, registerUser));
+                            }
+                        }
+                    case CustomStatusCodes.DistintEmail:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, registerUser));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, registerUser));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, registerUser));
+            }
+        }
+        #endregion
+
+        #region [Confirm]
+        // POST: api/v1/Contact/Confirm
+        [HttpPost("Confirm")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Confirm([FromBody] RegisterUserDTO registerUser)
+        {
+            try
+            {
+                if (!(registerUser != null 
+                    && registerUser.Id != null 
+                    && registerUser.Id != 0 
+                    && registerUser.ConfirmCode != null 
+                    && !registerUser.ConfirmCode.Equals("")
+                    && !string.IsNullOrWhiteSpace(registerUser.ConfirmCode)))
+                {
+                    return BadRequest();
+                }
+             
+                ApiResponse response = await _authService.Confirm(registerUser);
+
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(response.Data);
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, registerUser));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, registerUser));
+            }
+        }
+        #endregion
+
+        #region [Update]
+        // POST: api/v1/Contact/ChangePassword
+        [HttpPost("ChangePassword")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequestDTO changePassword)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(changePassword.LastPassword))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.PasswordRequiredField, null));
+                }
+
+                if (string.IsNullOrWhiteSpace(changePassword.NewPassword))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.NewPasswordRequired, null));
+                }
+
+                if (string.IsNullOrWhiteSpace(changePassword.ConfirmPassword))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.ConfirmPasswordRequired, null));
+                }
+
+                ApiResponse response = await _authService.ChangePassword(changePassword);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(((ApiSuccessResponse)response.Data));
+                        }
+
+                    case CustomStatusCodes.NotChangePassword:
+                    case CustomStatusCodes.IncorretFormatPassword:
+                    case CustomStatusCodes.DistintPassword:
+                        {
+                             return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return StatusCode(StatusCodes.Status401Unauthorized, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                }
+
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
             }
         }
         #endregion

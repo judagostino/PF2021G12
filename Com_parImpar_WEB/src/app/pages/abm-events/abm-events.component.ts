@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Events } from 'src/app/models/events';
+import { EventsService } from 'src/app/services';
 
 @Component({
   selector: 'app-abm-events',
@@ -9,66 +10,14 @@ import { Events } from 'src/app/models/events';
 })
 export class ABMEventsComponent implements OnInit {
   form: FormGroup
-  events: Events[] = [
-    {
-      id: 1, 
-      title: 'Feria de libros para ciegos',
-      description: 'muestra de eventos', 
-      startDate: new Date("2020-12-1"),
-      endDate: new Date("2020-12-1"),
-      state: {
-        id: 1,
-        description: 'en espera'
-      }
-    },
-    {
-      id: 2, 
-      title: 'Charla de integracion',
-      description: 'muestra de eventos', 
-      startDate: new Date("2020-12-1"),
-      endDate: new Date("2020-12-1"),
-      state: {
-        id: 1,
-        description: 'en espera'
-      }
-    },
-    {
-      id: 3, 
-      title: 'encuensta de opinion',
-      description: 'muestra de eventos', 
-      startDate: new Date("2020-1-1"),
-      endDate: new Date("2021-2-1"),
-      state: {
-        id: 2,
-        description: 'Aprobar'
-      },
-      contactAudit: {
-        userName: 'Test, Test'
-      }
-    },
-    {
-      id: 4, 
-      title: 'Sueño dorado',
-      description: 'muestra de eventos', 
-      startDate: new Date("2020-12-1"),
-      endDate: new Date("2020-12-1"),
-      state: {
-        id: 3,
-        description: 'Rechazar'
-      },
-      contactAudit: {
-        userName: 'Test, Test'
-      }
-    }
-  ]
+  events: Events[] = []
 
-  lastId: number = 4;
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private eventsService: EventsService) { }
 
   ngOnInit(): void {
     this.initForm();
     this.form.reset(new Events());
+    this.getGrid();
   }
 
   private initForm(): void {
@@ -89,15 +38,10 @@ export class ABMEventsComponent implements OnInit {
     let newEvent = this.form.value;
 
     if (newEvent.id === 0) {
-      this.lastId = this.lastId + 1;
-      newEvent.id = this.lastId;
-      this.events.splice(this.events.length, 0, newEvent);
+      this.insert(newEvent);
     } else {
-      let index = this.events.indexOf(this.events.filter( eventAux=> eventAux.id === this.form.value.id).shift());
-      this.events[index] = newEvent;
+      this.update(newEvent);
     }
-
-    this.form.reset(new Events());
   }
 
   public btn_NewEvent(): void {
@@ -105,12 +49,45 @@ export class ABMEventsComponent implements OnInit {
   } 
 
   public btn_DeleteEvent(): void {
-    let index = this.events.indexOf(this.events.filter( eventAux => eventAux.id === this.form.value.id).shift());
-    this.events.splice(index, 1);
+    this.eventsService.delete(this.form.value.id).subscribe( () => {
+      this.form.reset(new Events())
+    });
   }
 
-  public btn_SelectEvent(event:Events) : void {
-    this.form.reset(event)
+  public btn_SelectEvent(event: Events) : void {
+    this.eventsService.getById(event.id).subscribe( resp => {
+      this.form.reset(resp)      
+    });
   }
 
+  public btn_authorizeEvent() : void {
+    this.eventsService.authorize(this.form.value.id).subscribe( () => {
+    });
+  }
+
+  public btn_denyEvent() : void {
+    this.eventsService.deny(this.form.value.id).subscribe( () => {
+    });
+  }
+
+  private getGrid(): void {
+    this.eventsService.getAll().subscribe( resp => {
+      this.events = [];
+      this.events = resp;
+    });
+  }
+
+  private insert(event: Events): void {
+    this.eventsService.insert(event).subscribe(resp => {
+      this.form.reset(resp)
+      this.getGrid();
+    });
+  }
+
+  private update(event: Events): void {
+    this.eventsService.update(event.id,event).subscribe(resp => {
+      this.form.reset(resp)
+      this.getGrid();
+    });
+  }
 }

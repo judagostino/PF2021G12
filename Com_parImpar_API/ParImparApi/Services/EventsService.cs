@@ -129,7 +129,7 @@ namespace ParImparApi.Services
 
                                 if (reader["StartDate"] != DBNull.Value)
                                 {
-                                    newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                    newEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
                                 }
 
                                 if (reader["Title"] != DBNull.Value)
@@ -310,7 +310,7 @@ namespace ParImparApi.Services
 
                                 if (reader["StartDate"] != DBNull.Value)
                                 {
-                                    newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                    newEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
                                 }
 
                                 if (reader["Title"] != DBNull.Value)
@@ -481,6 +481,12 @@ namespace ParImparApi.Services
                                     newEvent.Id = null;
                                 }
 
+                                if (reader["Title"] != DBNull.Value)
+                                {
+                                    newEvent.Title = reader["Title"].ToString();
+                                }
+
+
                                 if (reader["EndDate"] != DBNull.Value)
                                 {
                                     newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
@@ -488,7 +494,7 @@ namespace ParImparApi.Services
 
                                 if (reader["StartDate"] != DBNull.Value)
                                 {
-                                    newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                    newEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
                                 }
 
                                 if (reader["Description"] != DBNull.Value)
@@ -610,7 +616,7 @@ namespace ParImparApi.Services
 
                                 if (reader["StartDate"] != DBNull.Value)
                                 {
-                                    newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                    newEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
                                 }
 
                                 if (reader["Title"] != DBNull.Value)
@@ -653,6 +659,115 @@ namespace ParImparApi.Services
                                     {
                                         Id = int.Parse(reader["StateId"].ToString()),
                                         Description = reader["DescriptionState"].ToString()
+                                    };
+                                }
+
+                                events.Add(newEvent);
+                            }
+                        }
+                        #endregion
+
+
+                        if (events != null && events.Count > 0)
+                        {
+                            return successResponse;
+                        }
+                        else
+                        {
+                            return new ApiResponse()
+                            {
+                                Status = CustomStatusCodes.NotFound
+                            };
+                        }
+
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> GetByDate(DateTime date)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Events_GetByDate", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@Date", date));
+                        #endregion
+
+                        await cnn.OpenAsync();
+
+                        List<EventRequestDTO> events = new List<EventRequestDTO>();
+                        EventRequestDTO newEvent;
+
+                        ApiResponse successResponse = new ApiResponse()
+                        {
+                            Data = events,
+                            Status = CustomStatusCodes.Success
+                        };
+
+                        #region [BD fireld mapping]
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                newEvent = new EventRequestDTO();
+
+                                if (reader["EventId"] != DBNull.Value)
+                                {
+                                    newEvent.Id = int.Parse(reader["EventId"].ToString());
+                                }
+                                else
+                                {
+                                    newEvent.Id = null;
+                                }
+
+                                if (reader["EndDate"] != DBNull.Value)
+                                {
+                                    newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                }
+
+                                if (reader["StartDate"] != DBNull.Value)
+                                {
+                                    newEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
+                                }
+
+                                if (reader["Title"] != DBNull.Value)
+                                {
+                                    newEvent.Title = reader["Title"].ToString();
+                                }
+
+                                if (reader["Description"] != DBNull.Value)
+                                {
+                                    newEvent.Description = reader["Description"].ToString();
+                                }
+
+                                if (reader["DateEntered"] != DBNull.Value)
+                                {
+                                    newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
+                                }
+
+                                if (reader["ContacCreate"] != DBNull.Value)
+                                {
+                                    newEvent.ContactCreate = new ContactDTO()
+                                    {
+                                        Id = int.Parse(reader["ContacCreate"].ToString()),
+                                        name = reader["NameCreate"].ToString()
                                     };
                                 }
 
