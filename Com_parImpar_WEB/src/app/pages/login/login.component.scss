@@ -5,20 +5,21 @@ body {
     color: #1b262c;
     
     margin: 0;
-    background-color: #E0E0E0;
+    
 }
 
 #contenedor {
     display: flex;
     align-items: center;
     justify-content: center;
-    
     margin: 0;
     padding: 0;
     min-width: 100vw;
     min-height: 100vh;
     width: 100%;
     height: 100%;
+    background: rgb(2,0,36);
+background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 #central {
@@ -28,15 +29,16 @@ body {
 
 .titulo {
     font-size: 250%;
-    color:#bbe1fa;
+    color:#48a7e5;
     text-align: center;
     margin-bottom: 20px;
 }
 
 #login {
-    width: 100%;
+    width: 400px;
+    height: 500px;
     padding: 50px 30px;
-    background-color: #3282b8;
+    background-color: #ECECEC;
     
     -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
     -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
@@ -54,8 +56,8 @@ body {
     font-size: 110%;
     color: #1b262c;
     
-    display: block;
-    width: 100%;
+    display:block;
+    width: 80%;
     height: 40px;
     
     margin-bottom: 10px;
@@ -67,6 +69,8 @@ body {
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
+    margin-top: 35px;
+    margin-left: 35px;
 }
 
 #login input::placeholder {
@@ -78,9 +82,10 @@ body {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 130%;
     color:#0f4c75;
-    width: 100%;
+    width: 80%;
     height: 40px;
     border: none;
+    margin-left: 35px;
     
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
@@ -88,7 +93,7 @@ body {
     
     background-color: #bbe1fa;
     
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 #login button:hover {
@@ -99,20 +104,20 @@ body {
 .pie-form {
     font-size: 90%;
     text-align: center;    
-    margin-top: 15px;
+    margin-top: 38px;
 }
 
 .pie-form a {
     display: block;
     text-decoration: none;
-    color: #bbe1fa;
-    margin-bottom: 3px;
+    color: #3f88b3;
+    margin-bottom: 10px;
     font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 120%;
+    font-size: 130%;
 }
 
 .pie-form a:hover {
-    color: #0f4c75;
+    color: #48a7e5;
 }
 
 .inferior {
@@ -122,105 +127,16 @@ body {
 }
 
 .inferior a {
+   justify-content: center;
     display: block;
     text-decoration: none;
-    color: #0f4c75;
+    color: #48a7e5;
     font-size:150%;
     margin-bottom: 3px;
     font-family: 'IBM Plex Sans', sans-serif;
-    
+    margin-left: 65px;
 }
 
 .inferior a:hover {
     color: #3282b8;
 }
-
-.footer-dark {
-    padding:30px 0;
-    color:#f0f9ff;
-    background-color:#282d32;
-  }
-  
-  .footer-dark h3 {
-    margin-top:0;
-    margin-bottom:12px;
-    font-weight:bold;
-    font-size:16px;
-  }
-  
-  .footer-dark ul {
-    padding:0;
-    list-style:none;
-    line-height:1.6;
-    font-size:14px;
-    margin-bottom:0;
-  }
-  
-  .footer-dark ul a {
-    color:inherit;
-    text-decoration:none;
-    opacity:0.6;
-  }
-  
-  .footer-dark ul a:hover {
-    opacity:0.8;
-  }
-  
-  @media (max-width:767px) {
-    .footer-dark .item:not(.social) {
-      text-align:center;
-      padding-bottom:20px;
-    }
-  }
-  
-  .footer-dark .item.text {
-    margin-bottom:36px;
-  }
-  
-  @media (max-width:767px) {
-    .footer-dark .item.text {
-      margin-bottom:0;
-    }
-  }
-  
-  .footer-dark .item.text p {
-    opacity:0.6;
-    margin-bottom:0;
-  }
-  
-  .footer-dark .item.social {
-    text-align:center;
-  }
-  
-  @media (max-width:991px) {
-    .footer-dark .item.social {
-      text-align:center;
-      margin-top:20px;
-    }
-  }
-  
-  .footer-dark .item.social > a {
-    font-size:20px;
-    width:36px;
-    height:36px;
-    line-height:36px;
-    display:inline-block;
-    text-align:center;
-    border-radius:50%;
-    box-shadow:0 0 0 1px rgba(255,255,255,0.4);
-    margin:0 8px;
-    color:#fff;
-    opacity:0.75;
-  }
-  
-  .footer-dark .item.social > a:hover {
-    opacity:0.9;
-  }
-  
-  .footer-dark .copyright {
-    text-align:center;
-    padding-top:24px;
-    opacity:0.3;
-    font-size:13px;
-    margin-bottom:0;
-  }
