@@ -5,6 +5,7 @@ namespace ParImparApi.DTO
 {
     public class RegisterUserDTO
     {
+        public int? Id { get; set; }
         public string Email { get; set; }
 
         public string ConfirmEmail { get; set; }
@@ -13,11 +14,13 @@ namespace ParImparApi.DTO
 
         public string LastName { get; set; }
 
-        public string FistName { get; set; }
+        public string FirstName { get; set; }
 
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
+
+        public string ConfirmCode { get; set; }
 
         public DateTime? DateBrirth { get; set; }
     }

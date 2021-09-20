@@ -1,0 +1,9 @@
+2021-09-16 19:41:53.1392 - ERROR - 8000001a-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+     Exception: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+     StackTrace:    at ParImparApi.Services.EmailService.SendEmailAsync(Int32 Type, String Email) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EmailService.cs:line 60
+   at ParImparApi.Services.EmailService.SendEmailConfirmAsync(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EmailService.cs:line 23
+   at ParImparApi.Controllers.ContactController.RegistrerUser(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 66
+     Headers: Authorization="", 
+     Body: {"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":"gaston_vottero","LastName":"Vottero","FirstName":"Gaston","Password":"123456789Mn","ConfirmPassword":"123456789Mn","ConfirmCode":"FB84B846-306D-48C0-90A9-007FEF522192","DateBrirth":"1995-11-03T00:00:00"}
+

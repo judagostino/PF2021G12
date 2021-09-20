@@ -33,6 +33,7 @@ namespace ParImparApi
         {
             services.AddScoped<AuthService>(); 
             services.AddScoped<TokensDbService>();
+            services.AddScoped<EmailService>();
             services.AddScoped<EventsService>();
 
             services.AddControllers();
