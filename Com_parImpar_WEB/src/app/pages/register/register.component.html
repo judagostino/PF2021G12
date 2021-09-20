@@ -2,9 +2,9 @@
   <div id="central">
       <div id="login">
           <div class="titulo">
-              Registrar
+              Registrarte
+              <h4 style="margin-top:15px;">Es simple y rapido</h4>
           </div>
-    
                 <form [formGroup] ="form" novalidate>
                   <div class="row"> 
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -59,19 +59,24 @@
                         <input matInput type="password">
                       </mat-form-field>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="text-align:center;">
                       <mat-form-field class="input" appearance="fill">
                         <mat-label>Enter your password</mat-label>
                         <input matInput type="password">
                       </mat-form-field>
                       
-                      <button type="submit" title="Registrar" name="Registrar"
-                        >Registrar</button>
+                      <!-- <button type="submit" title="Registrar" name="Registrar"
+                        >Registrar</button> -->
                     
                     </div>
                     
                   </div>
-                  
+                  <div class="row justify-content-center">
+                    <div class="d-flex justify-content-center">
+                      <button class="m-2" mat-raised-button color="primary" type="button">Atras</button>
+                        <button class="m-2" mat-raised-button color="primary" type="submit" >Registrarse</button>
+                    </div>
+                </div>
                   <!-- recordar agregar tipos de errores en el email -->
                   <!-- <div  class = "example-container" > --> 
                      
@@ -84,13 +89,7 @@
                     <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
                   </mat-form-field> -->
                 </form>
-            
-            
       </div>
-      <div class="inferior">
-          <a href="#">Volver</a>
-      </div>
-  </div>
-</div>
+     </div>
 
   

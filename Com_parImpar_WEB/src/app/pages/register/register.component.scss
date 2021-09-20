@@ -46,8 +46,6 @@ background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,
 }
 
 #login {
-  width: 400px;
-  height: 500px;
   padding: 50px 30px;
   background-color: #ECECEC;
   
@@ -61,7 +59,7 @@ background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,
   
   box-sizing: border-box;
   width: 600px;
-  height: 460px;
+  height: 500px;
 }
 
 .matInput {
@@ -156,4 +154,8 @@ background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,
 
 .input {
   width: 92%;
+}
+
+.mat-h4 {
+  margin-top: 15px;
 }
