@@ -1,93 +1,94 @@
-<div class="container">
-  <mat-card class="card center">
-    <mat-card-title class="center">Registrar usuario</mat-card-title>
-    <mat-card-content>
-      <form [formGroup] ="form" novalidate>
-        <div class="row"> 
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Nombre</mat-label>
-              <input formControlName="firstName" matInput>
-            </mat-form-field>
+<div id="contenedor">
+  <div id="central">
+      <div id="login">
+          <div class="titulo">
+              Registrarte
+              <h4 style="margin-top:15px;">Es simple y rapido</h4>
           </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Apellido</mat-label>
-              <input formControlName="lastName" matInput>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row"> 
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field  appearance = "fill" > 
-              <mat-label > Correo electrónico </mat-label > 
-              <input  matInput  placeholder = "pat@example.com" formControlName="email"  required > 
-              <!-- <mat-error *ngIf="form.email.invalid" > {{getErrorMessage() }} </mat-error >  -->
-            </mat-form-field > 
-          </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field  appearance = "fill" > 
-              <mat-label > Confirmar correo electrónico </mat-label > 
-              <input  matInput  placeholder = "pat@example.com" formControlName="confirmEmail"  required > 
-              <!-- <mat-error *ngIf="form.email.invalid" > {{getErrorMessage() }} </mat-error >  -->
-            </mat-form-field > 
-          </div>
-        </div>
-        <div class="row"> 
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Usuario</mat-label>
-              <input formControlName="userName" matInput>
-            </mat-form-field>
-          </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Fecha nacimiento</mat-label>
-              <input matInput formControlName="dateBrirth" [matDatepicker]="picker">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>            
-          </div>
-        </div>
-        <div class="row"> 
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Enter your password</mat-label>
-              <input matInput formControlName="password" type="password">
-            </mat-form-field>
-          </div>
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <mat-form-field appearance="fill">
-              <mat-label>Enter your password</mat-label>
-              <input matInput formControlName="confirmPassword" type="password">
-            </mat-form-field>
-          </div>
-        </div>
-        <!-- <div class="row justify-content-center">
-          <div class="d-flex justify-content-center">
-              <button class="m-2" mat-raised-button color="primary" type="submit" (click)=btn_SaveEvent()>Registrar</button>
-              <button class="m-2" mat-raised-button color="primary" type="button" (click)="btn_NewEvent()">Cancelar</button>
-          </div>
-        </div> -->
-        <!-- recordar agregar tipos de errores en el email -->
-        <!-- <div  class = "example-container" > --> 
-           
-        <!-- </div > -->
-      
-        <!--  -->
-        <!-- <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-          <mat-label>Enter some input</mat-label>
-          <input matInput #input maxlength="10" placeholder="Ex. Nougat">
-          <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
-        </mat-form-field> -->
-        <div class="row justify-content-center">
-          <div class="d-flex justify-content-center">
-              <button class="m-2" mat-raised-button color="primary" type="submit" (click)="btn_SaveEvent()">Guardar</button>
-              <button class="m-2" mat-raised-button color="primary" type="button" (click)="btn_NewEvent()">Nuevo</button>      
-          </div>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
+                <form [formGroup] ="form" novalidate>
+                  <div class="row"> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field class="input"appearance="fill">
+                        <mat-label>Nombre</mat-label>
+                        <input formControlName="firstName" matInput>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field class="input" appearance="fill">
+                        <mat-label>Apellido</mat-label>
+                        <input formControlName="lastName" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row"> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field class="input" appearance = "fill" > 
+                        <mat-label > Correo electrónico </mat-label > 
+                        <input matInput formControlName="email" placeholder="pat@example.com" required > 
+                        <!-- <mat-error *ngIf="form.email.invalid" > {{getErrorMessage() }} </mat-error >  -->
+                      </mat-form-field > 
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field  class="input" appearance = "fill" > 
+                        <mat-label > Confirmar correo electrónico </mat-label > 
+                        <input matInput formControlName="confirmEmail" placeholder = "pat@example.com" required > 
+                        <!-- <mat-error *ngIf="form.email.invalid" > {{getErrorMessage() }} </mat-error >  -->
+                      </mat-form-field > 
+                    </div>
+                  </div>
+                  <div class="row"> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field class="input" appearance="fill">
+                        <mat-label>Usuario</mat-label>
+                        <input formControlName="userName" matInput>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field appearance="fill">
+                        <mat-label>Fecha nacimiento</mat-label>
+                        <input matInput formControlName="dateBrirth" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>            
+                    </div>
+                  </div>
+                  <div class="row"> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                      <mat-form-field class="input" appearance="fill">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput formControlName="password" type="password">
+                      </mat-form-field>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="text-align:center;">
+                      <mat-form-field class="input" appearance="fill">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput formControlName="confirmPassword" type="password">
+                      </mat-form-field>
+                      
+                      <!-- <button type="submit" title="Registrar" name="Registrar"
+                        >Registrar</button> -->
+                    
+                    </div>
+                    
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="d-flex justify-content-center">
+                      <button class="m-2" mat-raised-button color="primary" type="button" (click)="btn_NewEvent()">Limpiar</button>
+                        <button class="m-2" mat-raised-button color="primary" type="submit" (click)=btn_SaveEvent()>Registrarse</button>
+                </div>
+                  <!-- recordar agregar tipos de errores en el email -->
+                  <!-- <div  class = "example-container" > --> 
+                     
+                  <!-- </div > -->
+                
+                  <!--  -->
+                  <!-- <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+                    <mat-label>Enter some input</mat-label>
+                    <input matInput #input maxlength="10" placeholder="Ex. Nougat">
+                    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                  </mat-form-field> -->
+                </form>
+      </div>
+     </div>
+
   

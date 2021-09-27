@@ -11,7 +11,8 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'home',component:HomeComponent},
   {path:'events',component:ABMEventsComponent},
-  {path:'calendar',component:CalendarComponent}
+  {path:'calendar',component:CalendarComponent},
+  {path:'**',redirectTo:"home"}
 ];
 
 @NgModule({
