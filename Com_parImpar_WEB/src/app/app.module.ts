@@ -17,6 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { RecoverPassordComponent } from './pages/recover-passord/recover-passord.component';
+import { ConfirmUserComponent } from './pages/confirm-user/confirm-user.component';
+import { DenyRecoverComponent } from './pages/deny-recover/deny-recover.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
     RegisterComponent,
     ABMEventsComponent,
     FooterComponent,
+    RecoverPassordComponent,
+    ConfirmUserComponent,
+    DenyRecoverComponent,
     CalendarComponent
   ],
   imports: [
