@@ -10,8 +10,8 @@ import Swal  from 'sweetalert2';
   styleUrls: ['./abm-events.component.scss']
 })
 export class ABMEventsComponent implements OnInit {
-  form: FormGroup
-  events: Events[] = []
+  form: FormGroup;
+  events: Events[] = [];
 
   constructor(private formBuilder: FormBuilder, private eventsService: EventsService) { }
 

@@ -6,6 +6,7 @@ namespace ParImparApi.DTO
     public class RegisterUserDTO
     {
         public int? Id { get; set; }
+
         public string Email { get; set; }
 
         public string ConfirmEmail { get; set; }

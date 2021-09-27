@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { HttpKey } from '../constans';
 import { Events } from '../models/events';
 
 @Injectable({
@@ -41,5 +42,15 @@ export class EventsService {
 
   public deny(id: number): Observable<any> {
     return this.http.post(`${this.URL}/${id}/Deny`, {});
+  }
+
+  public getByDate(date: Date): Observable<Events[]> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.get(`${this.URL}/Date?d=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay()}`
+    , {headers}).pipe(map((response:Events[]) => response));
   }
 }

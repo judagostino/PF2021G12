@@ -16,6 +16,7 @@ import { ABMEventsComponent } from './pages/abm-events/abm-events.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     RegisterComponent,
     ABMEventsComponent,
-    FooterComponent
+    FooterComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
