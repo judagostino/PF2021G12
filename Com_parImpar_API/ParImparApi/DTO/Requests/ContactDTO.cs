@@ -13,7 +13,7 @@ namespace ParImparApi.DTO
 
         public string LastName { get; set; }
 
-        public string FistName { get; set; }
+        public string FirstName { get; set; }
         public string name { get; set; }
 
     }

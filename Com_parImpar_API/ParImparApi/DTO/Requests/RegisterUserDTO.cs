@@ -22,6 +22,8 @@ namespace ParImparApi.DTO
 
         public string ConfirmCode { get; set; }
 
+        public string CodeRecover { get; set; }
+
         public DateTime? DateBrirth { get; set; }
     }
 }

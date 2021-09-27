@@ -212,7 +212,7 @@ namespace ParImparApi.Services
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("Events_Updarte", cnn))
+                using (SqlCommand cmd = new SqlCommand("Events_Update", cnn))
                 {
                     try
                     {

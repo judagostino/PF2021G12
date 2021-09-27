@@ -184,16 +184,7 @@ namespace ParImparApi.Services
                 };
             }
 
-
-            if (registerUser.Password != registerUser.ConfirmPassword)
-            {
-                return new ApiResponse()
-                {
-                    Status = CustomStatusCodes.DistintPassword
-                };
-            }
-
-            if (registerUser.Password != registerUser.ConfirmPassword)
+            if (registerUser.Password != registerUser.ConfirmPassword || !registerUser.Password.Equals(registerUser.ConfirmPassword))
             {
                 return new ApiResponse()
                 {
@@ -245,6 +236,13 @@ namespace ParImparApi.Services
 
                         cmd.Parameters.Add(new SqlParameter()
                         {
+                            ParameterName= "@ContactId",
+                            SqlDbType= System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
                             ParameterName = "@ConfirmCode",
                             SqlDbType = System.Data.SqlDbType.VarChar,
                             Size = 100,
@@ -255,10 +253,14 @@ namespace ParImparApi.Services
                         await cnn.OpenAsync();
                         await cmd.ExecuteNonQueryAsync();
 
-
                         if (cmd.Parameters["@ConfirmCode"].Value != DBNull.Value)
                         {
                             registerUser.ConfirmCode = cmd.Parameters["@ConfirmCode"].Value.ToString();
+                        }
+                        
+                        if (cmd.Parameters["@ContactId"].Value != DBNull.Value)
+                        {
+                            registerUser.Id = int.Parse(cmd.Parameters["@ContactId"].Value.ToString());
                         }
 
                         return new ApiResponse()
@@ -280,6 +282,7 @@ namespace ParImparApi.Services
                 }
             }
         }
+
         public async Task<ApiResponse> RecoverPassword(RegisterUserDTO registerUser)
         {
 
@@ -311,6 +314,36 @@ namespace ParImparApi.Services
 
                         cmd.Parameters.Add(new SqlParameter()
                         {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName= "@ResultCode",
+                            SqlDbType= System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@FirstName",
+                            SqlDbType = System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@UserName",
+                            SqlDbType = System.Data.SqlDbType.VarChar,
+                            Size = 100,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
                             ParameterName = "@ConfirmCode",
                             SqlDbType = System.Data.SqlDbType.VarChar,
                             Size = 100,
@@ -321,10 +354,25 @@ namespace ParImparApi.Services
                         await cnn.OpenAsync();
                         await cmd.ExecuteNonQueryAsync();
 
+                        if (cmd.Parameters["@ContactId"].Value != DBNull.Value)
+                        {
+                            registerUser.Id = int.Parse(cmd.Parameters["@ContactId"].Value.ToString());
+                        }
+
 
                         if (cmd.Parameters["@ConfirmCode"].Value != DBNull.Value)
                         {
                             registerUser.ConfirmCode = cmd.Parameters["@ConfirmCode"].Value.ToString();
+                        }
+
+                        if (cmd.Parameters["@UserName"].Value != DBNull.Value)
+                        {
+                            registerUser.UserName = cmd.Parameters["@UserName"].Value.ToString();
+                        }
+
+                        if (cmd.Parameters["@FirstName"].Value != DBNull.Value)
+                        {
+                            registerUser.FirstName = cmd.Parameters["@FirstName"].Value.ToString();
                         }
 
                         return new ApiResponse()
@@ -362,6 +410,164 @@ namespace ParImparApi.Services
                         cmd.Parameters.Add(new SqlParameter("@ContactId", registerUser.Id));
                         cmd.Parameters.Add(new SqlParameter("@ConfirmCode", registerUser.ConfirmCode));
                        
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName= "@ResultCode",
+                            SqlDbType= System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> ValidarteRecover(RegisterUserDTO registerUser)
+        {
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_Validate_Recover", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", registerUser.Id));
+                        cmd.Parameters.Add(new SqlParameter("@CodeRecover", registerUser.CodeRecover));
+                       
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName= "@ResultCode",
+                            SqlDbType= System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> DenyRecover(RegisterUserDTO registerUser)
+        {
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_Deny_Recover", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", registerUser.Id));
+                        cmd.Parameters.Add(new SqlParameter("@CodeRecover", registerUser.CodeRecover));
+                       
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName= "@ResultCode",
+                            SqlDbType= System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> RecoverChange(RegisterUserDTO registerUser)
+        {
+
+            if (registerUser.Password != registerUser.ConfirmPassword || !registerUser.Password.Equals(registerUser.ConfirmPassword))
+            {
+                return new ApiResponse()
+                {
+                    Status = CustomStatusCodes.DistintPassword
+                };
+            }
+
+            if (!validateFormatPassword(registerUser.Password))
+            {
+                return new ApiResponse()
+                {
+                    Status = CustomStatusCodes.IncorretFormatPassword
+                };
+            }
+
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_Change_Recover_Password", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", registerUser.Id));
+                        cmd.Parameters.Add(new SqlParameter("@CodeRecover", registerUser.CodeRecover));
+                        cmd.Parameters.Add(new SqlParameter("@Password", registerUser.CodeRecover));
+
 
                         cmd.Parameters.Add(new SqlParameter()
                         {
@@ -577,6 +783,7 @@ namespace ParImparApi.Services
                 }
             }
         }
+
         private async Task<LoginDataDTO> ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))

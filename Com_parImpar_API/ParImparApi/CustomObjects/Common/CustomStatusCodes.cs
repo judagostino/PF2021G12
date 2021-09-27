@@ -45,6 +45,7 @@ namespace ParImparApi.Common
         [Description("Incorrect format password")] IncorretFormatPassword = 5909,
         [Description("unauthorized action ")] unauthorizedAction = 5910,
         [Description("Password not change")] NotChangePassword = 5911,
+        [Description("Expired link")] ExpiredLink = 5912,
     }
 
     internal static class Extensions
