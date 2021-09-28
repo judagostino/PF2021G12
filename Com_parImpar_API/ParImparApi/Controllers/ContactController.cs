@@ -122,7 +122,7 @@ namespace ParImparApi.Controllers
                     case CustomStatusCodes.Success:
                         {
                             // Send email to user
-                            ApiResponse emailResponse = await _emailService.SendEmailConfirmAsync(registerUser);
+                            ApiResponse emailResponse = await _emailService.SendEmailRecoverPasswordAsync(registerUser);
 
                             if (emailResponse.Status == CustomStatusCodes.Success)
                             {

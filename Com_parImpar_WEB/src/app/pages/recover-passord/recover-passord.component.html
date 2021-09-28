@@ -1,26 +1,15 @@
 <div id="contenedor">
         <div id="central">
             <div id="login">
-                <div class="titulo">
-                    Bienvenido
-                </div>
-                <form id="loginform" [formGroup] ="form" novalidate>
+                <h2>Recuperar Contraseña</h2>
+                <form id="form" [formGroup] ="form" novalidate>
+                    <input type="text" name="Correo electrónico" formControlName="email" placeholder="Correo electrónico" required>
                     
-                
-                    <input type="text" name="usuario" formControlName="user" placeholder="Usuario" required>
-                    
-                    <input type="password" formControlName="password" placeholder="Contraseña" name="password" required>
-                    
-                    <button type="submit" title="Ingresar" name="Ingresar"
-                    (click)= "btn_login()">Iniciar Sesi&oacute;n</button>
+                    <input type="text" name="Confirmar correo electrónico" formControlName="confirmEmail" placeholder="Confirmar correo electrónico" required>
+
+                    <button type="submit" title="Recuperar" name="Recuperar"
+                    (click)= "btn_recover()">Solicitar cambio de contraseña</button>
                 </form>
-                <div class="pie-form">
-                    <a href="#">¿Perdiste tu contraseña?</a>
-                    <a routerLink="/register">¿No tienes Cuenta? Registrate</a>
-                </div>
-            </div>
-            <div class="inferior">
-                <a href="#">Volver</a>
             </div>
         </div>
 </div>

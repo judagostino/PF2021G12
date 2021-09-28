@@ -20,12 +20,14 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
 import { RecoverPassordComponent } from './pages/recover-passord/recover-passord.component';
 import { ConfirmUserComponent } from './pages/confirm-user/confirm-user.component';
 import { DenyRecoverComponent } from './pages/deny-recover/deny-recover.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    ChangePasswordComponent,
     NavbarComponent,
     RegisterComponent,
     ABMEventsComponent,

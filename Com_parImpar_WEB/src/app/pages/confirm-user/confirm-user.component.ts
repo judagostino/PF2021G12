@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CredencialLogin } from 'src/app/intrergaces';
-import { AuthService } from 'src/app/services';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContactService } from 'src/app/services';
 
 
 @Component({
@@ -10,35 +9,18 @@ import { AuthService } from 'src/app/services';
   styleUrls: ['./confirm-user.component.scss']
 })
 export class ConfirmUserComponent implements OnInit {
-  form: FormGroup
-  constructor(private formBuilder: FormBuilder,private authService:AuthService) { 
+  message = 'Confirmado usuario…';
 
-  }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private contactService: ContactService ) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      user:['',Validators.required],
-      password:['',Validators.required],
-      keepLoggedIn: [true]
-    })
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.contactService.confirmUser({ id: Number.parseInt(params['i']), confirmCode: params['c']}).subscribe( () => {
+        this.message='Usuario confirmado con éxito, redirigiendo al Login...';
+        setTimeout( () => { this.router.navigate(['/login']) }, 3000);
+      })
+    }, err => {
+      this.message='Ocurrió un error, vuelva a intentarlo...';
+    });
   }
-
-  public btn_login():void{
-    if(this.form.valid){
-      let cedencialLogin: CredencialLogin = {
-        user: this.form.value.user, 
-        password: this.form.value.password,
-        keepLoggedIn: true
-      }
-  
-    
-      this.authService.credentialLogin(cedencialLogin).subscribe( response => {
-        // estra logeado
-      }, error => {
-        // error
-      });
-    }
-    
-  }
-
 }

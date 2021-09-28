@@ -314,15 +314,16 @@ namespace ParImparApi.Services
 
                         cmd.Parameters.Add(new SqlParameter()
                         {
-                            ParameterName = "@ResultCode",
+                            ParameterName = "@ContactId",
                             SqlDbType = System.Data.SqlDbType.Int,
                             Direction = System.Data.ParameterDirection.Output
                         });
 
                         cmd.Parameters.Add(new SqlParameter()
                         {
-                            ParameterName= "@ResultCode",
-                            SqlDbType= System.Data.SqlDbType.Int,
+                            ParameterName= "@CodeRecover",
+                            SqlDbType= System.Data.SqlDbType.VarChar,
+                            Size = 100,
                             Direction = System.Data.ParameterDirection.Output
                         });
 
@@ -342,13 +343,6 @@ namespace ParImparApi.Services
                             Direction = System.Data.ParameterDirection.Output
                         });
 
-                        cmd.Parameters.Add(new SqlParameter()
-                        {
-                            ParameterName = "@ConfirmCode",
-                            SqlDbType = System.Data.SqlDbType.VarChar,
-                            Size = 100,
-                            Direction = System.Data.ParameterDirection.Output
-                        });
                         #endregion
 
                         await cnn.OpenAsync();
@@ -360,9 +354,9 @@ namespace ParImparApi.Services
                         }
 
 
-                        if (cmd.Parameters["@ConfirmCode"].Value != DBNull.Value)
+                        if (cmd.Parameters["@CodeRecover"].Value != DBNull.Value)
                         {
-                            registerUser.ConfirmCode = cmd.Parameters["@ConfirmCode"].Value.ToString();
+                            registerUser.CodeRecover = cmd.Parameters["@CodeRecover"].Value.ToString();
                         }
 
                         if (cmd.Parameters["@UserName"].Value != DBNull.Value)
