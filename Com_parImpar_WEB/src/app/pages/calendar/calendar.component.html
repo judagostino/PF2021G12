@@ -34,8 +34,19 @@
                                     </div>
                                 </div>
                             </div>
-    
+                            <!-- Calendario -->
                             <div class="col-12 col sm-12 col-md-6 col-lg-6">
+                                <div class="d-flex justify-content-center align-self-center" style="max-width: 360px;">
+                                <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
+                                    <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
+                                </button>
+                                
+                                    <div class="align-self-center">{{month}}</div>
+                                
+                                <button (click)="btn_Add()" class="navbar-toggler" type="button">
+                                    <mat-icon matSuffix style="cursor:pointer;">chevron_right</mat-icon>
+                                </button>
+                                </div>
                                 <div class="d-flex flex-wrap" style="max-width: 360px;">
                                     <div 
                                     *ngFor="let day of calendarDates;" 
@@ -48,7 +59,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <!-- Calendario -->
+                                
                             </div>
                         </div>
                     </div>

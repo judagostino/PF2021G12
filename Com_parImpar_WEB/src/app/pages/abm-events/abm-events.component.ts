@@ -83,8 +83,8 @@ export class ABMEventsComponent implements OnInit {
       this.form.reset(resp)
       this.getGrid();
       Swal.fire(
-        'Good job!',
-        'You clicked the button!',
+        'Good job! titulo',
+        'You clicked the button! mensaje',
         'success'
       )
     });
