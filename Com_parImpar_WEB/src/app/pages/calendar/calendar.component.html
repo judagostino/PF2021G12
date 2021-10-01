@@ -1,5 +1,5 @@
 <div id="contenedor">
-    <mat-card class="example-card mt-4" style=" margin:15%;width: 1300px;height: 500px;">
+    <mat-card class="example-card mt-4" style=" margin:15%;width: 1000px;height: 500px;">
         <mat-card-content >
             <div id="central">
                 <div id="calendar">
@@ -62,27 +62,25 @@
                             <!-- Calendario -->
                             <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar-month">
                                 <div class="d-flex justify-content-center align-self-center" style="max-width: 360px;">
-                                <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
-                                    <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
-                                </button>
-                                
-                                    <div class="align-self-center">{{month}}</div>
-                                
-                                <button (click)="btn_Add()" class="navbar-toggler" type="button">
-                                    <mat-icon matSuffix style="cursor:pointer;">chevron_right</mat-icon>
-                                </button>
+                                    <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
+                                        <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
+                                    </button>
+                                    <div class="align-self-center font-Month">{{month}}</div>
+                                    <button (click)="btn_Add()" class="navbar-toggler" type="button">
+                                        <mat-icon matSuffix style="cursor:pointer;">chevron_right</mat-icon>
+                                    </button>
                                 </div>
                                 <div class="d-flex flex-wrap" style="max-width: 360px;">
                                     <div 
                                     *ngFor="let day of calendarDates;" 
                                     style="width: 50px; height: 50px; border: 1px solid black;">
-                                    <div style="position: relative; top: 2px; left: 5px;">
+                                        <div style="position: relative; top: 2px; left: 5px;">
                                         {{day == 0 ? '' : day }}                                        
-                                    </div>
-                                    <div *ngIf="getEventsOfDay(day) != 0" style="background-color: royalblue; width: 20px; text-align: center; color: white; border-radius: 15%; position: relative; top: 5px; left: 15px;">
+                                        </div>
+                                        <div *ngIf="getEventsOfDay(day) != 0" style="background-color: royalblue; width: 20px; text-align: center; color: white; border-radius: 15%; position: relative; top: 5px; left: 15px;">
                                         {{ getEventsOfDay(day) }}                                        
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 
                             </div>
