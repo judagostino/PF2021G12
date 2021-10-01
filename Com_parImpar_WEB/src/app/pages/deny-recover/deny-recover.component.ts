@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CredencialLogin } from 'src/app/intrergaces';
-import { AuthService } from 'src/app/services';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContactService } from 'src/app/services';
 
 
 @Component({
@@ -10,35 +9,19 @@ import { AuthService } from 'src/app/services';
   styleUrls: ['./deny-recover.component.scss']
 })
 export class DenyRecoverComponent implements OnInit {
-  form: FormGroup
-  constructor(private formBuilder: FormBuilder,private authService:AuthService) { 
+  message = 'Cancelando solicitud…';
 
-  }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private contactService: ContactService ) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      user:['',Validators.required],
-      password:['',Validators.required],
-      keepLoggedIn: [true]
-    })
-  }
-
-  public btn_login():void{
-    if(this.form.valid){
-      let cedencialLogin: CredencialLogin = {
-        user: this.form.value.user, 
-        password: this.form.value.password,
-        keepLoggedIn: true
-      }
-  
-    
-      this.authService.credentialLogin(cedencialLogin).subscribe( response => {
-        // estra logeado
-      }, error => {
-        // error
-      });
-    }
-    
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.contactService.denyPasswordUser({ id: Number.parseInt(params['i']), codeRecover: params['c']}).subscribe( () => {
+        this.message='Se ha cancelado la solicitud...';
+        setTimeout( () => { this.router.navigate(['/login']) }, 3000);
+      })
+    }, err => {
+      this.message='Ocurrió un error, vuelva a intentarlo...';
+    });
   }
 
 }

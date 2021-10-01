@@ -23,4 +23,51 @@ export class ContactService {
 
     return this.http.post(`${this.URL}/Register`, register, {headers});
   }
+
+  public confirmUser(register: ContactRegistrer): Observable<any> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.post(`${this.URL}/Confirm`, register, {headers});
+  }
+
+  public recoverPassword(register: ContactRegistrer): Observable<any> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.post(`${this.URL}/Recover`, register, {headers});
+  }
+
+  public denyPasswordUser(register: ContactRegistrer): Observable<any> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.post(`${this.URL}/Deny`, register, {headers});
+  }
+
+
+  public validateRecover(register: ContactRegistrer): Observable<any> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.post(`${this.URL}/Validate`, register, {headers});
+  }
+
+
+  public recoverChangePassword(register: ContactRegistrer): Observable<any> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.post(`${this.URL}/RecoverChange`, register, {headers});
+  }
 }

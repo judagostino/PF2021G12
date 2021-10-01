@@ -1,0 +1,47 @@
+2021-09-27 21:20:45.8228 - INFO - 80000028-0005-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Distint passwords
+     Headers: Authorization="", 
+     Body: {"Id":0,"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":"GAstonv6","LastName":"Vottero","FirstName":"Gaston","Password":"Gaston123!","ConfirmPassword":"Gaston39174","ConfirmCode":null,"CodeRecover":null,"DateBrirth":"1995-11-03T03:00:00Z"}
+
+2021-09-27 21:21:07.5741 - INFO - 80000024-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Distint passwords
+     Headers: Authorization="", 
+     Body: {"Id":0,"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":"GAstonv6","LastName":"Vottero","FirstName":"Gaston","Password":"Gaston123!","ConfirmPassword":"Gaston39174","ConfirmCode":null,"CodeRecover":null,"DateBrirth":"1995-11-03T03:00:00Z"}
+
+2021-09-27 22:06:28.8367 - ERROR - 80000081-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Recover (ver: ) - ::1
+     Message: Procedure or function Contact_RecoverPassword has too many arguments specified.
+     Exception: Procedure or function Contact_RecoverPassword has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.AuthService.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 385
+   at ParImparApi.Services.AuthService.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 393
+   at ParImparApi.Controllers.ContactController.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 118
+     Headers: Authorization="", 
+     Body: {"Id":null,"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":null,"DateBrirth":null}
+
+2021-09-27 22:08:43.7394 - ERROR - 80000028-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Recover (ver: ) - ::1
+     Message: Procedure or function 'Contact_RecoverPassword' expects parameter '@CodeRecover', which was not supplied.
+     Exception: Procedure or function 'Contact_RecoverPassword' expects parameter '@CodeRecover', which was not supplied.
+     StackTrace:    at ParImparApi.Services.AuthService.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 378
+   at ParImparApi.Services.AuthService.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 386
+   at ParImparApi.Controllers.ContactController.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 118
+     Headers: Authorization="", 
+     Body: {"Id":null,"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":null,"DateBrirth":null}
+
+2021-09-27 22:09:49.0418 - ERROR - 80000065-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Recover (ver: ) - ::1
+     Message: Error converting data type varchar to int.
+     Exception: Error converting data type varchar to int.
+     StackTrace:    at ParImparApi.Services.AuthService.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 378
+   at ParImparApi.Services.AuthService.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 386
+   at ParImparApi.Controllers.ContactController.RecoverPassword(RegisterUserDTO registerUser) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 118
+     Headers: Authorization="", 
+     Body: {"Id":null,"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":null,"DateBrirth":null}
+
+2021-09-27 22:42:06.6505 - INFO - 80000040-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1009,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"16777A13-F5B6-4E4C-AF75-004AC690154D","DateBrirth":null}
+
+2021-09-27 22:42:13.2312 - INFO - 80000042-0005-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1009,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"16777A13-F5B6-4E4C-AF75-004AC690154D","DateBrirth":null}
+
