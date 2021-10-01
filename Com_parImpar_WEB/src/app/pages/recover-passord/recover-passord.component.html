@@ -1,4 +1,4 @@
-<div id="contenedor">
+<!-- <div id="contenedor">
         <div id="central">
             <div id="login">
                 <h2>Recuperar Contraseña</h2>
@@ -12,6 +12,27 @@
                 </form>
             </div>
         </div>
+</div> -->
+
+<div id="contenedor">
+    <div id="central">
+        <div id="login">
+            <div class="titulo">
+                Recupera tu cuenta
+            </div>
+            <form id="form" [formGroup] ="form" novalidate>
+                
+            
+                <input type="text" name="Correo electrónico" formControlName="user" placeholder="Correo electrónico" required>
+                
+                <input type="text" name="Confirmar correo electrónico" formControlName="confirmEmail" placeholder="Confirmar correo electrónico" required>
+                
+                <button type="submit" title="Recuperar" name="Recuperar"
+                (click)= "btn_recover()">Actualizar Clave</button>
+            </form>
+        </div>
+        <div class="inferior">
+            <a routerLink="/login">Volver</a>
+        </div>
+    </div>
 </div>
-
-
