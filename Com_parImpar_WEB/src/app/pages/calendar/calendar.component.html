@@ -1,20 +1,45 @@
 <div id="contenedor">
-    <mat-card class="example-card mt-4">
-        <mat-card-content>
+    <mat-card class="example-card mt-4" style=" margin:15%;width: 1300px;height: 500px;">
+        <mat-card-content >
             <div id="central">
                 <div id="calendar">
-                    <div class="titulo">
+                    <div class="title-calendar">
                         Calendario de eventos
                     </div>
-    
-                    <div class="container">
+                    <div class="list-events">
                         <div class="row">
-                            <div class="col-12 col sm-12 col-md-6 col-lg-6">
-                                <div>
-                                    Lista de eventos
-                                </div>
+                            <div class="title-listEvent">
+                                Lista de eventos
+                            </div>
+                            <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar">
                                 <!-- lista de eventos -->
-                                <div *ngFor="let event of events; let i= index;">
+                                <table class="table" style="padding-top: 40%;">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Propietario</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2">Larry the Bird</td>
+                                        <td>@twitter</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  
+                                <!-- <div *ngFor="let event of events; let i= index;" >
                                     <div *ngIf="i%2 == 0" class="row mt-2">
                                         <div class="col-3" style="background-color: tomato; border-radius: 20%; border: 1px solid tomato">
                                             {{event.startDate | date: 'mediumDate'}}
@@ -32,10 +57,10 @@
                                             {{event.startDate | date: 'mediumDate'}}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <!-- Calendario -->
-                            <div class="col-12 col sm-12 col-md-6 col-lg-6">
+                            <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar-month">
                                 <div class="d-flex justify-content-center align-self-center" style="max-width: 360px;">
                                 <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
                                     <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
@@ -68,5 +93,4 @@
         </mat-card-content>
     </mat-card>
 </div>
-
 
