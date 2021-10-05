@@ -1,20 +1,45 @@
 <div id="contenedor">
-    <mat-card class="example-card mt-4">
-        <mat-card-content>
+    <mat-card class="example-card mt-4" style=" margin:15%;width: 1000px;height: 500px;">
+        <mat-card-content >
             <div id="central">
                 <div id="calendar">
-                    <div class="titulo">
+                    <div class="title-calendar">
                         Calendario de eventos
                     </div>
-    
-                    <div class="container">
+                    <div class="list-events">
                         <div class="row">
-                            <div class="col-12 col sm-12 col-md-6 col-lg-6">
-                                <div>
-                                    Lista de eventos
-                                </div>
+                            <div class="title-listEvent">
+                                Lista de eventos
+                            </div>
+                            <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar">
                                 <!-- lista de eventos -->
-                                <div *ngFor="let event of events; let i= index;">
+                                <table class="table" style="padding-top: 40%;">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Propietario</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>Marvk</td>
+                                        <td>Fundacion Sonrisas</td>
+                                        <td>Javier</td>
+                                      </tr>
+                                      <tr>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2">Larry the Bird</td>
+                                        <td>@twitter</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  
+                                <!-- <div *ngFor="let event of events; let i= index;" >
                                     <div *ngIf="i%2 == 0" class="row mt-2">
                                         <div class="col-3" style="background-color: tomato; border-radius: 20%; border: 1px solid tomato">
                                             {{event.startDate | date: 'mediumDate'}}
@@ -32,24 +57,38 @@
                                             {{event.startDate | date: 'mediumDate'}}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-    
-                            <div class="col-12 col sm-12 col-md-6 col-lg-6">
-                                <div class="d-flex flex-wrap" style="max-width: 360px;">
+                            <!-- Calendario -->
+                            <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar-month">
+                                <div class="d-flex justify-content-center align-self-center" style="max-width: 360px;">
+                                    <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
+                                        <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
+                                    </button>
+                                    <div class="d-flex justify-content-center align-self-center font-Month" style="margin-bottom:10px;max-width: 360px;">{{month}}</div>
+                                    <button (click)="btn_Add()" class="navbar-toggler" type="button">
+                                        <mat-icon matSuffix style="cursor:pointer;">chevron_right</mat-icon>
+                                    </button>
+                                </div>
+                                <div class="d-flex flex-wrap calend" style="max-width: 360px;">
                                     <div 
                                     *ngFor="let day of calendarDates;" 
                                     style="width: 50px; height: 50px; border: 1px solid black;">
-                                    <div style="position: relative; top: 2px; left: 5px;">
+                                        <div style="position: relative; top: 2px; left: 5px;">
                                         {{day == 0 ? '' : day }}                                        
-                                    </div>
-                                    <div *ngIf="getEventsOfDay(day) != 0" style="background-color: royalblue; width: 20px; text-align: center; color: white; border-radius: 15%; position: relative; top: 5px; left: 15px;">
+                                        </div>
+                                        <div *ngIf="getEventsOfDay(day) != 0" style="background-color: royalblue; width: 20px; text-align: center; color: white; border-radius: 15%; position: relative; top: 5px; left: 15px;">
                                         {{ getEventsOfDay(day) }}                                        
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                <!-- Calendario -->
+                                
                             </div>
+                            <div class="row justify-content-center" id="prueba">
+                                <div class="d-flex justify-content-center">
+                                  <button class="m-2" mat-raised-button color="primary" type="button"routerLink="/events" >Nuevo Evento</button>
+                              </div>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -57,5 +96,4 @@
         </mat-card-content>
     </mat-card>
 </div>
-
 

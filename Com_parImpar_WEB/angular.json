@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ParImpar"
+    }
+  },
+  "defaultProject": "ParImpar",
+  "cli": {
+    "analytics": false
+  }
 }

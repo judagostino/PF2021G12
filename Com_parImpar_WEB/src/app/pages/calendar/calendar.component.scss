@@ -1,0 +1,66 @@
+.title-calendar {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 700;
+        font-size: x-large;
+        color:#48a7e5;
+        justify-content: center;
+        margin-left: 40%;
+    }
+
+.list-events {
+    font-family: 'Quicksand', sans-serif;
+    padding: 3%;
+
+}
+
+.title-listEvent {
+    font-weight: 700;
+    font-size:20px;
+    color:#1b262c;
+}
+
+.calendar {
+    padding: 20px;
+}
+
+.font-Month{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color:#1b262c;
+    justify-content: center;
+}
+
+.calend { 
+    margin-left:15%;
+}
+
+#calendar button {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 130%;
+    color:#0f4c75;
+    width: 10%;
+    height: 23px;
+    border: none;
+    padding: 0%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    background-color: #bbe1fa;
+  }
+  #calendar button:hover {
+    background-color: #0f4c75;
+    color:#bbe1fa;
+  }
+
+  #prueba button {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 130%;
+    color:#0f4c75;
+    width: 16%;
+    height: 30px; 
+    padding-bottom: 10px;
+  }
