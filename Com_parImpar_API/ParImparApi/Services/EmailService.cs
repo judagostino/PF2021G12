@@ -12,9 +12,11 @@ namespace ParImparApi.Services
     {
         private readonly string _connectionString;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
 
         public EmailService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
+            _configuration = configuration;
             _connectionString = configuration.GetConnectionString("defaultConnection");
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
@@ -26,7 +28,7 @@ namespace ParImparApi.Services
 
             message = message.Replace("[FirstName]", registerUser.FirstName);
             message = message.Replace("[UserName]", registerUser.UserName);
-            message = message.Replace("[SiteAdminUrl]", "http://Localhost:4200");
+            message = message.Replace("[SiteAdminUrl]", _configuration["GlobalVariables:Host"]);
             message = message.Replace("[PasswordRecoveryToken]", token);
             
             return await SendEmailAsync(subject, message, registerUser.Email);
@@ -39,7 +41,7 @@ namespace ParImparApi.Services
 
             message = message.Replace("[FirstName]", registerUser.FirstName);
             message = message.Replace("[UserName]", registerUser.UserName);
-            message = message.Replace("[SiteAdminUrl]", "http://Localhost:4200");
+            message = message.Replace("[SiteAdminUrl]", _configuration["GlobalVariables:Host"]);
             message = message.Replace("[PasswordRecoveryToken]", token);
 
             return await SendEmailAsync(subject, message, registerUser.Email);

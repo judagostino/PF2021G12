@@ -1,16 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using ParImparApi.Common;
 using ParImparApi.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ParImparApi.Services
@@ -137,6 +131,11 @@ namespace ParImparApi.Services
                                     newEvent.Title = reader["Title"].ToString();
                                 }
 
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    newEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+
                                 if (reader["Description"] != DBNull.Value)
                                 {
                                     newEvent.Description = reader["Description"].ToString();
@@ -151,7 +150,7 @@ namespace ParImparApi.Services
                                 {
                                     newEvent.ContactCreate = new ContactDTO() { 
                                         Id = int.Parse(reader["ContacCreate"].ToString()),
-                                        name = reader["NameCreate"].ToString()
+                                        Name = reader["NameCreate"].ToString()
                                     };
                                 }
 
@@ -161,7 +160,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactAudit = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContactAudit"].ToString()),
-                                        name = reader["NameAudit"].ToString()
+                                        Name = reader["NameAudit"].ToString()
                                     };
                                 }
 
@@ -318,6 +317,11 @@ namespace ParImparApi.Services
                                     newEvent.Title = reader["Title"].ToString();
                                 }
 
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    newEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+
                                 if (reader["Description"] != DBNull.Value)
                                 {
                                     newEvent.Description = reader["Description"].ToString();
@@ -333,7 +337,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactCreate = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContacCreate"].ToString()),
-                                        name = reader["NameCreate"].ToString()
+                                        Name = reader["NameCreate"].ToString()
                                     };
                                 }
 
@@ -343,7 +347,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactAudit = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContactAudit"].ToString()),
-                                        name = reader["NameAudit"].ToString()
+                                        Name = reader["NameAudit"].ToString()
                                     };
                                 }
 
@@ -415,9 +419,6 @@ namespace ParImparApi.Services
                         #endregion
 
                         await cnn.OpenAsync();
-
-                        EventRequestDTO newEvent = new EventRequestDTO();
-
                         await cmd.ExecuteNonQueryAsync();
 
 
@@ -485,7 +486,11 @@ namespace ParImparApi.Services
                                 {
                                     newEvent.Title = reader["Title"].ToString();
                                 }
-
+                                
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    newEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                }
 
                                 if (reader["EndDate"] != DBNull.Value)
                                 {
@@ -512,7 +517,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactCreate = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContacCreate"].ToString()),
-                                        name = reader["NameCreate"].ToString()
+                                        Name = reader["NameCreate"].ToString()
                                     };
                                 }
 
@@ -522,7 +527,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactAudit = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContactAudit"].ToString()),
-                                        name = reader["NameAudit"].ToString()
+                                        Name = reader["NameAudit"].ToString()
                                     };
                                 }
 
@@ -624,6 +629,11 @@ namespace ParImparApi.Services
                                     newEvent.Title = reader["Title"].ToString();
                                 }
 
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    newEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+
                                 if (reader["Description"] != DBNull.Value)
                                 {
                                     newEvent.Description = reader["Description"].ToString();
@@ -639,7 +649,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactCreate = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContacCreate"].ToString()),
-                                        name = reader["NameCreate"].ToString()
+                                        Name = reader["NameCreate"].ToString()
                                     };
                                 }
 
@@ -649,7 +659,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactAudit = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContactAudit"].ToString()),
-                                        name = reader["NameAudit"].ToString()
+                                        Name = reader["NameAudit"].ToString()
                                     };
                                 }
 
@@ -752,6 +762,11 @@ namespace ParImparApi.Services
                                     newEvent.Title = reader["Title"].ToString();
                                 }
 
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    newEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+
                                 if (reader["Description"] != DBNull.Value)
                                 {
                                     newEvent.Description = reader["Description"].ToString();
@@ -767,7 +782,7 @@ namespace ParImparApi.Services
                                     newEvent.ContactCreate = new ContactDTO()
                                     {
                                         Id = int.Parse(reader["ContacCreate"].ToString()),
-                                        name = reader["NameCreate"].ToString()
+                                        Name = reader["NameCreate"].ToString()
                                     };
                                 }
 

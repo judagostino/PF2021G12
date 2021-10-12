@@ -17,13 +17,15 @@ namespace ParImparApi.Controllers
     public class ContactController : ControllerBase
     {
         private readonly AuthService _authService;
+        private readonly ContactsService _contactsService;
         private readonly EmailService _emailService;
         private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILog _logger;
 
-        public ContactController(AuthService authService, EmailService emailService, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, ILog logger)
+        public ContactController(AuthService authService, ContactsService contactsService, EmailService emailService, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, ILog logger)
         {
+            _contactsService = contactsService ?? throw new ArgumentNullException(nameof(contactsService));
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
             _configuration = configuration;
@@ -408,6 +410,75 @@ namespace ParImparApi.Controllers
                         }
                     case CustomStatusCodes.UserAgentInvalid:
                     case CustomStatusCodes.UnauthorizedIp:
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return StatusCode(StatusCodes.Status401Unauthorized, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                }
+
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
+            }
+        }
+        #endregion
+
+        #region [GetContactId]
+        // POST: api/v1/Contact/1
+        [HttpGet("{ContactId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetById(int contactId)
+        {
+            try
+            {
+                ApiResponse response = await _contactsService.GetById(contactId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(((ApiSuccessResponse)response.Data));
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return StatusCode(StatusCodes.Status401Unauthorized, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                }
+
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
+            }
+        }
+        #endregion
+
+
+        #region [GetContactId]
+        // POST: api/v1/Contact/myInfo
+        [HttpGet("myInfo")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> MyInfo()
+        {
+            try
+            {
+                ApiResponse response = await _contactsService.GetById(null);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(((ApiSuccessResponse)response.Data));
+                        }
                     case CustomStatusCodes.NotFound:
                         {
                             return StatusCode(StatusCodes.Status401Unauthorized, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));

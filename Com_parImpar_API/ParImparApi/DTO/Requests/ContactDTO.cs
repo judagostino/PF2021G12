@@ -14,7 +14,14 @@ namespace ParImparApi.DTO
         public string LastName { get; set; }
 
         public string FirstName { get; set; }
-        public string name { get; set; }
+
+        public string Name { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public bool? Auditor { get; set; }
+
+        public DateTime? DateBrirth { get; set; }
 
     }
 }

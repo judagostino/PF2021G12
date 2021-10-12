@@ -6,62 +6,126 @@ using ParImparApi.Common;
 using System;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace ParImparApi.Services
 {
     public class UploadService
     {
+        private readonly IConfiguration _configuration;
         private readonly string _connectionString;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IWebHostEnvironment _env;
 
         public UploadService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IWebHostEnvironment env)
         {
+            _configuration = configuration;
             _connectionString = configuration.GetConnectionString("defaultConnection");
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
             _env = env ?? throw new ArgumentNullException(nameof(env));
         }
 
-       /* #region [Private methods]
-        public async Task<ApiResponse> UploadChannelImage(IFormCollection formCollection)
+       #region [Private methods]
+        public async Task<ApiResponse> UploadImage(IFormCollection formCollection)
         {
-            //imageFolder = "channels";
+            ApiResponse response;
+
+            string uploadType = formCollection["Type"];
+            string pathToSave = null;
+            string key = "";
+            string folderName = "";
+            string imageName = "";
+            string urlImage = _configuration["GlobalVariables:UrlImage"];
+
+            if (string.IsNullOrEmpty(uploadType) == false)
+            {
+                switch (uploadType.ToLower())
+                {
+                    case "events":
+                        {
+                            key = "EventId";
+                            folderName = "Events";
+                            pathToSave = Path.Combine(_configuration["GlobalVariables:SaveImage"], folderName);
+                            break;
+                        }
+                    case "posts":
+                        {
+                            key = "PostId";
+                            folderName = "Posts";
+                            pathToSave = Path.Combine(_configuration["GlobalVariables:SaveImage"], folderName);
+                            break;
+                        }
+                    case "profile":
+                        {
+                            key = "ContactId";
+                            folderName = "Profiles";
+                            pathToSave = Path.Combine(_configuration["GlobalVariables:SaveImage"], folderName);
+                            break;
+                        }
+                    default:
+                        {
+                            return new ApiResponse() {Status = CustomStatusCodes.BadRequest};
+                        }
+                }
+                urlImage = urlImage + "/" + folderName;
+            }
+            
+            var file = formCollection.Files.First();
             string id = formCollection["Id"];
 
-            if (string.IsNullOrEmpty(id))
+            if (file.Length > 0 && pathToSave != null)
             {
-                return new ApiResponse()
+               /* var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                string fullPath = Path.Combine(pathToSave, fileName);
+                var dbPath = Path.Combine(folderName, fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    Status = CustomStatusCodes.RequiredId
-                };
+                    file.CopyTo(stream);
+                }*/
+
+
+                if (string.IsNullOrEmpty(id))
+                {
+                    return new ApiResponse()
+                    {
+                        Status = CustomStatusCodes.RequiredId
+                    };
+                }
+
+                imageName = key + "_" + id;
+                
+                response = UploadFile(formCollection, pathToSave, imageName);
+
+                if (response.Status != CustomStatusCodes.Success)
+                {
+                    return response;
+                }
+
+                urlImage = urlImage + "/" + ((UploadDTO)((ApiSuccessResponse)response.Data).Data).UniqueFileName;
+
+                return await UpdateImage(key, int.Parse(id), urlImage.Trim());
             }
-
-
-            var pathToSave = "";
-
-            response = UploadFile(formCollection, pathToSave);
-
-            if (response.Status != CustomStatusCodes.Success)
+            else
             {
-                return response;
+                return new ApiResponse() { Status = CustomStatusCodes.BadRequest }; ;
             }
-
-            return await _channelsService.UpdateImage(int.Parse(id), (UploadDTO)((ApiSuccessResponse)response.Data).Data);
         }
 
 
-        public async Task<ApiResponse> UpdateImage(string objectKey, int objectId, UploadDTO upload)
+        public async Task<ApiResponse> UpdateImage(string objectKey, int objectId, string imageUrl)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("bo_Channels_UpdateImage", cnn))
+                using (SqlCommand cmd = new SqlCommand("object_UpdateImage", cnn))
                 {
                     try
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@objectId", objectId));
                         cmd.Parameters.Add(new SqlParameter("@objectKey", objectKey));
+                        cmd.Parameters.Add(new SqlParameter("@urlImage", imageUrl.Trim()));
 
                         #region [SP Parameters]
                         cmd.Parameters.Add(new SqlParameter()
@@ -74,22 +138,12 @@ namespace ParImparApi.Services
                         #endregion
 
                         await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
 
                         ApiSuccessResponse successResponse = new ApiSuccessResponse()
                         {
-                            Data = upload
+                            Data = imageUrl
                         };
-
-                        #region [BD field mapping]
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                upload.ImageUrl = reader["pathUrl"].ToString();
-                            }
-                        }
-                        #endregion
 
                         return new ApiResponse()
                         {
@@ -113,25 +167,19 @@ namespace ParImparApi.Services
         }
 
 
-        private ApiResponse UploadFile(IFormCollection formCollection, string pathToSave)
+        private ApiResponse UploadFile(IFormCollection formCollection, string pathToSave, string imageName)
         {
             var file = formCollection.Files.First();
 
             if (file.Length > 0)
             {
-                string originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                string uniqueFileName = Functions.GetUniqueId() + Path.GetExtension(originalFileName);
-                string prefix = formCollection["Prefix"];
-                if (string.IsNullOrEmpty(prefix) == false)
-                {
-                    if (prefix.Length > 50)
-                    {
-                        prefix = prefix.Substring(0, 50);
-                    }
+                string[] arrayName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"').Split(".");
+                string type = arrayName[arrayName.Length - 1].Trim();
 
-                    uniqueFileName = Functions.ToKebabCase(prefix) + "_" + uniqueFileName;
-                }
-                var fullPath = Path.Combine(pathToSave, uniqueFileName);
+                imageName = imageName + "." + type;
+
+                var fullPath = Path.Combine(pathToSave, imageName.Trim());
+                File.Delete(fullPath.ToString());
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
                     file.CopyTo(stream);
@@ -143,8 +191,7 @@ namespace ParImparApi.Services
                     {
                         Data = new UploadDTO()
                         {
-                            OriginalFileName = originalFileName,
-                            UniqueFileName = uniqueFileName,
+                            UniqueFileName = imageName,
                             Path = pathToSave
                         }
                     }
@@ -158,6 +205,6 @@ namespace ParImparApi.Services
                 };
             }
         }
-        #endregion*/
+        #endregion
     }
 }

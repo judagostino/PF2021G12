@@ -3,15 +3,13 @@ using System;
 
 namespace ParImparApi.DTO
 {
-    public class EventRequestDTO
+    public class SearchItemDTO
     {
         public int? Id { get; set; }
 
-        public DateTime? DateEntered { get; set; }
+        public string Key { get; set; }
 
         public DateTime? StartDate { get; set; }
-
-        public DateTime? EndDate { get; set; }
 
         public string Title { get; set; }
 
@@ -19,10 +17,6 @@ namespace ParImparApi.DTO
 
         public string ImageUrl { get; set; }
 
-        public StateDTO State { get; set; }
-
         public ContactDTO ContactCreate { get; set; }
-
-        public ContactDTO ContactAudit { get; set; }
     }
 }

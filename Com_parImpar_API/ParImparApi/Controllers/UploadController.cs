@@ -21,26 +21,24 @@ namespace ParImparApi.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly NLog.ILog _logger;
 
-        /*public UploadController(UploadService uploadService, ChannelsService channelsService, IHttpContextAccessor httpContextAccessor, NLog.ILog logger)
+        public UploadController(UploadService uploadService, IHttpContextAccessor httpContextAccessor, NLog.ILog logger)
         {
             _uploadService = uploadService ?? throw new ArgumentNullException(nameof(uploadService));
-            _channelsService = channelsService ?? throw new ArgumentNullException(nameof(channelsService));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        }*/
+        }
 
 
-        /*#region [UploadFile]
+        #region [UploadFile]
         //POST: api/v1/Upload
         [HttpPost, DisableRequestSizeLimit]
-        [Authorize]
+        [Authorize("AccessToken")]
         public async Task<IActionResult> Upload()
         {
             try
             {
-                var formCollection = await Request.ReadFormAsync();
 
-                string uploadType = formCollection["Type"];
+                var formCollection = await Request.ReadFormAsync();
                 ApiResponse response;
 
                 if (formCollection.Files == null || formCollection.Files.Count == 0)
@@ -48,39 +46,10 @@ namespace ParImparApi.Controllers
                     return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.FileRequired, null));
                 }
 
+                string uploadType = formCollection["Type"];
                 if (string.IsNullOrEmpty(uploadType) == false)
                 {
-                    switch (uploadType.ToLower())
-                    {
-                        case "channelimage":
-                            {
-                                response = await UploadChannelImage(formCollection);
-
-                                break;
-                            }
-                        case "organizationimage":
-                            {
-                                response = await UploadOrganizationImage(formCollection);
-
-                                break;
-                            }
-                        case "contentnewimage":
-                            {
-                                response = await UploadContentNewImage(formCollection);
-
-                                break;
-                            }
-                        case "contentviewimage":
-                            {
-                                response = await UploadContentViewImage(formCollection);
-
-                                break;
-                            }
-                        default:
-                            {
-                                return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.InvalidType, null));
-                            }
-                    }
+                    response = await _uploadService.UploadImage(formCollection);
 
                     switch (response.Status)
                     {
@@ -96,10 +65,7 @@ namespace ParImparApi.Controllers
                             {
                                 return Unauthorized(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
                             }
-                        case CustomStatusCodes.IdRequired:
-                        case CustomStatusCodes.OrgIdRequired:
-                        case CustomStatusCodes.UoIdRequired:
-                        case CustomStatusCodes.FileIsEmpty:
+                        case CustomStatusCodes.BadRequest:
                             {
                                 return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
                             }
@@ -114,34 +80,12 @@ namespace ParImparApi.Controllers
                     return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.TypeRequired, null));
                 }
 
-                //var file = formCollection.Files.First();
-                //string channelId = formCollection["ChannelId"];
-
-                //var folderName = Path.Combine("Resources", "Images");
-                //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                //if (file.Length > 0)
-                //{
-                //    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                //    var fullPath = Path.Combine(pathToSave, fileName);
-                //    var dbPath = Path.Combine(folderName, fileName);
-                //    using (var stream = new FileStream(fullPath, FileMode.Create))
-                //    {
-                //        file.CopyTo(stream);
-                //    }
-                //    return Ok(new { dbPath });
-                //}
-                //else
-                //{
-                //    return BadRequest();
-                //}
             }
             catch (Exception exc)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
             }
         }
-        #endregion*/
-
-
+        #endregion
     }
 }

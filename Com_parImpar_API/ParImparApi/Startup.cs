@@ -35,6 +35,10 @@ namespace ParImparApi
             services.AddScoped<TokensDbService>();
             services.AddScoped<EmailService>();
             services.AddScoped<EventsService>();
+            services.AddScoped<UploadService>();
+            services.AddScoped<ContactsService>();
+            services.AddScoped<TypesImpairmentService>();
+            services.AddScoped<SearchService>();
 
             services.AddControllers();
 
