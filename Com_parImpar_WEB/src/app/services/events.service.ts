@@ -50,7 +50,7 @@ export class EventsService {
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
 
-    return this.http.get(`${this.URL}/Date?d=${date.getFullYear()}-${date.getMonth() + 1}-${date.getDay()}`
+    return this.http.get(`${this.URL}/Date?d=${date.getFullYear()}-${date.getMonth() + 1}-${1}`
     , {headers}).pipe(map((response:Events[]) => response));
   }
 }

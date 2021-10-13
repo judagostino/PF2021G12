@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CredencialLogin } from 'src/app/intrergaces';
 import { AuthService } from 'src/app/services';
 
@@ -11,7 +12,7 @@ import { AuthService } from 'src/app/services';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup
-  constructor(private formBuilder: FormBuilder,private authService:AuthService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService:AuthService) { 
 
   }
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
   
     
       this.authService.credentialLogin(cedencialLogin).subscribe( response => {
+        this.router.navigateByUrl('/calendar');
         // estra logeado
       }, error => {
         // error

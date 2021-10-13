@@ -17,24 +17,15 @@
                                     <thead>
                                       <tr>
                                         <th scope="col">Fecha</th>
-                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Evento</th>
                                         <th scope="col">Propietario</th>
                                       </tr>
                                     </thead>
                                     <tbody>
-                                      <tr>
-                                        <td>Marvk</td>
-                                        <td>Fundacion Sonrisas</td>
-                                        <td>Javier</td>
-                                      </tr>
-                                      <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                      </tr>
-                                      <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                      <tr *ngFor="let event of events;">
+                                        <td>{{event.startDate | date: 'mediumDate'}}</td>
+                                        <td>{{event.title}}</td>
+                                        <td>{{event?.contactCreate?.name}}</td>
                                       </tr>
                                     </tbody>
                                   </table>
@@ -42,10 +33,10 @@
                                 <!-- <div *ngFor="let event of events; let i= index;" >
                                     <div *ngIf="i%2 == 0" class="row mt-2">
                                         <div class="col-3" style="background-color: tomato; border-radius: 20%; border: 1px solid tomato">
-                                            {{event.startDate | date: 'mediumDate'}}
+                                            
                                         </div>
                                         <div class="col-9" style="margin-top: 5px; background-color: tomato; border-radius: 5%; border: 1px solid tomato">
-                                            {{event.title}}
+                                           
                                         </div>
                                     </div>
 
@@ -65,7 +56,7 @@
                                     <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
                                         <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
                                     </button>
-                                    <div class="d-flex justify-content-center align-self-center font-Month" style="margin-bottom:10px;max-width: 360px;">{{month}}</div>
+                                    <div class="d-flex justify-content-center align-self-center font-Month" style="margin-bottom:10px;max-width: 360px;">{{month}} {{now.getFullYear()}}</div>
                                     <button (click)="btn_Add()" class="navbar-toggler" type="button">
                                         <mat-icon matSuffix style="cursor:pointer;">chevron_right</mat-icon>
                                     </button>
