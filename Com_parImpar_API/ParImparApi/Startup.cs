@@ -39,6 +39,7 @@ namespace ParImparApi
             services.AddScoped<ContactsService>();
             services.AddScoped<TypesImpairmentService>();
             services.AddScoped<SearchService>();
+            services.AddScoped<PostsService>();
 
             services.AddControllers();
 

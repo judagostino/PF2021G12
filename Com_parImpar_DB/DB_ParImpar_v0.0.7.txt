@@ -423,21 +423,19 @@ WHERE
 			@IsAuditor = 'True'
 		)
 GO
-
 USE [ParImpar]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 12/10/2021 21:09:32 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 13/10/2021 18:50:09 ******/
 DROP PROCEDURE [dbo].[Posts_Insert]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 12/10/2021 21:09:32 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 13/10/2021 18:50:09 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
 
 CREATE PROCEDURE [dbo].[Posts_Insert]
 (
@@ -536,7 +534,7 @@ IF @ResultCode = 200
 					P.ImageUrl,
 					s.[Description] 'DescriptionState',
 					PTI.TypeId,
-					TI.Description
+					TI.Description 'DescriptionTypeImpairment'
 				FROM [Posts] (NOLOCK) P
 					INNER JOIN Contacts (NOLOCK) CC
 						ON CC.ContactId = P.ContacCreate
@@ -553,21 +551,19 @@ IF @ResultCode = 200
 	END
 GO
 
-
 USE [ParImpar]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_Update]    Script Date: 12/10/2021 21:16:41 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_Update]    Script Date: 13/10/2021 19:26:51 ******/
 DROP PROCEDURE [dbo].[Posts_Update]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_Update]    Script Date: 12/10/2021 21:16:41 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_Update]    Script Date: 13/10/2021 19:26:51 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
 
 
 CREATE PROCEDURE [dbo].[Posts_Update]
@@ -680,7 +676,7 @@ IF @ResultCode = 200
 					P.ImageUrl,
 					s.[Description] 'DescriptionState',
 					PTI.TypeId,
-					TI.Description
+					TI.Description 'DescriptionTypeImpairment'
 				FROM [Posts] (NOLOCK) P
 					INNER JOIN Contacts (NOLOCK) CC
 						ON CC.ContactId = P.ContacCreate
@@ -696,6 +692,7 @@ IF @ResultCode = 200
 			END
 	END
 GO
+
 
 USE [ParImpar]
 GO

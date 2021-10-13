@@ -28,6 +28,8 @@ namespace ParImparApi.Common
         [Description("Confirm Password is required")] ConfirmPasswordRequired = 5010,
         [Description("File is required")] FileRequired = 5011,
         [Description("Type is required")] TypeRequired = 5012,
+        [Description("Description is required")] DescriptionRequired = 5013,
+        [Description("Text is required")] TextRequired = 5014,
 
         
         // Item not exists

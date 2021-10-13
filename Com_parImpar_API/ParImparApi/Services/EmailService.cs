@@ -60,24 +60,28 @@ namespace ParImparApi.Services
             mailMessage.Priority = MailPriority.Normal;
             try
             {
-                SmtpClient smtp = new SmtpClient();
-                smtp.UseDefaultCredentials = false;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-
-                smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                //Solo si necesita usuario y clave
-                smtp.Credentials = new System.Net.NetworkCredential("comunidadparimpar@gmail.com", "eDejd1iJB2");
-
-                await smtp.SendMailAsync(mailMessage);
-
+                sendMailAsync(mailMessage);
                 return new ApiResponse();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        private void sendMailAsync(MailMessage mailMessage)
+        {
+            SmtpClient smtp = new SmtpClient();
+            smtp.UseDefaultCredentials = false;
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
+            smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            //Solo si necesita usuario y clave
+            smtp.Credentials = new System.Net.NetworkCredential("comunidadparimpar@gmail.com", "eDejd1iJB2");
+
+            smtp.Send(mailMessage);
         }
     }
 }
