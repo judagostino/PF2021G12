@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpKey } from '../constans';
+import { Contact } from '../intrergaces';
 import { ContactRegistrer } from '../models/contact-register';
 
 @Injectable({
@@ -72,7 +74,9 @@ export class ContactService {
   }
 
   public myInfo(): Observable<any> {
-    return this.http.get(`${this.URL}/myInfo`);
+    return this.http.get(`${this.URL}/myInfo`).pipe(map( resp => {
+      return resp['data'] as Contact;
+    }));
   }
 
 }

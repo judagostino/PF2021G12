@@ -560,7 +560,7 @@ namespace ParImparApi.Services
                         #region [SP Parameters]
                         cmd.Parameters.Add(new SqlParameter("@ContactId", registerUser.Id));
                         cmd.Parameters.Add(new SqlParameter("@CodeRecover", registerUser.CodeRecover));
-                        cmd.Parameters.Add(new SqlParameter("@Password", registerUser.CodeRecover));
+                        cmd.Parameters.Add(new SqlParameter("@Password", Crypto.EncryptGeneric(registerUser.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt)));
 
 
                         cmd.Parameters.Add(new SqlParameter()
