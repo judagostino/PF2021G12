@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active opcionMenu" aria-current="page" routerLink="/home">
+            <a class="nav-link active opcionMenu" aria-current="page" routerLink="/home" *ngIf="configService.isLooged" >
               <!-- <div class="d-flex flex-column justify-content-center"> -->
                 <div class="icon-text">
                   <mat-icon matSuffix style="cursor:pointer;">home</mat-icon> 
@@ -19,7 +19,7 @@
             </a>
           </li>  
           <li class="nav-item">
-            <a class="nav-link active opcionMenu" aria-current="page"routerLink="/calendar">
+            <a class="nav-link active opcionMenu" aria-current="page"routerLink="/calendar" *ngIf="configService.isLooged">
                 <div class="icon-text">
                   <mat-icon matSuffix style="cursor:pointer;">event</mat-icon> 
                   <span>Eventos</span>
@@ -30,14 +30,15 @@
         <div style="position: absolute;right: 0;">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active opcionMenu" aria-current="page" routerLink="/login">
+              <a class="nav-link active opcionMenu" aria-current="page">
                   <div class="icon-text">
-                    <mat-icon matSuffix style="cursor:pointer;">account_circle</mat-icon> 
+                    <p *ngIf="configService?.contact?.name">{{configService.contact.name}}</p>
+                    <mat-icon (click)="btn_Login()" matSuffix style="cursor:pointer;">account_circle</mat-icon> 
                   </div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active opcionMenu" aria-current="page" routerLink="/home">
+              <a class="nav-link active opcionMenu" aria-current="page" routerLink="/home" *ngIf="configService.isLooged">
                   <div class="icon-text">
                     <mat-icon matSuffix style="cursor:pointer;">logout</mat-icon> 
                   </div>

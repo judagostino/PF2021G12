@@ -22,7 +22,7 @@ export class CalendarComponent implements OnInit {
   events: Events[] = [];
   calendarDates: number[] = [];
   month: String="";
-  now = new Date('2021-08-10');
+  now = new Date();
 
   constructor(private eventsService: EventsService) { }
 
@@ -43,11 +43,12 @@ export class CalendarComponent implements OnInit {
   }
 
   private initData(date: Date): void {
-    // this.eventsService.getByDate(date).subscribe(response => {
-    //   this.events = response;
-    // });
+    this.events = [];
+    this.eventsService.getByDate(date).subscribe(response => {
+      this.events = response;
+    });
 
-    this.events= (JSON.parse('[{"id":1,"dateEntered":"2021-08-24T20:08:34","startDate":"2021-08-24T22:37:29","endDate":"2021-08-24T22:37:29","title":"este es una prueba","description":"este es una prueba","contactCreate":{"id":4,"name":"Vottero, Gaston"}},{"id":2,"dateEntered":"2021-08-24T21:31:09","startDate":"2021-08-24T00:00:00","endDate":"2021-08-24T00:00:00","title":"este es una prueba","description":"este es una prueba","contactCreate":{"id":1,"name":"Vottero, Gaston3"}},{"id":5,"dateEntered":"2021-08-24T21:31:14","startDate":"2021-08-24T00:00:00","endDate":"2021-08-24T00:00:00","title":"este es una prueba","description":"este es una prueba","contactCreate":{"id":2,"name":"Vottero, Gaston"}}]') as Events[]) 
+    //this.events= (JSON.parse('[{"id":1,"dateEntered":"2021-08-24T20:08:34","startDate":"2021-08-24T22:37:29","endDate":"2021-08-24T22:37:29","title":"este es una prueba","description":"este es una prueba","contactCreate":{"id":4,"name":"Vottero, Gaston"}},{"id":2,"dateEntered":"2021-08-24T21:31:09","startDate":"2021-08-24T00:00:00","endDate":"2021-08-24T00:00:00","title":"este es una prueba","description":"este es una prueba","contactCreate":{"id":1,"name":"Vottero, Gaston3"}},{"id":5,"dateEntered":"2021-08-24T21:31:14","startDate":"2021-08-24T00:00:00","endDate":"2021-08-24T00:00:00","title":"este es una prueba","description":"este es una prueba","contactCreate":{"id":2,"name":"Vottero, Gaston"}}]') as Events[]) 
   }
 
   private createCalendar(date: Date): void {
@@ -105,6 +106,7 @@ export class CalendarComponent implements OnInit {
     this.month = aux.format('MMMM');
     this.now = aux.toDate();
     this.createCalendar(this.now);
+    this.initData(this.now);
   }
 
   public btn_Add() : void {
@@ -112,6 +114,7 @@ export class CalendarComponent implements OnInit {
     this.month = aux.format('MMMM');
     this.now = aux.toDate();
     this.createCalendar(this.now);
+    this.initData(this.now);
   }
 }
 

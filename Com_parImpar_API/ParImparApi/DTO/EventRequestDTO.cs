@@ -17,6 +17,8 @@ namespace ParImparApi.DTO
 
         public string Description { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public StateDTO State { get; set; }
 
         public ContactDTO ContactCreate { get; set; }

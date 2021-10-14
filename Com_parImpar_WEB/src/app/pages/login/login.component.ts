@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CredencialLogin } from 'src/app/intrergaces';
 import { AuthService } from 'src/app/services';
+import { ConfigService } from 'src/app/services';
+import { ContactService } from 'src/app/services';
 
 
 @Component({
@@ -11,7 +14,8 @@ import { AuthService } from 'src/app/services';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup
-  constructor(private formBuilder: FormBuilder,private authService:AuthService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService:AuthService,
+    private contactService: ContactService, private configService: ConfigService) { 
 
   }
 
@@ -33,6 +37,11 @@ export class LoginComponent implements OnInit {
   
     
       this.authService.credentialLogin(cedencialLogin).subscribe( response => {
+        return this.contactService.myInfo().subscribe(res =>{
+          this.configService.contact = res;
+          this.configService.isLooged = true;
+          this.router.navigateByUrl('/calendar');
+        })
         // estra logeado
       }, error => {
         // error

@@ -1,5 +1,0 @@
-2021-09-18 18:30:20.5626 - INFO - 8000004f-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
-     Message: Email exist
-     Headers: Authorization="", 
-     Body: {"Id":null,"Email":"gastonvottero@hotmail.com","ConfirmEmail":"gastonvottero@hotmail.com","UserName":"gaston_vottero","LastName":"Vottero","FirstName":"Gaston","Password":"123456789Mn","ConfirmPassword":"123456789Mn","ConfirmCode":"FC323722-6A0D-4317-A2C6-65061614F46D","CodeRecover":null,"DateBrirth":"1995-11-03T00:00:00"}
-

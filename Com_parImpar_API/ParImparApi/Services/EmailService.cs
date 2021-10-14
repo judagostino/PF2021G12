@@ -12,9 +12,11 @@ namespace ParImparApi.Services
     {
         private readonly string _connectionString;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
 
         public EmailService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
+            _configuration = configuration;
             _connectionString = configuration.GetConnectionString("defaultConnection");
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
@@ -26,7 +28,7 @@ namespace ParImparApi.Services
 
             message = message.Replace("[FirstName]", registerUser.FirstName);
             message = message.Replace("[UserName]", registerUser.UserName);
-            message = message.Replace("[SiteAdminUrl]", "http://Localhost:4200");
+            message = message.Replace("[SiteAdminUrl]", _configuration["GlobalVariables:Host"]);
             message = message.Replace("[PasswordRecoveryToken]", token);
             
             return await SendEmailAsync(subject, message, registerUser.Email);
@@ -39,7 +41,7 @@ namespace ParImparApi.Services
 
             message = message.Replace("[FirstName]", registerUser.FirstName);
             message = message.Replace("[UserName]", registerUser.UserName);
-            message = message.Replace("[SiteAdminUrl]", "http://Localhost:4200");
+            message = message.Replace("[SiteAdminUrl]", _configuration["GlobalVariables:Host"]);
             message = message.Replace("[PasswordRecoveryToken]", token);
 
             return await SendEmailAsync(subject, message, registerUser.Email);
@@ -58,24 +60,28 @@ namespace ParImparApi.Services
             mailMessage.Priority = MailPriority.Normal;
             try
             {
-                SmtpClient smtp = new SmtpClient();
-                smtp.UseDefaultCredentials = false;
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-
-                smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                //Solo si necesita usuario y clave
-                smtp.Credentials = new System.Net.NetworkCredential("comunidadparimpar@gmail.com", "eDejd1iJB2");
-
-                await smtp.SendMailAsync(mailMessage);
-
+                sendMailAsync(mailMessage);
                 return new ApiResponse();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        private void sendMailAsync(MailMessage mailMessage)
+        {
+            SmtpClient smtp = new SmtpClient();
+            smtp.UseDefaultCredentials = false;
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+
+            smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+            //Solo si necesita usuario y clave
+            smtp.Credentials = new System.Net.NetworkCredential("comunidadparimpar@gmail.com", "eDejd1iJB2");
+
+            smtp.Send(mailMessage);
         }
     }
 }

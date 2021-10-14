@@ -26,6 +26,10 @@ namespace ParImparApi.Common
         [Description("Title is required")] TitleRequired = 5008,
         [Description("New Password is required")] NewPasswordRequired = 5009,
         [Description("Confirm Password is required")] ConfirmPasswordRequired = 5010,
+        [Description("File is required")] FileRequired = 5011,
+        [Description("Type is required")] TypeRequired = 5012,
+        [Description("Description is required")] DescriptionRequired = 5013,
+        [Description("Text is required")] TextRequired = 5014,
 
         
         // Item not exists
@@ -46,6 +50,9 @@ namespace ParImparApi.Common
         [Description("unauthorized action ")] unauthorizedAction = 5910,
         [Description("Password not change")] NotChangePassword = 5911,
         [Description("Expired link")] ExpiredLink = 5912,
+        [Description("Invalid Type")] InvalidType = 5913,
+        [Description("File is empty")] FileIsEmpty = 5914,
+        [Description("Object key error")] ObjectKeyError = 5915,
     }
 
     internal static class Extensions

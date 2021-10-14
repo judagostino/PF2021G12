@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Events } from 'src/app/models/events';
 import { EventsService } from 'src/app/services';
 import Swal  from 'sweetalert2';
@@ -13,7 +14,7 @@ export class ABMEventsComponent implements OnInit {
   form: FormGroup;
   events: Events[] = [];
 
-  constructor(private formBuilder: FormBuilder, private eventsService: EventsService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private eventsService: EventsService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -83,10 +84,11 @@ export class ABMEventsComponent implements OnInit {
       this.form.reset(resp)
       this.getGrid();
       Swal.fire(
-        'Good job! titulo',
-        'You clicked the button! mensaje',
+        'Guardado',
+        'Evento guardado con exito!',
         'success'
       )
+      this.router.navigateByUrl('/events');
     });
   }
 
@@ -95,8 +97,8 @@ export class ABMEventsComponent implements OnInit {
       this.form.reset(resp)
       this.getGrid();
       Swal.fire(
-        'Good job!',
-        'You clicked the button!',
+        'Guardado',
+        'Evento guardado con exito!',
         'success'
       )
     });

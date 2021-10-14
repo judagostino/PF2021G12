@@ -79,6 +79,11 @@ namespace ParImparApi.Common
             }
         }
 
+        internal static object GenerateErrorResponse(HttpContext httpContext, object logger, CustomStatusCodes invalidType, object p)
+        {
+            throw new NotImplementedException();
+        }
+
         public static string GetTokenSignature(string token)
         {
             return token.Substring(token.LastIndexOf(".") + 1);
