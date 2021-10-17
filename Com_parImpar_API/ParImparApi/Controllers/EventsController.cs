@@ -213,6 +213,49 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
+
+        #region [GetByIdMoreInfo]
+        // GET: api/v1/Events/EventId/moreInfo
+        [HttpGet("{EventId}/moreInfo")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByIdMoreInfo(int eventId)
+        {
+            try
+            {
+                if (eventId != null && eventId <= 0)
+                {
+                    return BadRequest(CustomStatusCodes.RequiredId);
+                }
+
+                ApiResponse response = await _eventsService.GetByIdMoreInfo(eventId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(response.Data);
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.BadRequest:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, eventId));
+            }
+        }
+        #endregion
+
         #region [GetAll]
         // GET: api/v1/Events
         [HttpGet]

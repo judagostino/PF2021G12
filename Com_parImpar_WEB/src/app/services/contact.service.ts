@@ -79,4 +79,12 @@ export class ContactService {
     }));
   }
 
+  public getByIdMoreInfo(id: number): Observable<Contact> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.get(`${this.URL}/${id}`, {headers}).pipe(map((resp) =>  resp['data'] as Contact));
+  }
 }

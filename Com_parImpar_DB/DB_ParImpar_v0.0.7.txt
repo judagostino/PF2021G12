@@ -1,6 +1,30 @@
 USE [ParImpar]
 GO
 
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Contacts ADD
+	DateModify datetime NULL
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+USE [ParImpar]
+GO
+
 /****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 12/10/2021 20:19:49 ******/
 DROP PROCEDURE [dbo].[Search_GetSearch]
 GO
@@ -247,7 +271,7 @@ GO
 
 CREATE PROCEDURE [dbo].[Posts_Delete]
 (
-    @PostsId INT,
+    @PostId INT,
     @ContactId INT,
 	@ResultCode INT OUTPUT
 )
@@ -265,9 +289,9 @@ SET @PostId = 4
 SET @ContactId = 2
 */
 
-IF (SELECT TOP 1 PostId FROM [Posts] (NOLOCK) WHERE PostId = @PostsId AND ContacCreate = @ContactId) IS NOT NULL
+IF (SELECT TOP 1 PostId FROM [Posts] (NOLOCK) WHERE PostId = @PostId AND ContacCreate = @ContactId) IS NOT NULL
 	BEGIN
-		DELETE FROM [Posts] WHERE PostId = @PostsId AND ContacCreate = @ContactId
+		DELETE FROM [Posts] WHERE PostId = @PostId AND ContacCreate = @ContactId
 
 		IF @@ROWCOUNT = 0
 			BEGIN 
@@ -275,7 +299,7 @@ IF (SELECT TOP 1 PostId FROM [Posts] (NOLOCK) WHERE PostId = @PostsId AND Contac
 			END
 		  ELSE
 			BEGIN
-				DELETE FROM PostsXTypesImpairment WHERE PostId = @PostsId
+				DELETE FROM PostsXTypesImpairment WHERE PostId = @PostId
 				SET @ResultCode = 200 
 			END
 	END
@@ -285,20 +309,20 @@ IF (SELECT TOP 1 PostId FROM [Posts] (NOLOCK) WHERE PostId = @PostsId AND Contac
 	END
 GO
 
-
 USE [ParImpar]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_GetAll]    Script Date: 12/10/2021 21:01:50 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_GetAll]    Script Date: 13/10/2021 20:45:41 ******/
 DROP PROCEDURE [dbo].[Posts_GetAll]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_GetAll]    Script Date: 12/10/2021 21:01:50 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_GetAll]    Script Date: 13/10/2021 20:45:41 ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 CREATE PROCEDURE [dbo].[Posts_GetAll]
 (
@@ -332,7 +356,7 @@ SELECT
 	P.ImageUrl,
 	s.[Description] 'DescriptionState',
 	PTI.TypeId,
-	TI.Description
+	TI.Description 'DescriptionTypeImpairment'
 FROM [Posts] (NOLOCK) P
 	INNER JOIN Contacts (NOLOCK) CC
 		ON CC.ContactId = P.ContacCreate
@@ -348,18 +372,20 @@ WHERE
 		@ContactId = P.ContacCreate
 		OR
 		@IsAuditor = 'True'
+ORDER BY P.PostId
 GO
+
 
 
 
 USE [ParImpar]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_GetById]    Script Date: 12/10/2021 21:03:00 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_GetById]    Script Date: 13/10/2021 20:44:00 ******/
 DROP PROCEDURE [dbo].[Posts_GetById]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Posts_GetById]    Script Date: 12/10/2021 21:03:00 ******/
+/****** Object:  StoredProcedure [dbo].[Posts_GetById]    Script Date: 13/10/2021 20:44:00 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -402,7 +428,7 @@ SELECT
 	P.ImageUrl,
 	s.[Description] 'DescriptionState',
 	PTI.TypeId,
-	TI.Description
+	TI.Description 'DescriptionTypeImpairment'
 FROM [Posts] (NOLOCK) P
 	INNER JOIN Contacts (NOLOCK) CC
 		ON CC.ContactId = P.ContacCreate
@@ -423,8 +449,7 @@ WHERE
 			@IsAuditor = 'True'
 		)
 GO
-USE [ParImpar]
-GO
+
 
 /****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 13/10/2021 18:50:09 ******/
 DROP PROCEDURE [dbo].[Posts_Insert]
@@ -693,15 +718,14 @@ IF @ResultCode = 200
 	END
 GO
 
-
 USE [ParImpar]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 12/10/2021 21:30:53 ******/
+/****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 13/10/2021 22:30:59 ******/
 DROP PROCEDURE [dbo].[Search_GetSearch]
 GO
 
-/****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 12/10/2021 21:30:53 ******/
+/****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 13/10/2021 22:30:59 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -717,11 +741,10 @@ CREATE PROCEDURE [dbo].[Search_GetSearch]
 
 AS
 
-
 /*
 -- para trest
 DECLARE	@SearchText AS VARCHAR(MAX)
-DECLARE	@Filters AS VARCHAR(MAX) = '1,2,3,4'
+DECLARE	@Filters AS VARCHAR(MAX) = '3'
 */
 
 DECLARE @TableFilters TABLE 
@@ -734,12 +757,26 @@ DECLARE @TableSearchText TABLE
 	TextFilter varchar(60)
 )
 
-IF (@Filters IS NOT NULL)
-	BEGIN
-		INSERT INTO @TableFilters
-		SELECT value
-		FROM STRING_SPLIT(@Filters , ',')
-	END
+DECLARE @PostsAux TABLE 
+(
+	PostId INT,
+	DateOrder DateTime
+)
+
+DECLARE @TableSearchAux TABLE
+(
+	[Key]  VARCHAR(250),
+	Id INT,
+	StartDate DATETIME,
+	NameCreate  VARCHAR(250),
+	ContacCreateId INT,
+	Description  VARCHAR(250),
+	Title  VARCHAR(250),
+	ImageUrl  VARCHAR(250),
+	TypeId  VARCHAR(250),
+	TypeDescription VARCHAR(250),
+	DateOrder DateTime
+)
 
 IF (@SearchText IS NOT NULL)
 	BEGIN
@@ -748,7 +785,7 @@ IF (@SearchText IS NOT NULL)
 		FROM STRING_SPLIT(@SearchText , ' ')
 	END
 
-
+INSERT INTO @TableSearchAux
 SELECT DISTINCT TOP 10
 	'EventId' AS 'Key',
 	E.EventId AS 'Id',
@@ -759,7 +796,8 @@ SELECT DISTINCT TOP 10
 	E.Title,
 	E.ImageUrl,
 	NULL 'TypeId',
-	NULL 'TypeDescription'
+	NULL 'TypeDescription',
+	ISNULL(ISNULL(ISNULL(E.EndDate, E.StartDate),E.DateModify), E.DateEntered)
 FROM [Events] (NOLOCK) E
 	INNER JOIN Contacts (NOLOCK) C
 		ON C.ContactId = E.ContacCreate
@@ -773,40 +811,438 @@ WHERE EXISTS (
 			)
 		OR (@SearchText IS NULL)
 		AND E.StateId = 2
-UNION ALL
-SELECT DISTINCT TOP 10
-	'PostId' AS 'Key',
-	P.PostId AS 'Id',
-	NULL 'StartDate',
-	C.LastName + ', ' + C.FirstName AS 'NameCreate',
-	C.ContactId AS 'ContacCreateId',
-	P.[Description],
-	P.Title,
-	P.ImageUrl,
-	PTI.TypeId,
-	TI.Description 'TypeDescription'
-FROM [Posts] (NOLOCK) P
-	INNER JOIN Contacts (NOLOCK) C
-		ON C.ContactId = P.ContacCreate
-	INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
-		ON PTI.PostId = P.PostId
-	INNER JOIN TypesImpairment (NOLOCK) TI
-		ON PTI.TypeId = TI.TypeId
-WHERE EXISTS (
-				SELECT TextFilter 
-				FROM @TableSearchText AUX
+ORDER BY ISNULL(ISNULL(ISNULL(E.EndDate, E.StartDate),E.DateModify), E.DateEntered) DESC
+
+IF (@Filters IS NOT NULL)
+	BEGIN
+		INSERT INTO @TableFilters
+		SELECT value
+		FROM STRING_SPLIT(@Filters , ',')
+
+		IF EXISTS(SELECT * FROM @TableFilters) 
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 10
+					PTI.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+						ON PTI.PostId = P.PostId 
 				WHERE 
-				P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
-				OR
-				P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
-				OR
-				P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
-			)
-		OR (@SearchText IS NULL)
-		OR (TI.TypeId IN (SELECT @Filters) OR @Filters IS NULL)
-		AND P.StateId = 2
+					( 
+						PTI.TypeId IN (SELECT * FROM @TableFilters)
+					) 
+					AND P.StateId = 2
+				ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+			END
+		  ELSE 
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 10
+					PTI.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+						ON PTI.PostId = P.PostId 
+				WHERE  P.StateId = 2
+				ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+			END
+	END
+  ELSE 
+	BEGIN
+		INSERT INTO @PostsAux
+		SELECT DISTINCT TOP 10
+			PTI.PostId,
+			ISNULL(P.DateModify, P.DateEntered)
+		FROM [Posts] (NOLOCK) P
+			LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+				ON PTI.PostId = P.PostId 
+		WHERE  P.StateId = 2
+		ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+	END
+
+IF @Filters IS NOT NULL
+	BEGIN
+		INSERT INTO @PostsAux
+		SELECT DISTINCT TOP 10
+			P.PostId,
+			ISNULL(P.DateModify, P.DateEntered)
+		FROM [Posts] (NOLOCK) P
+			INNER JOIN @PostsAux PA
+				ON P.PostId = PA.PostId
+		WHERE EXISTS (
+					SELECT TextFilter 
+					FROM @TableSearchText AUX
+					WHERE 
+					P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+					OR
+					P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+					OR
+					P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+				)
+			OR (@SearchText IS NULL)
+			AND P.StateId = 2
+		ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+	END
+  ELSE 
+	BEGIN
+		INSERT INTO @PostsAux
+		SELECT DISTINCT TOP 10
+			P.PostId,
+			ISNULL(P.DateModify, P.DateEntered)
+		FROM [Posts] (NOLOCK) P
+			INNER JOIN @PostsAux PA
+				ON P.PostId = PA.PostId
+		WHERE EXISTS (
+					SELECT TextFilter 
+					FROM @TableSearchText AUX
+					WHERE 
+					P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+					OR
+					P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+					OR
+					P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+				)
+			OR (@SearchText IS NULL)
+			AND P.StateId = 2
+	END
+	
+INSERT INTO @TableSearchAux
+	SELECT
+		'PostId' AS 'Key',
+		P.PostId AS 'Id',
+		NULL 'StartDate',
+		C.LastName + ', ' + C.FirstName AS 'NameCreate',
+		C.ContactId AS 'ContacCreateId',
+		P.[Description],
+		P.Title,
+		P.ImageUrl,
+		PTI.TypeId,
+		TI.Description 'TypeDescription',
+		ISNULL(P.DateModify, P.DateEntered)
+	FROM [Posts] (NOLOCK) P
+		INNER JOIN Contacts (NOLOCK) C
+			ON C.ContactId = P.ContacCreate
+		INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
+			ON PTI.PostId = P.PostId
+		INNER JOIN TypesImpairment (NOLOCK) TI
+			ON PTI.TypeId = TI.TypeId
+		INNER JOIN @PostsAux PA
+			ON PA.PostId = P.PostId
+
+			
+SELECT DISTINCT * FROM @TableSearchAux ORDER BY [Key], Id, DateOrder DESC
 GO
 
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_Update]    Script Date: 14/10/2021 20:27:06 ******/
+DROP PROCEDURE [dbo].[Contact_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_Update]    Script Date: 14/10/2021 20:27:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_Update]
+(
+	@UserName VARCHAR(100),
+	@LastName VARCHAR(100),
+	@FirstName VARCHAR(100),
+	@ContactId INT,
+	@DateBrirth Date,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+--para test
+DECLARE @LastName VARCHAR(100)
+DECLARE @UserName VARCHAR(100)
+DECLARE @FirstName VARCHAR(100)
+DECLARE @DateBrirth Date
+DECLARE @ResultCode INT
+DECLARE @ContactId INT
+
+SET @LastName = 'Da Vinci'
+SET @FirstName = 'Leonardo'
+SET @UserName = 'Pintureria la Mona'
+SET @DateBrirth = GETDATE()
+SET @ContactId = 1010
+*/
+
+
+SET @ResultCode = 200
+
+IF (@UserName IS NULL OR @UserName = '')
+	BEGIN
+		SET @ResultCode = 5001
+	END
+
+
+IF (@FirstName IS NULL OR @FirstName = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5004
+	END
+
+IF (@LastName IS NULL OR @LastName = '') AND @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5005
+	END
+
+
+
+IF @ResultCode = 200
+	BEGIN
+		UPDATE Contacts
+		SET
+			FirstName = @FirstName, 
+			LastName = @LastName, 
+			UserName = @UserName, 
+			DateBrirth =  @DateBrirth,
+			DateModify = GETDATE()
+		WHERE ContactId = @ContactId
+
+		IF @@ROWCOUNT = 0 
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+	END
+GO
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Object_UpdateImage]    Script Date: 15/10/2021 19:33:34 ******/
+DROP PROCEDURE [dbo].[Object_UpdateImage]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Object_UpdateImage]    Script Date: 15/10/2021 19:33:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[Object_UpdateImage]
+(
+	@objectId INT,
+    @objectKey VARCHAR(100),
+	@urlImage VARCHAR(255),
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @objectId INT
+DECLARE @objectKey AS VARCHAR(100)
+DECLARE @urlImage AS VARCHAR(255)
+DECLARE @ResultCode AS INT
+
+SET @objectId = 1
+SET @objectKey = 'ContactId'
+SET @urlImage = ''
+*/
+
+SET @ResultCode = 0
+
+IF @objectId IS NULL 
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+IF (@objectKey IS NULL OR @objectKey = '') AND  @ResultCode = 0
+	BEGIN
+		SET @ResultCode = 5915
+	END
+
+IF (@urlImage IS NULL OR @urlImage = '') AND  @ResultCode = 0
+	BEGIN
+		SET @ResultCode = 5011
+	END
+
+	-- Event
+IF (@objectKey LIKE 'EventId') AND  @ResultCode = 0
+	BEGIN
+
+		UPDATE [Events] 
+		SET ImageUrl = @urlImage
+		WHERE EventId = @objectId
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+		  ELSE
+			BEGIN
+				SET @ResultCode = 200
+			END
+	END
+
+	--Posts
+IF (@objectKey LIKE 'PostId') AND  @ResultCode = 0
+	BEGIN
+
+		UPDATE [Posts] 
+		SET ImageUrl = @urlImage
+		WHERE PostId = @objectId
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+		  ELSE
+			BEGIN
+				SET @ResultCode = 200
+			END
+	END
+
+	--Profile
+IF (@objectKey LIKE 'ContactId') AND  @ResultCode = 0
+	BEGIN
+
+		UPDATE [Contacts] 
+		SET ImageUrl = @urlImage
+		WHERE ContactId = @objectId
+		
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+		  ELSE
+			BEGIN
+				SET @ResultCode = 200
+			END
+	END
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_GetByIdMoreInfo]    Script Date: 17/10/2021 14:36:30 ******/
+DROP PROCEDURE [dbo].[Events_GetByIdMoreInfo]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_GetByIdMoreInfo]    Script Date: 17/10/2021 14:36:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Events_GetByIdMoreInfo]
+(
+	@EventId INT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @EventId INT = 1
+*/
+
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	E.StateId,
+	E.ImageUrl,
+	s.[Description] 'DescriptionState'
+FROM [Events] E (NOLOCK)
+	INNER JOIN Contacts (NOLOCK) CC
+	ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+	ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+	ON CA.ContactId = E.ContactAudit
+WHERE 
+	EventId = @EventId
+	AND E.StateId = 2
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_GetByIdMoreInfo]    Script Date: 17/10/2021 14:43:59 ******/
+DROP PROCEDURE [dbo].[Posts_GetByIdMoreInfo]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_GetByIdMoreInfo]    Script Date: 17/10/2021 14:43:59 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Posts_GetByIdMoreInfo]
+(
+	@PostId INT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 4
+DECLARE @PostId INT = 1
+*/
+
+SELECT 
+	P.PostId,
+	P.[Description],
+	P.Text,
+	P.Title,
+	P.DateEntered,
+	P.ContacCreate,
+	CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+	P.ContactAudit,
+	CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	P.StateId,
+	P.ImageUrl,
+	s.[Description] 'DescriptionState',
+	PTI.TypeId,
+	TI.Description 'DescriptionTypeImpairment'
+FROM [Posts] (NOLOCK) P
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = P.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = P.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = P.ContactAudit
+	INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
+		ON PTI.PostId = P.PostId
+	LEFT JOIN TypesImpairment (NOLOCK) TI
+		ON PTI.TypeId = TI.TypeId
+WHERE
+	P.PostId = @PostId
+	AND P.StateId = 2
+GO
 
 
 

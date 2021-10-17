@@ -39,8 +39,8 @@ namespace ParImparApi.Services
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
                         await cnn.OpenAsync();
 
-                        List<TypesImpairmentDTO> typesImpairment = new List<TypesImpairmentDTO>();
-                        TypesImpairmentDTO type;
+                        List<TypeImpairmentDTO> typesImpairment = new List<TypeImpairmentDTO>();
+                        TypeImpairmentDTO type;
 
                         ApiResponse successResponse = new ApiResponse()
                         {
@@ -53,7 +53,7 @@ namespace ParImparApi.Services
                         {
                             while (await reader.ReadAsync())
                             {
-                                type = new TypesImpairmentDTO();
+                                type = new TypeImpairmentDTO();
 
                                 if (reader["TypeId"] != DBNull.Value)
                                 {

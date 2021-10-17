@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace ParImparApi.DTO
 {
@@ -18,5 +19,7 @@ namespace ParImparApi.DTO
         public string ImageUrl { get; set; }
 
         public ContactDTO ContactCreate { get; set; }
+
+        public List<TypeImpairmentDTO> TypeImpairment { get; set; }
     }
 }

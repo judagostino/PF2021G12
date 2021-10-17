@@ -20,6 +20,15 @@ export class EventsService {
     return this.http.get(`${this.URL}/${id}`).pipe(map((response:Events) => response));
   }
 
+  public getByIdMoreInfo(id: number): Observable<Events> {
+    let headers= new HttpHeaders();
+
+    headers = headers.append('Content-Type', 'application/json');
+    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+
+    return this.http.get(`${this.URL}/${id}/moreInfo`, {headers}).pipe(map((response:Events) => response));
+  }
+
   public insert(event: Events): Observable<Events> {
     return this.http.post(`${this.URL}`, event).pipe(map((response:Events)=> response));
   }

@@ -1,27 +1,26 @@
-import { Contact, State } from "../intrergaces";
+import { Contact, State, TypeImpairment } from "../intrergaces";
 
-export class Events {
+export class Post {
     id?: number;
     dateEntered?: Date;
-    startDate?: Date;
-    endDate?: Date;
     title?: string;
     description?: string;
+    text: string;
     state?: State;
     contactCreate?: Contact;
     contactAudit?: Contact;
+    typeImpairment?: TypeImpairment[];
     imageUrl?: string;
 
     constructor() {
         this.id = 0;
         this.dateEntered = null;
-        this.startDate = null;
-        this.endDate = null;
         this.title = null;
         this.description = null;
         this.state = null;
         this.contactCreate = null;
         this.contactAudit = null;
         this.imageUrl = null;
+        this.typeImpairment = null;
     }
 }

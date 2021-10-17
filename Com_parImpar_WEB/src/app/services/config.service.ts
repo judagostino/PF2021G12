@@ -28,9 +28,16 @@ export class ConfigService {
             return of(isLooged);
           }
         })
-      ).subscribe((loadData) => resolve());
+      ).subscribe((loadData) => resolve(), err => {
+        this.isLooged = false;
+        resolve()}
+        );
     });
     //return new Promise((resolve) => resolve(null))
+  }
+
+  public dafaultImage(): string {
+    return '/assets/image/icon.png';
   }
 
   private reAuthenticate(): Observable<boolean> {

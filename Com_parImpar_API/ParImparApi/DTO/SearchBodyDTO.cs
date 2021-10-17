@@ -8,6 +8,6 @@ namespace ParImparApi.DTO
     {
         public string SearchText { get; set; }
 
-        public List<TypesImpairmentDTO> Filters { get; set; }
+        public List<TypeImpairmentDTO> Filters { get; set; }
     }
 }

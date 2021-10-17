@@ -1,0 +1,23 @@
+2021-10-17 14:45:23.5518 - ERROR - 8000009f-0007-ff00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Events/1/moreInfo (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Services.EventsService.GetById(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 562
+   at ParImparApi.Services.EventsService.GetById(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 570
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 230
+     Headers: Authorization="", 
+     Body: 1
+
+2021-10-17 14:46:39.9840 - ERROR - 800000a0-0007-ff00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Events/1/moreInfo (ver: ) - ::1
+     Message: Token not exists
+     Exception: Token not exists
+     StackTrace:    at ParImparApi.Services.EventsService.GetById(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 562
+   at ParImparApi.Services.EventsService.GetById(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 570
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 230
+     Headers: Authorization="", 
+     Body: 1
+
+2021-10-17 15:04:05.3330 - INFO - 800000bf-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Posts/7/Deny (ver: ) - ::1
+     Message: unauthorized action 
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MTg3NTNiYi1mMzgwLTQ5NjktOTUyOC03NDdmZDJmZmQyZDQiLCJDb250YWN0SWQiOiIyIiwibmJmIjoxNjM0NDkzNzM4LCJleHAiOjE2MzQ0OTQ2MzgsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.mbChy1Ir27XTR-CSd11rfMxZAf2QSbrJCiAdzwKIODM", 
+     Body: 7
+

@@ -86,8 +86,14 @@ namespace ParImparApi.Services
 
                         await cnn.OpenAsync();
 
+
                         List<SearchItemDTO> results = new List<SearchItemDTO>();
-                        SearchItemDTO item;
+                        SearchItemDTO itemPost = new SearchItemDTO() { 
+                            Id = 0
+                        };
+                        SearchItemDTO itemEvent;
+
+                        TypeImpairmentDTO typeImpairment = new TypeImpairmentDTO();
 
                         ApiResponse successResponse = new ApiResponse()
                         {
@@ -100,53 +106,131 @@ namespace ParImparApi.Services
                         {
                             while (await reader.ReadAsync())
                             {
-                                item = new SearchItemDTO();
-
-                                if (reader["Id"] != DBNull.Value)
+                                if(reader["Key"] != DBNull.Value)
                                 {
-                                    item.Id = int.Parse(reader["Id"].ToString());
-                                }
-                                else
-                                {
-                                    item.Id = null;
-                                }
-
-                                if (reader["Key"] != DBNull.Value)
-                                {
-                                    item.Key = reader["Key"].ToString();
-                                }
-
-                                if (reader["StartDate"] != DBNull.Value)
-                                {
-                                    item.StartDate = DateTime.Parse(reader["StartDate"].ToString());
-                                }
-
-                                if (reader["Title"] != DBNull.Value)
-                                {
-                                    item.Title = reader["Title"].ToString();
-                                }
-
-                                if (reader["ImageUrl"] != DBNull.Value)
-                                {
-                                    item.ImageUrl = reader["ImageUrl"].ToString();
-                                }
-
-                                if (reader["Description"] != DBNull.Value)
-                                {
-                                    item.Description = reader["Description"].ToString();
-                                }
-                             
-                                if (reader["ContacCreateId"] != DBNull.Value)
-                                {
-                                    item.ContactCreate = new ContactDTO()
+                                    if (reader["Key"].ToString().Equals("EventId"))
                                     {
-                                        Id = int.Parse(reader["ContacCreateId"].ToString()),
-                                        Name = reader["NameCreate"].ToString()
-                                    };
+                                        itemEvent = new SearchItemDTO();
+                                        if (reader["Id"] != DBNull.Value)
+                                        {
+                                            itemEvent.Id = int.Parse(reader["Id"].ToString());
+                                        }
+                                        else
+                                        {
+                                            itemEvent.Id = null;
+                                        }
+
+                                        if (reader["Key"] != DBNull.Value)
+                                        {
+                                            itemEvent.Key = reader["Key"].ToString();
+                                        }
+
+                                        if (reader["StartDate"] != DBNull.Value)
+                                        {
+                                            itemEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
+                                        }
+
+                                        if (reader["Title"] != DBNull.Value)
+                                        {
+                                            itemEvent.Title = reader["Title"].ToString();
+                                        }
+
+                                        if (reader["ImageUrl"] != DBNull.Value)
+                                        {
+                                            itemEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                        }
+
+                                        if (reader["Description"] != DBNull.Value)
+                                        {
+                                            itemEvent.Description = reader["Description"].ToString();
+                                        }
+
+                                        if (reader["ContacCreateId"] != DBNull.Value)
+                                        {
+                                            itemEvent.ContactCreate = new ContactDTO()
+                                            {
+                                                Id = int.Parse(reader["ContacCreateId"].ToString()),
+                                                Name = reader["NameCreate"].ToString()
+                                            };
+                                        }
+
+                                        results.Add(itemEvent);
+                                    }
+                                    else
+                                    {
+                                        if (reader["Id"] != DBNull.Value && itemPost.Id != int.Parse(reader["Id"].ToString()))
+                                        {
+                                            itemPost = new SearchItemDTO();
+
+                                            if (reader["Id"] != DBNull.Value)
+                                            {
+                                                itemPost.Id = int.Parse(reader["Id"].ToString());
+                                            }
+                                            else
+                                            {
+                                                itemPost.Id = null;
+                                            }
+
+                                            if (reader["Key"] != DBNull.Value)
+                                            {
+                                                itemPost.Key = reader["Key"].ToString();
+                                            }
+
+                                            if (reader["Title"] != DBNull.Value)
+                                            {
+                                                itemPost.Title = reader["Title"].ToString();
+                                            }
+
+                                            if (reader["ImageUrl"] != DBNull.Value)
+                                            {
+                                                itemPost.ImageUrl = reader["ImageUrl"].ToString();
+                                            }
+
+                                            if (reader["Description"] != DBNull.Value)
+                                            {
+                                                itemPost.Description = reader["Description"].ToString();
+                                            }
+
+                                            if (reader["ContacCreateId"] != DBNull.Value)
+                                            {
+                                                itemPost.ContactCreate = new ContactDTO()
+                                                {
+                                                    Id = int.Parse(reader["ContacCreateId"].ToString()),
+                                                    Name = reader["NameCreate"].ToString()
+                                                };
+                                            }
+
+                                            if (reader["TypeId"] != DBNull.Value)
+                                            {
+                                                typeImpairment = new TypeImpairmentDTO()
+                                                {
+                                                    Id = int.Parse(reader["TypeId"].ToString()),
+                                                    Description = reader["TypeDescription"].ToString()
+                                                };
+                                                itemPost.TypeImpairment = new List<TypeImpairmentDTO>();
+                                                itemPost.TypeImpairment.Add(typeImpairment);
+                                            }
+
+                                            results.Add(itemPost);
+                                        }
+
+                                        else if (reader["Id"] != DBNull.Value && itemPost.Id == int.Parse(reader["Id"].ToString()))
+                                        {
+                                            if (reader["TypeId"] != DBNull.Value && typeImpairment.Id != int.Parse(reader["TypeId"].ToString()))
+                                            {
+                                                typeImpairment = new TypeImpairmentDTO()
+                                                {
+                                                    Id = int.Parse(reader["TypeId"].ToString()),
+                                                    Description = reader["TypeDescription"].ToString()
+                                                };
+                                                itemPost.TypeImpairment.Add(typeImpairment);
+                                            }
+                                        }
+                                    }
                                 }
 
-                                results.Add(item);
                             }
+                                
                         }
                         #endregion
 

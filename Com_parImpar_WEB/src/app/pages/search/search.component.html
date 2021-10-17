@@ -1,0 +1,48 @@
+<div class="mt-3 w-100 container-search">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <mat-card>
+                    <mat-form-field class="w-100" appearance="fill">
+                      <mat-label>Buscar</mat-label>
+                      <input [(ngModel)]="searchText" matInput (keyup.enter)="btn_search()">
+                      <mat-icon (click)="btn_search()" matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    
+                    <div class="w-100 more-filters text-center">
+                        <a (click)="showMoreInfo=!showMoreInfo">Más filtros...</a>
+                        <div *ngIf="showMoreInfo" class="row">
+                            <div class="col-6" *ngFor="let type of typeImpairments; let i = index">
+                                <mat-checkbox  (click)="typeImpairmentsAux[i]=!typeImpairmentsAux[i]">{{type.description}}</mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-card>
+              </div>
+        </div>
+
+        <div *ngFor="let result of resultsSearch;" class=" mt-3 mb-3">
+            <mat-card class="card-search">
+                <div class="row">
+                    <div class="col-4">
+                        <img style="max-height: 180px; max-width: 100%;" [src]="getImage(result)">
+                    </div>
+                    <div class="col-8">
+                        <h3>{{getTitle(result)}}</h3>
+                        <p>{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
+                        <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
+                            <h4 *ngFor="let type of result.typeImpairment;">
+                                <span class="badge badge-pill badge-primary m-1">{{type.description}}</span>
+                            </h4>
+                        </div>
+                        <a (click)="redirectToProfile(result)" *ngIf ="result?.contactCreate?.name != null"> Creado por: {{result.contactCreate.name}}</a>
+                        <button mat-raised-button color="warn" style="vertical-align: bottom;" class="w-100 text-center" (click)="redirectToMoreInfo(result)">Más informacion</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+    </div>
+</div>

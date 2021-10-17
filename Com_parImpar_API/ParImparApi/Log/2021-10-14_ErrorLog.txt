@@ -1,0 +1,18 @@
+2021-10-14 20:12:01.4165 - ERROR - 80000073-0000-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Search (ver: ) - ::1
+     Message: PostId
+     Exception: PostId
+     StackTrace:    at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 253
+   at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 261
+   at ParImparApi.Controllers.SearchController.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\SearchController.cs:line 40
+     Headers: Authorization="", 
+     Body: {"SearchText":"desc","Filters":[{"Id":1,"Description":"Discapacidad Física o Motora"},{"Id":2,"Description":"Discapacidad Sensorial"},{"Id":3,"Description":"Discapacidad intelectual"},{"Id":4,"Description":"Discapacidad Psíquica"}]}
+
+2021-10-14 20:14:09.7011 - ERROR - 80000097-0006-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Search (ver: ) - ::1
+     Message: ContacCreate
+     Exception: ContacCreate
+     StackTrace:    at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 253
+   at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 261
+   at ParImparApi.Controllers.SearchController.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\SearchController.cs:line 40
+     Headers: Authorization="", 
+     Body: {"SearchText":"desc","Filters":[{"Id":1,"Description":"Discapacidad Física o Motora"},{"Id":2,"Description":"Discapacidad Sensorial"},{"Id":3,"Description":"Discapacidad intelectual"},{"Id":4,"Description":"Discapacidad Psíquica"}]}
+

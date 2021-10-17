@@ -573,6 +573,134 @@ namespace ParImparApi.Services
 
         }
 
+        public async Task<ApiResponse> GetByIdMoreInfo(int eventId)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Events_GetByIdMoreInfo", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@EventId", eventId));
+                        #endregion
+
+                        await cnn.OpenAsync();
+
+                        EventRequestDTO newEvent = new EventRequestDTO();
+
+                        ApiResponse successResponse = new ApiResponse()
+                        {
+                            Data = newEvent,
+                            Status = CustomStatusCodes.Success
+                        };
+
+                        #region [BD fireld mapping]
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                if (reader["EventId"] != DBNull.Value)
+                                {
+                                    newEvent.Id = int.Parse(reader["EventId"].ToString());
+                                }
+                                else
+                                {
+                                    newEvent.Id = null;
+                                }
+
+                                if (reader["Title"] != DBNull.Value)
+                                {
+                                    newEvent.Title = reader["Title"].ToString();
+                                }
+                                
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    newEvent.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+
+                                if (reader["EndDate"] != DBNull.Value)
+                                {
+                                    newEvent.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                }
+
+                                if (reader["StartDate"] != DBNull.Value)
+                                {
+                                    newEvent.StartDate = DateTime.Parse(reader["StartDate"].ToString());
+                                }
+
+                                if (reader["Description"] != DBNull.Value)
+                                {
+                                    newEvent.Description = reader["Description"].ToString();
+                                }
+
+                                if (reader["DateEntered"] != DBNull.Value)
+                                {
+                                    newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
+                                }
+
+                                if (reader["ContacCreate"] != DBNull.Value)
+                                {
+                                    newEvent.ContactCreate = new ContactDTO()
+                                    {
+                                        Id = int.Parse(reader["ContacCreate"].ToString()),
+                                        Name = reader["NameCreate"].ToString()
+                                    };
+                                }
+
+                                if (reader["ContactAudit"] != DBNull.Value)
+                                {
+                                    newEvent.ContactAudit = new ContactDTO()
+                                    {
+                                        Id = int.Parse(reader["ContactAudit"].ToString()),
+                                        Name = reader["NameAudit"].ToString()
+                                    };
+                                }
+
+                                if (reader["StateId"] != DBNull.Value)
+                                {
+                                    newEvent.State = new StateDTO()
+                                    {
+                                        Id = int.Parse(reader["StateId"].ToString()),
+                                        Description = reader["DescriptionState"].ToString()
+                                    };
+                                }
+                            }
+                        }
+                        #endregion
+
+
+                        if (newEvent.Id != null && newEvent.Id > 0)
+                        {
+                            return successResponse;
+                        }
+                        else
+                        {
+                            return new ApiResponse()
+                            {
+                                Status = CustomStatusCodes.NotFound
+                            };
+                        }
+
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+
+        }
+
         public async Task<ApiResponse> GetAll()
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))

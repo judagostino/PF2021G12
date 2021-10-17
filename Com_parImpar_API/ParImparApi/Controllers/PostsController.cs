@@ -228,6 +228,48 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
+        #region [GetById]
+        // GET: api/v1/Posts/postId/moreInfo
+        [HttpGet("{PostId}/moreInfo")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByIdMoreInfo(int postId)
+        {
+            try
+            {
+                if (postId != null && postId <= 0)
+                {
+                    return BadRequest(CustomStatusCodes.RequiredId);
+                }
+
+                ApiResponse response = await _postsService.GetByIdMoreInfo(postId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(response.Data);
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.BadRequest:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, postId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, postId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, postId));
+            }
+        }
+        #endregion
+
         #region [GetAll]
         // GET: api/v1/Posts
         [HttpGet]

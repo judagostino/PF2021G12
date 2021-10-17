@@ -23,3 +23,26 @@
      Headers: Authorization="", 
      Body: {"User":"gastonvottero@hotmail.com","Password":"Mgaston39174","KeepLoggedIn":true}
 
+2021-10-13 20:55:23.4966 - ERROR - 8000005d-0004-fd00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Posts/1 (ver: ) - ::1
+     Message: An SqlParameter with ParameterName '@ResultCode' is not contained by this SqlParameterCollection.
+     Exception: An SqlParameter with ParameterName '@ResultCode' is not contained by this SqlParameterCollection.
+     StackTrace:    at ParImparApi.Services.PostsService.GetById(Int32 postId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\PostsService.cs:line 655
+   at ParImparApi.Services.PostsService.GetById(Int32 postId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\PostsService.cs:line 663
+   at ParImparApi.Controllers.PostsController.GetById(Int32 postId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\PostsController.cs:line 202
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZDhmZjgwMS1mNjk4LTQ1OTItYTIzYy0wZWM2Njg1MThhZmMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM0MTY5MTE5LCJleHAiOjE2MzQxNzAwMTksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.1tI81PdwHDLwrsw-X6EH02SBputpQSyP_nsuM6aeKDg", 
+     Body: 1
+
+2021-10-13 20:57:46.1054 - ERROR - 800000a6-0001-fd00-b63f-84710c7967bb - (DELETE) https://localhost/api/v1/Posts/1 (ver: ) - ::1
+     Message: Procedure or function 'Posts_Delete' expects parameter '@PostsId', which was not supplied.
+     Exception: Procedure or function 'Posts_Delete' expects parameter '@PostsId', which was not supplied.
+     StackTrace:    at ParImparApi.Services.PostsService.Delete(Int32 postId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\PostsService.cs:line 505
+   at ParImparApi.Services.PostsService.Delete(Int32 postId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\PostsService.cs:line 513
+   at ParImparApi.Controllers.PostsController.Delete(Int32 postId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\PostsController.cs:line 160
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZDhmZjgwMS1mNjk4LTQ1OTItYTIzYy0wZWM2Njg1MThhZmMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM0MTY5MTE5LCJleHAiOjE2MzQxNzAwMTksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.1tI81PdwHDLwrsw-X6EH02SBputpQSyP_nsuM6aeKDg", 
+     Body: 1
+
+2021-10-13 21:00:33.3380 - INFO - 800000b5-0001-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Posts/6/Autorize (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZDhmZjgwMS1mNjk4LTQ1OTItYTIzYy0wZWM2Njg1MThhZmMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM0MTY5MTE5LCJleHAiOjE2MzQxNzAwMTksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.1tI81PdwHDLwrsw-X6EH02SBputpQSyP_nsuM6aeKDg", 
+     Body: 6
+
