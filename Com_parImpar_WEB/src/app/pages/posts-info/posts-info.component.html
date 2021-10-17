@@ -1,15 +1,54 @@
-<div class="mt-3 w-100 container-info">
+<!-- <div class="mt-3 w-100 container-info">
   <div class="container-fluid">
-
       <div class="row">
           <div class="col-12">
               <mat-card>
                   <img src="" alt="">
-
                   <p>{{post | json}}</p>
               </mat-card>
             </div>
       </div>
 
   </div>
+</div> -->
+
+
+<div class="contenedor-posts">
+  <div class="container">
+      <mat-card class="example-card m-5">
+          <mat-card-content>
+              <form >
+                <div class="title-post">
+                  Post de Contenido
+                </div>  
+                  <div class="row">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                          <mat-form-field appearance="fill" class="input title-posts">
+                            <mat-label>Titulo: </mat-label>
+                              <input matInput formControlName="title">
+                            </mat-form-field>
+                      </div>
+                  </div>
+                  <!-- <div class="row">
+                      <div class=" col-12 col-sm-12 col-md-8 col-lg-8">
+                          <mat-form-field appearance="fill" class="input desc">
+                              <mat-label>Descripcion:</mat-label>
+                              <textarea matInput formControlName="description"></textarea>
+                            </mat-form-field>
+                      </div>
+                  </div> -->
+
+                  <div class="row">
+                    <div class=" col-12 col-sm-12 col-md-8 col-lg-8">
+                          <label for="formFileMultiple" class="form-label"></label>
+                          <input class="form-control" type="file" id="formFileMultiple" multiple>
+                          
+                    </div>
+                  </div>
+                  
+              </form>
+          </mat-card-content>
+        </mat-card>    
+  </div>
 </div>
+

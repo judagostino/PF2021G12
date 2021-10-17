@@ -1,3 +1,54 @@
 .container-info {
     min-height: 90vh;
 }
+
+.title-post {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: x-large;
+    color:#48a7e5;
+    justify-content: center;
+    margin-left: 40%;
+}
+
+.title-posts {
+    font-family: 'Quicksand', sans-serif;
+    width: 250px;
+    font-weight: 700;
+    margin-top: 50px;
+}
+
+.desc {
+    font-family: 'Quicksand', sans-serif;
+    width: 550px;
+    font-weight: 700;
+}
+
+.image-input {
+    font-family: 'Quicksand', sans-serif;
+    width: 376px;
+    font-weight: 700;
+}
+
+#post button {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 130%;
+  color:#0f4c75;
+  width: 10%;
+  height: 40px;
+  border: none;
+  margin-left: 35px;
+  margin-top: 20px;
+  margin-bottom: auto;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+
+  background-color: #bbe1fa;
+  
+  margin-top: 20px;
+}
+#post button:hover {
+  background-color: #0f4c75;
+  color:#bbe1fa;
+}
