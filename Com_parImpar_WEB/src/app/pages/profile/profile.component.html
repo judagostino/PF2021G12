@@ -1,14 +1,47 @@
 <div class="mt-3 w-100 container-info">
     <div class="container-fluid">
-  
-        <div class="row">
-            <div class="col-12">
-                <mat-card>
-                    <img src="" alt="">
-                    <p>{{profile | json}}</p>
-                </mat-card>
-              </div>
-        </div>
-  
+                <mat-card class="profile-card mx-auto">
+                    <mat-card-header>
+                      <div mat-card-avatar class="example-header-image"></div>
+                      <mat-card-title class="title-profile mx-auto">{{profile.name}}</mat-card-title>
+                      <mat-card-subtitle class="subtitle-profile mx-auto">Perfil</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image src="/assets/image/user.png" id="loquesea">
+                    <mat-card-content>
+                        
+                        <div class="icon-text">
+                            <mat-icon matSuffix style="cursor:pointer;"class="mr-2">badge</mat-icon>
+                            <span>Nombre: {{profile.firstName}}</span> 
+                        </div>
+
+                        <div class="icon-text">
+                            <mat-icon matSuffix style="cursor:pointer;"class="mr-2">badge</mat-icon> 
+                            <span>Apellido: {{profile.lastName}}</span>
+                        </div>
+                            
+                        <div class="icon-text">
+                              <mat-icon matSuffix style="cursor:pointer;"class="mr-2">person</mat-icon> 
+                              <span>Usuario: {{profile.userName}}</span>
+                        </div>
+
+                        <div class="icon-text" *ngIf="profile.dateBrirth != null">
+                            <mat-icon matSuffix style="cursor:pointer;"class="mr-2">event</mat-icon> 
+                            <span>Fecha de Nacimiento:{{profile.dateBrirth| date:'shortDate'}}</span>
+                        </div>
+                        
+                        <div class="icon-text">
+                            <mat-icon matSuffix style="cursor:pointer;" class="mr-2">attach_email</mat-icon> 
+                            <span>Correo Electronico:{{profile.email}}</span>
+                        </div>
+
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div class="row justify-content-center" id="profile">
+                            <div class="d-flex justify-content-center">
+                                <button class="m-2" mat-raised-button color="primary" type="submit">Volver</button>
+                            </div>
+                        </div>
+                    </mat-card-actions>
+                  </mat-card>
     </div>
-  </div>
+</div>

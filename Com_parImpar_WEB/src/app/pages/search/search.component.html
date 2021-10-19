@@ -10,7 +10,7 @@
                       <mat-icon (click)="btn_search()" matSuffix>search</mat-icon>
                     </mat-form-field>
                     
-                    <div class="w-100 more-filters text-center">
+                    <div class="w-100  text-center" id="more-filters">
                         <a (click)="showMoreInfo=!showMoreInfo">Más filtros...</a>
                         <div *ngIf="showMoreInfo" class="row">
                             <div class="col-6" *ngFor="let type of typeImpairments; let i = index">
@@ -34,7 +34,7 @@
                         <p>{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
                         <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
                             <h4 *ngFor="let type of result.typeImpairment;">
-                                <span class="badge badge-pill badge-primary m-1">{{type.description}}</span>
+                                <span class="badge badge-pill badge-primary m-1 ">{{type.description}}</span>
                             </h4>
                         </div>
                         <a (click)="redirectToProfile(result)" *ngIf ="result?.contactCreate?.name != null"> Creado por: {{result.contactCreate.name}}</a>
