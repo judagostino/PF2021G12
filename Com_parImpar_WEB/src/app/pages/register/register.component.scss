@@ -159,3 +159,14 @@ background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,
 .mat-h4 {
   margin-top: 15px;
 }
+
+.alert-danger{
+  color: #721c24;
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  margin-bottom: 5px;
+}
+
+.container-error-message{
+  padding: 3px;
+}

@@ -13,6 +13,11 @@
               <mat-form-field class="input"appearance="fill">
                 <mat-label>Nombre</mat-label>
                 <input formControlName="firstName" matInput>
+                <!-- <div class="alert-danger" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                  <div class="container-error-message" *ngIf="firstName.errors.required">
+                    El nombre es requerido
+                  </div>
+                </div> -->
               </mat-form-field>
             </div>
 
@@ -28,17 +33,29 @@
               <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <mat-form-field class="input" appearance = "fill" > 
                   <mat-label > Correo electrónico </mat-label > 
-                  <input matInput formControlName="email" placeholder="pat@example.com" required > 
-                  <!-- <mat-error *ngIf="form.email.invalid" > {{getErrorMessage() }} </mat-error >  -->
+                  <input matInput formControlName="email" placeholder="correoelectronico@ejemplo.com" required > 
                 </mat-form-field > 
+                <div class="alert-danger" *ngIf="emailField.errors && emailField.touched">
+                  <div class="container-error-message" *ngIf="emailField.hasError('required')">
+                    El correo es requerido
+                  </div>
+                </div>
               </div>
 
               <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <mat-form-field  class="input" appearance = "fill" > 
                   <mat-label > Confirmar correo electrónico </mat-label > 
-                  <input matInput formControlName="confirmEmail" placeholder = "pat@example.com" required > 
-                  <!-- <mat-error *ngIf="form.email.invalid" > {{getErrorMessage() }} </mat-error >  -->
+                  <input matInput formControlName="confirmEmail" placeholder = "correoelectronico@ejemplo.com" required > 
                 </mat-form-field > 
+                  <div class="alert-danger" *ngIf="confirmEmailField.errors && confirmEmailField.touched">
+                    <div class="container-error-message" *ngIf="confirmEmailField.hasError('required')">
+                      El correo es requerido
+                    </div>
+                    <!-- <div class="container-error-message" *ngIf="emailField.hasError('distint')">
+                      Debe ser igual al correo electrónico
+                    </div> -->
+                  </div>
+                
               </div>
             </div>
 
@@ -65,23 +82,34 @@
               <div class="row"> 
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                   <mat-form-field class="input" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
+                    <mat-label>Contraseña elegida</mat-label>
                     <input matInput formControlName="password" type="password">
                   </mat-form-field>
+                  <div class="alert-danger" *ngIf="passwordField.errors && passwordField.touched">
+                    <div class="container-error-message" *ngIf="passwordField.hasError('required')">
+                      La contraseña es requerida
+                    </div>
+                  </div>
                 </div>
                 
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6" style="text-align:center;">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                   <mat-form-field class="input" appearance="fill">
-                    <mat-label>Enter your password</mat-label>
+                    <mat-label>Confirmar contraseña</mat-label>
                     <input matInput formControlName="confirmPassword" type="password">
                   </mat-form-field>
+                  <div class="alert-danger" *ngIf="confirmPasswordField.errors && confirmPasswordField.touched">
+                    <div class="container-error-message" *ngIf="confirmPasswordField.hasError('distint')">
+                      La contraseña es requerida
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="row justify-content-center">
                 <div class="d-flex justify-content-center">
                   <button class="m-2" mat-raised-button color="primary" type="button" (click)="btn_NewEvent()">Volver</button>
-                  <button class="m-2" mat-raised-button color="primary" type="submit" (click)=btn_SaveEvent()>Registrarse</button>
+                  <button class="m-2" mat-raised-button color="primary" type="submit" (click)=btn_SaveEvent() [disabled]="form.invalid">Registrarse</button> 
+                  
                 </div>
               </div>
         </form>
