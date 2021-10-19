@@ -15,22 +15,22 @@ export class ConfigService {
   }
 
   public load(): Promise<void> {
-    return new Promise((resolve) => {
-      this.reAuthenticate().pipe(
-        mergeMap((isLooged: boolean) => {
-          this.isLooged = isLooged;
-          if(isLooged){
-            return this.contactService.myInfo().pipe(map(res =>{
-              this.contact = res;
-              return true;
-            }))
-          } else {
-            return of(isLooged);
-          }
-        })
-      ).subscribe((loadData) => resolve());
-    });
-    //return new Promise((resolve) => resolve(null))
+    // return new Promise((resolve) => {
+    //   this.reAuthenticate().pipe(
+    //     mergeMap((isLooged: boolean) => {
+    //       this.isLooged = isLooged;
+    //       if(isLooged){
+    //         return this.contactService.myInfo().pipe(map(res =>{
+    //           this.contact = res;
+    //           return true;
+    //         }))
+    //       } else {
+    //         return of(isLooged);
+    //       }
+    //     })
+    //   ).subscribe((loadData) => resolve());
+    // });
+    return new Promise((resolve) => resolve(null))
   }
 
   private reAuthenticate(): Observable<boolean> {
