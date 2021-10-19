@@ -9,7 +9,7 @@ import { ConfigService, EventsService } from 'src/app/services';
   styleUrls: ['./events-info.component.scss']
 })
 export class EventsInfoComponent implements OnInit {
-  event: Events;
+  eventElement: Events;
 
   constructor(
     private router: Router, 
@@ -22,17 +22,21 @@ export class EventsInfoComponent implements OnInit {
       let id = params['id'];
       if (id != null && id != 0) {
         this.eventsService.getByIdMoreInfo(id).subscribe(resp => {
-          this.event = resp;
+          this.eventElement = resp;
         })
       }
     });
   }
 
   public getImage(): string {
-    if (this.event != null && this.event.imageUrl != null) {
-      return this.event.imageUrl.trim();
+    if (this.eventElement != null && this.eventElement.imageUrl != null) {
+      return this.eventElement.imageUrl.trim();
     } else {
       return this.configService.dafaultImage();
     }
+  }
+
+  public redirectToProfile(): void {
+    this.router.navigateByUrl(`/profile/${this.eventElement.contactCreate.id}`)
   }
 }

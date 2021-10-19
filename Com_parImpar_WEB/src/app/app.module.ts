@@ -29,6 +29,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { EventsInfoComponent } from './pages/events-info/events-info.component';
 import { PostsInfoComponent } from './pages/posts-info/posts-info.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     SearchComponent,
     EventsInfoComponent,
     PostsInfoComponent,
-    ProfileComponent
+    ProfileComponent,
+    ABMPostsComponent
   ],
   imports: [
     BrowserModule,

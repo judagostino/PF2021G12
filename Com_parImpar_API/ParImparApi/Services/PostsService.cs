@@ -825,6 +825,7 @@ namespace ParImparApi.Services
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         #region [SP Parameters]
+                        int a = int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"));
                         cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
                         #endregion
 
