@@ -5,9 +5,9 @@ export interface Contact {
     userName?: string;
     name?: string;
     lastName?: string;
-    fistName?: string;
+    firstName?: string;
     password?: string;
     confirmPassword?: string;
-    DateBrirth?: Date;
+    dateBrirth?: Date;
     imageUrl?: string;
 }

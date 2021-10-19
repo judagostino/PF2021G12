@@ -1,3 +1,64 @@
 .container-info {
     min-height: 90vh;
 }
+
+.profile-card {
+    max-width: 600px;
+}
+
+.title-profile {
+    font-family: 'Quicksand', sans-serif;
+    font-size:30px;
+    font-weight: bold;
+    margin-left: 20%;
+}
+
+.subtitle-profile {
+    font-family: 'Quicksand', sans-serif;
+    font-size:20px;
+    font-weight: bold;
+    padding: 10px;
+    margin-left: 20%;
+    
+}
+
+.icon-text {
+    
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    font-family: 'Quicksand', sans-serif;
+    font-size:18px;
+    font-weight: bold;
+}
+
+
+
+#profile button {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 130%;
+    color:#0f4c75;
+    width: 20%;
+    height: 40px;
+    border: none;
+    margin-left: 35px;
+    margin-top: 20px;
+    margin-bottom: auto;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+  
+    background-color: #bbe1fa;
+    
+    margin-top: 20px;
+  }
+  #profile button:hover {
+    background-color: #0f4c75;
+    color:#bbe1fa;
+  }
+
+  #loquesea {
+      max-width: 300px !important;
+      margin-left: 20%;
+    
+  }

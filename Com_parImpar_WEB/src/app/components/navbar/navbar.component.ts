@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/services';
+import { AuthService, ConfigService } from 'src/app/services';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import { ConfigService } from 'src/app/services';
 export class NavbarComponent implements OnInit {
   value: string = '';
 
-  constructor(public configService: ConfigService, private router: Router) {
+  constructor(public configService: ConfigService, private router: Router, private authService: AuthService) {
     
    }
 
@@ -24,4 +24,13 @@ export class NavbarComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
   }
+
+  public btn_Logout(): void {
+    this.configService.isLooged = false;
+    this.configService.contact = null;
+    this.authService.cleartokens();
+    this.router.navigateByUrl('/login');
+    console.log('pruebaaaa')
+  }
+
 }
