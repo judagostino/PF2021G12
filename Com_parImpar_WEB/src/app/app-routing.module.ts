@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ABMEventsComponent } from './pages/abm-events/abm-events.component';
+import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ConfirmUserComponent } from './pages/confirm-user/confirm-user.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'register',component: RegisterComponent},
   {path:'home',component: HomeComponent},
   {path:'events',component: ABMEventsComponent},
+  {path:'posts',component: ABMPostsComponent},
   {path:'calendar',component: CalendarComponent},
   {path:'search',component: SearchComponent},
   {path:'posts-info/:id',component: PostsInfoComponent},
