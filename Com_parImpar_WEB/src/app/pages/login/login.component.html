@@ -5,8 +5,13 @@
                     Bienvenido
                 </div>
                 <form id="loginform" [formGroup] ="form" novalidate>
-                    
+                    <div *ngIf="showError" class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
                 
+                    <div [ngClass]="{'pt-5': !showError}">
+
+                    </div>
                     <input type="text" name="usuario" formControlName="user" placeholder="Usuario" required>
                     
                     <input type="password" formControlName="password" placeholder="Contraseña" name="password" required>

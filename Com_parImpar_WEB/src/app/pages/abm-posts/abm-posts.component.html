@@ -3,27 +3,33 @@
         <mat-card class="example-card m-5">
             <mat-card-content>
                 <form [formGroup] ="form" novalidate>
-                    <div class="title-post">
+                    <div class="title-post mb-5">
                         Publicación de contenido
                     </div>  
 
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <mat-form-field appearance="fill" class="input title-posts">
+                        <div class="col-12">
+                            <mat-form-field appearance="fill" class="input">
                                 <mat-label>Titulo: </mat-label>
-                                <input matInput formControlName="title">
+                                <input matInput formControlName="title" required>
+                                <mat-error *ngIf="form?.controls?.title?.touched && form?.controls?.title?.invalid">
+                                    El titulo es requerido
+                                </mat-error>
                                 </mat-form-field>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                            <mat-form-field appearance="fill" class="input title-posts">
+                            <mat-form-field appearance="fill" class="input">
                                 <mat-label>Palabras claves</mat-label>
                                 <mat-select formControlName="typeImpairment" multiple
-                                [compareWith]="objectComparisonFunction">
+                                [compareWith]="objectComparisonFunction" required>
                                   <mat-option *ngFor="let type of types" [value]="type">{{type.description}}</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="form?.controls?.typeImpairment?.touched && form?.controls?.typeImpairment?.invalid">
+                                    Debe elegir al menos una palabra cable del contenido del articulo.
+                                </mat-error>
                               </mat-form-field>
                         </div>
                     </div>
@@ -33,8 +39,11 @@
                         <div class=" col-12">
                             <mat-form-field appearance="fill" class="input">
                                 <mat-label>Descripcion:</mat-label>
-                                <textarea rows="3" cols="150" matInput formControlName="description"></textarea>
-                              </mat-form-field>
+                                <textarea rows="3" cols="150" matInput formControlName="description" required></textarea>
+                                <mat-error *ngIf="form?.controls?.description?.touched && form?.controls?.description?.invalid">
+                                    La descripción es requerida
+                                </mat-error>
+                            </mat-form-field>
                         </div>
                     </div>
 
@@ -42,8 +51,11 @@
                         <div class=" col-12">
                             <mat-form-field appearance="fill" class="input">
                                 <mat-label>Cuerpo:</mat-label>
-                                <textarea rows="8" cols="150" matInput formControlName="text"></textarea>
-                              </mat-form-field>
+                                <textarea rows="50" matInput formControlName="text" required></textarea>
+                                <mat-error *ngIf="form?.controls?.text?.touched && form?.controls?.text?.invalid">
+                                    El contenido del articulo es requerido
+                                </mat-error>
+                            </mat-form-field>
                         </div>
                     </div>
 

@@ -440,7 +440,6 @@ C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParI
 C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.csproj.AssemblyReference.cache
 C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.AssemblyInfoInputs.cache
 C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.AssemblyInfo.cs
 C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.csproj.CoreCompileInputs.cache
@@ -573,3 +572,4 @@ C:\Users\juli_\Documents\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug
 C:\Users\juli_\Documents\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.dll
 C:\Users\juli_\Documents\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.pdb
 C:\Users\juli_\Documents\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.genruntimeconfig.cache
+C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\obj\Debug\netcoreapp3.1\ParImparApi.csproj.AssemblyReference.cache

@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import * as moment from 'moment';
 
 import { MaterialModule } from './material/material.component';
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 
 import { ConfigService } from './services';
 
@@ -30,6 +32,13 @@ import { EventsInfoComponent } from './pages/events-info/events-info.component';
 import { PostsInfoComponent } from './pages/posts-info/posts-info.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
+import { ObjectTableComponent } from './pages/object-table/object-table.component';
+import { AuditDialogComponent } from './components/audit-dialog/audit-dialog.component';
+import { ChangeProfileComponent } from './pages/change-profile/change-profile.component';
+import { ChangeModalPasswordComponent } from './components/change-password/change-modal-password.component';
+import { BlockTemplateCmp } from './components/block-template-cmp/block-template-cmp.component';
+import { ActionLogComponent } from './pages/action-log/action-log.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 
 @NgModule({
@@ -50,7 +59,13 @@ import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
     EventsInfoComponent,
     PostsInfoComponent,
     ProfileComponent,
-    ABMPostsComponent
+    ABMPostsComponent,
+    ObjectTableComponent,
+    AuditDialogComponent,
+    ChangeProfileComponent,
+    ChangeModalPasswordComponent, 
+    ActionLogComponent,
+    BlockTemplateCmp
   ],
   imports: [
     BrowserModule,
@@ -59,7 +74,14 @@ import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleChartsModule,
+    BlockUIModule.forRoot({
+      template: BlockTemplateCmp,
+      delayStart: 600,
+      delayStop: 600
+    }), // Import BlockUIModule
+    BlockUIHttpModule.forRoot(), // Import Block UI Http Module
   ],
   providers: [
     ConfigService,
@@ -76,6 +98,7 @@ import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
       deps: [ConfigService]
     },
 ],
+  entryComponents: [ BlockTemplateCmp ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

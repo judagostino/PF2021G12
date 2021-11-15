@@ -19,12 +19,13 @@ export class PostsInfoComponent implements OnInit {
     private configService: ConfigService) { }
 
   ngOnInit(): void {
+    window.scroll({top: 0, left: 0});
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
       if (id != null && id != 0) {
         this.postsService.getByIdMoreInfo(id).subscribe(resp => {
           this.post = resp;
-          this.paragaphs = [this.post.text.substr(0,100), this.post.text.substr(100,170), this.post.text.substr(170,300), this.post.text.substr(300,700), this.post.text.substr(700,1000)].concat( this.post.text.substr(1000,this.post.text.length).split('. A'))
+          this.paragaphs =this.post.text.split(/^/gm);
         })
       }
     });

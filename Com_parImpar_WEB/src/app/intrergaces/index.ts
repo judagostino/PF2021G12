@@ -5,3 +5,9 @@ export { Contact } from './contact';
 export { State } from './state';
 export { TypeImpairment } from './type-impairment';
 export { SearchItem } from './search-item';
+export {
+    ActionsLog,
+    GraphicImpediment,
+    ViewrsActionLog,
+    UserActionLog
+} from './actions-log';

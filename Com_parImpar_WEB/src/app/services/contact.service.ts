@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpKey } from '../constans';
 import { Contact } from '../intrergaces';
+import { ChangePassword } from '../models/change-password';
 import { ContactRegistrer } from '../models/contact-register';
 
 @Injectable({
@@ -53,7 +54,6 @@ export class ContactService {
     return this.http.post(`${this.URL}/Deny`, register, {headers});
   }
 
-
   public validateRecover(register: ContactRegistrer): Observable<any> {
     let headers= new HttpHeaders();
 
@@ -62,7 +62,6 @@ export class ContactService {
 
     return this.http.post(`${this.URL}/Validate`, register, {headers});
   }
-
 
   public recoverChangePassword(register: ContactRegistrer): Observable<any> {
     let headers= new HttpHeaders();
@@ -86,5 +85,13 @@ export class ContactService {
     headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
 
     return this.http.get(`${this.URL}/${id}`, {headers}).pipe(map((resp) =>  resp['data'] as Contact));
+  }
+
+  public update(body: Contact): Observable<any> {
+    return this.http.put(`${this.URL}`, body);
+  }  
+  
+  public changePassword(body: ChangePassword): Observable<any> {
+    return this.http.post(`${this.URL}/ChangePassword`, body);
   }
 }

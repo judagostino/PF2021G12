@@ -1,18 +1,3 @@
-<!-- <div id="contenedor">
-        <div id="central">
-            <div id="login">
-                <h2>Recuperar Contraseña</h2>
-                <form id="form" [formGroup] ="form" novalidate>
-                    <input type="text" name="Correo electrónico" formControlName="email" placeholder="Correo electrónico" required>
-                    
-                    <input type="text" name="Confirmar correo electrónico" formControlName="confirmEmail" placeholder="Confirmar correo electrónico" required>
-
-                    <button type="submit" title="Recuperar" name="Recuperar"
-                    (click)= "btn_recover()">Solicitar cambio de contraseña</button>
-                </form>
-            </div>
-        </div>
-</div> -->
 
 <div id="contenedor">
     <div id="central">
@@ -20,6 +5,12 @@
             <div class="titulo">
                 Recupera tu cuenta
             </div>
+            <div *ngIf="showError" class="alert alert-danger" role="alert">
+                {{messageError}}
+            </div>
+            
+            <div [ngClass]="{'pt-5': !showError}"></div>
+
             <form id="form" [formGroup] ="form" novalidate>
                 
             

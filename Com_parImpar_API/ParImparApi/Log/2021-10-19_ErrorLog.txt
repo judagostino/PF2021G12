@@ -1,0 +1,100 @@
+2021-10-19 00:04:33.0370 - ERROR - 80000002-0001-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Search (ver: ) - ::1
+     Message: String or binary data would be truncated in table 'tempdb.dbo.#BB20C5F7', column 'Description'. Truncated value: 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tie'.
+The statement has been terminated.
+     Exception: String or binary data would be truncated in table 'tempdb.dbo.#BB20C5F7', column 'Description'. Truncated value: 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tie'.
+The statement has been terminated.
+     StackTrace:    at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 253
+   at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 261
+   at ParImparApi.Controllers.SearchController.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\SearchController.cs:line 40
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2021-10-19 00:04:48.0083 - ERROR - 80000041-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Search (ver: ) - ::1
+     Message: String or binary data would be truncated in table 'tempdb.dbo.#A2C1E7BF', column 'Description'. Truncated value: 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tie'.
+The statement has been terminated.
+     Exception: String or binary data would be truncated in table 'tempdb.dbo.#A2C1E7BF', column 'Description'. Truncated value: 'Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tie'.
+The statement has been terminated.
+     StackTrace:    at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 253
+   at ParImparApi.Services.SearchService.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\SearchService.cs:line 261
+   at ParImparApi.Controllers.SearchController.GetSearch(SearchBodyDTO searchBody) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\SearchController.cs:line 40
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2021-10-19 00:09:48.7376 - INFO - 8000011e-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789G","KeepLoggedIn":true}
+
+2021-10-19 00:09:50.5839 - INFO - 80000120-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789G","KeepLoggedIn":true}
+
+2021-10-19 00:09:59.6774 - INFO - 800000dc-0004-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789G","KeepLoggedIn":true}
+
+2021-10-19 00:10:01.2787 - INFO - 80000122-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789G","KeepLoggedIn":true}
+
+2021-10-19 00:11:02.0617 - INFO - 800000f7-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"ACB3867B-767C-492F-ADA0-9CA73023601F","DateBrirth":null}
+
+2021-10-19 00:11:17.1087 - INFO - 80000057-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"BA15321B-DA90-41BF-A3BD-932DA9D455CE","DateBrirth":null}
+
+2021-10-19 00:19:12.2475 - INFO - 800000fd-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"ACB3867B-767C-492F-ADA0-9CA73023601F","DateBrirth":null}
+
+2021-10-19 00:19:12.3460 - INFO - 800000ff-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"BA15321B-DA90-41BF-A3BD-932DA9D455CE","DateBrirth":null}
+
+2021-10-19 00:22:31.7308 - INFO - 80000101-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"0ABD7A55-73FC-4945-B7EC-B273B03AB1BF","DateBrirth":null}
+
+2021-10-19 00:23:16.9746 - INFO - 80000124-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"ACB3867B-767C-492F-ADA0-9CA73023601F","DateBrirth":null}
+
+2021-10-19 00:23:17.0685 - INFO - 8000000e-0001-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"BA15321B-DA90-41BF-A3BD-932DA9D455CE","DateBrirth":null}
+
+2021-10-19 00:23:17.2589 - INFO - 8000005f-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"0ABD7A55-73FC-4945-B7EC-B273B03AB1BF","DateBrirth":null}
+
+2021-10-19 00:24:05.3910 - INFO - 80000010-0001-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"0ABD7A55-73FC-4945-B7EC-B273B03AB1BF","DateBrirth":null}
+
+2021-10-19 00:24:23.5247 - INFO - 800000ea-0004-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Validate (ver: ) - ::1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1012,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"CodeRecover":"0ABD7A55-73FC-4945-B7EC-B273B03AB1BF","DateBrirth":null}
+
+2021-10-19 00:33:25.2236 - INFO - 800000f4-0004-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMmY4NTU4YS1mYTNlLTRkY2UtODIzOC1kNTg5NjIwMjJlZDEiLCJDb250YWN0SWQiOiIxMDEyIiwibmJmIjoxNjM0NjE0MjA0LCJleHAiOjE2MzQ2MTUxMDQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.ei8DkAqs_47w9TNJU3dj3UTtyDfx9qHq9wsOYlaYH9Q", 
+
+2021-10-19 00:33:50.2836 - INFO - 800000d0-0002-fc00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmMmY4NTU4YS1mYTNlLTRkY2UtODIzOC1kNTg5NjIwMjJlZDEiLCJDb250YWN0SWQiOiIxMDEyIiwibmJmIjoxNjM0NjE0MjA0LCJleHAiOjE2MzQ2MTUxMDQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.ei8DkAqs_47w9TNJU3dj3UTtyDfx9qHq9wsOYlaYH9Q", 
+

@@ -394,7 +394,7 @@ namespace ParImparApi.Controllers
         {
             try
             {
-                ApiResponse response = await _contactsService.GetById(contactId);
+                ApiResponse response = await _contactsService.GetById(contactId, 1);
 
                 switch (response.Status)
                 {
@@ -428,7 +428,7 @@ namespace ParImparApi.Controllers
         {
             try
             {
-                ApiResponse response = await _contactsService.GetById(null);
+                ApiResponse response = await _contactsService.GetById(null, 0);
 
                 switch (response.Status)
                 {
@@ -456,26 +456,26 @@ namespace ParImparApi.Controllers
 
         #region [Update]
         // PUT: api/v1/Contact
-        [HttpPut()]
+        [HttpPut]
         [Authorize("AccessToken")]
-        public async Task<IActionResult> Update([FromBody] RegisterUserDTO registerUser)
+        public async Task<IActionResult> Update([FromBody] ContactDTO contact)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(registerUser.UserName))
+                if (string.IsNullOrWhiteSpace(contact.UserName))
                 {
-                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.UserNameRequiredField, registerUser));
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.UserNameRequiredField, contact));
                 }
-                if (string.IsNullOrWhiteSpace(registerUser.FirstName))
+                if (string.IsNullOrWhiteSpace(contact.FirstName))
                 {
-                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.FirstNameRequiredField, registerUser));
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.FirstNameRequiredField, contact));
                 }
-                if (string.IsNullOrWhiteSpace(registerUser.LastName))
+                if (string.IsNullOrWhiteSpace(contact.LastName))
                 {
-                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.LastNameRequiredField, registerUser));
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.LastNameRequiredField, contact));
                 }
 
-                ApiResponse response = await _contactsService.Update(registerUser);
+                ApiResponse response = await _contactsService.Update(contact);
 
                 switch (response.Status)
                 {
@@ -487,17 +487,17 @@ namespace ParImparApi.Controllers
                     case CustomStatusCodes.FirstNameRequiredField:
                     case CustomStatusCodes.LastNameRequiredField:
                         {
-                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, registerUser));
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contact));
                         }
                     default:
                         {
-                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, registerUser));
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contact));
                         }
                 }
             }
             catch (Exception exc)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, registerUser));
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contact));
             }
         }
         #endregion

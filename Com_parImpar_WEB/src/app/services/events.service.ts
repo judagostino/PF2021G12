@@ -49,8 +49,8 @@ export class EventsService {
     return this.http.post(`${this.URL}/${id}/Autorize`, {});
   }
 
-  public deny(id: number): Observable<any> {
-    return this.http.post(`${this.URL}/${id}/Deny`, {});
+  public deny(id: number, reason: string): Observable<any> {
+    return this.http.post(`${this.URL}/${id}/Deny`, {reason});
   }
 
   public getByDate(date: Date): Observable<Events[]> {

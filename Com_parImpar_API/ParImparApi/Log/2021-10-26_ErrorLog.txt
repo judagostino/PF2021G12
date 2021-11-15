@@ -1,0 +1,25 @@
+2021-10-26 21:36:50.9889 - INFO - 80000011-0001-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789g","KeepLoggedIn":true}
+
+2021-10-26 21:37:18.4076 - INFO - 8000000b-0002-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789g","KeepLoggedIn":true}
+
+2021-10-26 21:37:36.4013 - INFO - 8000000d-0002-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789!","KeepLoggedIn":true}
+
+2021-10-26 21:37:38.1008 - INFO - 80000013-0001-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789!","KeepLoggedIn":true}
+
+2021-10-26 21:37:48.8022 - INFO - 80000011-0002-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston39174!","KeepLoggedIn":true}
+

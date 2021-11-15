@@ -517,7 +517,7 @@ namespace ParImparApi.Services
             }
         }
 
-        public async Task<ApiResponse> GetById(int? contactId)
+        public async Task<ApiResponse> GetById(int? contactId, int actionLog)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
@@ -526,6 +526,7 @@ namespace ParImparApi.Services
                     try
                     {
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new SqlParameter("@ActionLog", actionLog));
 
                         #region [SP Parameters]
                         if (contactId != null)
@@ -640,7 +641,7 @@ namespace ParImparApi.Services
             }
         }
 
-        public async Task<ApiResponse> Update(RegisterUserDTO registerUser)
+        public async Task<ApiResponse> Update(ContactDTO contact)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
@@ -652,13 +653,13 @@ namespace ParImparApi.Services
 
                         #region [SP Parameters] 
                         cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
-                        cmd.Parameters.Add(new SqlParameter("@UserName", registerUser.UserName));
-                        cmd.Parameters.Add(new SqlParameter("@LastName", registerUser.LastName));
-                        cmd.Parameters.Add(new SqlParameter("@FirstName ", registerUser.FirstName));
+                        cmd.Parameters.Add(new SqlParameter("@UserName", contact.UserName));
+                        cmd.Parameters.Add(new SqlParameter("@LastName", contact.LastName));
+                        cmd.Parameters.Add(new SqlParameter("@FirstName ", contact.FirstName));
 
-                        if (registerUser.DateBrirth != null)
+                        if (contact.DateBrirth != null)
                         {
-                            cmd.Parameters.Add(new SqlParameter("@DateBrirth", registerUser.DateBrirth));
+                            cmd.Parameters.Add(new SqlParameter("@DateBrirth", contact.DateBrirth));
 
                         }
                         else

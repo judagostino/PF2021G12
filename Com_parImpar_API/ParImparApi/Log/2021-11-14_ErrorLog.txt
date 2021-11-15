@@ -1,0 +1,167 @@
+2021-11-14 00:40:18.8618 - INFO - 80000041-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MzYxOTE2ZS02ZTI2LTQxYjgtYTc2MC1lMDRlYWMwMmQ2MTIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2ODYxMjEzLCJleHAiOjE2MzY4NjIxMTMsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.TNwyXYkLaLjRAX-YPddpunktIocz483qmvDc9JoiW8w", 
+
+2021-11-14 14:08:49.7989 - ERROR - 8000002e-0004-ff00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Contact/myInfo (ver: ) - ::1
+     Message: Procedure or function 'Contact_GetById' expects parameter '@ActionLog', which was not supplied.
+     Exception: Procedure or function 'Contact_GetById' expects parameter '@ActionLog', which was not supplied.
+     StackTrace:    at ParImparApi.Services.ContactsService.GetById(Nullable`1 contactId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 632
+   at ParImparApi.Services.ContactsService.GetById(Nullable`1 contactId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 640
+   at ParImparApi.Controllers.ContactController.MyInfo() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 431
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NjJmNDVkYy1mN2RhLTQ4MDUtYTVlOC01ZjFmNjI4ZTEyNzUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTA5NzI5LCJleHAiOjE2MzY5MTA2MjksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.nJ2lo0DA_jNVlg0OOc5wjuVGiK3Bu3Kt9hXvkQHrFBs", 
+
+2021-11-14 14:09:04.9957 - INFO - 80000043-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:07.1810 - INFO - 80000037-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:07.9399 - INFO - 80000039-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:08.8158 - INFO - 8000003b-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:09.2882 - INFO - 80000036-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:09.6683 - INFO - 8000003d-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:10.0451 - INFO - 8000003a-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:10.4750 - INFO - 8000003c-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:10.9216 - INFO - 80000032-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:11.2950 - INFO - 8000003e-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:11.6655 - INFO - 80000040-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:12.0050 - INFO - 80000045-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:12.2780 - INFO - 80000047-0000-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:12.4984 - INFO - 80000038-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:12.6852 - INFO - 80000034-0004-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:12.8426 - INFO - 80000042-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:13.1373 - INFO - 80000044-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:09:13.9273 - INFO - 8000003f-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"hfghfghfgh","KeepLoggedIn":true}
+
+2021-11-14 14:10:15.6225 - ERROR - 8000004b-0000-fe00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Contact/myInfo (ver: ) - ::1
+     Message: Procedure or function 'Contact_GetById' expects parameter '@ActionLog', which was not supplied.
+     Exception: Procedure or function 'Contact_GetById' expects parameter '@ActionLog', which was not supplied.
+     StackTrace:    at ParImparApi.Services.ContactsService.GetById(Nullable`1 contactId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 632
+   at ParImparApi.Services.ContactsService.GetById(Nullable`1 contactId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 640
+   at ParImparApi.Controllers.ContactController.MyInfo() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 431
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjllNzUwOS1iNDFiLTQ0MzEtYWU3OS1jMDM5MGQ1YWE0OWMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTA5ODE1LCJleHAiOjE2MzY5MTA3MTUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.Iwm41y7STGxlZoLJ2liGkpZFd-yMC7L7dtwdWJxWXIw", 
+
+2021-11-14 14:10:16.6326 - ERROR - 8000004d-0000-fe00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Contact/myInfo (ver: ) - ::1
+     Message: Procedure or function 'Contact_GetById' expects parameter '@ActionLog', which was not supplied.
+     Exception: Procedure or function 'Contact_GetById' expects parameter '@ActionLog', which was not supplied.
+     StackTrace:    at ParImparApi.Services.ContactsService.GetById(Nullable`1 contactId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 632
+   at ParImparApi.Services.ContactsService.GetById(Nullable`1 contactId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 640
+   at ParImparApi.Controllers.ContactController.MyInfo() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 431
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3M2QxNDEzOC02MDJhLTRmYTYtYTIxZC03NzIwMjQ3NWNiNTUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTA5ODE2LCJleHAiOjE2MzY5MTA3MTYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.J_OSeVmmBXWOZAQk1rxxEnWMqdkQWLajRG3rIdYfIiE", 
+
+2021-11-14 14:10:27.8285 - INFO - 8000003c-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"ytutyutyu","KeepLoggedIn":true}
+
+2021-11-14 14:40:50.6010 - INFO - 80000022-0005-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789g","KeepLoggedIn":true}
+
+2021-11-14 14:41:02.0794 - INFO - 80000024-0005-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonvottero@hotmail.com","Password":"Gaston123456789g","KeepLoggedIn":true}
+
+2021-11-14 15:51:51.6145 - INFO - 80000055-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Email exist
+     Headers: Authorization="", 
+     Body: {"Id":0,"Email":"gastonadmin2@gmail.com","ConfirmEmail":"gastonadmin2@gmail.com","UserName":"gastonadmin2@gmail.com","LastName":"gastonadmin2@gmail.com","FirstName":"gastonadmin2@gmail.com","Password":"123456789Mn","ConfirmPassword":"123456789Mn","ConfirmCode":"C63FC968-97C5-4D38-8B2E-A82E512414B7","CodeRecover":null,"DateBrirth":null}
+
+2021-11-14 15:55:58.6884 - INFO - 80000064-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/Register (ver: ) - ::1
+     Message: Email exist
+     Headers: Authorization="", 
+     Body: {"Id":0,"Email":"gastonadmin2@gmail.com","ConfirmEmail":"gastonadmin2@gmail.com","UserName":"gastonadmin2@gmail.com","LastName":"gastonadmin2@gmail.com","FirstName":"gastonadmin2@gmail.com","Password":"123456789Mn","ConfirmPassword":"123456789Mn","ConfirmCode":"F04F9C39-8260-459D-A7CB-11659E1FD9C2","CodeRecover":null,"DateBrirth":null}
+
+2021-11-14 19:12:06.3589 - INFO - 800000b6-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/ChangePassword (ver: ) - ::1
+     Message: Password not change
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxZWQ0NTgzMC1jMDY4LTQ1ODEtYWVhYS04YWVhNDJhYzYwMDEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTI3OTA0LCJleHAiOjE2MzY5Mjg4MDQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.0k3lqM0WtwDv3bpCYIjJmfk8MD7fQSyPRrb7YLGM9AY", 
+
+2021-11-14 19:12:22.7313 - INFO - 800000ad-0001-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/ChangePassword (ver: ) - ::1
+     Message: Password not change
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxZWQ0NTgzMC1jMDY4LTQ1ODEtYWVhYS04YWVhNDJhYzYwMDEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTI3OTA0LCJleHAiOjE2MzY5Mjg4MDQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.0k3lqM0WtwDv3bpCYIjJmfk8MD7fQSyPRrb7YLGM9AY", 
+
+2021-11-14 19:13:11.3027 - INFO - 80000017-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/ChangePassword (ver: ) - ::1
+     Message: Password not change
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZTkyYTJlNS1hZDEwLTRkNDAtODI0Ni0yNjY1ZGIwOWMyMGUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTI3OTc1LCJleHAiOjE2MzY5Mjg4NzUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.eKlv89-Y_28wYN_j9qOjuLD3CWhiQin09HFPPlpCXJg", 
+
+2021-11-14 19:14:43.3520 - INFO - 80000064-0003-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Contact/ChangePassword (ver: ) - ::1
+     Message: Password not change
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ODVlM2M0My02OTg5LTRmZTktYThlOS00ZDk0ZDNmN2RlZjIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTI4MDYyLCJleHAiOjE2MzY5Mjg5NjIsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.6IyQ8Y49lMw_3pLAw8dhsE1YmH_fGHV-kvLwxJVijbY", 
+
+2021-11-14 21:24:18.6275 - ERROR - 80000034-0006-fe00-b63f-84710c7967bb - (GET) https://localhost/api/v1/ActionsLog (ver: ) - ::1
+     Message: Title
+     Exception: Title
+     StackTrace:    at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 270
+   at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 278
+   at ParImparApi.Controllers.ActionsLogController.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ActionsLogController.cs:line 39
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NTgwNjZkOS1iYjBmLTRiMzEtODQzZi03Y2RhODEwYTJjNzMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2OTM1ODAxLCJleHAiOjE2MzY5MzY3MDEsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.jsr0UiEckyUlal_mYTSIx2CGFbu1R_dqufaLBjfmvao", 
+

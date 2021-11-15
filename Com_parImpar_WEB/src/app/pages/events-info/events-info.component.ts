@@ -18,6 +18,7 @@ export class EventsInfoComponent implements OnInit {
     private eventsService: EventsService) { }
 
   ngOnInit(): void {
+    window.scroll({top: 0, left: 0});
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
       if (id != null && id != 0) {

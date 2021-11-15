@@ -6,3 +6,5 @@ export { SearchService } from './search.service';
 export { TypeImpairmentService } from './type-impairments.service';
 export { PostsService } from './posts.service';
 export { UploadService } from './upload.service';
+export { DenyReasonService } from './deny-reason.service';
+export { ActionsLogService } from './actions-log.service';

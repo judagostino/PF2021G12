@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Events } from 'src/app/models/events';
 import { EventsService } from 'src/app/services';
@@ -14,7 +14,10 @@ export class ABMEventsComponent implements OnInit {
   form: FormGroup;
   events: Events[] = [];
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private eventsService: EventsService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private eventsService: EventsService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -24,25 +27,29 @@ export class ABMEventsComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.formBuilder.group({
-      id: [null],
-      dateEntered: [null],
-      startDate: [null],
-      endDate: [null],
-      title: [null],
-      description: [null],
-      state: [null],
-      contactCreate: [null],
-      contactAudit: [null]
+      id: [''],
+      dateEntered: [''],
+      startDate: ['', [Validators.required]],
+      endDate: [''],
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      state: [''],
+      contactCreate: [''],
+      contactAudit: ['']
     })
   }
 
   public btn_SaveEvent(): void {
-    let newEvent = this.form.value;
+    if (this.form.valid) {
+     let newEvent = this.form.value;
 
-    if (newEvent.id === 0) {
-      this.insert(newEvent);
+      if (newEvent.id === 0) {
+        this.insert(newEvent);
+      } else {
+        this.update(newEvent);
+      }
     } else {
-      this.update(newEvent);
+      this.form.markAllAsTouched();
     }
   }
 
@@ -51,24 +58,37 @@ export class ABMEventsComponent implements OnInit {
   } 
 
   public btn_DeleteEvent(): void {
-    this.eventsService.delete(this.form.value.id).subscribe( () => {
-      this.form.reset(new Events())
-    });
+    Swal.fire({
+      title:'¿Estás seguro?',
+      text:'Una vez eliminado no podra recuperar este evento',
+      icon:'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#f44336',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then( resoult => {
+      if (resoult.isConfirmed && resoult.value == true) {
+        this.eventsService.delete(this.form.value.id).subscribe( () => {
+          Swal.fire(
+            'Guardado',
+            'Evento se elimino con exito!',
+            'success'
+          )
+          this.form.reset(new Events())
+        });
+      }
+    })
   }
 
   public btn_SelectEvent(event: Events) : void {
     this.eventsService.getById(event.id).subscribe( resp => {
-      this.form.reset(resp)      
-    });
-  }
-
-  public btn_authorizeEvent() : void {
-    this.eventsService.authorize(this.form.value.id).subscribe( () => {
-    });
-  }
-
-  public btn_denyEvent() : void {
-    this.eventsService.deny(this.form.value.id).subscribe( () => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+      this.form.reset(resp);
     });
   }
 
@@ -89,6 +109,12 @@ export class ABMEventsComponent implements OnInit {
         'success'
       )
       this.router.navigateByUrl('/events');
+    }, err => {
+      Swal.fire(
+        'Ops...',
+        'Parece haber ocurrido un error, revise los datos e intentelo de nuevo mas tarde',
+        'error'
+      )
     });
   }
 
@@ -100,6 +126,12 @@ export class ABMEventsComponent implements OnInit {
         'Guardado',
         'Evento guardado con exito!',
         'success'
+      )
+    }, err => {
+      Swal.fire(
+        'Ops...',
+        'Parece haber ocurrido un error, revise los datos e intentelo de nuevo mas tarde',
+        'error'
       )
     });
   }

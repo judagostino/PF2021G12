@@ -1,0 +1,279 @@
+CREATE TABLE [dbo].[DenyObject] (
+	ObjectKey VARCHAR(255) NOT NULL, 
+	ObjectId INT NOT NULL,
+	Reason VARCHAR(255)
+)
+
+USE [ParImpar]
+GO
+CREATE TABLE [dbo].[ActionLog] (
+	ActionLogId INT PRIMARY KEY IDENTITY (1,1),
+	ObjectKey VARCHAR(255), 
+	ObjectId INT,
+	filters VARCHAR(255),
+	ContactId INT,
+	DateEntered DATETIME,
+	SearchText VARCHAR (MAX),
+	ActionTypeId INT
+)
+
+CREATE TABLE [dbo].[ActionType] (
+	ActionTypeId INT,
+	[Description] VARCHAR (255)
+)
+
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (1,'Busqueda')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (2,'Crear Evento')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (3,'Modificar Evento')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (4,'Eliminar Evento')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (5,'Crear Contenido')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (6,'Modificar Contenido')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (7,'Eliminar Contenido')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (8,'Crear Usuario')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (9,'Modificar Datos del Usuario')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (10,'Eliminar Usuario')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (11,'Ver Evento')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (12,'Ver Contenido')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (13,'Ver Perfil')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (14,'Recuperar Contraseña')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (15,'Cambiar Contraseña')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (16,'Rechzar Evento')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (17,'Rechzar Contenido')
+INSERT INTO [ActionType](ActionTypeId, Description) VALUES (18,'Inicio de Sesión')
+
+
+
+CREATE FUNCTION dbo.SearchTypesImpairment(@filtersIds VARCHAR(MAX))  
+RETURNS VARCHAR(MAX)   
+AS   
+-- Returns the stock level for the product.  
+BEGIN 
+
+/*
+-- Para test;
+DECLARE @filtersIds VARCHAR(MAX) = '1'
+*/
+
+	DECLARE @TableFilters TABLE 
+	(
+		[filter] INT
+	)
+	
+	DECLARE @TableAux TABLE 
+	(
+		Txt VARCHAR(MAX)
+	)
+
+    DECLARE @ret VARCHAR(MAX);  
+
+	INSERT INTO @TableFilters
+	SELECT value
+	FROM STRING_SPLIT(@filtersIds , ',')
+
+	IF EXISTS (SELECT TOP 1 filter FROM @TableFilters)
+	BEGIN
+		
+		INSERT INTO @TableAux
+		SELECT STUFF((SELECT ',' + [Description]
+        FROM TypesImpairment (NOLOCK) 
+		WHERE ( TypeId IN  (SELECT filter FROM @TableFilters))
+        FOR XML PATH('')) ,1,1,'') AS Txt 
+
+
+		SELECT @ret = Txt from @TableAux
+
+	END
+   
+     IF (@ret IS NULL)   
+        SET @ret = NULL;
+
+
+   RETURN @ret;  
+
+	
+END;
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_Deny]    Script Date: 8/11/2021 19:11:51 ******/
+DROP PROCEDURE [dbo].[Events_Deny]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_Deny]    Script Date: 8/11/2021 19:11:51 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Events_Deny]
+(
+	@ContactId INT,
+	@EventId INT,
+	@Reason VARCHAR(255),
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @EventId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		UPDATE [Events] 
+		SET 
+		StateId = 3,
+		ContactAudit = @ContactId
+		WHERE EventId = @EventId
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+		  ELSE 
+			BEGIN
+				IF EXISTS (SELECT ObjectId FROM DenyObject WHERE ObjectKey = 'EventId' AND ObjectId = @EventId)
+					BEGIN
+						UPDATE DenyObject SET Reason = @Reason WHERE ObjectKey = 'EventId' AND ObjectId = @EventId
+					END
+				  ELSE 
+					BEGIN
+						INSERT INTO DenyObject (ObjectKey, ObjectId, Reason) 
+						VALUES ('EventId', @EventId, @Reason)
+					END
+				SET @ResultCode = 200 
+			END
+	END
+
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+GO
+
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Deny]    Script Date: 8/11/2021 19:12:12 ******/
+DROP PROCEDURE [dbo].[Posts_Deny]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Deny]    Script Date: 8/11/2021 19:12:12 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Posts_Deny]
+(
+	@ContactId INT,
+	@PostId INT,
+	@Reason VARCHAR(255),
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @PostId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		UPDATE [Posts] 
+		SET 
+		StateId = 3,
+		ContactAudit = @ContactId
+		WHERE PostId = @PostId
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+		  ELSE 
+			BEGIN
+				IF EXISTS (SELECT ObjectId FROM DenyObject WHERE ObjectKey = 'PostId' AND ObjectId = @PostId)
+					BEGIN
+						UPDATE DenyObject SET Reason = @Reason WHERE ObjectKey = 'PostId' AND ObjectId = @PostId
+					END
+			 	  ELSE 
+					BEGIN
+						INSERT INTO DenyObject (ObjectKey, ObjectId, Reason) 
+						VALUES ('PostId', @PostId, @Reason)
+					END
+
+				SET @ResultCode = 200 
+			END
+	END
+
+	
+
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+GO
+
+
+
+
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[DenyObject_GetByKeyAndId]    Script Date: 8/11/2021 19:11:16 ******/
+DROP PROCEDURE [dbo].[DenyObject_GetByKeyAndId]
+GO
+
+/****** Object:  StoredProcedure [dbo].[DenyObject_GetByKeyAndId]    Script Date: 8/11/2021 19:11:16 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[DenyObject_GetByKeyAndId]
+(
+	@ObjectKey VARCHAR(255),
+	@ObjectId INT
+)
+AS
+
+/*
+-- Para testing
+DECLARE @ObjectKey VARCHAR(255) = 'EventId'
+DECLARE @ObjectId INT = 5
+*/
+
+SELECT Reason FROM DenyObject WHERE ObjectKey = @ObjectKey AND ObjectId = @ObjectId
+GO
+
+

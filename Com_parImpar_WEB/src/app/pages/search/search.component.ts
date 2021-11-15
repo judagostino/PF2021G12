@@ -16,13 +16,13 @@ export class SearchComponent implements OnInit {
   typeImpairmentsAux: boolean[] = [];
   resultsSearch: SearchItem[] = [];
   searchText: string = '';
+  notResoult: boolean = false;
 
   constructor( 
     private router: Router,
     private configService: ConfigService,
     private typeImpairmentService: TypeImpairmentService,
     private searchService: SearchService) { 
-
   }
 
   ngOnInit(): void {
@@ -46,12 +46,18 @@ export class SearchComponent implements OnInit {
 
   public btn_search(): void {
     this.resultsSearch = [];
+    this.notResoult = false;
     this.searchService.search(
       {
         searchText: this.searchText, 
         filters: (this.showMoreInfo ? this.getFilters() : null) 
       }).subscribe(resp => {
       this.resultsSearch = resp;
+      if (resp.length == 0) {
+        this.notResoult = true;
+      }
+    }, err => {
+      this.notResoult = true;
     })
   }
 

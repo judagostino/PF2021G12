@@ -10,4 +10,5 @@ export interface Contact {
     confirmPassword?: string;
     dateBrirth?: Date;
     imageUrl?: string;
+    auditor?: boolean;
 }

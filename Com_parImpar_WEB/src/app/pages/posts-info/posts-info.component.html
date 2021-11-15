@@ -1,9 +1,9 @@
-<div class="mt-3 w-100 container-info">
+<div class="mt-3 w-100 container-info pb-2 mb-2">
   <div class="container">
       <div class="row">
           <div *ngIf="post" class="col-12">
               <mat-card class="mb-4">
-                  <img style="max-width: 100%; margin-left: 150px;" [src]="getImage()" alt="">
+                  <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
   
                   <h6 style="font-weight: bold; font-size: 20px; text-align: center;">{{post.title}}</h6>
 
@@ -17,7 +17,7 @@
 
                   <p *ngFor="let paragaph of paragaphs" class="mt-4">{{paragaph}}</p>
 
-                  <a (click)="redirectToProfile(result)" class="mb-2" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
+                  <a (click)="redirectToProfile(result)" class="pb-2 mb-2" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
               </mat-card>
             </div>
       </div>

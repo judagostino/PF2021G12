@@ -349,11 +349,21 @@ namespace ParImparApi.Controllers
         // POST: api/v1/POsts/PostId/Deny
         [HttpPost("{postId}/Deny")]
         [Authorize("AccessToken")]
-        public async Task<IActionResult> Deny(int postId)
+        public async Task<IActionResult> Deny(int postId, [FromBody] DenyDTO deny)
         {
             try
             {
-                ApiResponse response = await _postsService.Deny(postId);
+                ApiResponse response;
+
+                if (deny != null && deny.Reason != null && !string.IsNullOrWhiteSpace(deny.Reason))
+                {
+                    response = await _postsService.Deny(postId, deny.Reason);
+                }
+                else
+                {
+                    response = await _postsService.Deny(postId, null);
+                }
+
 
                 switch (response.Status)
                 {

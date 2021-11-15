@@ -13,13 +13,17 @@ import { ContactService } from 'src/app/services';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup
+  form: FormGroup;
+  message: string;
+  showError: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private router: Router, private authService:AuthService,
     private contactService: ContactService, private configService: ConfigService) { 
 
   }
 
   ngOnInit(): void {
+    this.showError = false;
     this.form = this.formBuilder.group({
       user:['',Validators.required],
       password:['',Validators.required],
@@ -27,7 +31,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  public btn_login():void{
+  public btn_login():void {
+    this.showError = false;
     if(this.form.valid){
       let cedencialLogin: CredencialLogin = {
         user: this.form.value.user, 
@@ -44,10 +49,13 @@ export class LoginComponent implements OnInit {
         })
         // estra logeado
       }, error => {
+        this.message = 'Usuario o contraseña invalido';
+        this.showError = true;
         // error
       });
+    } else {
+      this.message = 'Los campos son requeridos'
+      this.showError = true;
     }
-    
   }
-
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactRegistrer } from 'src/app/models/contact-register';
@@ -14,8 +14,10 @@ export class RegisterComponent implements OnInit {
   
   emailPattern: any = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   digitPattern: any= /^[0-9]+$/;
+  message: string;
+  showError: boolean = false;
+  form: FormGroup;
 
-  form: FormGroup
   constructor( 
     private formBuilder: FormBuilder, 
     private router: Router,
@@ -26,24 +28,54 @@ export class RegisterComponent implements OnInit {
   }
 
   public btn_SaveEvent(): void {
+    this.showError = false;
     if(this.form.valid) { 
-    const register = this.form.value;
-    this.contactService.registrerUser(register).subscribe( () => {
-      // camino corecto
-      Swal.fire(
-        '¡Registrado!',
-        'Te registraste con exito',
-        'success'
-      )
-      this.router.navigateByUrl('/login');
-      this.validateFormatPassword('password');
-    }, err => {
-      // camino error
-    })
-  }
-  else {
-    this.form.markAllAsTouched;
-  }
+      const register = this.form.value;
+      if (!this.validateFormatPassword()) {
+        this.showError = true;
+        this.message = 'La contraseña no respeta el formato, debe tener al menos una mayúscula, una minúscula y un número.';
+      }
+
+      if (!this.compare('email','confirmEmail')) {
+        this.showError = true;
+        this.message = 'Los correos electrónicos no coinciden.';
+      }
+
+      
+      if (!this.compare('password','confirmPassword')) {
+        this.showError = true;
+        this.message = 'Las contraseñas no coinciden.';
+      }
+
+      if (!this.showError) {
+        this.contactService.registrerUser(register).subscribe( () => {
+          Swal.fire(
+            '¡Registrado!',
+            'Te registraste con exito',
+            'success'
+          )
+          this.router.navigateByUrl('/login');
+        }, err => {
+          if (err?.error?.code != null) {
+            switch(err.error.code) {
+              case 5906: {
+                this.showError = true;
+                this.message = 'El correo electrónico ya exisite.';
+                break;
+              }
+              default: {
+                this.showError = true;
+                this.message = 'Parece haber ocurrido un error, por favor intentelo de nuevo mas tarde.';
+                break;
+              }
+            }
+          }
+        });
+      }
+   }
+    else {
+      this.form.markAllAsTouched();
+    }
   }
 
   public btn_NewEvent(): void {
@@ -60,13 +92,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['',  [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-      confirmCode: ['', [Validators.required]],
-      codeRecover: ['', [Validators.required]],
-      dateBrirth: ['', [Validators.required]],
-    }, {
-      // Validator: this.compare('email', 'confirmEmail')
-      // Validator2: this.compare('password', 'confirmPassword')
-
+      dateBrirth: [''],
     });
     
     this.form.reset(new ContactRegistrer);
@@ -75,65 +101,41 @@ export class RegisterComponent implements OnInit {
   compare(firstNameControl: String, twoNameControl: String){
     let firstControl = this.form.controls[firstNameControl.toString()];
     let twoControl = this.form.controls[twoNameControl.toString()];
-    if(firstControl.value != null && twoControl.value != null && firstControl.value == twoControl.value){
-      twoControl.setErrors({distint: true});
-      return {distint: true}
+    if(firstControl.value != null && twoControl.value != null && firstControl.value == twoControl.value) {
+      return true;
     }
     else {
-      twoControl.setErrors(null);
-      return null
+      return false;
     }
   }
 
-  get emailField(){
-    return this.form.get('email');
-  }
-
-  get confirmEmailField(){
-    return this.form.get('confirmEmail');
-  }
-
-  get passwordField(){
-    return this.form.get('password');
-  }
-
-  get confirmPasswordField(){
-    return this.form.get('confirmPassword');
-  }
-
-  private validateFormatPassword(password: String): boolean
-  { 
+  private validateFormatPassword(): boolean {
+    let password = this.form.controls.password.value;
     let existNumber = false;
     let existCapitalLetter = false;
     let existLowerLetter = false;
 
-
-    password.split('').forEach(letter => {
-      if (!isNaN(Number(letter)))
-      {
-        existNumber = true;
+    if (password != null) {
+      password.split('').forEach(letter => {
+        if (!isNaN(Number(letter))) {
+          existNumber = true;
+        }
+  
+        else if (letter === letter.toUpperCase()) {
+          existCapitalLetter = true;
+        }
+  
+        else if (letter === letter.toLowerCase()) {
+          existLowerLetter = true;
+        }
+      })
+  
+      if (existNumber && existCapitalLetter && existLowerLetter) {
+        return true;
+      } else {
+        return false;
       }
-
-      else if (letter === letter.toUpperCase())
-      {
-        existCapitalLetter = true;
-      }
-
-      else if (letter === letter.toLowerCase())
-      {
-        existLowerLetter = true;
-      }
-    })
-
-    if (existNumber && existCapitalLetter && existLowerLetter)
-    {
-      return true;
     }
-    else
-    {
-      return false;
-    }
-
   }
 }
 

@@ -37,7 +37,7 @@ export class ConfigService {
   }
 
   public dafaultImage(): string {
-    return '/assets/image/icon.png';
+    return '/assets/image/not_found.png';
   }
 
   private reAuthenticate(): Observable<boolean> {

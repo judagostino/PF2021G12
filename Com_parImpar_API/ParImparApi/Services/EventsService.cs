@@ -1000,7 +1000,7 @@ namespace ParImparApi.Services
             }
         }
 
-        public async Task<ApiResponse> Deny(int eventId)
+        public async Task<ApiResponse> Deny(int eventId, string reason)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
@@ -1014,6 +1014,13 @@ namespace ParImparApi.Services
                         cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
                         cmd.Parameters.Add(new SqlParameter("@EventId", eventId));
 
+                        if (reason != null && !string.IsNullOrWhiteSpace(reason))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Reason", reason));
+                        } else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Reason", DBNull.Value));
+                        }
 
                         cmd.Parameters.Add(new SqlParameter()
                         {

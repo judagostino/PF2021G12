@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   public btn_Login(): void {
     if (!!this.configService.isLooged) {
-      this.router.navigateByUrl('/calendar');
+      //this.router.navigateByUrl('/calendar');
     } else {
       this.router.navigateByUrl('/login');
     }
@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
     this.configService.contact = null;
     this.authService.cleartokens();
     this.router.navigateByUrl('/login');
-    console.log('pruebaaaa')
   }
 
 }

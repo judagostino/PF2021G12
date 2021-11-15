@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TypeImpairment } from 'src/app/intrergaces';
 import { Post } from 'src/app/models/post';
 import { PostsService, TypeImpairmentService, UploadService } from 'src/app/services';
@@ -20,7 +19,6 @@ export class ABMPostsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder, 
-    private router: Router, 
     private postService: PostsService,
     private uploadService: UploadService,
     private typeImpairmentService: TypeImpairmentService) { }
@@ -39,13 +37,13 @@ export class ABMPostsComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [null],
       dateEntered: [null],
-      title: [null],
-      description: [null],
-      text: [null],
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      text: ['', [Validators.required]],
       state: [null],
       contactCreate: [null],
       contactAudit: [null],
-      typeImpairment: [null]
+      typeImpairment: ['', [Validators.required]]
     })
     this.uploadForm = this.formBuilder.group({
       file: ['']
@@ -60,12 +58,16 @@ export class ABMPostsComponent implements OnInit {
   }
 
   public btn_SavePost(): void {
-    let newPost = this.form.value;
-    console.log(newPost)
-    if (newPost.id === 0) {
-      this.insert(newPost);
+    if (this.form.valid) {
+      let newPost = this.form.value;
+      console.log(newPost)
+      if (newPost.id === 0) {
+        this.insert(newPost);
+      } else {
+        this.update(newPost);
+      }
     } else {
-      this.update(newPost);
+      this.form.markAllAsTouched();
     }
   }
 
@@ -75,28 +77,41 @@ export class ABMPostsComponent implements OnInit {
   } 
 
   public btn_DeletePost(): void {
-    this.postService.delete(this.form.value.id).subscribe( () => {
-      this.form.reset(new Post())
-      this.imageAux = null;
-    });
+    Swal.fire({
+      title:'¿Estás seguro?',
+      text:'Una vez eliminado no podra recuperar esta publicación',
+      icon:'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3f51b5',
+      cancelButtonColor: '#f44336',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then( resoult => {
+      if (resoult.isConfirmed && resoult.value == true) {
+        this.postService.delete(this.form.value.id).subscribe( () => {
+          Swal.fire(
+            'Guardado',
+            'Publicación se elimino con exito!',
+            'success'
+          )
+          this.form.reset(new Post())
+          this.imageAux = null;
+        });
+      }
+    })
   }
 
   public btn_SelectPost(post: Post) : void {
     this.postService.getById(post.id).subscribe( resp => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
       this.form.reset(resp)  
       if (resp.imageUrl) {
         this.imageAux = resp.imageUrl
       }
-    });
-  }
-
-  public btn_authorizePost() : void {
-    this.postService.authorize(this.form.value.id).subscribe( () => {
-    });
-  }
-
-  public btn_denyPost() : void {
-    this.postService.deny(this.form.value.id).subscribe( () => {
     });
   }
 
@@ -112,7 +127,6 @@ export class ABMPostsComponent implements OnInit {
       formData.append('Id', id.toString());
   
       this.uploadService.upload(formData).subscribe((resp: string) => {
-        console.log(resp)
         //this.imageAux = resp.trim();
       });
     }
@@ -135,6 +149,12 @@ export class ABMPostsComponent implements OnInit {
         'Publicación guardado con exito!',
         'success'
       )
+    }, err => {
+      Swal.fire(
+        'Ops...',
+        'Parece haber ocurrido un error, revise los datos e intentelo de nuevo mas tarde',
+        'error'
+      )
     });
   }
 
@@ -147,6 +167,12 @@ export class ABMPostsComponent implements OnInit {
         'Guardado',
         'Publicación guardado con exito!',
         'success'
+      )
+    }, err => {
+      Swal.fire(
+        'Ops...',
+        'Parece haber ocurrido un error, revise los datos e intentelo de nuevo mas tarde',
+        'error'
       )
     });
   }

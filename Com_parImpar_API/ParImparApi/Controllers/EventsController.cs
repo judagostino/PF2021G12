@@ -213,7 +213,6 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
-
         #region [GetByIdMoreInfo]
         // GET: api/v1/Events/EventId/moreInfo
         [HttpGet("{EventId}/moreInfo")]
@@ -335,11 +334,20 @@ namespace ParImparApi.Controllers
         // POST: api/v1/Events/Deny
         [HttpPost("{EventId}/Deny")]
         [Authorize("AccessToken")]
-        public async Task<IActionResult> Deny(int eventId)
+        public async Task<IActionResult> Deny(int eventId, [FromBody] DenyDTO deny)
         {
             try
             {
-                ApiResponse response = await _eventsService.Deny(eventId);
+                ApiResponse response;
+
+                if (deny != null && deny.Reason != null && !string.IsNullOrWhiteSpace(deny.Reason))
+                {
+                    response = await _eventsService.Deny(eventId, deny.Reason);
+                }
+                else
+                {
+                    response = await _eventsService.Deny(eventId, null);
+                }
 
                 switch (response.Status)
                 {
@@ -368,7 +376,6 @@ namespace ParImparApi.Controllers
             }
         }
         #endregion
-
 
         #region [GetByDate]
         // GET: api/v1/Events/Date?d=2021-08-01
