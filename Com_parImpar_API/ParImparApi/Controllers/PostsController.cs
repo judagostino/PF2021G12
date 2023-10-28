@@ -228,7 +228,7 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
-        #region [GetById]
+        #region [IdMoreInfo]
         // GET: api/v1/Posts/postId/moreInfo
         [HttpGet("{PostId}/moreInfo")]
         [AllowAnonymous]

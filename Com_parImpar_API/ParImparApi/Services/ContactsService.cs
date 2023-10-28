@@ -75,6 +75,16 @@ namespace ParImparApi.Services
                             cmd.Parameters.Add(new SqlParameter("@DateBrirth", DBNull.Value));
                         }
 
+                        if (registerUser.Notifications != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", registerUser.Notifications));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", DBNull.Value));
+                        }
+
                         cmd.Parameters.Add(new SqlParameter()
                         {
                             ParameterName = "@ResultCode",
@@ -582,14 +592,19 @@ namespace ParImparApi.Services
                                     contact.Name = reader["Name"].ToString();
                                 }
 
-                                if (reader["email"] != DBNull.Value)
+                                if (reader["Email"] != DBNull.Value)
                                 {
-                                    contact.Email = reader["email"].ToString();
+                                    contact.Email = reader["Email"].ToString();
                                 }
 
-                                if (reader["email"] != DBNull.Value)
+                                if (reader["Trusted"] != DBNull.Value)
                                 {
-                                    contact.Email = reader["email"].ToString();
+                                    contact.Trusted = (bool)reader["Trusted"];
+                                }
+
+                                if (reader["Notifications"] != DBNull.Value)
+                                {
+                                    contact.Notifications = (bool)reader["Notifications"];
                                 }
 
                                 if (contactId == null && reader["Auditor"] != DBNull.Value)
@@ -665,6 +680,26 @@ namespace ParImparApi.Services
                         else
                         {
                             cmd.Parameters.Add(new SqlParameter("@DateBrirth", DBNull.Value));
+                        }
+
+                        if (contact.Trusted != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Trusted", contact.Trusted));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Trusted", DBNull.Value));
+                        }
+
+                        if (contact.Notifications != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", contact.Notifications));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", DBNull.Value));
                         }
 
                         cmd.Parameters.Add(new SqlParameter()

@@ -21,6 +21,10 @@ namespace ParImparApi.DTO
 
         public bool? Auditor { get; set; }
 
+        public bool? Trusted { get; set; }
+
+        public bool? Notifications { get; set; }
+
         public DateTime? DateBrirth { get; set; }
 
     }
