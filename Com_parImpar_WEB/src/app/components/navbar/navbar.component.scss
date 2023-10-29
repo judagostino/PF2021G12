@@ -1,3 +1,4 @@
+
 #SearchBarNavbar1 {
     justify-content: flex-end;
     margin-top: 8px;
@@ -15,10 +16,15 @@
     display: flex;
     align-items: center;
     justify-content: flex-start !important;
+    color: #1995AD;
+    font-weight: bold;
+    font-family: 'Nunito',sans-serif;
+    font-size: 17px;
+    
 }
 
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255,255,255,1);
+    color: rgba(0,0,0,.1);
    
 }
 
@@ -27,3 +33,69 @@
     right: 4px;
     top: -5px;
 }
+
+.navbar-nav{
+    justify-content: flex-end;
+    margin-top: 8px;
+    margin-right: 50px;
+}
+
+/* * {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Tilt Neon', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.3rem 10%;
+    background: rgba(0,0,0,.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+
+.logo{
+    font-size: 2em;
+    color: aqua;
+    pointer-events: none;
+
+}
+
+.navigation a{
+    text-decoration: none;
+    color: aqua;
+    padding: 6px 15px;
+    border-radius:20px;
+    margin:0 10px;
+    font-weight: 600;
+}
+
+.navigation a:hover, .navigation a.active{
+    background: aqua;
+    color: aliceblue;
+
+}
+
+.parallax {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+#text{
+    position: absolute;
+    font-size: 5em;
+    color: black;
+} */
+

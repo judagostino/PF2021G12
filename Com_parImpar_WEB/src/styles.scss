@@ -1,6 +1,6 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-.titles {
+/*.titles {
     font-family: 'Quicksand', sans-serif;
     font-weight: 500;
 }
@@ -10,11 +10,11 @@
     font-weight: 200;
 }
 
-body {
-    background: rgb(2,0,36);
-  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
-  background-repeat: no-repeat;
-}
+//body {
+//  background-color: #C4DFE6; 
+//  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
+//  background-repeat: no-repeat;
+//}
 
 // .logo {
 //     background: rgb(41,41,41);
@@ -22,7 +22,7 @@ body {
 // }
 
 //html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;font-family:'Tilt Neon', sans-serif; }
 
 
 .center {
@@ -34,4 +34,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .block-ui-wrapper {
     background: rgba(255, 255, 255, 0.678) !important;
+}
+*/
+
+body {
+  background-color: #eeeeee; 
 }

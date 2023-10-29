@@ -1,0 +1,173 @@
+body {
+    background-color: #FFFFFF; 
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+
+}
+
+.container-fluid {
+    margin-top: 40px;
+    margin-bottom: 40px; 
+    
+
+    
+} 
+    
+.sombra {
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.info {
+    background-image: url('/assets/image/1930808.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    padding: 150px 30px;
+}
+
+
+.info h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 64px;
+    font-family: 'Exo 2', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 72px;
+
+
+}
+
+.txt-2 {
+    color: #fff;
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    line-height: 1.5;
+    
+}
+
+
+.form {
+    padding: 20px 80px;
+    text-align: center;
+    background-color: #f1f1f1;
+}   
+
+.form h2 {
+    color: #1995AD;
+    font-size: 35px;
+    font-family: 'Tilt Neon', sans-serif;
+    text-transform: uppercase;
+}
+
+.form p {
+    font-size: 16px;
+    color: #666666;;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.box  {
+    outline: none;
+    border-color: #1995AD;
+    border-width: 0px 0px 0px 5px;
+    border-style: solid;
+    padding: 15px 35px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+
+}
+
+.inputs a {
+    color: #1995AD;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: 20px;
+    font-family: 'Tilt Neon', sans-serif;
+}
+
+.submit {
+    font-family:'Tilt Neon', sans-serif;
+    font-size: 130%;
+    color:#FFFFFF;
+    width: 80%;
+    height: 40px;
+    border: none;
+    margin-left: 35px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    background-color: #1995AD;
+    margin-top: 30px;
+} 
+    
+
+    
+    
+    
+    
+   /* background-color: #097ef6;
+    padding: 15px;
+    border: 0;
+    color: #fff;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-radius: 25px;
+    margin-top: 20px;
+*/
+
+
+.options {
+    color: #1995AD;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: 20px;
+    font-family:'Tilt Neon', sans-serif;
+
+}
+
+.home {
+    color: #1995AD;
+    text-decoration: none;
+    font-size: 15px;
+    margin-top: 10px;
+
+}
+
+.options a {
+    color: #1995AD;
+}
+
+.home a {
+    color: #1995AD;
+}
+
+
+
+
+@media(max-widith:900px) {
+
+    .info {
+        display: flex;
+    }
+
+    .form {
+        padding: 30px;
+
+    }
+
+    
+
+}
+
+
+
+
+

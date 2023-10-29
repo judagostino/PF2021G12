@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8 sombra">
+            <div class="row">
+
+                <div class="info col-6">
+
+                    <h1>Bienvenido</h1>
+                
+
+                    <p class="txt-2">
+                        Estamos felices de que estés aquí. Fundamos Comunidad Par
+                        Impar porque queremos crear un espacio
+                        confiable e inspirador con todo la información que necesitas para guiarte en este nuevo camino.
+
+                    </p>
+                </div>
+                <form style="height: 10px;" class="form col-6" [formGroup] ="form" novalidate>
+                    <div *ngIf="showError" class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                    
+                    <div [ngClass]="{'pt-5': !showError}"></div>
+                    
+                    
+                    <h2> Login </h2>
+
+                    <p class="txt-2">
+                        Ingrese sus datos personales para utilizar todas las funciones que ofrece Comunidad Par Impar
+                    </p>
+                    <div class="inputs">
+                        <input type="text" class="box"  formControlName = "user" placeholder="Ingresa tu correo">
+                        <input type="password" class="box"  formControlName = "password" placeholder="Ingresa tu contraseña">
+
+                        <a href="/user/recover">¿Olvidaste tu contraseña?</a>
+                        
+
+                        <button type="submit" title="Ingresar" class="submit" (click)= "btn_login()">Iniciar Sesi&oacute;n</button>
+                    </div>
+                    
+                    <div class="options">
+                        <a href="/register">¿No tienes Cuenta? Registrate</a>
+                    </div>
+                    
+                    <div class="home">
+                        <a href="#">Volver</a>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>

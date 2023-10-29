@@ -9,8 +9,8 @@ import { ContactService } from 'src/app/services';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './login2.component.html',
+  styleUrls: ['./login2.component.scss']
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
