@@ -1,34 +1,37 @@
 .title-calendar {
-        font-family: 'Quicksand', sans-serif;
+        font-family: 'Nunito',sans-serif;
         font-weight: 700;
-        font-size: x-large;
-        color:#48a7e5;
+        font-size:x-large;
+        color:#1995AD;
         justify-content: center;
         margin-left: 40%;
+        text-transform: uppercase;
     }
 
 .list-events {
-    font-family: 'Quicksand', sans-serif;
-    padding: 3%;
+    font-family: 'Nunito', sans-serif;
+    padding: 5%;
 
 }
 
 .title-listEvent {
     font-weight: 700;
     font-size:20px;
-    color:#1b262c;
+    color:#1f495f;
 }
 
 .calendar {
     padding: 20px;
+    
 }
 
 .font-Month{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     font-size: 18px;
-    color:#1b262c;
+    color:#1995ad;
     justify-content: center;
+    text-transform: uppercase;
 }
 
 .calend { 
@@ -36,12 +39,12 @@
 }
 
 #calendar button {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 130%;
     color:#0f4c75;
     width: 10%;
     height: 23px;
-    border: none;
+    border-color: #1995AD;
     padding: 0%;
     margin-left: 20px;
     margin-right: 20px;

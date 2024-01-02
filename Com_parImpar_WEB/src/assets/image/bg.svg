@@ -1,3 +1,10 @@
-<svg width="982" height="1143" viewBox="0 0 982 1143" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 45.3572C0 20.3071 20.3071 0 45.3571 0H982V1104.03C982 1125.55 964.553 1143 943.032 1143V1143C422.21 1143 0 720.79 0 199.968V45.3572Z" fill="#FF9F0D"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1488 1143" style="enable-background:new 0 0 1488 1143;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#1995AD;}
+</style>
+<path class="st0" d="M0,45.9C0,20.5,30.8,0,68.8,0H1488v1116.5c0,21.8-26.4,39.4-59.1,39.4l0,0C639.7,1155.9,0,728.9,0,202.3V45.9z"
+	/>
 </svg>

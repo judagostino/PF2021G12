@@ -7,7 +7,7 @@ import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
+  templateUrl: './register.component copy.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {

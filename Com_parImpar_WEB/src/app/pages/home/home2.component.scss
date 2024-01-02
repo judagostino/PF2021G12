@@ -4,9 +4,7 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-}
+}    
 
 .container {
     max-width: 1200px;
@@ -38,12 +36,13 @@
 .menu .navbar ul li {
     position: relative;
     float: left;
+    font-family: 'Nunito',sans-serif;
 }
 
 .menu .navbar ul li a{
     font-size: 18px;
     padding: 20px;
-    color: #1995ad;
+    color: white;
     display: block;
     font-weight: 600;
 }
@@ -70,7 +69,7 @@
 
 .esp{
     position: absolute;
-    top: 700px;
+    top: 900px;
     bottom: 0;
     width: 350px;
 }
@@ -91,29 +90,42 @@
     font-size: 55px;
     line-height: 70px;
     font-weight: 600;
-    color: #303030;
-    margin-bottom: 25px;
-    text-transform: capitalize;
+    color: #1995ad;
+    margin-bottom: 10px;
+    text-transform:uppercase;
+    font-family: 'Nunito',sans-serifs;
 }
 
 .header-txt p {
     font-size: 16px;
     color: #545454;
     margin-bottom: 35px;
+    font-family: 'Tilt Neon',sans-serif;
+    justify-content: center;
+    
+}
+
+.header-txt h3 {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 35px;
+    font-family: 'Tilt Neon',sans-serif;
+    font-size: 20px;
 }
 
 .btn-1 {
     display: inline-block;
-    background-color: #ff9f0d;
+    background-color: #BCBABE;
     padding: 13px 30px;
     border-radius: 25px;
     color: #ffffff;
     text-transform: capitalize;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(27, 27, 27, 0.2);
+    font-family: 'Tilt Neon',sans-serif;
 }
 
 .btn-1:hover {
-    background-color: #ee9003;
+    background-color: #1995ad;
 }
 
 .header-img {
@@ -143,13 +155,13 @@
 
 .info-1 h3 {
     font-size: 18px;
-    color: #303030;
+    color: #545454;
     margin-bottom: 25px;
 }   
 
 .info-1 p {
     font-size: 16px;
-    color: #303030;
+    color: #545454;
 } 
 
 .nosotros {
@@ -184,21 +196,21 @@
 
 .nosotros-txt span {
     font-size: 16px;
-    color: #ff9f0d;
+    color: #1995ad;
     font-weight: 700;
     margin-bottom: 25px;
 }
 
 .nosotros-txt h2 {
     font-size: 45px;
-    color: #303030;
+    color: #BCBABE;
     margin-bottom: 30px;
 }
 
 
 .nosotros-txt p {
     font-size: 18px;
-    color: #545454;
+    color: #BCBABE;
     margin-bottom: 50px;
 }
 
@@ -206,7 +218,7 @@ a {
     font-size: 16px;
     display: block;
     margin-bottom: 10px;
-    color: #545454;
+    color: #BCBABE;
 }
 
 @media(max-width:991px){
@@ -270,14 +282,14 @@ a {
         line-height: 50px;
     }
 
-    .header-img {
+    .header-img{
         width: 100%;
         text-align: center;
         padding-top: 35px;
     }
 
     .header-img img {
-        width: 300px;
+        width: 50px;
     }
 
     .nosotros-txt {
@@ -296,10 +308,7 @@ a {
 }
 
 
-.navbar > ul > li > a:hover {
-    background-color: #ffffff;
-    border-radius: 50%;
-}
+
 
 
 

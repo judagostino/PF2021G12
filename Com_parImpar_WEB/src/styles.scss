@@ -10,11 +10,11 @@
     font-weight: 200;
 }
 
-//body {
-//  background-color: #C4DFE6; 
-//  background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
-//  background-repeat: no-repeat;
-//}
+body {
+    background-color: #C4DFE6; 
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
+    background-repeat: no-repeat;
+}
 
 // .logo {
 //     background: rgb(41,41,41);
@@ -38,5 +38,7 @@ body { margin: 0;font-family:'Tilt Neon', sans-serif; }
 */
 
 body {
-  background-color: #eeeeee; 
+        background: url("/assets/image/fondo_pag.jpg") no-repeat;
+        background-repeat: no-repeat;
+    
 }

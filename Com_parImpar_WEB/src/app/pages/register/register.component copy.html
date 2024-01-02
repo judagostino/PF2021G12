@@ -1,0 +1,85 @@
+
+<div id="central">
+  <div id="register">
+      <div class="titulo">
+          Registrate
+          <h4 style="margin-top:15px;">Es simple y r&aacute;pido</h4>
+      </div>
+    
+    
+      <form [formGroup] ="form" novalidate>
+    
+        <div class="row"> 
+    
+          
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            
+              <input type=text class="box" formControlName="firstName" matInput required placeholder="Nombre">
+           
+          </div>
+    
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+
+              <input class="box" formControlName="lastName" matInput required placeholder="Apellido">
+             
+          </div>
+        </div>
+    
+          <div class="row"> 
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          
+                <input class="box" matInput formControlName="email" placeholder="correoelectronico@ejemplo.com" required aria-placeholder="Correo electrónico"> 
+                
+            </div>
+    
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            
+                <input class="box" matInput formControlName="confirmEmail" placeholder = "correoelectronico@ejemplo.com" required aria-placeholder="Confirmar correo electrónico"> 
+             
+            </div>
+          </div>
+    
+          
+          <div class="row"> 
+             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              
+                <input class="box" formControlName="userName" matInput required placeholder="Usuario">
+                
+            </div>
+    
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+             
+                <!-- <input matInput formControlName="dateBrirth" [matDatepicker]="selector" placeholder="Fecha nacimiento"> -->
+                         
+              </div>
+          </div>
+      
+    
+    
+            <div class="row"> 
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                
+                  <input class="box" matInput formControlName="password" type="password" required placeholder="Contraseña">
+                
+              </div>
+              
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              
+                  <input class="box" matInput formControlName="confirmPassword" type="password" required placeholder="Confirmar contraseña">
+                  
+              </div>
+            </div>
+    
+            <div class="row justify-content-center">
+              <div class="d-flex justify-content-center">
+                <button class="m-3" mat-raised-button color="primary" type="button" (click)="btn_NewEvent()">Volver</button>
+                <button class="m-3" mat-raised-button color="primary" type="submit" (click)=btn_SaveEvent()>Registrarse</button> 
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+    
+    
+    
+  

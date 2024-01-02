@@ -1,5 +1,5 @@
 <div id="contenedor">
-    <mat-card class="example-card mt-4" style=" margin:15%;width: 1000px;height: 500px;">
+    <mat-card class="example-card mt-4" style=" margin:15%;width: 1000px;height: 500px;border-radius: 25px;">
         <mat-card-content >
             <div id="central">
                 <div id="calendar">
@@ -8,12 +8,12 @@
                     </div>
                     <div class="list-events">
                         <div class="row">
-                            <div class="title-listEvent">
+                            <div class="title-listEvent" style="color: #1995ad;">
                                 Lista de eventos
                             </div>
                             <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar">
                                 <!-- lista de eventos -->
-                                <table class="table" style="padding-top: 40%;">
+                                <table class="table" style="padding-top: 40%;border-color: #1995ad;">
                                     <thead>
                                       <tr>
                                         <th scope="col">Fecha</th>
@@ -41,7 +41,7 @@
                             <!-- Calendario -->
                             <div class="col-12 col sm-12 col-md-6 col-lg-6 calendar-month">
 
-                                <div class="d-flex justify-content-center align-self-center center" style="max-width: 400px;">
+                                <div class="d-flex justify-content-center align-self-center center" style="max-width: 400px; padding-left: 50px;">
                                     <button (click)="btn_Subtract()" class="navbar-toggler" type="button" >
                                         <mat-icon matSuffix style="cursor:pointer;">chevron_left</mat-icon>
                                     </button>
@@ -54,7 +54,7 @@
                                 <div class="d-flex flex-wrap calend" style="max-width: 360px;">
                                     <div 
                                     *ngFor="let day of calendarDates;" 
-                                    style="width: 50px; height: 50px; border: 1px solid black;">
+                                    style="width: 50px; height: 50px; border: 0.3px solid #1995ad;">
                                         <div style="position: relative; top: 2px; left: 5px;">
                                         {{day == 0 ? '' : day }}                                        
                                         </div>

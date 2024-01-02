@@ -21,7 +21,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ABMEventsComponent } from './pages/abm-events/abm-events.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { RecoverPassordComponent } from './pages/recover-passord/recover-passord.component';
 import { ConfirmUserComponent } from './pages/confirm-user/confirm-user.component';
@@ -50,7 +49,6 @@ import { GoogleChartsModule } from 'angular-google-charts';
     NavbarComponent,
     RegisterComponent,
     ABMEventsComponent,
-    FooterComponent,
     RecoverPassordComponent,
     ConfirmUserComponent,
     DenyRecoverComponent,

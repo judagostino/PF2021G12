@@ -3,28 +3,30 @@ body {
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
-
+    
 }
 
 .container-fluid {
     margin-top: 40px;
     margin-bottom: 40px; 
+    border-radius: 25px;
     
 
     
 } 
     
 .sombra {
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
 }
 
 .info {
-    background-image: url('/assets/image/1930808.jpg');
+    background-image: url('/assets/image/fondo_loguin.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
     padding: 150px 30px;
+    
 }
 
 
@@ -50,9 +52,8 @@ body {
 
 
 .form {
-    padding: 20px 80px;
+    padding: 50px 80px;
     text-align: center;
-    background-color: #f1f1f1;
 }   
 
 .form h2 {

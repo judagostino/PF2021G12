@@ -1,9 +1,9 @@
 <div class="mt-3 w-100 container-search">
-    <div class="container-fluid">
+    <div class="container-fluid"style="border-radius: 80px;">
 
         <div class="row">
-            <div class="col-12">
-                <mat-card>
+            <div class="col-12" >
+                <mat-card style="border-radius: 25px;">
                     <mat-form-field class="w-100" appearance="fill">
                       <mat-label>Buscar</mat-label>
                       <input [(ngModel)]="searchText" matInput (keyup.enter)="btn_search()">
@@ -25,7 +25,7 @@
 
 
         <div *ngIf="notResoult" class=" mt-3 mb-3">
-            <h3>La búsqueda no obtuvo ningún resultado</h3>
+            <h3 style="font-family: 'Nunito',sans-serif;">La búsqueda no obtuvo ningún resultado</h3>
         </div>
 
         <div *ngFor="let result of resultsSearch;" class=" mt-3 mb-3">

@@ -4,8 +4,8 @@ import { AuthService, ConfigService } from 'src/app/services';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  templateUrl: './navbar.component copy.html',
+  styleUrls: ['./navbar.component copy.scss']
 })
 export class NavbarComponent implements OnInit {
   value: string = '';
