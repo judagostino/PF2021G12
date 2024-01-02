@@ -1,0 +1,10 @@
+2023-12-09 18:35:25.1720 - ERROR - 8000000c-0002-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Login failed for user 'IIS APPPOOL\ComunidadParImparApi'.
+     Exception: Login failed for user 'IIS APPPOOL\ComunidadParImparApi'.
+     StackTrace:    at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 208
+   at ParImparApi.Services.AuthService.ValidateLocalCredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 214
+   at ParImparApi.Services.AuthService.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\AuthService.cs:line 36
+   at ParImparApi.Controllers.AuthController.CredentialsLogin(CredentialsLoginRequestDTO credentialsLoginRequest) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\AuthController.cs:line 46
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+

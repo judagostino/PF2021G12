@@ -1,0 +1,15 @@
+2024-01-02 17:53:59.8903 - INFO - 80000015-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-01-02 17:54:03.4547 - INFO - 80000016-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-01-02 17:54:18.2779 - INFO - 80000017-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"gaston39174!","KeepLoggedIn":true}
+

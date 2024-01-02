@@ -1,3 +1,28 @@
+/** SE CREO la tabla MailExecutions **/
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.MailExecutions
+	(
+	Send varchar(500) NULL,
+	LastExecution datetime NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.MailExecutions SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
 /** SE EDITO LA TABLA DenyObject **/
 /* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
 BEGIN TRANSACTION
@@ -311,7 +336,7 @@ CREATE TABLE dbo.ContactXEvent
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.ContactXEvent ADD CONSTRAINT
-	PK_Table_1 PRIMARY KEY CLUSTERED 
+	PK_ContactXEvent PRIMARY KEY CLUSTERED 
 	(
 	ContactEventId
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -344,7 +369,7 @@ CREATE TABLE dbo.ContactXTypeImplairment
 	)  ON [PRIMARY]
 GO
 ALTER TABLE dbo.ContactXTypeImplairment ADD CONSTRAINT
-	PK_Table_1 PRIMARY KEY CLUSTERED 
+	PK_ContactXTypeImplairment PRIMARY KEY CLUSTERED 
 	(
 	ContactTypeImplairmentId
 	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -701,7 +726,7 @@ SELECT
 	LastName + ', ' + FirstName 'Name',
 	email,
 	ISNULL(Auditor, 'False') 'Auditor',
-	Trusted,
+	ISNULL(Trusted, 'False') 'Trusted',
 	Notifications,
 	DateBrirth,
 	ImageUrl
@@ -928,4 +953,688 @@ IF @ResultCode = 200
 						GETDATE()
 					)
 			END
+	END
+
+
+
+CREATE PROCEDURE [dbo].[ContactXTypeImplairment_Insert]
+(
+	@ContactId INT,
+	@Types AS VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+DECLARE @Types AS VARCHAR(MAX) = '1,2,3,4'
+*/
+
+SET @ResultCode = 200
+
+IF @Types IS NULL OR @Types = ''
+	BEGIN
+		SET @ResultCode = 5913
+	END
+	
+IF @ResultCode = 200 AND @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200
+	BEGIN
+
+		-- Insertar datos en la tabla ContactXTypeImplairment
+		INSERT INTO ContactXTypeImplairment (ContactId, DateEntered, TypeId)
+		SELECT @ContactId, GETDATE(), [value]
+		FROM STRING_SPLIT(@Types , ',')
+	END
+
+
+CREATE PROCEDURE [dbo].[ContactXTypeImplairment_Update]
+(
+	@ContactId INT,
+	@Types AS VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+DECLARE @Types AS VARCHAR(MAX) = '1,2,3,4'
+*/
+
+SET @ResultCode = 200
+
+IF @Types IS NULL OR @Types = ''
+	BEGIN
+		SET @ResultCode = 5913
+	END
+	
+IF @ResultCode = 200 AND @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200
+	BEGIN
+
+		IF (SELECT SELECT TOP 1 ContactTypeImplairmentId FROM ContactXTypeImplairment (NOLOCK) WHERE ContactId = @ContactId AND DateDelete IS NULL) IS NOT NULL
+			BEGIN
+				UPDATE ContactXTypeImplairment 
+				SET DateDelete = GETDATE()
+				WHERE ContactId = @ContactId AND DateDelete IS NULL
+			END
+
+		-- Insertar datos en la tabla ContactXTypeImplairment
+		INSERT INTO ContactXTypeImplairment (ContactId, DateEntered, TypeId)
+		SELECT @ContactId, GETDATE(), [value]
+		FROM STRING_SPLIT(@Types , ',')
+	END
+
+
+CREATE PROCEDURE [dbo].[ContactXTypeImplairment_Delete]
+(
+	@ContactId INT,
+	@ContactTypeImplairmentId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+DECLARE @ContactTypeImplairmentId AS INT = 1
+*/
+
+SET @ResultCode = 200
+
+IF @ContactTypeImplairmentId IS NULL
+	BEGIN
+		SET @ResultCode = 5913
+	END
+	
+IF @ResultCode = 200 AND @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200
+	BEGIN
+
+		IF (SELECT TOP 1 ContactTypeImplairmentId 
+			FROM ContactXTypeImplairment (NOLOCK)
+			WHERE ContactTypeImplairmentId = @ContactTypeImplairmentId  AND DateDelete IS NULL) IS NOT NULL
+			BEGIN
+				UPDATE ContactXTypeImplairment 
+				SET DateDelete = GETDATE()
+				WHERE ContactTypeImplairmentId = @ContactTypeImplairmentId  AND DateDelete IS NULL
+			END
+		  ELSE
+			BEGIN
+				SET @ResultCode = 404
+			END
+	END
+
+
+
+CREATE PROCEDURE [dbo].[ContactXTypeImplairment_GetAll]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+	
+IF @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		SELECT ContactTypeImplairmentId, ContactId, TypeId, DateEntered
+		FROM ContactXTypeImplairment (NOLOCK) 
+		WHERE ContactId = @ContactId AND DateDelete IS NULL
+	END
+
+
+
+CREATE PROCEDURE [dbo].[ContactXEvent_GetAll]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+	
+IF @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		SELECT ContactEventId, ContactId, EventId, DateEntered  
+		FROM ContactXEvent (NOLOCK) 
+		WHERE ContactId = @ContactId AND DateCancellation IS NULL
+	END
+
+
+CREATE PROCEDURE [dbo].[ContactXEvent_Canllation]
+(
+	@ContactId INT,
+	@EventId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @EventId INT = 2
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+	
+IF @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200 AND @EventId IS NULL
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+-- Verificar si la cancelación se realiza con al menos 48 horas de antelación
+IF @ResultCode = 200 AND (DATEDIFF(HOUR, GETDATE(), (SELECT TOP 1 StartDate FROM [Events] (NOLOCK) WHERE EventId = @EventId)) < 48)
+	BEGIN
+		SET @ResultCode = 5916
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		IF (
+		SELECT ContactEventId 
+		FROM ContactXEvent (NOLOCK)
+		WHERE ContactId = @ContactId AND EventId = @EventId AND DateCancellation IS NULL ) IS NOT NULL
+		BEGIN
+			UPDATE ContactXEvent 
+			SET DateCancellation = GETDATE() 
+			WHERE 
+				ContactId = @ContactId 
+				AND EventId = @EventId
+				AND DateCancellation IS NULL
+		END
+	  ELSE 
+		BEGIN
+			SET @ResultCode = 404
+		END
+
+	END
+
+
+
+CREATE PROCEDURE [dbo].[ContactXEvent_GetById]
+(
+	@ContactId INT,
+	@EventId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @EventId INT = 2
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+	
+IF @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200 AND @EventId IS NULL
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		SELECT ContactEventId, ContactId, EventId, DateEntered 
+		FROM ContactXEvent (NOLOCK)
+		WHERE ContactId = @ContactId AND EventId = @EventId AND DateCancellation IS NULL
+	
+		IF @@ROWCOUNT = 0
+			BEGIN
+				SET @ResultCode = 404
+			END
+
+	END
+
+
+
+CREATE PROCEDURE [dbo].[ContactXEvent_Insert]
+(
+	@ContactId INT,
+	@EventId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @EventId INT = 2
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+	
+IF @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200 AND @EventId IS NULL
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+-- Verificar si la cancelación se realiza con al menos 48 horas de antelación
+IF @ResultCode = 200 AND (DATEDIFF(HOUR, GETDATE(), (SELECT TOP 1 StartDate FROM [Events] (NOLOCK) WHERE EventId = @EventId)) < 48)
+	BEGIN
+		SET @ResultCode = 5916
+	END
+
+-- Verificar si El evento esta activo
+IF @ResultCode = 200 AND (SELECT TOP 1 EventId FROM [Events] (NOLOCK) WHERE EventId = @EventId AND StateId = 2) IS NOT NULL
+	BEGIN
+		SET @ResultCode = 5918
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		IF (
+			SELECT ContactEventId 
+			FROM ContactXEvent (NOLOCK)
+			WHERE ContactId = @ContactId AND EventId = @EventId AND DateCancellation IS NULL ) IS NULL
+			BEGIN
+				INSERT INTO ContactXEvent (ContactId, EventId, DateEntered) 
+				VALUES (@ContactId, @EventId, GETDATE())
+			END
+		  ELSE 
+			BEGIN 
+				SET @ResultCode = 5917
+			END
+	END
+
+
+CREATE PROCEDURE [dbo].[Contact_TrustedUntrusted]
+(
+	@ContactId INT,
+	@ContactLoggedId INT,
+	@Trusted BIT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+DECLARE @ContactLoggedId INT = 1
+DECLARE @Trusted BIT = 'True'
+*/
+
+IF (
+	SELECT TOP 1 
+		C.ContactId 
+	FROM Contacts (NOLOCK) C 
+	WHERE C.ContactId = @ContactLoggedId AND ISNULL(C.Auditor, 'False') <> 'False') IS NOT NULL
+	BEGIN
+		IF (
+			SELECT TOP 1 
+				C.ContactId 
+			FROM Contacts (NOLOCK) C 
+			WHERE C.ContactId = @ContactId) IS NOT NULL
+			BEGIN
+				UPDATE Contacts 
+				SET Trusted = @Trusted 
+				WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+				
+				IF @@ROWCOUNT = 0
+					BEGIN 
+						SET @ResultCode = 404
+					END
+				  ELSE
+					BEGIN 
+						SET @ResultCode = 200
+					END
+			END
+		  ELSE 
+			BEGIN
+				SET @ResultCode = 404
+			END
+	END
+  ELSE 
+	BEGIN
+		SET @ResultCode = 401
+	END
+
+
+
+
+CREATE PROCEDURE [dbo].[Contact_GetAll]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		SET @ResultCode = 200
+
+		SELECT
+			ContactId,
+			FirstName,
+			LastName,
+			UserName,
+			LastName + ', ' + FirstName 'Name',
+			email,
+			ISNULL(Auditor, 'False') 'Auditor',
+			ISNULL(Trusted, 'False') 'Trusted',
+			Notifications,
+			DateBrirth,
+			ImageUrl
+		FROM Contacts (NOLOCK) 
+		WHERE ISNULL(Confirm, 'False') <> 'False'
+
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+
+
+CREATE PROCEDURE [dbo].[Contact_GetByIdInformation]
+(
+	@ContactLoggedId INT,
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+-- para trest
+DECLARE @ContactLoggedId INT = 1
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		SET @ResultCode = 404 
+		
+		SELECT
+			ContactId,
+			FirstName,
+			LastName,
+			UserName,
+			LastName + ', ' + FirstName 'Name',
+			email,
+			ISNULL(Auditor, 'False') 'Auditor',
+			ISNULL(Trusted, 'False') 'Trusted',
+			Notifications,
+			DateBrirth,
+			ImageUrl
+		FROM Contacts (NOLOCK) 
+		WHERE 
+			ContactId = @ContactId
+			AND
+			ISNULL(Confirm, 'False') <> 'False'
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+
+
+	
+CREATE PROCEDURE [dbo].[Contact_UpdateAuditor]
+(
+	@ContactId INT,
+	@ContactLoggedId INT,
+	@Auditor BIT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+DECLARE @ContactLoggedId INT = 1
+DECLARE @Auditor BIT = 'True'
+*/
+
+IF (
+	SELECT TOP 1 
+		C.ContactId 
+	FROM Contacts (NOLOCK) C 
+	WHERE C.ContactId = @ContactLoggedId AND ISNULL(C.Auditor, 'False') <> 'False') IS NOT NULL
+	BEGIN
+		IF (
+			SELECT TOP 1 
+				C.ContactId 
+			FROM Contacts (NOLOCK) C 
+			WHERE C.ContactId = @ContactId) IS NOT NULL
+			BEGIN
+				UPDATE Contacts 
+				SET Auditor = @Auditor 
+				WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+				
+				IF @@ROWCOUNT = 0
+					BEGIN 
+						SET @ResultCode = 404 
+					END
+				  ELSE
+					BEGIN 
+						SET @ResultCode = 200
+					END
+			END
+		  ELSE 
+			BEGIN
+				SET @ResultCode = 404
+			END
+	END
+  ELSE 
+	BEGIN
+		SET @ResultCode = 401
+	END
+
+
+
+CREATE PROCEDURE [dbo].[Notify_NewEventsAndPosts]
+(
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+--para test
+DECLARE @ResultCode INT
+*/
+-- Declaro variables necesarias
+DECLARE @LimitDate DATETIME
+DECLARE @Now DATETIME = GETDATE()
+DECLARE @HasContacts BIT = 'False'
+DECLARE @HasEvents BIT = 'False'
+DECLARE @HasPosts BIT = 'False'
+
+CREATE TABLE #ContactNotification (
+	ContactId INT, 
+	FirstName VARCHAR(100), 
+	Email VARCHAR(100)
+)
+
+
+-- Busco la fecha de la ultima Ejecucion
+SELECT @LimitDate = LastExecution FROM MailExecutions WHERE [Send] = 'SendNotificy'
+
+-- Busco los contactos que desean ser notificados
+INSERT INTO #ContactNotification
+SELECT ContactId, FirstName, Email 
+FROM Contacts (NOLOCK)
+WHERE ISNULL(Confirm, 'False') <> 'False' AND ISNULL(Notifications, 'true') <> 'False'
+
+IF (SELECT TOP 1 ContactId FROM #ContactNotification) IS NOT NULL 
+	BEGIN
+		SELECT * FROM #ContactNotification
+		SET @HasContacts = 'True'
+	END
+
+IF @HasContacts = 'True'
+	BEGIN
+		-- Busco los nuevos eventos a notificar de la ultima que no se incluyeron en la ultima notificacion y que esten aprobados.
+		SELECT CN.ContactId, CE.EventId, CE.ContactEventId, E.Title, E.StartDate, E.EndDate
+		FROM ContactXEvent (NOLOCK) CE
+			LEFT JOIN [Events] (NOLOCK) E 
+			ON E.EventId = CE.EventId
+			INNER JOIN #ContactNotification CN
+			ON CE.ContactId = CN.ContactId
+		WHERE 
+			DateCancellation IS NULL
+			AND E.StateId = 2
+			AND (
+					@LimitDate IS NULL
+					OR 
+					(
+						@LimitDate IS NOT NULL
+						AND
+						(E.DateModify IS NOT NULL AND E.DateModify > @LimitDate AND E.DateModify <= @Now)
+						OR 
+						(E.DateModify IS NULL AND E.DateEntered > @LimitDate AND E.DateEntered <= @Now)
+					)
+				)
+		ORDER BY CN.ContactId
+
+		IF @@ROWCOUNT > 0
+			BEGIN
+				SET @hasEvents = 'True'
+			END
+
+
+		SELECT CN.ContactId,  P.PostId, P.Title
+		FROM Posts (NOLOCK) P
+			LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+			ON P.PostId = PTI.PostId
+			INNER JOIN ContactXTypeImplairment (NOLOCK) CTI
+			ON PTI.TypeId = CTI.TypeId
+			INNER JOIN #ContactNotification CN
+			ON CTI.ContactId = CN.ContactId
+		WHERE 
+			P.StateId = 2
+			AND P.ContactAudit IS NOT NULL
+			AND (
+					@LimitDate IS NULL
+					OR 
+					(
+						@LimitDate IS NOT NULL
+						AND
+						(P.DateModify IS NOT NULL AND P.DateModify > @LimitDate AND P.DateModify <= @Now)
+						OR 
+						(P.DateModify IS NULL AND P.DateEntered > @LimitDate AND P.DateEntered <= @Now)
+					)
+				)
+		GROUP BY CN.ContactId, P.PostId, P.Title
+		ORDER BY CN.ContactId
+
+		IF @@ROWCOUNT > 0
+			BEGIN
+				SET @HasPosts = 'True'
+			END
+	END
+
+-- Se actualiza la fecha de Guardado.
+IF @LimitDate IS NULL
+	BEGIN
+		INSERT INTO MailExecutions ([Send], LastExecution) VALUES ('SendNotificy', @Now)
+	END
+  ELSE 
+	BEGIN
+		UPDATE MailExecutions SET LastExecution = @Now WHERE [Send] = 'SendNotificy'
+	END
+
+-- Se limpia la tabla temporal
+DROP TABLE #ContactNotification
+
+IF @HasContacts = 'True' AND (@HasEvents = 'True' OR @HasPosts = 'True')
+	BEGIN
+		SET @ResultCode = 200
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 404
 	END

@@ -42,6 +42,10 @@ namespace ParImparApi
             services.AddScoped<PostsService>();
             services.AddScoped<AuxiliarService>();
             services.AddScoped<ActionLogService>();
+            services.AddScoped<ContactEventsService>();
+            services.AddScoped<ContactTypeImplairmentService>();
+            services.AddScoped<NotifyService>();
+
 
             services.AddControllers();
 
