@@ -420,7 +420,46 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
-        #region [GetContactId]
+        #region [GetContactId_Information]
+        // POST: api/v1/Contact/ContactId/Information
+        [HttpGet("{ContactId}/Information")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> GetByIdInformation(int contactId)
+        {
+            try
+            {
+                ApiResponse response = await _contactsService.GetByIdInformation(contactId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                    {
+                        return Ok(((ApiSuccessResponse)response.Data));
+                    }
+
+                    case CustomStatusCodes.NotFound:
+                    {
+                        return NotFound();
+                    }
+                    case CustomStatusCodes.unauthorizedAction:
+                    {
+                        return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                    }
+                    default:
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                    }
+                }
+
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
+            }
+        }
+        #endregion
+
+        #region [GetContactId_myInfo]
         // GET: api/v1/Contact/myInfo
         [HttpGet("myInfo")]
         [Authorize("AccessToken")]
@@ -498,6 +537,169 @@ namespace ParImparApi.Controllers
             catch (Exception exc)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contact));
+            }
+        }
+        #endregion
+
+        #region [Untrusted]
+        // PUT: api/v1/Contact/ContactId/untrusted
+        [HttpPut("{ContactId}/untrusted")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> Untrusted(int contactId)
+        {
+            try
+            {
+                if (contactId <= 0)
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, contactId));
+                }
+
+                ApiResponse response = await _contactsService.TrustedAndUntrusted(contactId, false);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.unauthorizedAction:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contactId));
+            }
+        }
+        #endregion
+
+        #region [Trusted]
+        // PUT: api/v1/Contact/ContactId/trusted
+        [HttpPut("{ContactId}/trusted")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> Trusted(int contactId)
+        {
+            try
+            {
+                if (contactId <= 0)
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, contactId));
+                }
+
+                ApiResponse response = await _contactsService.TrustedAndUntrusted(contactId, true);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.unauthorizedAction:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contactId));
+            }
+        }
+        #endregion
+
+        #region [Auditor]
+        // PUT: api/v1/Contact/ContactId/Auditor
+        [HttpPut("{ContactId}/Auditor")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> Auditor(int contactId, [FromBody] ContactDTO contact)
+        {
+            try
+            {
+                if (contactId <= 0)
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, contact));
+                }
+
+                ApiResponse response = await _contactsService.Auditor(contactId, contact);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.unauthorizedAction:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contact));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contact));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contact));
+            }
+        }
+        #endregion
+
+        #region [GetAll]
+        // PUT: api/v1/Contact/GetAll
+        [HttpGet("GetAll")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                ApiResponse response = await _contactsService.GetAll();
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(response.Data);
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.unauthorizedAction:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
             }
         }
         #endregion

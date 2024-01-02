@@ -1,5 +1,0 @@
-2021-11-08 18:56:31.4626 - INFO - 80000156-0003-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Events/12/Deny (ver: ) - ::1
-     Message: NotFound
-     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0MGQ4OTYzZS1iNGI0LTRkYmUtYTRhZi0wNTIyZjU0M2U1ZGIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjM2NDA4MTcwLCJleHAiOjE2MzY0MDkwNzAsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.4_6mxHFkFaAuXkWa3sViCqB_TJokFDR81dAmhdhjExI", 
-     Body: 12
-
