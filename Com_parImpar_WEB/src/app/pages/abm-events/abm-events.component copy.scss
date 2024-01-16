@@ -1,0 +1,191 @@
+body {
+  background-color: #FFFFFF; 
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  font-family: 'Nunito', sans-serif;
+  
+}
+
+#central {
+  margin-top: 40px;
+  margin-bottom: 40px; 
+  border-radius: 25px;
+} 
+
+.titulo {
+  color: #1995AD;
+  font-size: 25px;
+  font-family: 'Tilt Neon', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.row label {
+  color:black;
+  font-size: 15px;
+  font-family: 'Tilt Neon', sans-serif;
+  text-align: center;
+  margin-right: 100px;
+}
+
+.form {
+  padding: 50px 80px;
+  text-align: center;
+}  
+
+
+
+.box  {
+  outline: none;
+  border-color: #1995AD;
+  border-width: 0px 0px 0px 5px;
+  border-style: solid;
+  padding: 15px 35px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.box2  {
+  outline: none;
+  border-color: #1995AD;
+  border-width: 0px 0px 0px 5px;
+  border-style: solid;
+  padding: 15px 35px;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 245px; 
+  font-family: 'Nunito',sans-serif;  
+}
+
+.submit {
+  font-family:'Tilt Neon', sans-serif;
+  font-size: 100%;
+  color:#FFFFFF;
+  width: 80px;
+  height: 30px;
+  border: none;
+  margin-left: 35px;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  background-color: #1995AD;
+  margin-top: 30px;
+} 
+
+
+
+.archivo {
+  font-family:'Tilt Neon', sans-serif;
+  font-size: 100%;
+  color:black;
+  width: 80px;
+  height: 30px;
+  border: none;
+  margin-left: 35px;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  margin-top: 30px;
+  margin-right: 25px;
+  border-color: #1995AD;
+}
+
+
+#event-form {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 30px;
+  padding-bottom: 0px;
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    
+    box-sizing: border-box;
+    width: 950px;
+    height: 700px;
+  
+    border-radius: 25px;
+    margin-left: 200px;
+    margin-top: 28px;
+  }
+
+
+  #event-table {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    padding-bottom: 0px;
+      -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      
+      border-radius: 3px 3px 3px 3px;
+      -moz-border-radius: 3px 3px 3px 3px;
+      -webkit-border-radius: 3px 3px 3px 3px;
+      
+      box-sizing: border-box;
+      width: 950px;
+      height: 200px;
+    
+      border-radius: 25px;
+      margin-left: 200px;
+      margin-top: 28px;
+    }
+
+    /* Estilos para el icono y la celda de acciones */
+.action-cell {
+  width: 40px;
+  text-align: center;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para la celda de estado */
+.status-cell {
+  text-align: center;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Estilo específico para el estado "Autorizado" */
+.status-badge[data-state="2"] {
+  background-color: green;
+}
+
+/* Estilo específico para el estado "Rechazado" */
+.status-badge[data-state="3"] {
+  background-color: red;
+}
+
+/* Estilo específico para el estado "En espera" */
+.status-badge[data-state="1"],
+.status-badge[data-state="null"] {
+  background-color: gray;
+}
+
+.table-striped>tbody>tr>td,
+.table-striped>thead>tr>th {
+  border-bottom: 2px solid #1995ad; 
+  font-family: 'Nunito', sans-serif;;
+}
+

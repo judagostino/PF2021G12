@@ -9,8 +9,8 @@ import { EventsService, PostsService } from 'src/app/services';
 
 @Component({
   selector: 'app-object-table',
-  templateUrl: './object-table.component.html',
-  styleUrls: ['./object-table.component.scss']
+  templateUrl: './object-table.component-copy.html',
+  styleUrls: ['./object-table.component-copy.scss']
 })
 export class ObjectTableComponent implements OnInit {
   key = '';

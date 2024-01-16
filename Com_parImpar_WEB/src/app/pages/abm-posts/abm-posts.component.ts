@@ -7,8 +7,8 @@ import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-posts',
-  templateUrl: './abm-posts.component.html',
-  styleUrls: ['./abm-posts.component.scss']
+  templateUrl: './abm-posts.component copy.html',
+  styleUrls: ['./abm-posts.component copy.scss']
 })
 export class ABMPostsComponent implements OnInit {
   form: FormGroup;
@@ -16,6 +16,7 @@ export class ABMPostsComponent implements OnInit {
   uploadForm: FormGroup;  
   imageAux = null;
   types: TypeImpairment[] = [];
+
 
   constructor(
     private formBuilder: FormBuilder, 

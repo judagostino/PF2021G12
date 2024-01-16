@@ -1,5 +1,4 @@
-
-body {
+  body {
     background-color: #FFFFFF; 
     display: grid;
     min-height: 100vh;
@@ -14,7 +13,7 @@ body {
     border-radius: 25px;
   } 
   
-  .titulo-top {
+  .titulo {
     color: #1995AD;
     font-size: 25px;
     font-family: 'Tilt Neon', sans-serif;
@@ -23,7 +22,7 @@ body {
   }
   
   
-  .top-div {
+  #container {
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 30px;
@@ -38,15 +37,54 @@ body {
       
       box-sizing: border-box;
       width: 950px;
-      height: 650px;
+      height: 1700px;
     
       border-radius: 25px;
-      margin-left: 90px;
+      margin-left: 200px;
       margin-top: 28px;
     }
+  
+   
+  .action-cell {
+    width: 40px;
+    text-align: center;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .status-cell {
+    text-align: center;
+  }
+  
+  .status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .status-badge[data-state="2"] {
+    background-color: green;
+  }
+  
+  .status-badge[data-state="3"] {
+    background-color: red;
+  }
+  
+  .status-badge[data-state="1"],
+  .status-badge[data-state="null"] {
+    background-color: gray;
+  }
   
   .table-striped>tbody>tr>td,
   .table-striped>thead>tr>th {
     border-bottom: 2px solid #1995ad; 
     font-family: 'Nunito', sans-serif;;
   } 
+  
+  
+  

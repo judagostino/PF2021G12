@@ -7,8 +7,8 @@ import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-events',
-  templateUrl: './abm-events.component.html',
-  styleUrls: ['./abm-events.component.scss']
+  templateUrl: './abm-events.component copy.html',
+  styleUrls: ['./abm-events.component copy.scss']
 })
 export class ABMEventsComponent implements OnInit {
   form: FormGroup;
