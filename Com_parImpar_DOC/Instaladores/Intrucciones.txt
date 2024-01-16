@@ -1,0 +1,101 @@
+Instalación del IIS
+https://jotelulu.com/soporte/tutoriales/como-instalar-iis-en-windows-10/
+
+Despues de completar la isntalacion: 
+
+* Ingresar a "C:\Windows\System32\drivers\etc"
+* Abrir "hosts" con un editor de texto
+* Incertar un espacio y guardar (es para valdiar que tengamos permiso de administrador antes de realziar los cambios)
+* Ingresar las siguientes lineas al final del archivo:
+
+	# API
+	127.0.0.1	comunidad-parimpar-api.com.ar
+
+	# Site
+	127.0.0.1	comunidad-parimpar.com.ar
+
+* Guardar los cambios.
+* Para probar la configuracion ejecutamos el comando "ping comunidad-parimpar-api.com.ar" en una consola de comandos (CMD)
+En caso de que no haya resolucion de dominos debemos limpiar la cache del DNS y volver a intentarlo (comando: "ipconfig /flushdns").
+
+* Abrir la interfaz del IIS e ir a los sitios
+* Acemos click derecho sobre la carpetas "Sitios" y le damos a la opcion "Agregar sitio web", se debe hacer dos veces, 
+una para la api y otro para el sitio angular, los campos se llenan de la siguiente manera para cada uno:
+
+	Nombre del sitio: ComunidadParImparSite
+	Ruta de acceso fisica: (ruta de la carpeta publciar dentro del Github) ej: "C:\**\PF2021G12\Com_parImpar_API\Publico"
+	En enlace:
+		Tipo: Http (direccion de IP y puerto dejamos los por defecto)
+		Nombre del Host: "comunidad-parimpar.com.ar"
+
+	Nombre del sitio: ComunidadParImparApi
+	Ruta de acceso fisica: (ruta de la carpeta publciar dentro del Github) ej: "C:\**\PF2021G12\Com_parImpar_WEB\Publico"
+	En enlace:
+		Tipo: Http (direccion de IP y puerto dejamos los por defecto)
+		Nombre del Host: "comunidad-parimpar-api.com.ar"
+
+
+* Agregar el usuario "IUSR" (o el usuario que utiliza su IIS en su autenticacion) a los que tienene permiso de acceso a la carpeta
+(en el caso de la Api necesita permiso de escritura a demas de lectura).
+* Ingresar a traves de un navegardor a las sigueitnes paginas, deveria verse e lmensaje
+	http://comunidad-parimpar.com.ar/index.html
+	http://comunidad-parimpar-api.com.ar/index.html 
+	(puede que no funcione si ya existen elementos en la carpeta, en cuyo caso al terminar la configuracion probar con 
+	http://comunidad-parimpar-api.com.ar/api/v1/health deveria devolver un sussess)
+
+* Dentro de la carpeta "\PF2021G12\Com_parImpar_API\Publico" crear un archivo llamado "appsettings.json"
+* Abrirlo con un editor de texto y pegar lo siguiente Modificando los #### por su cadena de conexcion y direccion de 
+su carpeta del proyecto resdpectivamente. Tener en cuenta que se necesita darle un usuario y contraseña para que la API la utilice 
+y con ello poder acceder a las base, aqui hay un video que explica como hacerlo: https://www.youtube.com/watch?v=odl2nSbH_4E&t=340s, 
+El usuario que yo cree para mi caso es el siguiente Initial Catalog=ParImpar;User Id=user_api; Password= gdfgFr2f#;, el cual solo tiene 
+permiso de acceso a la base de ParImpar)
+
+{
+  "ConnectionStrings": {
+    "defaultConnection": "####"
+  },
+  "AppSettings": {
+    "version": "1.0.0"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": [
+    "*"
+  ],
+  "GlobalVariables": {
+    "Host": "http://comunidad-parimpar-api.com.ar",
+    "SaveImage": "C:\\####\\PF2021G12\\Com_parImpar_WEB\\src\\assets\\image",
+    "UrlImage": "/assets/image"
+  },
+
+  "AuthSettings": {
+    "Default": {
+      "AccessToken": {
+        "SigningKey": "cwnefieb23498vdsnl!4331",
+        "Issuer": "ParImpar",
+        "Audience": "ParImpar",
+        "ExpirationTimeInSeconds": 900
+      },
+      "RefreshToken": {
+        "SigningKey": "23456dsf3dsbgrty56hgyj67!!gvdr",
+        "Issuer": "ParImparRefresh",
+        "Audience": "ParImparRefresh",
+        "ExpirationTimeInSeconds": 86400,
+        "KeepInStorage": true
+      },
+      "InternalSecurity": {
+        "Notificy": "1yugZxkwA0omc8uQR7QvbVWLnXgxTYnDEIc8eVSPJ800jUreiaXzUl5Co7hN0O6eDdJ2Y5KtARIg9Jv7wpEaZaNWmjU9vvfLOUzg"
+      }
+    }
+  }
+}
+
+* Guardar los cambios
+* Ya deberia ser posible consumir las apis desde Postman o desde la pagina web de angular.
+
+

@@ -185,6 +185,7 @@ namespace ParImparApi.Services
 
                         #region [SP Parameters]
                         cmd.Parameters.Add(new SqlParameter("@Email", credentialsLoginRequest.User));
+                        string pass = Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt);
                         cmd.Parameters.Add(new SqlParameter("@UserPassword", Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt)));
                         #endregion
 

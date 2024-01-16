@@ -30,8 +30,9 @@ namespace ParImparApi.Common
         [Description("Type is required")] TypeRequired = 5012,
         [Description("Description is required")] DescriptionRequired = 5013,
         [Description("Text is required")] TextRequired = 5014,
+        [Description("User ID is required")] ContactIdRequired = 5015,
 
-        
+
         // Item not exists
         [Description("Item not found")] ItemNotFound = 5100,
 
@@ -53,6 +54,9 @@ namespace ParImparApi.Common
         [Description("Invalid Type")] InvalidType = 5913,
         [Description("File is empty")] FileIsEmpty = 5914,
         [Description("Object key error")] ObjectKeyError = 5915,
+        [Description("Invalid Datetime Event (less than 48 hours)")] InvalidDateEvent = 5916,
+        [Description("Exist Contact Event")] ExistContactEvent = 5917,
+        [Description("Invalid Event")] InvalidEvent = 5918,
     }
 
     internal static class Extensions

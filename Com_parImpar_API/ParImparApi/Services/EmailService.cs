@@ -3,8 +3,10 @@ using Microsoft.Extensions.Configuration;
 using ParImparApi.Common;
 using ParImparApi.DTO;
 using System;
+using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ParImparApi.Services
 {
@@ -20,6 +22,97 @@ namespace ParImparApi.Services
             _connectionString = configuration.GetConnectionString("defaultConnection");
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
+
+        public async Task<ApiResponse> SendEmailNotifyAsync(ApiResponse response)
+        {
+             List<ContactDTO> contacts = (List<ContactDTO>)response.Data;
+            List<Task> emailTasks = new List<Task>();
+
+            string subjectTemplate = "¡Hey[NameUser]! ¡Te Contamos las Últimas Novedades en Comunidad ParImpar! 🚀";
+            string messageTemplate = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>Comunidad ParImpar</title></head><body style=\"padding: 0px; margin: 20px; align-content: center; border: 1px solid black; background-color: #eeeeee;\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #dee3ff;\"><tr><td align=\"left\" style=\"padding-left: 20px; padding-right: 20px; padding-top: 10px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"15\" style=\"font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 17px;\"><tr><td align=\"left\">¡Hola [NameUser]!</td></tr><tr><td align=\"left\">¿Cómo estás? ¡Esperamos que estés teniendo un día genial! ☀️ Nosotros estamos emocionados de contarte las últimas novedades que ocurrieron por aquí.</td></tr>[PostsContainer][EventsContainer]<tr><td align=\"left\" style=\"padding-top: 10px\">Gracias por ser parte de la familia Comunidad ParImpar. ¡Que tengas un día tan increíble!</td></tr><tr><td align=\"left\" style=\"padding-top: 30px; padding-bottom: 15px;\">Con cariño,<br>El Equipo de  Comunidad ParImpar 🚀✨</td></tr></table></td></tr></table></body></html>";
+            string postsTemplate = "<tr><td align=\"left\" ><div style=\"color: #2a41c2; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 24px;\">📚 Nuevos Posts que pueden interesarte:</div><div style=\"font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 17px; padding-bottom: 15px; padding-top: 8px;\">Sabemos que te pueden gustar muchos temas, y aquí tienes algunos de los nuevos Post que han publicado y que pueden llamarte la atención. ¡Échales un vistazo!</div><div style=\"padding-left: 25px; display: inline-grid;\">[PostList]</div></td></tr>";
+            string postTemplate = "<div style=\"display: inline-flex;\"><div style=\"margin-right: 15px; color: #2a41c2;\">●</div><a href=\"[PostURL]\" style=\"color: #7b89db; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 20px;\" target=\"_blank\">[PostTitle]</a></div>";
+            string eventsTemplate = "<tr><td align=\"left\" ><div style=\"color: #2a41c2; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 24px;\">🎉 Cambios en tus Eventos:</div><div style=\"font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 17px; padding-bottom: 15px; padding-top: 8px;\">¿Recuerdas esos eventos asombrosos que marcaste en tu calendario? Pues bien, han habido algunos cambios emocionantes que pensamos que te gustaría saber</div><div style=\"padding-left: 25px; display: inline-grid;\">[EventList]</div></td></tr>";
+            string eventTemplate = "<div style=\"display: inline-flex;\"><div style=\"margin-right: 15px; color: #2a41c2;\">●</div><a href=\"[EventURL]\" style=\"color: #7b89db; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 20px;\" target=\"_blank\">[EventTitle]</a></div>";
+
+            for (int i = 0; i < contacts.Count; i++) {
+                ContactDTO contact = contacts[i];
+                if ((contact.Posts != null && contact.Posts.Count > 0) || (contact.Events != null && contact.Events.Count > 0)) {
+                    string subject = subjectTemplate;
+                    string message = messageTemplate;
+                    string posts = postsTemplate;
+                    string evetns = eventsTemplate;
+                    string host = _configuration["GlobalVariables:Host"];
+
+                    if (contact.FirstName != null && !contact.FirstName.Equals(""))
+                    {
+                        subject = subject.Replace("[NameUser]",  " " + contact.FirstName);
+                        message = message.Replace("[NameUser]", " " + contact.FirstName);
+                    } else
+                    {
+                        subject = subject.Replace("[NameUser]", "");
+                        message = message.Replace("[NameUser]", "");
+                    }
+
+                    // Hay Posts
+                    if (contact.Posts != null && contact.Posts.Count > 0)
+                    {
+                        string postsStrings = "";
+                        for (int j = 0; j < contact.Posts.Count; j++)
+                        {
+                            string postStrings = postTemplate;
+
+                            PostsDTO post = contact.Posts[j];
+
+                            postStrings = postStrings.Replace("[PostURL]", host + "/posts-info/" + post.Id);
+                            postStrings = postStrings.Replace("[PostTitle]", post.Title);
+
+                            postsStrings = postsStrings + postStrings;
+                        }
+                        posts = posts.Replace("[PostList]", postsStrings);
+
+                        message = message.Replace("[PostsContainer]", posts);
+                    } else
+                    {
+                        message = message.Replace("[PostsContainer]", "");
+                    }
+
+                    // Hay eventos
+                    if (contact.Events != null && contact.Events.Count > 0)
+                    {
+                        string EventsStrings = "";
+                        for (int j = 0; j < contact.Events.Count; j++)
+                        {
+                            string eventString = eventTemplate;
+                            EventRequestDTO eventRequest = contact.Events[j];
+
+                            eventString = eventString.Replace("[EventURL]", host + "/events-info/" + eventRequest.Id);
+                            eventString = eventString.Replace("[EventTitle]", eventRequest.Title + " (" + eventRequest.StartDate.ToString() + ")");
+
+                            EventsStrings = EventsStrings + eventString;
+                        }
+                        evetns = evetns.Replace("[EventList]", EventsStrings);
+
+                        message = message.Replace("[EventsContainer]", evetns);
+                    }
+                    else
+                    {
+                        message = message.Replace("[EventsContainer]", "");
+                    }
+
+                    emailTasks.Add(SendEmailAsync(subject, message, contact.Email));
+                }
+            }
+
+            await Task.WhenAll(emailTasks);
+            
+            return new ApiResponse()
+            {
+                Data = null,
+                Status = CustomStatusCodes.Success
+            };
+        }
+
 
         public async Task<ApiResponse> SendEmailConfirmAsync(RegisterUserDTO registerUser) {
             string subject = "Se ha creado tu usuario en Comunidad ParImpar";
@@ -71,15 +164,12 @@ namespace ParImparApi.Services
 
         private void sendMailAsync(MailMessage mailMessage)
         {
-            SmtpClient smtp = new SmtpClient();
-            smtp.UseDefaultCredentials = false;
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-
-            smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            //Solo si necesita usuario y clave
-            smtp.Credentials = new System.Net.NetworkCredential("comunidadparimpar@gmail.com", "eDejd1iJB2");
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587) { 
+                UseDefaultCredentials = false,
+                EnableSsl = true,
+                DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                Credentials = new System.Net.NetworkCredential("comunidadparimpar@gmail.com", "rtkdccokqveshpgc")
+            };
 
             smtp.Send(mailMessage);
         }

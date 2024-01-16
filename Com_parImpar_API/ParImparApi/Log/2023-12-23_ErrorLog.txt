@@ -1,0 +1,20 @@
+2023-12-23 21:46:03.8581 - ERROR - 80000013-0002-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Notify/NewEventsAndPosts (ver: ) - ::1
+     Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+     Exception: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+     StackTrace:    at ParImparApi.Services.EmailService.SendEmailAsync(String subject, String message, String Email) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EmailService.cs:line 160
+   at ParImparApi.Services.EmailService.SendEmailNotifyAsync(ApiResponse response) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EmailService.cs:line 106
+   at ParImparApi.Controllers.NotifyController.NewEventsAndPosts() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\NotifyController.cs:line 48
+     Headers: Authorization="Bearer 1yugZxkwA0omc8uQR7QvbVWLnXgxTYnDEIc8eVSPJ800jUreiaXzUl5Co7hN0O6eDdJ2Y5KtARIg9Jv7wpEaZaNWmjU9vvfLOUzg", 
+
+2023-12-23 22:03:09.9646 - ERROR - 80000005-0001-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Notify/NewEventsAndPosts (ver: ) - ::1
+     Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+     Exception: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+     StackTrace:    at ParImparApi.Services.EmailService.SendEmailAsync(String subject, String message, String Email) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EmailService.cs:line 160
+   at ParImparApi.Services.EmailService.SendEmailNotifyAsync(ApiResponse response) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EmailService.cs:line 106
+   at ParImparApi.Controllers.NotifyController.NewEventsAndPosts() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\NotifyController.cs:line 48
+     Headers: Authorization="Bearer 1yugZxkwA0omc8uQR7QvbVWLnXgxTYnDEIc8eVSPJ800jUreiaXzUl5Co7hN0O6eDdJ2Y5KtARIg9Jv7wpEaZaNWmjU9vvfLOUzg", 
+
+2023-12-23 22:14:12.1292 - INFO - 80000012-0007-ff00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Notify/NewEventsAndPosts (ver: ) - ::1
+     Message: NotFound
+     Headers: Authorization="Bearer 1yugZxkwA0omc8uQR7QvbVWLnXgxTYnDEIc8eVSPJ800jUreiaXzUl5Co7hN0O6eDdJ2Y5KtARIg9Jv7wpEaZaNWmjU9vvfLOUzg", 
+

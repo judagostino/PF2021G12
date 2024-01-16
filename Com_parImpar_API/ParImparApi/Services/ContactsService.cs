@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using ParImparApi.Common;
 using ParImparApi.DTO;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace ParImparApi.Services
 {
     public class ContactsService
     {
-        private readonly string _connectionString; 
+        private readonly string _connectionString;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IConfiguration _configuration;
 
@@ -73,6 +74,16 @@ namespace ParImparApi.Services
                         else
                         {
                             cmd.Parameters.Add(new SqlParameter("@DateBrirth", DBNull.Value));
+                        }
+
+                        if (registerUser.Notifications != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", registerUser.Notifications));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", DBNull.Value));
                         }
 
                         cmd.Parameters.Add(new SqlParameter()
@@ -582,14 +593,14 @@ namespace ParImparApi.Services
                                     contact.Name = reader["Name"].ToString();
                                 }
 
-                                if (reader["email"] != DBNull.Value)
+                                if (reader["Email"] != DBNull.Value)
                                 {
-                                    contact.Email = reader["email"].ToString();
+                                    contact.Email = reader["Email"].ToString();
                                 }
 
-                                if (reader["email"] != DBNull.Value)
+                                if (reader["Notifications"] != DBNull.Value)
                                 {
-                                    contact.Email = reader["email"].ToString();
+                                    contact.Notifications = (bool)reader["Notifications"];
                                 }
 
                                 if (contactId == null && reader["Auditor"] != DBNull.Value)
@@ -614,7 +625,7 @@ namespace ParImparApi.Services
                         if (contact.Id != null && contact.Id > 0)
                         {
                             return new ApiResponse() {
-                            Data = successResponse
+                                Data = successResponse
                             };
                         }
                         else
@@ -622,6 +633,140 @@ namespace ParImparApi.Services
                             return new ApiResponse()
                             {
                                 Status = CustomStatusCodes.NotFound
+                            };
+                        }
+
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> GetByIdInformation(int? contactId)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_GetByIdInformation", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactLoggedId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+
+                        if (contactId != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@ContactId", contactId));
+                        }
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+
+                        ContactDTO contact = new ContactDTO();
+
+                        ApiSuccessResponse successResponse = new ApiSuccessResponse()
+                        {
+                            Data = contact
+                        };
+
+                        #region [BD fireld mapping]
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                if (reader["ContactId"] != DBNull.Value)
+                                {
+                                    contact.Id = int.Parse(reader["ContactId"].ToString());
+                                }
+                                else
+                                {
+                                    contact.Id = null;
+                                }
+
+                                if (reader["FirstName"] != DBNull.Value)
+                                {
+                                    contact.FirstName = reader["FirstName"].ToString();
+                                }
+
+                                if (reader["LastName"] != DBNull.Value)
+                                {
+                                    contact.LastName = reader["LastName"].ToString();
+                                }
+
+                                if (reader["UserName"] != DBNull.Value)
+                                {
+                                    contact.UserName = reader["UserName"].ToString();
+                                }
+
+                                if (reader["Name"] != DBNull.Value)
+                                {
+                                    contact.Name = reader["Name"].ToString();
+                                }
+
+                                if (reader["Email"] != DBNull.Value)
+                                {
+                                    contact.Email = reader["Email"].ToString();
+                                }
+
+                                if (reader["Trusted"] != DBNull.Value)
+                                {
+                                    contact.Trusted = (bool)reader["Trusted"];
+                                }
+
+                                if (reader["Notifications"] != DBNull.Value)
+                                {
+                                    contact.Notifications = (bool)reader["Notifications"];
+                                }
+
+                                if (reader["Auditor"] != DBNull.Value)
+                                {
+                                    contact.Auditor = (bool)reader["Auditor"];
+                                }
+
+                                if (reader["DateBrirth"] != DBNull.Value)
+                                {
+                                    contact.DateBrirth = DateTime.Parse(reader["DateBrirth"].ToString());
+                                }
+
+                                if (reader["ImageUrl"] != DBNull.Value)
+                                {
+                                    contact.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+                            }
+                        }
+                        #endregion
+
+
+                        if (contact.Id != null && contact.Id > 0)
+                        {
+                            return new ApiResponse()
+                            {
+                                Data = successResponse
+                            };
+                        }
+                        else
+                        {
+                            return new ApiResponse()
+                            {
+                                Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
                             };
                         }
 
@@ -667,6 +812,26 @@ namespace ParImparApi.Services
                             cmd.Parameters.Add(new SqlParameter("@DateBrirth", DBNull.Value));
                         }
 
+                        if (contact.Trusted != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Trusted", contact.Trusted));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Trusted", DBNull.Value));
+                        }
+
+                        if (contact.Notifications != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", contact.Notifications));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Notifications", DBNull.Value));
+                        }
+
                         cmd.Parameters.Add(new SqlParameter()
                         {
                             ParameterName = "@ResultCode",
@@ -682,6 +847,240 @@ namespace ParImparApi.Services
                         {
                             Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
                         };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> GetAll()
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_GetAll", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+
+                        List<ContactDTO> contacts = new List<ContactDTO>();
+                        ContactDTO contact;
+
+                        ApiResponse successResponse = new ApiResponse()
+                        {
+                            Data = contacts,
+                            Status = CustomStatusCodes.Success
+                        };
+
+                        #region [BD fireld mapping]
+
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                contact = new ContactDTO();
+
+                                if (reader["ContactId"] != DBNull.Value)
+                                {
+                                    contact.Id = int.Parse(reader["ContactId"].ToString());
+                                }
+
+                                if (reader["FirstName"] != DBNull.Value)
+                                {
+                                    contact.FirstName = reader["FirstName"].ToString();
+                                }
+
+                                if (reader["LastName"] != DBNull.Value)
+                                {
+                                    contact.LastName = reader["LastName"].ToString();
+                                }
+
+                                if (reader["UserName"] != DBNull.Value)
+                                {
+                                    contact.UserName = reader["UserName"].ToString();
+                                }
+
+                                if (reader["Name"] != DBNull.Value)
+                                {
+                                    contact.Name = reader["Name"].ToString();
+                                }
+
+                                if (reader["Email"] != DBNull.Value)
+                                {
+                                    contact.Email = reader["Email"].ToString();
+                                }
+
+                                if (reader["DateBrirth"] != DBNull.Value)
+                                {
+                                    contact.DateBrirth = DateTime.Parse(reader["DateBrirth"].ToString());
+                                }
+
+                                if (reader["Auditor"] != DBNull.Value)
+                                {
+                                    contact.Auditor = (bool)reader["Auditor"];
+                                }
+
+                                if (reader["Notifications"] != DBNull.Value)
+                                {
+                                    contact.Notifications = (bool)reader["Notifications"];
+                                }
+
+                                if (reader["Trusted"] != DBNull.Value)
+                                {
+                                    contact.Trusted = (bool)reader["Trusted"];
+                                }
+
+                                contacts.Add(contact);
+                            }
+                        }
+                        #endregion
+
+                        if ((CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value != CustomStatusCodes.Success)
+                        {
+                            return new ApiResponse()
+                            {
+                                Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                            };
+                        }
+
+                        if (contacts != null && contacts.Count > 0)
+                        {
+                            return successResponse;
+                        }
+                        else
+                        {
+                            return new ApiResponse()
+                            {
+                                Status = CustomStatusCodes.NotFound
+                            };
+                        }
+
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> Auditor(int contactId, ContactDTO contact)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_UpdateAuditor", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters] 
+                        cmd.Parameters.Add(new SqlParameter("@ContactLoggedId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", contactId));
+
+                        if (contact.Auditor != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Auditor", contact.Auditor));
+
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Auditor", false));
+                        }
+
+                       
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> TrustedAndUntrusted(int? contactId, bool trusted)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_TrustedUntrusted", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactLoggedId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", contactId));
+                        cmd.Parameters.Add(new SqlParameter("@Trusted", trusted));
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+
                     }
                     catch (Exception exc)
                     {

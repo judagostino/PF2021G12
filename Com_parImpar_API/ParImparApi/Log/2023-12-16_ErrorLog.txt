@@ -1,0 +1,8 @@
+2023-12-16 23:26:49.7017 - ERROR - 8000000d-0007-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Notify/NewEventsAndPosts (ver: ) - ::1
+     Message: EventId
+     Exception: EventId
+     StackTrace:    at ParImparApi.Services.NotifyService.NewEventsAndPosts() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\NotifyService.cs:line 184
+   at ParImparApi.Services.NotifyService.NewEventsAndPosts() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\NotifyService.cs:line 192
+   at ParImparApi.Controllers.NotifyController.NewEventsAndPosts() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\NotifyController.cs:line 41
+     Headers: Authorization="Bearer 1yugZxkwA0omc8uQR7QvbVWLnXgxTYnDEIc8eVSPJ800jUreiaXzUl5Co7hN0O6eDdJ2Y5KtARIg9Jv7wpEaZaNWmjU9vvfLOUzg", 
+
