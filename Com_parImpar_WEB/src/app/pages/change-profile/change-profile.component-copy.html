@@ -1,0 +1,65 @@
+<div id="central">
+  <div id="profile-form">   
+      <form [formGroup] ="form" novalidate>
+        
+        <div class="row">
+          <div class="col-sm-12 col-6 mb-3">
+              <img *ngIf="configService?.contact" class="center" style="width: 200px;" [src]="getImage()">
+          </div>
+        </div>
+
+          <div class="row">        
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label>Usuario: </label>
+                <input type=text class="box" formControlName="userName" required>
+                <div *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid">
+                  El Nombre de usuario es requerido
+                </div>
+              </div>
+           </div>
+
+           <div class="row">        
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <label>Correo electrónico: </label>
+              <input type=text class="box" formControlName="email" placeholder="correoelectronico@ejemplo.com">
+            </div>
+          </div>
+    
+
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <label for="typeImpairment">Nombre:</label>
+              <input type=text class="box" formControlName="firstName" required>
+              <div *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid">
+                El nombre es requerido
+              </div>
+            </div>
+          </div>      
+      
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label for="typeImpairment">Apellido:</label>
+                <input type=text class="box" formControlName="lastName" required>
+                <div *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid">
+                  El apellido es requerido
+                </div>
+              </div>
+            </div> 
+
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                  <label for="dateBrirth">Fecha Nacimiento:</label>
+                  <input type="date" class=" box2" id="dateBrirth" name="dateBrirth">
+                </div>
+            </div>
+      
+   
+    <div class="row justify-content-center">
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="submit" (click)= "btn_SaveChange()">Guardar</button>
+        <button type="button" class="button" (click)=" btn_ChangePass()">Cambiar contraseña</button> 
+
+      </div>
+    </div>
+  </form>
+  </div>

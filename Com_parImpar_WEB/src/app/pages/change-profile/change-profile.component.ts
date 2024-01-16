@@ -7,8 +7,8 @@ import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-change-profile',
-  templateUrl: './change-profile.component.html',
-  styleUrls: ['./change-profile.component.scss']
+  templateUrl: './change-profile.component-copy.html',
+  styleUrls: ['./change-profile.component-copy.scss']
 })
 export class ChangeProfileComponent implements OnInit {
   form: FormGroup;
