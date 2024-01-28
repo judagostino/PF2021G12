@@ -9,7 +9,7 @@ import { ContactService } from 'src/app/services';
   styleUrls: ['./confirm-user.component.scss']
 })
 export class ConfirmUserComponent implements OnInit {
-  message = 'Confirmado usuario…';
+  message = 'Su usuario ha sido confirmado';
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private contactService: ContactService ) { }
 

@@ -1,24 +1,23 @@
 <div class="mt-3 w-100 container-search">
-    <div class="container-fluid"style="border-radius: 80px;">
+    <div class="container-fluid">
 
         <div class="row">
-            <div class="col-12" >
+            <div class="col-10" style="margin-left: 100px;" >
                 <mat-card style="border-radius: 25px;">
                     <mat-form-field class="w-100" appearance="fill">
-                      <mat-label>Buscar</mat-label>
+                      <mat-label style="font-family: 'Nunito',sans-serif;">Buscar</mat-label>
                       <input [(ngModel)]="searchText" matInput (keyup.enter)="btn_search()">
                       <mat-icon (click)="btn_search()" matSuffix>search</mat-icon>
                     </mat-form-field>
                     
                     <div class="w-100  text-center" id="more-filters">
-                        <a (click)="showMoreInfo=!showMoreInfo">Más filtros...</a>
+                        <button (click)="showMoreInfo=!showMoreInfo">Más filtros...</button>
                         <div *ngIf="showMoreInfo" class="row">
                             <div class="col-6" *ngFor="let type of typeImpairments; let i = index">
                                 <mat-checkbox  (click)="typeImpairmentsAux[i]=!typeImpairmentsAux[i]">{{type.description}}</mat-checkbox>
                             </div>
                         </div>
                     </div>
-
                 </mat-card>
               </div>
         </div>
@@ -29,24 +28,28 @@
         </div>
 
         <div *ngFor="let result of resultsSearch;" class=" mt-3 mb-3">
-            <mat-card class="card-search">
+            <div class="info">
                 <div class="row">
+                    
                     <div class="col-4">
                         <img style="height: 180px; max-width: 100%;" class="center" [src]="getImage(result)">
                     </div>
+
                     <div class="col-8">
                         <h3>{{getTitle(result)}}</h3>
                         <p>{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
                         <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
                             <h4 *ngFor="let type of result.typeImpairment;">
-                                <span class="badge badge-pill badge-primary m-3 ">{{type.description}}</span>
+                                <span class="badge badge-pill badge-primary">{{type.description}}</span>
                             </h4>
                         </div>
                         <a (click)="redirectToProfile(result)" *ngIf ="result?.contactCreate?.name != null"> Creado por: {{result.contactCreate.name}}</a>
-                        <button mat-raised-button color="warn" style="vertical-align: bottom;" class="w-100 text-center" (click)="redirectToMoreInfo(result)">Más informacion</button>
+                        <button type="submit" title="savePost" style="vertical-align: bottom;" class="submit" (click)= "redirectToMoreInfo(result)">Más Información</button>
+
+                        
                     </div>
                 </div>
-            </mat-card>
+            </div>
         </div>
 
     </div>

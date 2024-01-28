@@ -1,4 +1,4 @@
-<div id="central" *ngIf="key == ''" style="height: 78vh;">
+<div id="central" *ngIf="key != ''" style="height: 78vh;">
   <div class="container">
   <div id="table" *ngIf="key == 'event'">
     <div class="titulo">
@@ -35,7 +35,7 @@
   </div>
 
 
-  <div id="post-table" *ngIf="key == 'post'">
+  <div id="table" *ngIf="key == 'post'">
     <div class="titulo">
       Publicacion de Contenido
     </div> 

@@ -3,63 +3,76 @@
       <form [formGroup] ="form" novalidate>
         
         <div class="row">
-          <div class="col-sm-12 col-6 mb-3">
-              <img *ngIf="configService?.contact" class="center" style="width: 200px;" [src]="getImage()">
+          <div class="col-sm-12 col-6 mb-3" style="margin-left: 280px;">
+              <img *ngIf="configService?.contact" class="center" style="width: 150px;margin-left:20px;margin-bottom: 40px;" [src]="getImage()">
+          </div>
+          <div class="col-sm-12 col-6 mb-3" style="margin-left: 50px;">
+           <!--  <h3 class="title-profile">{{profile.name}}</h3> -->
           </div>
         </div>
 
+
           <div class="row">        
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="col-lg-6">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
                 <label>Usuario: </label>
-                <input type=text class="box" formControlName="userName" required>
+                <input type=text class="box_input" formControlName="userName" required>
                 <div *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid">
                   El Nombre de usuario es requerido
                 </div>
               </div>
            </div>
 
-           <div class="row">        
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                   
+            <div class="col-lg-6">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 box2">
               <label>Correo electrónico: </label>
-              <input type=text class="box" formControlName="email" placeholder="correoelectronico@ejemplo.com">
+              <input type=text class="box2_input" formControlName="email" placeholder="correoelectronico@ejemplo.com">
             </div>
           </div>
+        </div>
     
 
         <div class="row">
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="col-lg-6">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
               <label for="typeImpairment">Nombre:</label>
-              <input type=text class="box" formControlName="firstName" required>
+              <input type=text class="box_input" formControlName="firstName" required>
               <div *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid">
                 El nombre es requerido
               </div>
             </div>
           </div>      
       
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="col-lg-6">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 box2">
                 <label for="typeImpairment">Apellido:</label>
-                <input type=text class="box" formControlName="lastName" required>
+                <input type=text class="box2_input" formControlName="lastName" required>
                 <div *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid">
                   El apellido es requerido
                 </div>
               </div>
             </div> 
+          </div>
 
             <div class="row">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="col-lg-6">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 box3">
                   <label for="dateBrirth">Fecha Nacimiento:</label>
-                  <input type="date" class=" box2" id="dateBrirth" name="dateBrirth">
-                </div>
+                  <input type="date" class=" box3_input" id="dateBrirth" name="dateBrirth" style="display: flex;flex-direction: row;">
+              </div>
             </div>
+          </div>
       
    
     <div class="row justify-content-center">
       <div class="d-flex justify-content-center">
         <button type="submit" class="submit" (click)= "btn_SaveChange()">Guardar</button>
-        <button type="button" class="button" (click)=" btn_ChangePass()">Cambiar contraseña</button> 
-
+        <button type="button" class="button"  routerLink="/user/change-password">Cambiar contraseña</button> 
       </div>
     </div>
+
   </form>
-  </div>
+</div>
+</div>
+  

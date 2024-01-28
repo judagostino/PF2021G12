@@ -5,8 +5,8 @@ import { ConfigService, ContactService } from 'src/app/services';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './profile.component copy.html',
+  styleUrls: ['./profile.component copy.scss']
 })
 export class ProfileComponent implements OnInit {
   profile: Contact;
@@ -28,10 +28,6 @@ export class ProfileComponent implements OnInit {
         })
       }
     }); 
-
-    
-
-
   }
 
   public getImage(): string {

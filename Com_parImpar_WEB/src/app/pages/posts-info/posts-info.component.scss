@@ -1,15 +1,93 @@
+body {
+    background-color: #FFFFFF; 
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    font-family: 'Nunito', sans-serif;
+    
+  }
+  
+  #central {
+    margin-top: 40px;
+    margin-bottom: 40px; 
+    border-radius: 25px;
+  } 
+  
+  h6 {
+    color: #1995AD;
+    font-size: 25px;
+    font-family: 'Tilt Neon', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  .etiqueta {
+    margin-left: 20px;
+  }
 
-.container-info {
-    min-height: 90vh;
-    border-radius: 50%;
-
-    a {
-        cursor: pointer;
-        color: rgb(42, 65, 194);
-        position: absolute;
-        right: 12px;
-        &:hover {
-            color: rgb(123, 137, 219) !important;
-        }
-    }
+  .submit {
+    font-family:'Tilt Neon', sans-serif;
+    font-size: 100%;
+    color:#FFFFFF;
+    width: 130px;
+    height: 30px;
+    border: none;
+    margin-left: 28px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    background-color: #1995AD;
+    padding:7px;
+    margin-top: 50px;
+  } 
+  
+  
+.post-info {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);      
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  box-sizing: border-box;
+  width: 900px;
+  height: 400px;
+  border-radius: 25px;
+  margin-left: 200px;
+  margin-top: 28px;    
 }
+  
+a {
+  font-family: 'Nunito',sans-serif;
+  font-size:medium;
+  margin-left: 130px;
+  font-weight: bolder;
+  cursor: pointer;
+      color: rgb(42, 65, 194);
+      position: absolute;
+      right: 12px;
+      &:hover {
+          color:#1995AD !important;
+}
+}
+
+
+      
+/* .post-info {
+  min-height: 90vh;
+  border-radius: 50%;
+
+  a {
+      cursor: pointer;
+      color: rgb(42, 65, 194);
+      position: absolute;
+      right: 12px;
+      &:hover {
+          color: rgb(123, 137, 219) !important;
+      }
+  }
+} */

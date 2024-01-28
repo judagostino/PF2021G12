@@ -19,10 +19,10 @@
     font-family: 'Tilt Neon', sans-serif;
     text-transform: uppercase;
     text-align: center;
+    margin-bottom: 28px;
   }
   
-  
-  #container {
+  #table {
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 30px;
@@ -37,11 +37,12 @@
       
       box-sizing: border-box;
       width: 950px;
-      height: 1700px;
+      height: 200px;
     
       border-radius: 25px;
-      margin-left: 200px;
+      margin-left: 100px;
       margin-top: 28px;
+      margin-right: 0px;
     }
   
    
@@ -82,7 +83,7 @@
   
   .table-striped>tbody>tr>td,
   .table-striped>thead>tr>th {
-    border-bottom: 2px solid #1995ad; 
+    border-bottom: 1.5px solid #1995ad; 
     font-family: 'Nunito', sans-serif;;
   } 
   

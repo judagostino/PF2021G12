@@ -1,14 +1,14 @@
 <div class="contenedor">
   <div class="container"> 
        <div class="top-div">
-         <div *ngIf="actionLog?.postViews?.length != 0 || actionLog?.postViews?.length != 0 || actionLog?.profileViews?.length != 0">
+         <div *ngIf="actionLog?.postViews?.length >= 0 || actionLog?.postViews?.length >= 0 || actionLog?.profileViews?.length >= 0">
              <div class="titulo-top mb-5">
                  Top 5 en visitas
              </div>
 
-             <div class="row">
+             <div class="row" style="padding-bottom: 0;">
 
-                 <div class="col-xs-12 col-sm-12 col-md-6" *ngIf="actionLog?.postViews?.length != 0" >
+                 <div class="col-xs-12 col-sm-12 col-md-6" *ngIf="actionLog?.postViews?.length >= 0" >
                      <table class="table table-striped table-hover mb-5">
                          <thead>
                              <tr>
@@ -18,7 +18,7 @@
                              </tr>
                            </thead>
                            <tbody>
-                             <tr *ngFor="let posts of actionLog.postViews">
+                             <tr *ngFor="let posts of actionLog?.postViews">
                                <th>{{posts.viewrs}}</th>
                                <th>{{posts.title}}</th>
                                <th>{{posts.name}}</th>
@@ -27,7 +27,7 @@
                        </table>
                  </div>
 
-                 <div class="col-xs-12 col-sm-12 col-md-6" *ngIf="actionLog?.eventViews?.length != 0">
+                 <div class="col-xs-12 col-sm-12 col-md-6" *ngIf="actionLog?.eventViews?.length >= 0">
                      <table class="table table-striped table-hover mb-5">
                          <thead>
                              <tr>
@@ -37,7 +37,7 @@
                              </tr>
                            </thead>
                            <tbody>
-                             <tr *ngFor="let event of actionLog.eventViews">
+                             <tr *ngFor="let event of actionLog?.eventViews">
                                <th>{{event.viewrs}}</th>
                                <th>{{event.title}}</th>
                                <th>{{event.name}}</th>
@@ -47,7 +47,7 @@
                  </div>
 
                 
-                 <div class="mb-5" *ngIf="actionLog?.profileViews?.length != 0">
+                 <div class="mb-5" *ngIf="actionLog?.profileViews?.length >= 0">
                      <table class="table table-striped table-hover mb-5">
                          <thead>
                              <tr>
@@ -56,7 +56,7 @@
                              </tr>
                            </thead>
                            <tbody>
-                             <tr *ngFor="let profile of actionLog.profileViews">
+                             <tr *ngFor="let profile of actionLog?.profileViews">
                                <th>{{profile.viewrs}}</th>
                                <th>{{profile.name}}</th>
                              </tr>
@@ -65,30 +65,32 @@
                  </div>
                </div>
              </div>
-
+            </div>
              
-
+            <div class="top-div">
       
-         <div *ngIf="actionLog?.graphicImpediment?.length != 0" >
+         <div *ngIf="actionLog?.graphicImpediment?.length >= 0" >
              <div class="titulo-top mb-5">
                  Filtros mas aplicados
-             </div> 
+             </div>
 
-             <google-chart class="center" style="width: 100%; min-height: 400px;"
+            <div class="row"> 
+             <google-chart class="center" style="width: 80%; min-height: 200px;padding-bottom: 30px;"
                  [type]="type"
                  [data]="data"
                  [columns]="columnNames">
              </google-chart>
-         
+            </div> 
            </div>
-             
-       
-         <div *ngIf="actionLog?.userActionLog?.length != 0">
+           </div>
+           
+          <div class="top-div">
+         <div *ngIf="actionLog?.userActionLog?.length >= 0">
              <div class="titulo-top mb-5">
                  Acciones de usuario
              </div>
 
-             <table class="table table-striped table-hover mb-5">
+             <table class="table table-striped table-hover mb-5" >
                  <thead>
                      <tr>
                          <th scope="col">Fecha</th>
@@ -100,7 +102,7 @@
                      </tr>
                    </thead>
                    <tbody>
-                     <tr *ngFor="let userAction of actionLog.userActionLog">
+                     <tr *ngFor="let userAction of actionLog?.userActionLog">
                        <th>{{userAction.dateEntered}}</th>
                        <th>{{userAction.description}}</th>
                        <th>{{userAction.filtersDescription}}</th>
@@ -111,8 +113,9 @@
                    </tbody>
                </table>
          </div>
+        </div>
       
- </div>
+ 
 </div>
 </div>
 

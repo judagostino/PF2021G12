@@ -1,17 +1,40 @@
 <header>
-  <div class="logo">
-            
+  <div class="logo">  
     <img src="/assets/image/icon.png" alt="" width="40" height="40" class="d-inline-block align-text-top">
 </div>
+
 <nav>
     <ul>
-        <li><a href="home">Home</a></li>
-        <li><a href="calendar">Eventos</a></li>
-        <li><a href="search">B&uacute;squedas</a></li>
-        <li><a href="posts">Publicaciones</a></li>
-        <li><a href="#">Contacto</a></li>
-    </ul>
+        <li><a routerLink="/home" >Home</a></li>
+        <li><a routerLink="/calendar" >Eventos</a></li>
+        <li><a routerLink="/search" >B&uacute;squedas</a></li>
+        <li><a routerLink="/posts" >Publicaciones</a></li>
+        <li class="nav-item dropdown" *ngIf="configService?.contact?.auditor">
+          <a class="nav-link dropdown-toggle" href="#" id="auditorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Auditoría
+          </a>
+          <div class="dropdown-menu" aria-labelledby="auditorDropdown">
+            <a class="dropdown-item" routerLink="/table/event">Eventos</a>
+            <a class="dropdown-item" routerLink="/table/post">Publicaciones</a>
+            <a class="dropdown-item" routerLink="/action-log">Acciones de usuario</a>
+          </div>
+        </li>
+        
+       
+      </ul>
+
+    
 </nav>
-<button><a href="login"> Ingresar</a></button> 
+<button class="btn_ingresar" *ngIf="!configService.isLooged"><a href="login"> Ingresar</a></button>
+<div class="dropdown">
+  <div class="btn_ingresar" *ngIf="configService.isLooged" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{configService?.contact?.name}} </div> 
+  
+  <div class="dropdown-menu" aria-labelledby="settingsDropdown" *ngIf="configService.isLooged">
+    <a class="dropdown-item"  routerLink="/settings">Ajustes</a>
+     <div class="dropdown-divider"></div> 
+    <a class="dropdown-item"  (click)="btn_Logout()" href="#">Salir</a>      
+  </div>
+  
+</div>
 </header>
 

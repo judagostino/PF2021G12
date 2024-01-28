@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
      private contactService: ContactService ) { }
 
   ngOnInit(): void {
-    /* this.activatedRoute.queryParams.subscribe(params => {
+     this.activatedRoute.queryParams.subscribe(params => {
       this.contactService.validateRecover({ id: Number.parseInt(params['i']), codeRecover: params['c']})
       .subscribe( () =>{
         this.id=Number.parseInt(params['i']);
@@ -35,14 +35,7 @@ export class ChangePasswordComponent implements OnInit {
         this.initForm();
         this.showMessage = false;
       }, error => this.showMessage = true)
-    }); */
-
-  
-        this.id=1;
-        this.code= "abc";
-        this.initForm();
-        this.showMessage = false;
-      
+    }); 
   }
 
   private initForm(): void {

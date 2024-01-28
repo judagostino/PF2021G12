@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL: 'https://localhost:44300/api/v1'
+  URL: 'http://comunidad-parimpar-api.com.ar/api/v1'
 };

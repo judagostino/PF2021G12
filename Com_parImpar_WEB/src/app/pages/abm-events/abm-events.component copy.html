@@ -10,8 +10,8 @@
           <div class="row">        
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
               <label>Titulo: </label>
-              <input type=text class="box" formControlName="titulo" required>
-              <div *ngIf="form?.controls?.title?.touched && form?.controls?.title?.invalid" class="error-message">
+              <input type=text class="box" formControlName="title" required>
+              <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.title?.touched && form?.controls?.title?.invalid" class="error-message">
                 El título es requerido
               </div>
             </div>
@@ -21,8 +21,8 @@
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="startDate">Fecha Inicio:</label>
-                <input type="date" class=" box2" id="startDate" name="startDate" required>
-                <div *ngIf="form?.controls?.startDate?.touched && form?.controls?.startDate?.invalid" class="text-danger">
+                <input type="date" class=" box2" formControlName="startDate" id="startDate" name="startDate" required>
+                <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.startDate?.touched && form?.controls?.startDate?.invalid" class="text-danger">
                   La fecha de inicio es requerida
                 </div>
               </div>
@@ -33,7 +33,7 @@
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="endDate">Fecha Fin:</label>
-              <input type="date" class="box2" id="endDate" name="endDate">
+              <input type="date" class="box2" formControlName="endDate" id="endDate" name="endDate">
               </div>
             </div>
           </div>
@@ -42,11 +42,13 @@
           
          <div class="row">        
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
               <label>Descripcion: </label>
               <textarea rows="8" class="box" cols="100" formControlName="description" required></textarea>
-              <div *ngIf="form?.controls?.description?.touched && form?.controls?.description?.invalid">
+              <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.description?.touched && form?.controls?.description?.invalid">
                 La descripción es requerida
               </div>
+            </div>
             </div>
           </div>
   
@@ -101,7 +103,7 @@
               </button>
             </td>
                 <td>{{event.title}}</td>
-                <td>{{eve.description}}</td>
+                <td>{{event.description}}</td>
                 <td>{{event.startDate | date: 'shortDate'}}</td>
                 <td>{{event.endDate | date: 'shortDate'}}</td>
                 <td>{{event.title}}</td>

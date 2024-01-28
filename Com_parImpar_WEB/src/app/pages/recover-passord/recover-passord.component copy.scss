@@ -1,18 +1,13 @@
 body {
-    background-color: #FFFFFF; 
     display: grid;
     min-height: 100vh;
-    grid-template-rows: auto 1fr auto;
-    
+    grid-template-rows: auto 1fr auto;    
 }
 
 .container-fluid {
     margin-top: 40px;
     margin-bottom: 40px; 
-    border-radius: 25px;
-    
-
-    
+    border-radius: 25px; 
 } 
     
 .sombra {
@@ -46,6 +41,7 @@ body {
 .form {
     padding: 10px 92px;
     text-align: center;
+    
 }   
 
 .form h2 {

@@ -16,34 +16,87 @@
         font-weight: bold !important;
         font-size: 120% !important;
     }
+
+    button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: #1995AD;
+        font-size: 18px;
+        font-family: 'Nunito', sans-serif;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    mat-checkbox {
+        font-family:'Nunito', sans-serif !important;
+        font-size: medium !important;
+        color: black;
+    }
 }
 
+.info {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    padding-bottom: 0px;
+      -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+      
+      border-radius: 3px 3px 3px 3px;
+      -moz-border-radius: 3px 3px 3px 3px;
+      -webkit-border-radius: 3px 3px 3px 3px;
+      
+      box-sizing: border-box;
+      width: 950px;
+      height: 230px;
+    
+      border-radius: 25px;
+      margin-left: 170px;
+      margin-top: 28px; 
 
 
-
-
-.card-search {
-    height: 200px;
-    width: 100%;
     h3 {
-        font-weight: bold;
-        color: black;
+        font-family:'Tilt Neon', sans-serif;
+    font-weight: bold;
+    font-size: x-large;
+    text-transform: uppercase;
+    }
+
+    p {
+        font-family: 'Nunito',sans-serif;
+        font-size:medium;
     }
 
     a {
-        cursor: pointer;
-        color: rgb(42, 65, 194);
-        position: absolute;
-        bottom: 50px;
-        right: 12px;
-        &:hover {
-            color: rgb(123, 137, 219) !important;
-        }
+        font-family: 'Nunito',sans-serif;
+        font-size:medium;
+        margin-left: 330px;
+        font-weight: bolder;
     }
 
-    button {
-        position: absolute;
-        bottom: 6px;
-        left: -2px;
+    span {
+        background-color: #1995AD;
+        font-family: 'Nunito',sans-serif;
+        margin-left: 0px;
+        font-size: 13px;
+        margin-right: 50px;
     }
 }
+
+
+
+.submit {
+    font-family:'Tilt Neon', sans-serif;
+    font-size: 100%;
+    color:#FFFFFF;
+    display: flex;
+    border: none;
+    margin-left: 22px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    background-color: #1995AD;
+    
+  } 

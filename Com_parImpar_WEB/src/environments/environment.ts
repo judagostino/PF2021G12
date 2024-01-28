@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL: 'https://localhost:44300/api/v1'
+  URL: 'http://comunidad-parimpar-api.com.ar/api/v1'
 };
 
 /*

@@ -49,10 +49,12 @@ export class RegisterComponent implements OnInit {
 
       if (!this.showError) {
         this.contactService.registrerUser(register).subscribe( () => {
-          Swal.fire(
-            '¡Registrado!',
-            'Te registraste con exito',
-            'success'
+          Swal.fire({
+            title:'¡Registrado!',
+            text:'Te registraste con exito',
+            icon:'success',
+            confirmButtonColor: "#1995AD",
+          }
           )
           this.router.navigateByUrl('/login');
         }, err => {

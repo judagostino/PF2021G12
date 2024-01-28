@@ -20,6 +20,7 @@ body {
     font-family: 'Tilt Neon', sans-serif;
     text-transform: uppercase;
     text-align: center;
+   
   }
   
   
@@ -38,7 +39,7 @@ body {
       
       box-sizing: border-box;
       width: 950px;
-      height: 650px;
+      height: 100%;
     
       border-radius: 25px;
       margin-left: 90px;
@@ -47,6 +48,9 @@ body {
   
   .table-striped>tbody>tr>td,
   .table-striped>thead>tr>th {
-    border-bottom: 2px solid #1995ad; 
-    font-family: 'Nunito', sans-serif;;
+    border-bottom: 1.5px solid #1995ad; 
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
   } 
+
+  

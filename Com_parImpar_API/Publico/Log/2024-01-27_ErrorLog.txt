@@ -1,0 +1,5 @@
+2024-01-27 18:22:57.8975 - INFO - 400002ff-0005-fb00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"MolyLupe1307","KeepLoggedIn":true}
+
