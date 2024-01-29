@@ -7,8 +7,8 @@ import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-recover-passord',
-  templateUrl: './recover-passord.component.html',
-  styleUrls: ['./recover-passord.component.scss']
+  templateUrl: './recover-passord.component copy.html',
+  styleUrls: ['./recover-passord.component copy.scss']
 })
 export class RecoverPassordComponent implements OnInit {
   form: FormGroup;

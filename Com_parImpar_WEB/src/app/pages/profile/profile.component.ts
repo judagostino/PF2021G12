@@ -5,8 +5,8 @@ import { ConfigService, ContactService } from 'src/app/services';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  templateUrl: './profile.component copy.html',
+  styleUrls: ['./profile.component copy.scss']
 })
 export class ProfileComponent implements OnInit {
   profile: Contact;
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     private configService: ConfigService) { }
 
   ngOnInit(): void {
-    window.scroll({top: 0, left: 0});
+     window.scroll({top: 0, left: 0});
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
       if (id != null && id != 0) {
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
           this.profile = resp;
         })
       }
-    });
+    }); 
   }
 
   public getImage(): string {

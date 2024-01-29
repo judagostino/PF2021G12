@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.btn_search();
+  
     this.typeImpairmentService.getAlll().subscribe(resp => {
       for(let i = 0; i < resp.length; i++) {
         this.typeImpairmentsAux.splice(0,0,false)

@@ -2,78 +2,99 @@
 <div id="central">
   <div id="register">
       <div class="titulo">
-          Registrate
-          <h4 style="margin-top:15px;">Es simple y r&aacute;pido</h4>
+        <h1>Registrate</h1>
+        <h4 >Es simple y r&aacute;pido</h4>
       </div>
-    
-    
+      <div *ngIf="showError" class="alert alert-danger mb-2" role="alert">
+        {{message}}
+      </div>
+
+      <div [ngClass]="{'pt-5': !showError}"></div>
+
       <form [formGroup] ="form" novalidate>
     
         <div class="row"> 
-    
-          
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            
-              <input type=text class="box" formControlName="firstName" matInput required placeholder="Nombre">
-           
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
+            <label>Nombre</label>
+            <input type=text class="box" formControlName="firstName" required placeholder="Nombre">
+            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid">
+              El nombre es requerido
+            </div>
+
           </div>
     
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-
-              <input class="box" formControlName="lastName" matInput required placeholder="Apellido">
-             
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
+            <label>Apellido</label>  
+            <input class="box" formControlName="lastName" required placeholder="Apellido">
+            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid">
+              El apellido es requerido
+            </div>
           </div>
         </div>
     
           <div class="row"> 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-          
-                <input class="box" matInput formControlName="email" placeholder="correoelectronico@ejemplo.com" required aria-placeholder="Correo electrónico"> 
-                
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
+              <label > Correo electrónico </label > 
+                <input class="box" formControlName="email" placeholder="correoelectronico@ejemplo.com" required aria-placeholder="Correo electrónico"> 
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.email?.touched && form?.controls?.email?.invalid">
+                  <span *ngIf="form?.controls?.email?.errors?.required">El correo electrónico es requerido</span>
+                  <span *ngIf="form?.controls?.email?.errors?.email">El fomrato del correo es invalido</span>
+                </div>
+
             </div>
     
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            
-                <input class="box" matInput formControlName="confirmEmail" placeholder = "correoelectronico@ejemplo.com" required aria-placeholder="Confirmar correo electrónico"> 
-             
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
+              <label > Confirmar correo electrónico </label > 
+                <input class="box" formControlName="confirmEmail" placeholder = "correoelectronico@ejemplo.com" required aria-placeholder="Confirmar correo electrónico"> 
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmEmail?.touched && form?.controls?.confirmEmail?.invalid">
+                  <span *ngIf="form?.controls?.confirmEmail?.errors?.required">El correo electrónico es requerido</span>
+                  <span *ngIf="form?.controls?.confirmEmail?.errors?.email">El fomrato del correo es invalido</span>
+                </div>
             </div>
           </div>
     
           
           <div class="row"> 
-             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-              
-                <input class="box" formControlName="userName" matInput required placeholder="Usuario">
-                
+             <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
+              <label>Usuario</label>
+              <input class="box" formControlName="userName" required placeholder="Usuario">
+              <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid">
+                El Nombre de usuario es requerido
+              </div>
             </div>
     
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-             
-                <!-- <input matInput formControlName="dateBrirth" [matDatepicker]="selector" placeholder="Fecha nacimiento"> -->
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
+                <label for="startDate">Fecha nacimiento</label>
+                <input type="date" class=" box" id="dateBrirth" name="dateBrirth" placeholder="Fecha nacimiento">
                          
               </div>
           </div>
-      
-    
+   
     
             <div class="row"> 
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                
-                  <input class="box" matInput formControlName="password" type="password" required placeholder="Contraseña">
-                
-              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
+                <label>Contraseña</label>
+                <input class="box" formControlName="password" type="password" required placeholder="Contraseña">
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.password?.touched && form?.controls?.password?.invalid">
+                  <span *ngIf="form?.controls?.password?.errors?.required">La contraseña es requerida</span>
+                  <span *ngIf="form?.controls?.password?.errors?.minlength">La contraseña debe tener al menos 8 caracterres</span>
+                </div>
+          </div>
               
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-              
-                  <input class="box" matInput formControlName="confirmPassword" type="password" required placeholder="Confirmar contraseña">
-                  
-              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
+                <label>Confirmar contraseña</label>
+                <input class="box" formControlName="confirmPassword" type="password" required placeholder="Confirmar contraseña">
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmPassword?.touched && form?.controls?.confirmPassword?.invalid">
+                  <span *ngIf="form?.controls?.confirmPassword?.errors?.required">La contraseña es requerida</span>
+                  <span *ngIf="form?.controls?.confirmPassword?.errors?.minlength">La contraseña debe tener al menos 8 caracterres</span>
+                </div>
+          </div>
             </div>
     
             <div class="row justify-content-center">
               <div class="d-flex justify-content-center">
-                <button class="m-3" mat-raised-button color="primary" type="button" (click)="btn_NewEvent()">Volver</button>
-                <button class="m-3" mat-raised-button color="primary" type="submit" (click)=btn_SaveEvent()>Registrarse</button> 
+                <button class="submit" type="button" (click)="btn_NewEvent()">Volver</button>
+                <button class="submit" type="submit" (click)=btn_SaveEvent()>Registrarse</button> 
               </div>
           </div>
       </form>

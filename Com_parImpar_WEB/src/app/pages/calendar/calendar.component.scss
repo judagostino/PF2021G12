@@ -38,7 +38,7 @@
     margin-left:15%;
 }
 
-#calendar button {
+.calendar-month button {
     font-family: 'Nunito', sans-serif;
     font-size: 130%;
     color:#0f4c75;
@@ -54,16 +54,28 @@
     -webkit-border-radius: 3px 3px 3px 3px;
     background-color: #bbe1fa;
   }
-  #calendar button:hover {
+  .calendar-month button:hover {
     background-color: #0f4c75;
     color:#bbe1fa;
   }
 
-  #prueba button {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 130%;
-    color:#0f4c75;
-    width: 16%;
-    height: 30px; 
-    padding-bottom: 10px;
-  }
+.submit button{
+  font-family:'Tilt Neon', sans-serif;
+  font-size: 100%;
+  color:#FFFFFF;
+  width: 20%;
+  height: 40px;
+  border: none;
+  margin-left: 35px;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  background-color: #1995AD;
+  margin-top: 30px;
+}
+  
+  .table>tbody>tr>td,
+.table>thead>tr>th {
+  border-bottom: 2px solid #1995ad; 
+  font-family: 'Nunito', sans-serif;;
+}

@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
     this.configService.isLooged = false;
     this.configService.contact = null;
     this.authService.cleartokens();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/home');
   }
 
 }

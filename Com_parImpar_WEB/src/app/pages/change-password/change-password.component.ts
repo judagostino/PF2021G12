@@ -8,8 +8,8 @@ import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.scss']
+  templateUrl: './change-password.component copy.html',
+  styleUrls: ['./change-password.component copy.scss']
 })
 export class ChangePasswordComponent implements OnInit {
   showMessage = true;
@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
      private contactService: ContactService ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
+     this.activatedRoute.queryParams.subscribe(params => {
       this.contactService.validateRecover({ id: Number.parseInt(params['i']), codeRecover: params['c']})
       .subscribe( () =>{
         this.id=Number.parseInt(params['i']);
@@ -35,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
         this.initForm();
         this.showMessage = false;
       }, error => this.showMessage = true)
-    });
+    }); 
   }
 
   private initForm(): void {

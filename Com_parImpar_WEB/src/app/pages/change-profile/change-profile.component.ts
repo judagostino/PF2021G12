@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ChangeModalPasswordComponent } from 'src/app/components/change-password/change-modal-password.component';
+import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
 import { ConfigService, ContactService } from 'src/app/services';
 import Swal  from 'sweetalert2';
 
 @Component({
   selector: 'app-change-profile',
-  templateUrl: './change-profile.component.html',
-  styleUrls: ['./change-profile.component.scss']
+  templateUrl: './change-profile.component-copy.html',
+  styleUrls: ['./change-profile.component-copy.scss']
 })
 export class ChangeProfileComponent implements OnInit {
   form: FormGroup;
@@ -64,9 +64,10 @@ export class ChangeProfileComponent implements OnInit {
   }
 
   public btn_ChangePass(): void {
-    const dialogRef = this.dialog.open(ChangeModalPasswordComponent,
+    const dialogRef = this.dialog.open(ChangePasswordComponent,
       {
-        width: '500px'
+        width: '700px',
+        height: '400px'
       });
   } 
 }

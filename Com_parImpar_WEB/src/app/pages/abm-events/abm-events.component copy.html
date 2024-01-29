@@ -1,0 +1,167 @@
+<div id="central">
+    <div id="event-form">
+       <div class="titulo">
+            Eventos
+        </div> 
+      
+      
+        <form [formGroup] ="form" novalidate>
+      
+          <div class="row">        
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <label>Titulo: </label>
+              <input type=text class="box" formControlName="title" required>
+              <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.title?.touched && form?.controls?.title?.invalid" class="error-message">
+                El título es requerido
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="startDate">Fecha Inicio:</label>
+                <input type="date" class=" box2" formControlName="startDate" id="startDate" name="startDate" required>
+                <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.startDate?.touched && form?.controls?.startDate?.invalid" class="text-danger">
+                  La fecha de inicio es requerida
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
+                <label for="endDate">Fecha Fin:</label>
+              <input type="date" class="box2" formControlName="endDate" id="endDate" name="endDate">
+              </div>
+            </div>
+          </div>
+
+          
+          
+         <div class="row">        
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="form-group">
+              <label>Descripcion: </label>
+              <textarea rows="8" class="box" cols="100" formControlName="description" required></textarea>
+              <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.description?.touched && form?.controls?.description?.invalid">
+                La descripción es requerida
+              </div>
+            </div>
+            </div>
+          </div>
+  
+  
+        <div class="row">
+          <div class=" col-12 col-sm-12 col-md-6 col-lg-6">
+              <label> Estado: 
+                <span *ngIf="form?.value?.state?.id === 2">Autorizado</span> 
+                <span *ngIf="form?.value?.state?.id === 3">Rechazado</span>  
+                <span *ngIf="form?.value?.state?.id === 1 || form?.value === null ">En espera</span>
+            </label>
+          </div>
+  
+          <div class=" col-12 col-sm-12 col-md-6 col-lg-6">
+              <label> Autorizado por: 
+                <span *ngIf="form?.value?.contactAudit?.name"> {{ form.value.contactAudit.name }}</span>
+            </label>
+          </div>
+      </div>
+  
+     
+      <div class="row justify-content-center">
+        <div class="d-flex justify-content-center">
+          <button type="submit" title="SaveEvent" class="submit" (click)= "btn_SaveEvent()">Guardar</button>
+          <button type="button" title="NewEvent" class="submit" (click)="btn_NewEvent()">Nuevo</button> 
+          <button type="button" title="DeleteEvent" class="submit" (click)=" btn_DeleteEvent()" [disabled]="this.form?.value?.id === 0">Eliminar</button>
+  
+        </div>
+      </div>
+    </form>
+    </div> 
+
+
+
+     <div id="event-table">
+      <table class="table table-striped table-hover mb-5">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Fin</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Estado</th>
+            </tr>
+        </thead>
+
+            <tbody>
+            <tr *ngFor="let event of events">
+              <td>
+                <button (click)= "btn_SelectEvent(event)" class="icon-button" aria-label="Icon button">
+                <span>...</span>
+              </button>
+            </td>
+                <td>{{event.title}}</td>
+                <td>{{event.description}}</td>
+                <td>{{event.startDate | date: 'shortDate'}}</td>
+                <td>{{event.endDate | date: 'shortDate'}}</td>
+                <td>{{event.title}}</td>
+                <td class="status-cell">
+                    <span *ngIf="event?.state?.id === 2">Autorizado</span> 
+                    <span *ngIf="event?.state?.id === 3">Rechazado</span>  
+                    <span *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
+                </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>  
+  </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

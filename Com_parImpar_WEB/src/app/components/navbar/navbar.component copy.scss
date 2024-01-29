@@ -28,10 +28,10 @@ header{
 nav li {
     display: inline-block;
     list-style: none;
-    padding: 0px 20px;
+    padding: 0px 30px;
 }
 
-a,button {
+.btn_ingresar,a {
     font-size: 16px;
     font-weight: 500;
     color: #fff;
@@ -39,11 +39,27 @@ a,button {
     cursor: pointer;
 }
 
-button {
+.dropdown-menu {
+    background: rgba(25, 149, 173, 0.7);
+}
+
+.dropdown-item {
+    padding-left: 20px;
+}
+
+.dropdown-menu:focus {
+    background: rgba(199, 206, 203, 0.2);
+    transition: all 0.4s ease 0s;
+}
+
+.btn_ingresar {
     background-color: rgba(0, 0, 0, 0.2);
     border: 2px solid #1995ad;
     border-radius: 50px;
     padding: 9px 25px;
+    float: right;
+    margin-right: 20px;
+    
 }
 
 
@@ -59,6 +75,9 @@ button:hover {
     
 }
 
+.dropdown-toggle:focus {
+    color: #fff;
+ }
 
 .navbar ul li {
     position: relative;

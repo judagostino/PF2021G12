@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'events-info/:id',component: EventsInfoComponent},
   {path:'profile/:id',component: ProfileComponent},
   {path:'user/recover',component: RecoverPassordComponent},
-  {path:'user/change',component: ChangePasswordComponent},
+  {path:'user/change-password',component: ChangePasswordComponent},
   {path:'user/confirm',component: ConfirmUserComponent},
   {path:'user/cancel',component: DenyRecoverComponent},
   {path:'table/:key',component: ObjectTableComponent},

@@ -16,7 +16,7 @@ export class ActionLogComponent implements OnInit {
   constructor(private actionsLogService: ActionsLogService) { }
 
   ngOnInit(): void {
-    this.data = [];
+     this.data = [];
     this.actionsLogService.getAll().subscribe( (resp: ActionsLog) => {
       this.actionLog = resp;
       if (this.actionLog.graphicImpediment.length != null) {
@@ -25,6 +25,13 @@ export class ActionLogComponent implements OnInit {
        });
       
       } 
-    });
+    }); 
+  
+
+  
+  
+  
+  
+  
   }
 }

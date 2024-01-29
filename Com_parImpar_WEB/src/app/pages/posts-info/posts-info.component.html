@@ -1,27 +1,32 @@
-<div class="mt-3 w-100 container-info pb-2 mb-2" >
-  <div class="container" >
+<div class="central mt-3 mb-3" >
+  <div class="post-info">
       <div class="row" >
-          <div *ngIf="post" class="col-12">
-              <mat-card class="mb-4">
-                  <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
-  
-                  <h6 style="font-weight: bold; font-size: 20px; text-align: center;">{{post.title}}</h6>
-
-                  <span class="mt-4" style="text-align: center; font-weight: lighter; font-style: italic;">{{post.description}}</span>
-
-                  <div *ngIf="post?.typeImpairment?.length > 0" class="mt-2 d-flex flex-wrap">
-                    <h4 *ngFor="let type of post.typeImpairment;">
-                        <span class="badge badge-pill badge-primary m-1">{{type.description}}</span>
-                    </h4>
-                  </div>
-
-                  <p *ngFor="let paragaph of paragaphs" class="mt-4">{{paragaph}}</p>
-
-                  <a (click)="redirectToProfile(result)" class="pb-2 mb-2" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
-              </mat-card>
+          <div *ngIf="post">
+            <div class="col-6" style="display: inline-block;vertical-align: top;">
+              <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
             </div>
-      </div>
+            
+            <div class="col-6" style="display: inline-block;vertical-align: top;">
+              <h6 >{{post.title}}</h6>
 
+              <span style="font-family:'Tilt Neon', sans-serif;">{{post.description}}</span>
+
+              <div *ngIf="post?.typeImpairment?.length > 0" class="etiqueta">
+                <h4 *ngFor="let type of post.typeImpairment;">
+                    <span class="badge badge-pill badge-primary etiqueta">{{type.description}}</span>
+                </h4>
+              </div>
+
+              <p *ngFor="let paragaph of paragaphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
+
+              <a (click)="redirectToProfile(result)" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
+              <button class="submit" type="button" routerLink="/search">Volver</button>
+            </div>  
+  
+
+
+          </div>
+        </div>
   </div>
 </div>
 
