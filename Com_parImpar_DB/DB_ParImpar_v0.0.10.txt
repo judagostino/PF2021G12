@@ -1,0 +1,345 @@
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__StateId__7D439ABD
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__ContactAu__7E37BEF6
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK_Posts_States
+GO
+ALTER TABLE dbo.States SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Posts
+	(
+	PostId int NOT NULL IDENTITY (1, 1),
+	Description varchar(MAX) NULL,
+	Text varchar(MAX) NULL,
+	Title varchar(1000) NULL,
+	DateEntered datetime NOT NULL,
+	DateModify datetime NULL,
+	ContacCreate int NOT NULL,
+	ContactAudit int NULL,
+	ImageUrl varchar(500) NULL,
+	StateId int NOT NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Posts SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Posts ON
+GO
+IF EXISTS(SELECT * FROM dbo.Posts)
+	 EXEC('INSERT INTO dbo.Tmp_Posts (PostId, Description, Text, Title, DateEntered, DateModify, ContacCreate, ContactAudit, ImageUrl, StateId)
+		SELECT PostId, CONVERT(varchar(MAX), Description), Text, Title, DateEntered, DateModify, ContacCreate, ContactAudit, ImageUrl, StateId FROM dbo.Posts WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Posts OFF
+GO
+ALTER TABLE dbo.PostsXTypesImpairment
+	DROP CONSTRAINT FK_PostsXTypesImpairment_Posts
+GO
+DROP TABLE dbo.Posts
+GO
+EXECUTE sp_rename N'dbo.Tmp_Posts', N'Posts', 'OBJECT' 
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	PK__Posts__AA1260180BDE6FC4 PRIMARY KEY CLUSTERED 
+	(
+	PostId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK_Posts_States FOREIGN KEY
+	(
+	StateId
+	) REFERENCES dbo.States
+	(
+	StateId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__StateId__7D439ABD FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__ContactAu__7E37BEF6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.PostsXTypesImpairment ADD CONSTRAINT
+	FK_PostsXTypesImpairment_Posts FOREIGN KEY
+	(
+	PostId
+	) REFERENCES dbo.Posts
+	(
+	PostId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.PostsXTypesImpairment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK__Events__StateId__5EBF139D
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK__Events__ContactA__5FB337D6
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__StateId__7D439ABD
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__ContactAu__7E37BEF6
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK_Events_States
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK_Posts_States
+GO
+ALTER TABLE dbo.States SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Posts
+	(
+	PostId int NOT NULL IDENTITY (1, 1),
+	Description varchar(MAX) NULL,
+	Text varchar(MAX) NULL,
+	Title varchar(1000) NULL,
+	DateEntered datetime NOT NULL,
+	DateModify datetime NULL,
+	ContacCreate int NOT NULL,
+	ContactAudit int NULL,
+	ImageUrl varchar(500) NULL,
+	StateId int NOT NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Posts SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Posts ON
+GO
+IF EXISTS(SELECT * FROM dbo.Posts)
+	 EXEC('INSERT INTO dbo.Tmp_Posts (PostId, Description, Text, Title, DateEntered, DateModify, ContacCreate, ContactAudit, ImageUrl, StateId)
+		SELECT PostId, CONVERT(varchar(MAX), Description), Text, Title, DateEntered, DateModify, ContacCreate, ContactAudit, ImageUrl, StateId FROM dbo.Posts WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Posts OFF
+GO
+ALTER TABLE dbo.PostsXTypesImpairment
+	DROP CONSTRAINT FK_PostsXTypesImpairment_Posts
+GO
+DROP TABLE dbo.Posts
+GO
+EXECUTE sp_rename N'dbo.Tmp_Posts', N'Posts', 'OBJECT' 
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	PK__Posts__AA1260180BDE6FC4 PRIMARY KEY CLUSTERED 
+	(
+	PostId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK_Posts_States FOREIGN KEY
+	(
+	StateId
+	) REFERENCES dbo.States
+	(
+	StateId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__StateId__7D439ABD FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__ContactAu__7E37BEF6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.PostsXTypesImpairment ADD CONSTRAINT
+	FK_PostsXTypesImpairment_Posts FOREIGN KEY
+	(
+	PostId
+	) REFERENCES dbo.Posts
+	(
+	PostId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.PostsXTypesImpairment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Events
+	(
+	EventId int NOT NULL IDENTITY (1, 1),
+	Description varchar(MAX) NULL,
+	Title varchar(1000) NULL,
+	DateEntered datetime NOT NULL,
+	StartDate datetime NULL,
+	EndDate datetime NULL,
+	ContacCreate int NOT NULL,
+	ContactAudit int NULL,
+	StateId int NOT NULL,
+	DateModify datetime NULL,
+	ImageUrl varchar(500) NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Events SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Events ON
+GO
+IF EXISTS(SELECT * FROM dbo.Events)
+	 EXEC('INSERT INTO dbo.Tmp_Events (EventId, Description, Title, DateEntered, StartDate, EndDate, ContacCreate, ContactAudit, StateId, DateModify, ImageUrl)
+		SELECT EventId, CONVERT(varchar(MAX), Description), Title, DateEntered, StartDate, EndDate, ContacCreate, ContactAudit, StateId, DateModify, ImageUrl FROM dbo.Events WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Events OFF
+GO
+ALTER TABLE dbo.ContactXEvent
+	DROP CONSTRAINT FK_ContactXEvent_event
+GO
+DROP TABLE dbo.Events
+GO
+EXECUTE sp_rename N'dbo.Tmp_Events', N'Events', 'OBJECT' 
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	PK__Events__7944C810D6BCD312 PRIMARY KEY CLUSTERED 
+	(
+	EventId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK_Events_States FOREIGN KEY
+	(
+	StateId
+	) REFERENCES dbo.States
+	(
+	StateId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK__Events__StateId__5EBF139D FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK__Events__ContactA__5FB337D6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ContactXEvent ADD CONSTRAINT
+	FK_ContactXEvent_event FOREIGN KEY
+	(
+	EventId
+	) REFERENCES dbo.Events
+	(
+	EventId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ContactXEvent SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+

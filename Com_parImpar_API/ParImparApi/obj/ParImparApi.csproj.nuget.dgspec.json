@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cuent\\OneDrive\\Documentos\\Facu\\Tesis\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj": {}
+    "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cuent\\OneDrive\\Documentos\\Facu\\Tesis\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj": {
+    "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cuent\\OneDrive\\Documentos\\Facu\\Tesis\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
         "projectName": "ParImparApi",
-        "projectPath": "C:\\Users\\cuent\\OneDrive\\Documentos\\Facu\\Tesis\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
-        "packagesPath": "C:\\Users\\cuent\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cuent\\OneDrive\\Documentos\\Facu\\Tesis\\Com_parImpar_API\\ParImparApi\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\ParImparApi.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Gaston\\UTN\\Proyecto\\GitHub\\PF2021G12\\Com_parImpar_API\\ParImparApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,24 +87,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.10, 3.1.10]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.25, 3.1.25]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[3.1.0, 3.1.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[3.1.0, 3.1.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -113,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
