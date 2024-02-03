@@ -6,12 +6,11 @@
       <form [formGroup] ="form" novalidate>
         
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-6">
-              <img *ngIf="configService?.contact" class="center" style="width: 70%;margin-left:20px;margin-bottom: 40px;" [src]="getImage()">
-          </div>
-          <div class="col-3">
-          </div>
+          <div class="col-12">
+            <div class="d-flex justify-content-center">
+              <img *ngIf="configService?.contact" style="width:200px;margin-bottom: 40px;" [src]="getImage()">
+            </div>
+            </div>
         </div>
 
 
@@ -58,14 +57,23 @@
 
             <div class="row">
               <div class="col-1"></div>
-              <div class="col-10 box3">
+              <div class="col-5 box">
                   <label for="dateBrirth">Fecha Nacimiento:</label>
-                  <input type="date" class=" box3_input" id="dateBrirth" name="dateBrirth" style="display: flex;flex-direction: row;">
+                  <input type="date" class=" box_input" id="dateBrirth" name="dateBrirth" style="display: flex;flex-direction: row;">
               </div>
+              
+              <div class="col-5 box">
+                <div class="d-flex flex-row form-check" style="margin-top: 10px;">
+                <label for="typeImpairment" class="form-check-label" style="padding-top: 2px;">Recibir Notifaciones</label>
+                  <input type=checkbox class="form-check-input"  formControlName="notifications">
+                </div>
+            </div>
+
               <div class="col-1"></div>
 
           </div>
       
+
    
     <div class="row justify-content-center">
       <div class="d-flex justify-content-center">

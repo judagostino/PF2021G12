@@ -30,7 +30,8 @@ export class ChangeProfileComponent implements OnInit {
       userName: ['',  [Validators.required]],
       lastName: ['',  [Validators.required]],
       firstName: ['',  [Validators.required]],
-      dateBrirth: [null]
+      dateBrirth: [null],
+      notifications: [true]
     })
     setTimeout( () => this.form.reset(this.configService.contact), 500)
   }
@@ -38,7 +39,6 @@ export class ChangeProfileComponent implements OnInit {
   public btn_SaveChange(): void {
     if(this.form.valid) { 
       const contact = this.form.value;
-      console.log(contact)
       this.contactService.update(contact).subscribe( resp => {
         this.contactService.myInfo().subscribe(res =>{
           this.configService.contact = res;

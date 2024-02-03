@@ -4,13 +4,21 @@
     <div class="col-2"></div>
     <div class="col-8" id="profile-form">     
           <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-              <h3 class="title-profile">{{profile.name}}</h3>
-                <h1 class="subtitle-profile">Perfil</h1>
-                <img  class="center" style="width: 150px;margin-bottom: 40px;" [src]="getImage()">
+            <div class="col-12">
+              <div class="d-flex justify-content-center">
+                  <h3 class="title-profile">{{profile.name}}</h3>
+              </div>
             </div>
-            <div class="col-4"></div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                  <h1 class="justify-content-center subtitle-profile">Perfil</h1>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                  <img  class="justify-content-center" style="width: 150px;margin-bottom: 40px;" [src]="getImage()">
+                </div>
+            </div>
           </div>
           
             <div class="row "> 

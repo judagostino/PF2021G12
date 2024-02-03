@@ -86,14 +86,13 @@
       <div class="col-8 top-div">
         <div class="row">
         <div class="col-2"></div> 
-        <div class="col-6" *ngIf="actionLog?.graphicImpediment?.length >= 0" >
+        <div class="col-8" *ngIf="actionLog?.graphicImpediment?.length >= 0" >
              <div class="titulo-top mb-5">
                  Filtros mas aplicados
              </div>
 
             <div> 
-             <google-chart class="center" style="width: 80%; min-height: 200px;padding-bottom: 30px;"
-                 [type]="type"
+             <google-chart class="center" style="padding-bottom: 30px;width: 100%;height: 100%;"
                  [data]="data"
                  [columns]="columnNames"
                  [options]="{'backgroundColor': 'transparent',fontName:'Nunito', fontSize: '15'}"
@@ -129,7 +128,7 @@
                    </thead>
                     <tbody >
                       <tr *ngFor="let userAction of actionLog?.userActionLog">
-                        <td>{{userAction.dateEntered}}</td>
+                        <td style="white-space:nowrap;">{{userAction.dateEntered | date: 'dd/MM/yyyy HH:mm'}}</td>
                         <td>{{userAction.description}}</td>
                         <td>{{userAction.filtersDescription}}</td>
                         <td>{{userAction.searchText}}</td>

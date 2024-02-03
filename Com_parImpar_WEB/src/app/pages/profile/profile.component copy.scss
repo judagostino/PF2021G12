@@ -40,7 +40,7 @@ body {
     font-family: 'Nunito', sans-serif;
     text-transform: uppercase;
     margin-top: 10px;
-    align-content: center;
+    
   }
   
   .subtitle-profile {
@@ -49,7 +49,7 @@ body {
     font-family: 'Tilt Neon', sans-serif;
     margin-top: 20px;
     text-transform: uppercase;
-    align-content: center;
+
 
   }
   .submit {
@@ -63,6 +63,7 @@ body {
         background-color: #1995AD;
         margin-top: 30px;
         padding: 10px;
+        min-width: 200px;
       }
 
 

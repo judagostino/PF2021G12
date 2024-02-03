@@ -40,6 +40,7 @@ import { ActionLogComponent } from './pages/action-log/action-log.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -66,7 +67,8 @@ registerLocaleData(localeEs, 'es');
     ChangeProfileComponent,
     ChangeModalPasswordComponent, 
     ActionLogComponent,
-    BlockTemplateCmp
+    BlockTemplateCmp,
+    ABMPermissionsComponent
   ],
   imports: [
     BrowserModule,

@@ -11,4 +11,5 @@ export interface Contact {
     dateBrirth?: Date;
     imageUrl?: string;
     auditor?: boolean;
+    notifications?: boolean;
 }

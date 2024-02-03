@@ -18,6 +18,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { RecoverPassordComponent } from './pages/recover-passord/recover-passord.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
+
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
@@ -37,7 +39,10 @@ const routes: Routes = [
   {path:'table/:key',component: ObjectTableComponent},
   {path:'settings',component: ChangeProfileComponent},
   {path:'action-log',component: ActionLogComponent},
+  {path:'user/recover-password',component: ChangePasswordComponent},
+  {path:'permissions',component: ABMPermissionsComponent},
   {path:'**',redirectTo:"home"}
+  
 ];
 
 @NgModule({

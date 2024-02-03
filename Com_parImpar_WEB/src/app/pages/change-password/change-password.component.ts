@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactRegistrer } from 'src/app/models/contact-register';
 import { ContactService } from 'src/app/services';
@@ -40,8 +40,8 @@ export class ChangePasswordComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.formBuilder.group({ 
-      password: {value: null},
-      confirmPassword: {value: null}
+      password: [null,[Validators.required]],
+      confirmPassword: [null,[Validators.required]]
     });
   }
 

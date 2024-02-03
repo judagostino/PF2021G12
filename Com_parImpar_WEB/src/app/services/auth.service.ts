@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpKey } from '../constans';
 import { AuthenticationTokens, CredencialLogin, HttpResponse } from '../intrergaces';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,11 @@ export class AuthService {
     headers = headers.append('Authorization', `Bearer ${this.refreshToken}`);
 
     return this.http.post(`${this.URL}/Update`, {access: this.accessToken}, {headers}).pipe(
-      map((response:HttpResponse<AuthenticationTokens, any>) => this.setSession(response.data))
+      map((response:HttpResponse<AuthenticationTokens, any>) => this.setSession(response.data)),
+      catchError((error: any) => {
+        this.cleartokens();
+        return throwError(error);
+      })
     );
   }
 
