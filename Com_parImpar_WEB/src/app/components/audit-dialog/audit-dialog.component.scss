@@ -1,58 +1,71 @@
-body {
-  background-color: #FFFFFF; 
-  display: grid;
-  min-height: 100vh;
-  grid-template-rows: auto 1fr auto;
-  font-family: 'Nunito', sans-serif;
-  
-}
-
-
-.titulo {
-  color: #1995AD;
-  font-size: 25px;
-  font-family: 'Tilt Neon', sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.reason-error {
-  color: red;
-}
-
-.box  {
-  font-family:'Tilt Neon', sans-serif;
-  font-size: 100%;
-  color:#FFFFFF;
-  width: 80px;
-  height: 30px;
-  border: none;
-  margin-left: 35px;
-  border-radius: 3px 3px 3px 3px;
-  -moz-border-radius: 3px 3px 3px 3px;
-  -webkit-border-radius: 3px 3px 3px 3px;
-  background-color: #1995AD;
-  margin-top: 30px;
-}
-
-.audit-info {
-  padding-left: 40px;
-  padding-right: 40px;
-  padding-top: 30px;
-  padding-bottom: 0px;
-    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  body {
+    background-color: #FFFFFF; 
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    font-family: 'Nunito', sans-serif;
     
+  }
+  
+  #central {
+    margin-top: 40px;
+    margin-bottom: 40px; 
+    border-radius: 25px;
+  } 
+
+  h3{
+    font-family: 'Nunito',sans-serif;
+    font-size:medium;
+    margin-left: 130px;
+    font-weight: bolder;
+    padding: 15px;
+  }
+  
+  .reason-error {
+    color: rgb(185, 0, 0)!important;
+  }
+  
+  .cuerpoModal h6 {
+    color: #1995AD;
+    font-size: 25px;
+    font-family: 'Tilt Neon', sans-serif;
+    text-transform: uppercase;
+    text-align: justify;
+    padding: 5px;
+  }
+  
+  .cuerpoModal P {
+    color: black;
+    font-size: 15px;
+    font-family: 'Tilt Neon', sans-serif;
+    text-align:justify;
+    padding: 5px;
+  }
+
+  .etiqueta {
+    margin-left: 20px;
+    padding: 5px;
+  }
+
+
+  .submit {
+    font-family:'Tilt Neon', sans-serif;
+    font-size: 100%;
+    color:#FFFFFF;
+    min-width: 150px;
+    border: none;
+    margin-left: 28px;
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
-    
-    box-sizing: border-box;
-    width: 950px;
-    height: 1700px;
-  
-    border-radius: 25px;
-    margin-left: 200px;
-    margin-top: 28px;
+    background-color: #1995AD;
+    padding:7px;
+    margin-top: 50px;
+  } 
+
+  button:disabled {
+    background-color: #BCBABE ;
+    color:#444444 
   }
+  
+  

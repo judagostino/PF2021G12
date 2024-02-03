@@ -1,7 +1,92 @@
 <div class="container-fluid">
+  <div class="central" >
+    <div class="row">
+      <div class="audit-event">
+      <div class="row" >
+          <div *ngIf="eventElement">
+            <div class="col-6" style="display: inline-block;vertical-align: top;">
+              <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
+            </div>
+            <div class="col-6 cuerpoModal" style="display: inline-block;vertical-align: top;">
+              <div class="col-12">
+                <div class="d-flex justify-content-center">
+                  <h6 class="justify-content-center">{{eventElement.title}}</h6>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="d-flex justify-content-center">
+                  <P>{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'dd/MM/yyyy HH:mm'}}</P>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="d-flex justify-content-center">
+                  <p style="font-family:'Tilt Neon', sans-serif;max-height: 300px;overflow-y: auto;">{{eventElement.description}}</p>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="d-flex justify-content-center flex-column">
+              <h3>Autor: {{autor?.name}}</h3>
+              <p *ngIf="reason != ''" class="reason-error">Motivo del rechazo: <samp>{{reason}}</samp></p>
+
+            </div>
+          </div>
+
+            </div>  
+          </div>
+        </div>     
+      </div>
+
+
+      <div class="audit-post">
+        <div class="row" >
+            <div *ngIf="post">
+              <div class="col-6" style="display: inline-block;vertical-align: top;">
+                <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
+              </div>
+              <div class="col-6 cuerpoModal" style="display: inline-block;vertical-align: top;">
+                <h6>{{post.title}}</h6>
+                <p style="font-family:'Tilt Neon', sans-serif;max-height: 100px;overflow-y: auto;">{{post.description}}</p>
+                
+                <div *ngIf="post?.typeImpairment?.length > 0" class="mt-2 d-flex flex-wrap etiqueta">
+                  <h4 *ngFor="let type of post.typeImpairment;">
+                      <span class="badge badge-pill badge-primary m-1">{{type.description}}</span>
+                  </h4>
+                </div>
+                <p  class="mt-4" style="max-height: 200px;overflow-y: auto;">{{post.text}}</p>
+                <div class="col-12">
+                  <div class="d-flex justify-content-center flex-column">
+                    <h3>Autor: {{autor?.name}}</h3>
+                    <p class="reason-error" *ngIf="reason != ''">Motivo del rechazo: <samp>{{reason}}</samp></p>
+                  </div>
+              </div>  
+            </div>
+          </div>     
+        </div>
+      </div>
+
+        <div class="row justify-content-center">
+          <div class="d-flex justify-content-center">
+            <button type="button" title="autorizeEvent" class="submit" (click)="btn_Authorize()" [disabled]="state?.id==2">Autorizar</button> 
+            <button type="button" title="denyEvent"  class="submit" (click)="btn_Deny()" [disabled]="state?.id==3">Rechazar</button>
+          
+      </div>
+
+
+ 
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="col-2"></div>
-<div class="audit-info col-8" style="max-height: 50vh;overflow-y: auto;">
+<div class="col-8" style="max-height: 50vh;overflow-y: auto;">
     <h3>Autor: {{autor?.name}}</h3>
     
     <div class="container" *ngIf="eventElement">
@@ -11,13 +96,13 @@
             </div>
             <div class="col-6">
               <h6 class="title-post" >{{eventElement.title}}</h6>
-              <P>{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'shortDate'}}</P>
+              <P>{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'dd/MM/yyyy HH:mm'}}</P>
   
               <span class="mt-2" style="text-align: center; font-weight: lighter; font-style: italic;">{{eventElement.description}}</span>
             </div>
           </div>
-    </div>
-
+    </div> -->
+<!-- 
     <div class="container" *ngIf="post">
         <div class="row">
             <div class="col-12">
@@ -50,4 +135,4 @@
   </div>
   <div class="col-2"></div>
 </div>
-</div>
+</div>  -->

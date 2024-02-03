@@ -41,6 +41,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
+import { TruncatePipe } from './pipe/truncate.pipe';
 
 registerLocaleData(localeEs, 'es');
 
@@ -68,7 +69,8 @@ registerLocaleData(localeEs, 'es');
     ChangeModalPasswordComponent, 
     ActionLogComponent,
     BlockTemplateCmp,
-    ABMPermissionsComponent
+    ABMPermissionsComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

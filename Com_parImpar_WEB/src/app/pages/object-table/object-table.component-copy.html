@@ -62,7 +62,7 @@
             </button>
           </td>
           <td>{{post.title}}</td>
-          <td>{{post.description}}</td>
+          <td>{{post.description | truncate}}</td>
           <td class="status-cell">
             <span style="background-color: green;" *ngIf="post?.state?.id === 2">Autorizado</span> 
             <span style="background-color: red;" *ngIf="post?.state?.id === 3">Rechazado</span>  

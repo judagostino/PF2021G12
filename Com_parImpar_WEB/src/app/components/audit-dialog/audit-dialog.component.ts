@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Contact } from 'src/app/intrergaces';
+import { Contact, State } from 'src/app/intrergaces';
 import { Events } from 'src/app/models/events';
 import { Post } from 'src/app/models/post';
 import { ConfigService, DenyReasonService } from 'src/app/services';
@@ -14,9 +14,9 @@ import Swal  from 'sweetalert2';
 export class AuditDialogComponent implements OnInit {
   eventElement: Events;
   post: Post;
-  paragaphs: string[] = [];
   autor: Contact;
   reason: string= '';
+  state: State= null;
 
   constructor(
     private configService: ConfigService,
@@ -26,16 +26,18 @@ export class AuditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data != null) {
+     console.log(this.data)
       if (this.data.event != null) {
         this.eventElement = this.data.event;
+        this.state = this.data.event.state;
         this.post = null;
         this.autor = this.eventElement.contactCreate
         this.getState();
       } else if (this.data.post != null) {
         this.eventElement = null;
+        this.state = this.data.post.state;
         this.post = this.data.post;
         this.autor = this.post.contactCreate
-        this.paragaphs = [this.post.text.substr(0,100), this.post.text.substr(100,170), this.post.text.substr(170,300), this.post.text.substr(300,700), this.post.text.substr(700,1000)].concat( this.post.text.substr(1000,this.post.text.length).split('. A'))
         this.getState();
       }
     }

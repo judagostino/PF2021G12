@@ -51,7 +51,8 @@ export class ObjectTableComponent implements OnInit {
     const dialogRef = this.dialog.open(
       AuditDialogComponent,
       {
-        data
+        data,
+        panelClass:'modalAuditoria'
       });
 
     dialogRef.afterClosed().subscribe((aux:string) => {

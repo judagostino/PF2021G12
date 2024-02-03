@@ -45,7 +45,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12">
               <div class="form-group">
               <label>Descripción   <span style="color: #1995ad;;"> *</span> </label>
-              <textarea  class="box" formControlName="description" required style="width: 100%;"></textarea>
+              <textarea  rows="8"  class="box" formControlName="description" required style="width: 100%;"></textarea>
               <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.description?.touched && form?.controls?.description?.invalid" class="text-danger">
                 La descripción es requerida
               </div>
@@ -69,6 +69,20 @@
             </label>
           </div>
       </div>
+      
+      <div class="row">
+        <div class=" col-12 col-sm-12 col-md-8 col-lg-8">
+            <form [formGroup]="uploadForm" novalidate>      
+                <div class="archivo">
+                  <input type="file" name="file" (change)="onFileSelect($event)" />
+                </div>
+              </form>
+        </div>
+  
+        <div class=" col-12 col-sm-12 col-md-4 col-lg-4" archivo>
+            <img style="max-width: 100px;" *ngIf="imageAux != null" [src]="imageAux" alt="">
+        </div>
+    </div>
   
      
       <div class="row justify-content-center">
