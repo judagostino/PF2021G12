@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -38,7 +38,10 @@ import { ChangeModalPasswordComponent } from './components/change-password/chang
 import { BlockTemplateCmp } from './components/block-template-cmp/block-template-cmp.component';
 import { ActionLogComponent } from './pages/action-log/action-log.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [
@@ -95,6 +98,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
       multi: true,
       deps: [ConfigService]
     },
+    { provide: LOCALE_ID, useValue: 'es' },
 ],
   entryComponents: [ BlockTemplateCmp ],
   bootstrap: [AppComponent]

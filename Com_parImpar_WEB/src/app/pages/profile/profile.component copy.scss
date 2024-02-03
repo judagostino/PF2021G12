@@ -16,7 +16,7 @@ body {
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 15px;
       -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
       -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
       box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
@@ -26,12 +26,12 @@ body {
       -webkit-border-radius: 3px 3px 3px 3px;
       
       box-sizing: border-box;
-      width: 50%;
-      height: 720px;
+      width: 100%;
+      height: 100%;
     
       border-radius: 25px;
-      margin-left: 350px;
       margin-top: 28px;
+    
     }
 
   .title-profile {
@@ -40,7 +40,7 @@ body {
     font-family: 'Nunito', sans-serif;
     text-transform: uppercase;
     margin-top: 10px;
-    margin-left: 15%;
+    align-content: center;
   }
   
   .subtitle-profile {
@@ -48,24 +48,21 @@ body {
     font-size: 25px;
     font-family: 'Tilt Neon', sans-serif;
     margin-top: 20px;
-    margin-left: 180px;
     text-transform: uppercase;
+    align-content: center;
+
   }
-
-
   .submit {
         font-family:'Tilt Neon', sans-serif;
         font-size: 100%;
         color:#FFFFFF;
-        width: 80px;
-        height: 30px;
         border: none;
-        margin-left: 35px;
         border-radius: 3px 3px 3px 3px;
         -moz-border-radius: 3px 3px 3px 3px;
         -webkit-border-radius: 3px 3px 3px 3px;
         background-color: #1995AD;
         margin-top: 30px;
+        padding: 10px;
       }
 
 
@@ -80,7 +77,7 @@ body {
     margin-top: 5px;
     display: flex;
     flex-direction: column;
-    width: 150%;
+    
 }
 
 .box label {
@@ -90,10 +87,6 @@ body {
   display: flex;
 }
 
-
-.box{
-  margin-left: 60px;
-}
   
 .box2 span {
   outline: none;
@@ -106,7 +99,6 @@ body {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  width: 150%;
 }
 
 .box2 label {
@@ -115,16 +107,8 @@ font-size: 15px;
 font-family: 'Tilt Neon', sans-serif;
 display: flex;
 flex-direction: column;
-width: 150%;
 }
   
-.box2{
-  margin-left: 10px;
-}
-  
-.box3 {
-  margin-left: 75px;
-}
 
 .box3 span {
   outline: none;
@@ -137,7 +121,6 @@ width: 150%;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  width: 150%;
 }
 
 .box3 label {
@@ -148,6 +131,3 @@ text-align: center;
 display: flex;
 }
 
-.row {
-  margin-left:8px;
-}

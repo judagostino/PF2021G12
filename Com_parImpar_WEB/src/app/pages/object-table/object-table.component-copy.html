@@ -1,10 +1,12 @@
+<div class="container-fluid">
 <div id="central" *ngIf="key != ''" style="height: 78vh;">
-  <div class="container">
-  <div id="table" *ngIf="key == 'event'">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" id="table" *ngIf="key == 'event'">
     <div class="titulo">
       Eventos
     </div> 
-    <table class="table table-striped table-hover mb-5">
+    <table class="table">
       <thead>
           <tr>
             <th scope="col"></th>
@@ -21,25 +23,29 @@
               <span>...</span>
             </button>
           </td>
-          <td>{{event.startDate | date: 'shortDate'}}</td>
-          <td>{{event.endDate | date: 'shortDate'}}</td>
+          <td>{{event.startDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+          <td>{{event.endDate | date: 'dd/MM/yyyy HH:mm'}}</td>
           <td>{{event.title}}</td>
           <td class="status-cell">
-            <span *ngIf="event?.state?.id === 2">Autorizado</span> 
-            <span *ngIf="event?.state?.id === 3">Rechazado</span>  
-            <span *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
+            <span style="background-color: green;" *ngIf="event?.state?.id === 2">Autorizado</span> 
+            <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
+            <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
           </td>
           </tr>
         </tbody>
     </table>
+    </div>
+    <div class="col-2"></div>
+
   </div>
 
-
-  <div id="table" *ngIf="key == 'post'">
+  <div class="row">
+    <div class="col-2"></div>
+  <div class="col-8" id="table" *ngIf="key == 'post'">
     <div class="titulo">
       Publicacion de Contenido
     </div> 
-    <table class="table table-striped table-hover mb-5">
+    <table class="table">
       <thead>
           <tr>
             <th scope="col"></th>
@@ -58,17 +64,18 @@
           <td>{{post.title}}</td>
           <td>{{post.description}}</td>
           <td class="status-cell">
-            <span *ngIf="post?.state?.id === 2">Autorizado</span> 
-            <span *ngIf="post?.state?.id === 3">Rechazado</span>  
-            <span *ngIf="post?.state?.id === 1 || post?.state === null ">En espera</span> 
+            <span style="background-color: green;" *ngIf="post?.state?.id === 2">Autorizado</span> 
+            <span style="background-color: red;" *ngIf="post?.state?.id === 3">Rechazado</span>  
+            <span style="background-color: grey;" *ngIf="post?.state?.id === 1 || post?.state === null ">En espera</span> 
           </td>
           </tr>
         </tbody>
     </table>
   </div>
+  <div class="col-2"></div>
 </div>
 </div> 
-    
+</div>
     
 
 

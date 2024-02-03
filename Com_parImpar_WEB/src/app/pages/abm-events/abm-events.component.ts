@@ -64,10 +64,15 @@ export class ABMEventsComponent implements OnInit {
       text:'Una vez eliminado no podra recuperar este evento',
       icon:'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3f51b5',
-      cancelButtonColor: '#f44336',
+      confirmButtonColor: '#1995AD',
+      cancelButtonColor: '#1995AD',
       confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
+      customClass: {
+        container: 'mi-modal-custom' // Clase personalizada para el contenedor del modal
+      }
+      
+    
     }).then( resoult => {
       if (resoult.isConfirmed && resoult.value == true) {
         this.eventsService.delete(this.form.value.id).subscribe( () => {

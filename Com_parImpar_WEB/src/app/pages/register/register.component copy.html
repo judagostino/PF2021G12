@@ -1,6 +1,8 @@
-
-<div id="central">
-  <div id="register">
+<div class="container-fluid">
+<div  id="central">
+  <div class="row">
+    <div class="col-2"></div>
+  <div class="col-8" id="register">
       <div class="titulo">
         <h1>Registrate</h1>
         <h4 >Es simple y r&aacute;pido</h4>
@@ -14,91 +16,104 @@
       <form [formGroup] ="form" novalidate>
     
         <div class="row"> 
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
-            <label>Nombre</label>
+          <div class="col-1"></div>
+          <div class="col-5 left">
+            <label>Nombre <span style="color: #1995ad;;">*</span></label>
             <input type=text class="box" formControlName="firstName" required placeholder="Nombre">
-            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid">
+            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid" class="text-danger">
               El nombre es requerido
             </div>
-
           </div>
-    
-          <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
-            <label>Apellido</label>  
+          <div class="col-5 right">
+            <label>Apellido <span style="color: #1995ad;;">*</span></label>  
             <input class="box" formControlName="lastName" required placeholder="Apellido">
-            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid">
+            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid" class="text-danger">
               El apellido es requerido
             </div>
           </div>
+          <div class="col-1"></div>
         </div>
     
           <div class="row"> 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
-              <label > Correo electrónico </label > 
+            <div class="col-1"></div>
+            <div class="col-5 left">
+              <label > Correo electrónico <span style="color: #1995ad;;">*</span></label > 
                 <input class="box" formControlName="email" placeholder="correoelectronico@ejemplo.com" required aria-placeholder="Correo electrónico"> 
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.email?.touched && form?.controls?.email?.invalid">
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.email?.touched && form?.controls?.email?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.email?.errors?.required">El correo electrónico es requerido</span>
                   <span *ngIf="form?.controls?.email?.errors?.email">El fomrato del correo es invalido</span>
                 </div>
-
-            </div>
-    
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
-              <label > Confirmar correo electrónico </label > 
+               
+              </div>
+              <div class="col-5 right">
+              <label > Confirmar correo electrónico <span style="color: #1995ad;;">*</span></label > 
                 <input class="box" formControlName="confirmEmail" placeholder = "correoelectronico@ejemplo.com" required aria-placeholder="Confirmar correo electrónico"> 
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmEmail?.touched && form?.controls?.confirmEmail?.invalid">
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmEmail?.touched && form?.controls?.confirmEmail?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.confirmEmail?.errors?.required">El correo electrónico es requerido</span>
                   <span *ngIf="form?.controls?.confirmEmail?.errors?.email">El fomrato del correo es invalido</span>
                 </div>
             </div>
+            <div class="col-1"></div>
           </div>
     
           
           <div class="row"> 
-             <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
-              <label>Usuario</label>
+            <div class="col-1"></div>
+             <div class="col-5 left">
+              <label>Usuario <span style="color: #1995ad;;">*</span></label>
               <input class="box" formControlName="userName" required placeholder="Usuario">
-              <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid">
+              <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid" class="text-danger">
                 El Nombre de usuario es requerido
               </div>
             </div>
-    
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
-                <label for="startDate">Fecha nacimiento</label>
+            <div class="col-5 right">
+                <label for="startDate">Fecha nacimiento <span style="color: #1995ad;;">*</span></label>
                 <input type="date" class=" box" id="dateBrirth" name="dateBrirth" placeholder="Fecha nacimiento">
                          
               </div>
+              <div class="col-1"></div>
+
           </div>
    
     
             <div class="row"> 
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 left">
-                <label>Contraseña</label>
+              <div class="col-1"></div>
+              <div class="col-5 left">
+                <label>Contraseña <span style="color: #1995ad;;">*</span></label>
                 <input class="box" formControlName="password" type="password" required placeholder="Contraseña">
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.password?.touched && form?.controls?.password?.invalid">
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.password?.touched && form?.controls?.password?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.password?.errors?.required">La contraseña es requerida</span>
                   <span *ngIf="form?.controls?.password?.errors?.minlength">La contraseña debe tener al menos 8 caracterres</span>
                 </div>
           </div>
-              
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 right">
-                <label>Confirmar contraseña</label>
+          <div class="col-5 right">
+                <label>Confirmar contraseña <span style="color: #1995ad;;">*</span></label>
                 <input class="box" formControlName="confirmPassword" type="password" required placeholder="Confirmar contraseña">
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmPassword?.touched && form?.controls?.confirmPassword?.invalid">
+                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmPassword?.touched && form?.controls?.confirmPassword?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.confirmPassword?.errors?.required">La contraseña es requerida</span>
                   <span *ngIf="form?.controls?.confirmPassword?.errors?.minlength">La contraseña debe tener al menos 8 caracterres</span>
                 </div>
           </div>
+          <div class="col-1"></div>
+
             </div>
     
             <div class="row justify-content-center">
-              <div class="d-flex justify-content-center">
-                <button class="submit" type="button" (click)="btn_NewEvent()">Volver</button>
-                <button class="submit" type="submit" (click)=btn_SaveEvent()>Registrarse</button> 
-              </div>
+              <div class="col-1"></div>
+                <div class="d-flex justify-content-center col-5">
+                  <button class="submit" type="button" (click)="btn_NewEvent()">Volver</button>
+                </div>
+                <div class="col-5">
+                  <button class="submit" type="submit" (click)=btn_SaveEvent()>Registrarse</button> 
+                </div>
+              <div class="col-1"></div>
+
           </div>
       </form>
   </div>
+  <div class="col-2"></div>
+</div>
+</div>
 </div>
     
     

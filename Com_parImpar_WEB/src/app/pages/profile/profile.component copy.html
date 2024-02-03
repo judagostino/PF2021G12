@@ -1,54 +1,64 @@
+<div class="container-fluid">
 <div id="central">
-    <div id="profile-form">   
-        
-          
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8" id="profile-form">     
           <div class="row">
-            <div class="col-sm-12 col-6 mb-3" style="margin-left: 50px;">
-                <h3 class="title-profile">{{profile.name}}</h3>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <h3 class="title-profile">{{profile.name}}</h3>
                 <h1 class="subtitle-profile">Perfil</h1>
-                <img  class="center" style="width: 150px;margin-left: 140px;margin-bottom: 40px;" [src]="getImage()">
-
+                <img  class="center" style="width: 150px;margin-bottom: 40px;" [src]="getImage()">
             </div>
+            <div class="col-4"></div>
           </div>
           
             <div class="row "> 
-              <div class="col-lg-6">       
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
+              <div class="col-1"></div>
+                
+              <div class="col-4 box">
                   <label>Nombre:</label>
                   <span>{{profile.firstName}}</span>
                 </div>
-             </div>
-
-             <div class="col-lg-6">        
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box2">
+                
+                <div class="col-2"></div>
+                
+                <div class="col-4 box2">
                   <label>Apellido:</label>
                   <span>{{profile.lastName}}</span>
                 </div>
+                
+                <div class="col-1"></div>
              </div>
-            </div>  
 
              <div class="row">  
-              <div class="col-lg-6">   
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
+              <div class="col-1"></div> 
+              
+                <div class="col-4 box">
                   <label>Usuario:</label>
                   <span>{{profile.userName}}</span>
                 </div>
-             </div>
-
-             <div class="col-lg-6">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box2">
+            
+            
+             <div class="col-2"></div>
+            
+             <div class="col-4 box2">
                   <label>Fecha de Nacimiento:</label>
                   <span>{{profile.dateBrirth| date:'shortDate'}}</span>
                 </div>
+                <div class="col-1"></div>
              </div>
-            </div>
 
-             <div class="row">        
-                <div class="col-lg-6 box3">
+             <div class="row">
+              <div class="col-1"></div>           
+                <div class="col-5 box3">
                   <label>Correo electronico:</label>
                   <span> {{profile.email}}</span>
                 </div>
-             </div>
+                <div class="col-1"></div>
+                <div class="col-4"></div>
+                <div class="col-1"></div>     
+                </div>
       
      
       <div class="row justify-content-center">
@@ -57,6 +67,10 @@
         </div>
       </div>
     </div>
+    <div class="col-2"></div>
+  </div>
+  </div>
+</div>
   
   
   

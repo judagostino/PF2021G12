@@ -1,67 +1,69 @@
-<div id="central">
-  <div id="profile-form">   
+<div class="container-fluid">
+  <div id="central">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8" id="profile-form">   
       <form [formGroup] ="form" novalidate>
         
         <div class="row">
-          <div class="col-sm-12 col-6 mb-3" style="margin-left: 280px;">
-              <img *ngIf="configService?.contact" class="center" style="width: 150px;margin-left:20px;margin-bottom: 40px;" [src]="getImage()">
+          <div class="col-3"></div>
+          <div class="col-6">
+              <img *ngIf="configService?.contact" class="center" style="width: 70%;margin-left:20px;margin-bottom: 40px;" [src]="getImage()">
           </div>
-          <div class="col-sm-12 col-6 mb-3" style="margin-left: 50px;">
-           <!--  <h3 class="title-profile">{{profile.name}}</h3> -->
+          <div class="col-3">
           </div>
         </div>
 
 
           <div class="row">        
-              <div class="col-lg-6">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
+              <div class="col-1"></div>
+                <div class="col-5 box">
                 <label>Usuario: </label>
                 <input type=text class="box_input" formControlName="userName" required>
                 <div *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid">
                   El Nombre de usuario es requerido
                 </div>
               </div>
-           </div>
-
-                   
-            <div class="col-lg-6">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 box2">
+          
+            
+              <div class="col-5 box2">
               <label>Correo electrónico: </label>
               <input type=text class="box2_input" formControlName="email" placeholder="correoelectronico@ejemplo.com">
             </div>
-          </div>
+            <div class="col-1"></div>
+          
         </div>
     
 
         <div class="row">
-          <div class="col-lg-6">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 box">
-              <label for="typeImpairment">Nombre:</label>
+          <div class="col-1"></div>
+          <div class="col-5 box">
+            <label for="typeImpairment">Nombre:</label>
               <input type=text class="box_input" formControlName="firstName" required>
               <div *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid">
                 El nombre es requerido
               </div>
             </div>
-          </div>      
+               
       
-          <div class="col-lg-6">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 box2">
-                <label for="typeImpairment">Apellido:</label>
+            <div class="col-5 box2">
+              <label for="typeImpairment">Apellido:</label>
                 <input type=text class="box2_input" formControlName="lastName" required>
                 <div *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid">
                   El apellido es requerido
                 </div>
               </div>
-            </div> 
-          </div>
+              <div class="col-1"></div>
+            </div>
 
             <div class="row">
-              <div class="col-lg-6">
-              <div class="col-12 col-sm-12 col-md-6 col-lg-6 box3">
+              <div class="col-1"></div>
+              <div class="col-10 box3">
                   <label for="dateBrirth">Fecha Nacimiento:</label>
                   <input type="date" class=" box3_input" id="dateBrirth" name="dateBrirth" style="display: flex;flex-direction: row;">
               </div>
-            </div>
+              <div class="col-1"></div>
+
           </div>
       
    
@@ -73,6 +75,9 @@
     </div>
 
   </form>
-</div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
 </div>
   

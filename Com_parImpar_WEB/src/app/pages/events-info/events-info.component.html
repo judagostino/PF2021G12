@@ -1,18 +1,27 @@
-<div id="central">
-  <div id="event-info">
-        <div class="row">
-          <div *ngIf="eventElement" class="col-6">
-            <img style="max-width: 80%; margin-left: 40px;" [src]="getImage()" alt="">
+<div class="container-fluid">
+  <div id="central">
+    <div class="row">
+      <div class="col-2"></div>
+    <div class="col-8" id="event-info">
+          <div class="row">
+            <div *ngIf="eventElement">
+
+            <div  class="col-6" style="display: inline-block;vertical-align: top;">
+              <img style="max-width: 100%;" [src]="getImage()" alt="">
+            </div>
+
+            <div class="col-6" style="display: inline-block;vertical-align: top;">
+              <h6 class="titulo" >{{eventElement.title}}</h6>
+              <P class="title-post">{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'shortDate'}}</P>
+              <span style="font-family:'Tilt Neon', sans-serif;">{{eventElement.description}}</span>
+            
+            <a (click)="redirectToProfile()" class="submit" *ngIf ="eventElement.contactCreate.name != null"> Creado por: {{post.contactCreate.name}}</a>
+            <button class="submit" type="button" routerLink="/search">Volver</button>
           </div>
-          <div class="col-6">
-            <h6 class="title-post" >{{eventElement.title}}</h6>
-            <P>{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'shortDate'}}</P>
-
-            <span class="mt-2" style="text-align: center; font-weight: lighter; font-style: italic;">{{eventElement.description}}</span>
-          </div>
-
-
-          <a (click)="redirectToProfile()" class="submit" *ngIf ="eventElement.contactCreate.name != null"> Creado por: {{post.contactCreate.name}}</a>
         </div>
+    </div>
+    </div>
+    <div class="col-2"></div>
   </div>
+</div>
 </div>

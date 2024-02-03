@@ -7,7 +7,7 @@
                     <mat-form-field class="w-100" appearance="fill">
                       <mat-label style="font-family: 'Nunito',sans-serif;">Buscar</mat-label>
                       <input [(ngModel)]="searchText" matInput (keyup.enter)="btn_search()">
-                      <mat-icon (click)="btn_search()" matSuffix>search</mat-icon>
+                      <mat-icon (click)="btn_search()"  style="cursor: pointer;" matSuffix>search</mat-icon>
                     </mat-form-field>
                     
                     <div class="w-100  text-center" id="more-filters">

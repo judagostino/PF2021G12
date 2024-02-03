@@ -10,6 +10,7 @@ import { ActionsLogService } from 'src/app/services';
 export class ActionLogComponent implements OnInit {
   actionLog: ActionsLog = null;
   type = 'PieChart';
+  options = {'backgroundColor': 'red'};
   data = [];
   columnNames = ['Tipo de discapacidad', 'cantidad'];
 

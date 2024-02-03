@@ -83,8 +83,8 @@ export class ABMPostsComponent implements OnInit {
       text:'Una vez eliminado no podra recuperar esta publicación',
       icon:'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3f51b5',
-      cancelButtonColor: '#f44336',
+      confirmButtonColor: '#1995AD',
+      cancelButtonColor: '#1995AD',
       confirmButtonText: 'Eliminar',
       cancelButtonText: 'Cancelar'
     }).then( resoult => {
