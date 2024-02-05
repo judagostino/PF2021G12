@@ -271,14 +271,14 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [GetAll]
-        // GET: api/v1/Posts
+        // GET: api/v1/Posts?a=1
         [HttpGet]
         [Authorize("AccessToken")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery(Name = "a")] int valideAuditor)
         {
             try
             {
-                ApiResponse response = await _postsService.GetAll();
+                ApiResponse response = await _postsService.GetAll(valideAuditor);
 
                 switch (response.Status)
                 {

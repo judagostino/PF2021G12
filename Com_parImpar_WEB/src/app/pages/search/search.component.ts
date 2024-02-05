@@ -75,7 +75,6 @@ export class SearchComponent implements OnInit {
   }
 
   public redirectToProfile(result: SearchItem): void {
-    console.log(result)
     this.router.navigateByUrl(`/profile/${result.contactCreate.id}`)
   }
 

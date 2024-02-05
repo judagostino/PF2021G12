@@ -17,7 +17,13 @@ export class EventsService {
   }
 
   public getById(id: number): Observable<Events> {
-    return this.http.get(`${this.URL}/${id}`).pipe(map((response:Events) => response));
+    return this.http.get(`${this.URL}/${id}`).pipe(map((response:Events) => {
+      if(response.description != null) {
+        response.description = response.description.replace(/<br\s*\/?>/g, '\n');
+        response.descriptionParagraphs = response.description.split('\n');
+      }
+      return response;
+    }));
   }
 
   public getByIdMoreInfo(id: number): Observable<Events> {
@@ -26,23 +32,55 @@ export class EventsService {
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
 
-    return this.http.get(`${this.URL}/${id}/moreInfo`, {headers}).pipe(map((response:Events) => response));
+    return this.http.get(`${this.URL}/${id}/moreInfo`, {headers}).pipe(map((response:Events) => {
+      if(response.description != null) {
+        response.description = response.description.replace(/<br\s*\/?>/g, '\n');
+        response.descriptionParagraphs = response.description.split('\n');
+      }
+      return response;
+    }));
   }
 
   public insert(event: Events): Observable<Events> {
-    return this.http.post(`${this.URL}`, event).pipe(map((response:Events)=> response));
+    if(event.description != null) {
+      event.description = event.description.replace(/\n/g, '<br>');
+    }
+    return this.http.post(`${this.URL}`, event).pipe(map((response:Events) => {
+      if(response.description != null) {
+        response.description = response.description.replace(/<br\s*\/?>/g, '\n');
+        response.descriptionParagraphs = response.description.split('\n');
+      }
+      return response;
+    }));
   }
 
   public update(id: number, event: Events): Observable<Events> {
-    return this.http.put(`${this.URL}/${id}`, event).pipe(map((response:Events) => response));
+    if(event.description != null) {
+      event.description = event.description.replace(/\n/g, '<br>');
+    }
+    return this.http.put(`${this.URL}/${id}`, event).pipe(map((response:Events) => {
+      if(response.description != null) {
+        response.description = response.description.replace(/<br\s*\/?>/g, '\n');
+        response.descriptionParagraphs = response.description.split('\n');
+      }
+      return response;
+    }));
   }
 
   public delete(id: number): Observable<any> {
     return this.http.delete(`${this.URL}/${id}`);
   }
 
-  public getAll(): Observable<Events[]> {
-    return this.http.get(`${this.URL}`).pipe(map((response:Events[]) => response));
+  public getAll(audit: boolean = false): Observable<Events[]> {
+    return this.http.get(`${this.URL}${audit ? '?a=1' : ''}`).pipe(map((response:Events[]) => {
+      response.forEach(event => {
+        if(event.description != null) {
+          event.description = event.description.replace(/<br\s*\/?>/g, '\n');
+          event.descriptionParagraphs = event.description.split('\n');
+        }
+      });
+      return response;
+    }));
   }
 
   public authorize(id: number): Observable<any> {
@@ -60,6 +98,14 @@ export class EventsService {
     headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
 
     return this.http.get(`${this.URL}/Date?d=${date.getFullYear()}-${date.getMonth() + 1}-${1}`
-    , {headers}).pipe(map((response:Events[]) => response));
+    , {headers}).pipe(map((response:Events[]) => {
+      response.forEach(event => {
+        if(event.description != null) {
+          event.description = event.description.replace(/<br\s*\/?>/g, '\n');
+          event.descriptionParagraphs = event.description.split('\n');
+        }
+      });
+      return response;
+    }));
   }
 }

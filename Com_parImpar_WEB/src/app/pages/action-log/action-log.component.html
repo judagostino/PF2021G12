@@ -12,22 +12,24 @@
                     Top 5 en visitas por Publicaciones
                 </div>
       
-                  <table class="table">
-                         <thead>
-                             <tr>
-                                 <th scope="col">Cantidad de visitas</th>
-                                 <th scope="col">Titulo de la publicacion</th>
-                                 <th scope="col">Autor</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             <tr *ngFor="let posts of actionLog?.postViews">
-                               <td>{{posts.viewrs}}</td>
-                               <td>{{posts.title}}</td>
-                               <td>{{posts.name}}</td>
-                             </tr>
-                           </tbody>
-                       </table>
+                  <div style="height: 100%; overflow: auto;">
+                    <table class="table">
+                           <thead>
+                               <tr>
+                                   <th scope="col">Cantidad de visitas</th>
+                                   <th scope="col">Titulo de la publicacion</th>
+                                   <th scope="col">Autor</th>
+                               </tr>
+                             </thead>
+                             <tbody>
+                               <tr *ngFor="let posts of actionLog?.postViews">
+                                 <td>{{posts.viewrs}}</td>
+                                 <td>{{posts.title}}</td>
+                                 <td>{{posts.name}}</td>
+                               </tr>
+                             </tbody>
+                    </table>
+                  </div>
                  </div>
 
                  <div class="col-xs-12 col-sm-12 col-md-12" *ngIf="actionLog?.eventViews?.length >= 0">
@@ -35,6 +37,8 @@
                     Top 5 en visitas por Eventos
                 </div>
    
+                
+                <div style="height: 100%; overflow: auto;">
                   <table class="table">
                          <thead>
                              <tr>
@@ -51,6 +55,7 @@
                              </tr>
                            </tbody>
                        </table>
+                </div>
                  </div>
 
                 
@@ -59,6 +64,7 @@
                     Top 5 en visitas por Usuario
                 </div>
    
+                <div style="height: 100%; overflow: auto;">
                   <table class="table">
                          <thead>
                              <tr>
@@ -73,6 +79,7 @@
                              </tr>
                            </tbody>
                        </table>
+                </div>
                  </div>
                </div>
              </div>
@@ -92,12 +99,14 @@
              </div>
 
             <div> 
-             <google-chart class="center" style="padding-bottom: 30px;width: 100%;height: 100%;"
+              <div *ngIf="chartOption != null" echarts [options]="chartOption" [theme]="'macarons'"></div>
+
+             <!-- <google-chart class="center"
                  [data]="data"
                  [columns]="columnNames"
                  [options]="{'backgroundColor': 'transparent',fontName:'Nunito', fontSize: '15'}"
                  >
-             </google-chart>
+             </google-chart> -->
             </div> 
            </div>
            <div class="col-2"></div> 

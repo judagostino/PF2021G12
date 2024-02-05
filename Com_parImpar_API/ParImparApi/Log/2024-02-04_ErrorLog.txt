@@ -1,0 +1,48 @@
+2024-02-04 20:11:33.1563 - ERROR - 80000008-0007-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     Exception: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     StackTrace:    at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at ParImparApi.Services.UploadService.UploadFile(IFormCollection formCollection, String pathToSave, String imageName) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 183
+   at ParImparApi.Services.UploadService.UploadImage(IFormCollection formCollection) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 99
+   at ParImparApi.Controllers.UploadController.Upload() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\UploadController.cs:line 52
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYmRjNzlhZi1kZTM0LTRiZjItODQ3Ni00OGJhM2RhY2VmNDYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3MDg4MjgyLCJleHAiOjE3MDcwODkxODIsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.5vFIHg43sPEJxHJNVsJLFqAjd2hA2uttGi13CZIdy0A", 
+
+2024-02-04 21:18:04.4354 - ERROR - 8000006f-0005-fb00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     Exception: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     StackTrace:    at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at ParImparApi.Services.UploadService.UploadFile(IFormCollection formCollection, String pathToSave, String imageName) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 183
+   at ParImparApi.Services.UploadService.UploadImage(IFormCollection formCollection) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 99
+   at ParImparApi.Controllers.UploadController.Upload() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\UploadController.cs:line 52
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMTA1ZTI3My0zM2ZmLTQ1MWQtOGZkZi03ZDBlY2IxN2I4M2EiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3MDkyMjg0LCJleHAiOjE3MDcwOTMxODQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.j1_tjmd2n4QIjvC1yD7DSa3tbA3iOT2KN_-Sgbb-1fQ", 
+
+2024-02-04 21:18:43.1159 - ERROR - 80000021-0007-fe00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     Exception: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     StackTrace:    at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at ParImparApi.Services.UploadService.UploadFile(IFormCollection formCollection, String pathToSave, String imageName) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 183
+   at ParImparApi.Services.UploadService.UploadImage(IFormCollection formCollection) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 99
+   at ParImparApi.Controllers.UploadController.Upload() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\UploadController.cs:line 52
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMTA1ZTI3My0zM2ZmLTQ1MWQtOGZkZi03ZDBlY2IxN2I4M2EiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3MDkyMjg0LCJleHAiOjE3MDcwOTMxODQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.j1_tjmd2n4QIjvC1yD7DSa3tbA3iOT2KN_-Sgbb-1fQ", 
+
+2024-02-04 21:24:44.5736 - ERROR - 8000000d-0000-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     Exception: Could not find a part of the path 'C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_WEB\src\assets\image\Events\EventId_2.jpg'.
+     StackTrace:    at System.IO.FileSystem.DeleteFile(String fullPath)
+   at System.IO.File.Delete(String path)
+   at ParImparApi.Services.UploadService.UploadFile(IFormCollection formCollection, String pathToSave, String imageName) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 183
+   at ParImparApi.Services.UploadService.UploadImage(IFormCollection formCollection) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\UploadService.cs:line 99
+   at ParImparApi.Controllers.UploadController.Upload() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\UploadController.cs:line 52
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMTA1ZTI3My0zM2ZmLTQ1MWQtOGZkZi03ZDBlY2IxN2I4M2EiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3MDkyMjg0LCJleHAiOjE3MDcwOTMxODQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.j1_tjmd2n4QIjvC1yD7DSa3tbA3iOT2KN_-Sgbb-1fQ", 
+
+2024-02-04 21:50:35.8378 - INFO - 8000001f-0003-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Unauthorized IP
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1YjA3ZTkyNC01ZjNkLTQwZTItYjMxZS0yYzI4MjFlY2JjNDUiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVYZDlZN0kvbDlXam9KQnp0R21sS29GckpOcldLemVLQkNaWFhVV1BPcEd1NzJoaEpjR2Zma09Ea1VLREJ1YThQSTRxeGxNMXMvclM0TnlZK2tDK2ZSQXo4cXFWb0UxS3N3S3dkNlVWZkVxd0tNS1BhVXI1eUNybFV0OG9KRU9pdm1BS1lVSi84djQ1MFhmK0h4a1dtdkVsbEtEY0l5QVo1amMvYzU1ekF6WHc3RTFmT1oyNGp4d2F2WFh1UVhNKzYrYmZUR3dFMzRJaWoxcGNaenlUeG9EKzE1UXU3V05VL1ZvUFU2MDh5MklvNjZ3ZjN6Mk1rVU9WWWlxQ2xYWTdmUHB0SmxFMjVVMHVad05zUzN2MTJMZz0iLCJuYmYiOjE3MDcwOTQwNjgsImV4cCI6MTcwNzE4MDQ2OCwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.vxf1Mke-2M6LkYJKMIDwByjAH0EmbQeReV5KL9CqUuo", 
+
+2024-02-04 22:32:07.4584 - INFO - 80000021-0006-fd00-b63f-84710c7967bb - (POST) https://localhost/api/v1/Auth/Update (ver: ) - ::1
+     Message: Unauthorized IP
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYjgzM2I2OS1mZWE4LTQ3ZDItYmEyMi0yMWE1Y2RkMzdjNWUiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVaY01NVlBxbWVueHF3TlZzdThCcEFVUWR2WEl4ejcvb0xiY0lReGpqbk9qbzI5YndhTWZXZ1hQYTdjSU1PMnNrWXdqV2M5UDQvRmE4R3REMDNtTjZoQTgzcmdRclNVdW45Nk1XSUYvZ3pRM3p1TEZJaUtVVDc3UlZPRzdOZlJMZTlFNFJEVjBBR0RGVkt3UDZnYSt5Y3ZTWEIxN1VsL2thN0RSL3E2T3gyRUcyT0ZwMzRPT1pYR1ZsMk4wLzhOQ0R6OVhkYXVwM1liendJUzlxTFVDUUJGRVBYbC9UN3N5ajljdTYwcEdSNkhLY1pSVG9TbFYreElDU1lidC9JNGdQcnVMMnNqcnFwaEs0bFBBdXdvY0VOMD0iLCJuYmYiOjE3MDcwOTYzNTksImV4cCI6MTcwNzE4Mjc1OSwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.8VIdOCpImEJ-1CSFtnCuCO-L6L0Ya-RoLxWvZJWztEA", 
+

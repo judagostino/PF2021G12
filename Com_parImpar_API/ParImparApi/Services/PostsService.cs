@@ -814,7 +814,7 @@ namespace ParImparApi.Services
 
         }
 
-        public async Task<ApiResponse> GetAll()
+        public async Task<ApiResponse> GetAll(int? valideAuditor)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
             {
@@ -825,8 +825,16 @@ namespace ParImparApi.Services
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         #region [SP Parameters]
-                        int a = int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"));
                         cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+
+                        if (valideAuditor != null && valideAuditor == 1)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@audit", 1));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@audit", 0));
+                        }
                         #endregion
 
                         await cnn.OpenAsync();

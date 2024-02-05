@@ -5,7 +5,9 @@ export class Post {
     dateEntered?: Date;
     title?: string;
     description?: string;
+    descriptionParagraphs?: string[];
     text: string;
+    bodyParagraphs?: string[];
     state?: State;
     contactCreate?: Contact;
     contactAudit?: Contact;
@@ -17,6 +19,8 @@ export class Post {
         this.dateEntered = null;
         this.title = null;
         this.description = null;
+        this.bodyParagraphs = [];
+        this.descriptionParagraphs = [];
         this.state = null;
         this.contactCreate = null;
         this.contactAudit = null;

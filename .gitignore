@@ -1,3 +1,23 @@
 
+# Ignorar Cache
 *.cache
+
+# Ignorar Configuracion de API
 Com_parImpar_API/Publico/appsettings.json
+
+
+# Ignorar todas las imágenes en las carpetas específicas
+Com_parImpar_API/image/Events/*.png
+Com_parImpar_API/image/Events/*.jpg
+Com_parImpar_API/Events/*.jpeg
+Com_parImpar_API/Events/*.gif
+
+Com_parImpar_API/image/Posts/*.png
+Com_parImpar_API/image/Posts/*.jpg
+Com_parImpar_API/image/Posts/*.jpeg
+Com_parImpar_API/image/Posts/*.gif
+
+Com_parImpar_API/image/Profiles/*.png
+Com_parImpar_API/image/Profiles/*.jpg
+Com_parImpar_API/image/Profiles/*.jpeg
+Com_parImpar_API/image/Profiles/*.gif

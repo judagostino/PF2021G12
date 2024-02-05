@@ -6,34 +6,37 @@
     <div class="titulo">
       Eventos
     </div> 
-    <table class="table">
-      <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Inicio</th>
-            <th scope="col">Fin</th>
-            <th scope="col">Titulo</th>
-            <th scope="col">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let event of events">
-            <td>
-              <button (click)="openDialog(event.id)" class="icon-button" aria-label="Icon button">
-              <span>...</span>
-            </button>
-          </td>
-          <td>{{event.startDate | date: 'dd/MM/yyyy HH:mm'}}</td>
-          <td>{{event.endDate | date: 'dd/MM/yyyy HH:mm'}}</td>
-          <td>{{event.title}}</td>
-          <td class="status-cell">
-            <span style="background-color: green;" *ngIf="event?.state?.id === 2">Autorizado</span> 
-            <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
-            <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
-          </td>
-          </tr>
-        </tbody>
-    </table>
+    
+    <div style="height: 100%; overflow: auto;">
+      <table class="table">
+        <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Inicio</th>
+              <th scope="col">Fin</th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of events">
+              <td>
+                <button (click)="openDialog(event.id)" class="icon-button" aria-label="Icon button">
+                <span>...</span>
+              </button>
+            </td>
+            <td>{{event.startDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{event.endDate | date: 'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{event.title}}</td>
+            <td class="status-cell">
+              <span style="background-color: green;" *ngIf="event?.state?.id === 2">Autorizado</span> 
+              <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
+              <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
+            </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
     </div>
     <div class="col-2"></div>
 
@@ -45,32 +48,36 @@
     <div class="titulo">
       Publicacion de Contenido
     </div> 
-    <table class="table">
-      <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Titulo</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let post of posts">
-            <td>
-              <button (click)="openDialog(post.id)" class="icon-button" aria-label="Icon button">
-              <span>...</span>
-            </button>
-          </td>
-          <td>{{post.title}}</td>
-          <td>{{post.description | truncate}}</td>
-          <td class="status-cell">
-            <span style="background-color: green;" *ngIf="post?.state?.id === 2">Autorizado</span> 
-            <span style="background-color: red;" *ngIf="post?.state?.id === 3">Rechazado</span>  
-            <span style="background-color: grey;" *ngIf="post?.state?.id === 1 || post?.state === null ">En espera</span> 
-          </td>
-          </tr>
-        </tbody>
-    </table>
+    
+    <div style="height: 100%; overflow: auto;">
+      <table class="table">
+        <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Titulo</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let post of posts">
+              <td>
+                <button (click)="openDialog(post.id)" class="icon-button" aria-label="Icon button">
+                <span>...</span>
+              </button>
+            </td>
+            <td>{{post.title}}</td>
+            <td>{{post.description | truncate}}</td>
+            <td class="status-cell">
+              <span style="background-color: green;" *ngIf="post?.state?.id === 2">Autorizado</span> 
+              <span style="background-color: red;" *ngIf="post?.state?.id === 3">Rechazado</span>  
+              <span style="background-color: grey;" *ngIf="post?.state?.id === 1 || post?.state === null ">En espera</span> 
+            </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+
   </div>
   <div class="col-2"></div>
 </div>

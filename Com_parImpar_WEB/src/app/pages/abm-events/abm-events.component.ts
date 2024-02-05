@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -54,7 +53,6 @@ export class ABMEventsComponent implements OnInit {
   public btn_SaveEvent(): void {
     if (this.form.valid) {
      let newEvent = this.form.value;
-
       if (newEvent.id === 0) {
         this.insert(newEvent);
       } else {
@@ -118,8 +116,9 @@ export class ABMEventsComponent implements OnInit {
       this.form.reset(resp);
       if (resp.imageUrl) {
         this.imageAux = resp.imageUrl
+      } else {
+        this.imageAux = null;
       }
-
     });
   }
 
@@ -133,7 +132,9 @@ export class ABMEventsComponent implements OnInit {
   private insert(event: Events): void {
     this.eventsService.insert(event).subscribe(resp => {
       this.form.reset(resp)
-      this.uploadImage(resp.id)
+      if (this.uploadForm.value != null) {
+        this.uploadImage(resp.id)
+      }
       this.getGrid();
       Swal.fire(
         'Guardado',
@@ -166,7 +167,9 @@ export class ABMEventsComponent implements OnInit {
   private update(event: Events): void {
     this.eventsService.update(event.id,event).subscribe(resp => {
       this.form.reset(resp)
-      this.uploadImage(resp.id)
+      if (this.uploadForm.value != null) {
+        this.uploadImage(resp.id)
+      }
       this.getGrid();
       Swal.fire(
         'Guardado',

@@ -1,0 +1,653 @@
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Update]    Script Date: 3/2/2024 18:58:27 ******/
+DROP PROCEDURE [dbo].[Posts_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Update]    Script Date: 3/2/2024 18:58:27 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[Posts_Update]
+(
+	@PostId INT,
+    @Title VARCHAR(1000),
+    @Description VARCHAR(MAX),
+    @Text VARCHAR(MAX),
+	@ContactId INT,
+	@Types AS VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @PostId INT
+DECLARE @Title AS VARCHAR(255)
+DECLARE @Description AS VARCHAR(255)
+DECLARE @Text AS VARCHAR(MAX)
+DECLARE @Types AS VARCHAR(MAX)
+DECLARE @ContactId AS INT
+DECLARE @ResultCode AS INT
+
+SET @PostId = 1013
+SET @Text = 'este es una prueba'
+SET @Title = 'este es una prueba'
+SET @Description = 'este es una prueba'
+SET @Types = '2'
+SET @ContactId = 1
+*/
+
+SET @ResultCode = 200
+
+IF @PostId IS NULL 
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+IF (@Title IS NULL OR @Title = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5008
+	END
+
+IF (@Description IS NULL OR @Description = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5013
+	END
+
+IF (@Text IS NULL OR @Text = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5014
+	END
+
+IF (SELECT TOP 1 PostId FROM [Posts] (NOLOCK) WHERE PostId = @PostId AND ContacCreate = @ContactId) IS NULL
+	BEGIN
+		SET @ResultCode = 404 
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		UPDATE [Posts] 
+				SET
+					Title = @Title, 
+					[Description] = @Description, 
+					[Text] = @Text,
+					StateId = 1,
+					DateModify = GETDATE()
+			WHERE PostId = @PostId AND ContacCreate = @ContactId
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+		  ELSE
+			BEGIN
+				DELETE FROM PostsXTypesImpairment
+				WHERE PostId = @PostId 
+				AND TypeId NOT IN 
+						(
+							SELECT value 'TypeId'
+							FROM STRING_SPLIT(@Types , ',')
+						)
+
+				IF (@Types IS NOT NULL)
+					BEGIN
+						INSERT INTO PostsXTypesImpairment
+						SELECT @PostId 'PostId ', value 'TypeId'
+						FROM STRING_SPLIT(@Types , ',')
+						WHERE value NOT IN 
+							(
+								SELECT TypeId
+								FROM PostsXTypesImpairment
+								WHERE PostId = @PostId
+							)
+					END
+
+				IF (SELECT ISNULL(Auditor, 'False')
+					FROM Contacts 
+					WHERE ContactId = @ContactId) = 'True'
+					BEGIN
+						UPDATE [Posts] 
+						SET 
+						StateId = 2,
+						ContactAudit = @ContactId
+						WHERE PostId = @PostId
+					END
+
+				SELECT 
+					P.PostId,
+					P.[Description],
+					P.Text,
+					P.Title,
+					P.DateEntered,
+					P.ContacCreate,
+					CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+					P.ContactAudit,
+					CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+					P.StateId,
+					P.ImageUrl,
+					s.[Description] 'DescriptionState',
+					PTI.TypeId,
+					TI.Description 'DescriptionTypeImpairment'
+				FROM [Posts] (NOLOCK) P
+					INNER JOIN Contacts (NOLOCK) CC
+						ON CC.ContactId = P.ContacCreate
+					INNER JOIN States (NOLOCK) S
+						ON S.StateId = P.StateId
+					LEFT JOIN Contacts (NOLOCK) CA 
+						ON CA.ContactId = P.ContactAudit
+					LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+						ON PTI.PostId = P.PostId
+					LEFT JOIN TypesImpairment (NOLOCK) TI
+						ON PTI.TypeId = TI.TypeId
+				WHERE P.PostId = @PostId
+
+				DECLARE @ContactCreatId INT
+
+				SELECT @ContactCreatId = P.PostId
+				FROM [Posts] (NOLOCK) P
+				WHERE P.PostId = @PostId
+
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					'PostId', 
+					@PostId,
+					@ContactId,
+					6,
+					GETDATE()
+				)
+			END
+	END
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 3/2/2024 18:58:06 ******/
+DROP PROCEDURE [dbo].[Posts_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Insert]    Script Date: 3/2/2024 18:58:06 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Posts_Insert]
+(
+    @Title VARCHAR(1000),
+    @Description VARCHAR(MAX),
+	@Text VARCHAR(MAX),
+    @ContactCreateId INT,
+	@Types AS VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @StartDate AS Date
+DECLARE @EndDate AS Date
+DECLARE @Title AS VARCHAR(255)
+DECLARE @Description AS VARCHAR(255)
+DECLARE @Types AS VARCHAR(MAX)
+DECLARE @Text AS VARCHAR(MAX)
+DECLARE @ContactCreateId AS INT
+DECLARE @ResultCode AS INT
+
+SET @StartDate = GETDATE()
+SET @EndDate = GETDATE()
+SET @Title = 'este es una prueba'
+SET @Description = 'este es una prueba'
+SET @Text = 'este es una prueba'
+SET @ContactCreateId = 1
+SET @Types = '1,2'
+*/
+
+DECLARE @PostId INT = 0
+
+SET @ResultCode = 200
+
+IF (@Title IS NULL OR @Title = '')
+	BEGIN
+		SET @ResultCode = 5008
+	END
+
+IF (@Description IS NULL OR @Description = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5013
+	END
+
+IF (@Text IS NULL OR @Text = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5014
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		
+		INSERT INTO [Posts] (
+			Title, 
+			[Description], 
+			Text,
+			ContacCreate, 
+			StateId, 
+			dateEntered
+		) 
+		VALUES (
+			@Title, 
+			@Description, 
+			@Text,
+			@ContactCreateId,
+			1, 
+			GETDATE()
+		)
+
+		SET @PostId = @@Identity
+
+		IF @@ROWCOUNT = 0  AND @PostId <> 0
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+		  ELSE
+			BEGIN
+				IF (@Types IS NOT NULL)
+					BEGIN
+						INSERT INTO PostsXTypesImpairment
+						SELECT @PostId 'PostId ', value 'TypeId'
+						FROM STRING_SPLIT(@Types , ',')
+					END
+
+
+				IF (SELECT ISNULL(Auditor, 'False')
+					FROM Contacts 
+					WHERE ContactId = @ContactCreateId) = 'True'
+					BEGIN
+						UPDATE [Posts] 
+						SET 
+						StateId = 2,
+						ContactAudit = @ContactCreateId
+						WHERE PostId = @PostId
+					END
+
+				SELECT 
+					P.PostId,
+					P.[Description],
+					P.Text,
+					P.Title,
+					P.DateEntered,
+					P.ContacCreate,
+					CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+					P.ContactAudit,
+					CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+					P.StateId,
+					P.ImageUrl,
+					s.[Description] 'DescriptionState',
+					PTI.TypeId,
+					TI.Description 'DescriptionTypeImpairment'
+				FROM [Posts] (NOLOCK) P
+					INNER JOIN Contacts (NOLOCK) CC
+						ON CC.ContactId = P.ContacCreate
+					INNER JOIN States (NOLOCK) S
+						ON S.StateId = P.StateId
+					LEFT JOIN Contacts (NOLOCK) CA 
+						ON CA.ContactId = P.ContactAudit
+					INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
+						ON PTI.PostId = P.PostId
+					LEFT JOIN TypesImpairment (NOLOCK) TI
+						ON PTI.TypeId = TI.TypeId
+				WHERE P.PostId = @PostId
+
+
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					'PostId', 
+					@PostId,
+					@ContactCreateId,
+					5,
+					GETDATE()
+				)
+
+			END
+	END
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_Insert]    Script Date: 3/2/2024 19:02:30 ******/
+DROP PROCEDURE [dbo].[Events_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_Insert]    Script Date: 3/2/2024 19:02:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Events_Insert]
+(
+    @StartDate Datetime,
+    @EndDate Datetime,
+    @Title VARCHAR(1000),
+    @Description VARCHAR(MAX),
+    @ContactCreateId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @StartDate AS Date
+DECLARE @EndDate AS Date
+DECLARE @Title AS VARCHAR(255)
+DECLARE @Description AS VARCHAR(255)
+DECLARE @ContactCreateId AS INT
+DECLARE @ResultCode AS INT
+
+SET @StartDate = GETDATE()
+SET @EndDate = GETDATE()
+SET @Title = 'este es una prueba'
+SET @Description = 'este es una prueba'
+SET @ContactCreateId = 1
+*/
+
+
+
+DECLARE @EventId AS INT
+
+
+SET @ResultCode = 200
+
+IF (@Title IS NULL OR @Title = '')
+	BEGIN
+		SET @ResultCode = 5008
+	END
+
+IF (@StartDate IS NULL OR @StartDate = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5007
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		INSERT INTO [Events] (
+			Title, 
+			[Description], 
+			StartDate, 
+			EndDate, 
+			ContacCreate, 
+			StateId, 
+			dateEntered
+		) 
+		VALUES (
+			@Title, 
+			@Description, 
+			@StartDate, 
+			ISNULL(@EndDate, @StartDate),
+			@ContactCreateId,
+			1, 
+			GETDATE()
+		)
+
+		IF @@ROWCOUNT = 0  AND @@Identity <> 0
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+		  ELSE
+			BEGIN
+				SET @EventId = @@Identity
+
+				-- si es de confianza entonces se aprueba automaticamente
+				IF (SELECT Trusted FROM Contacts WHERE ContactId = @ContactCreateId) = 'True' 
+					BEGIN
+						UPDATE [Events] 
+						SET 
+						StateId = 2,
+						ContactAudit = @ContactCreateId
+						WHERE EventId = @EventId
+					END
+				
+				-- si obtienen los datos a devolver
+				SELECT 
+					E.EventId,
+					E.EndDate,
+					E.StartDate,
+					E.[Description],
+					E.Title,
+					E.DateEntered,
+					E.ContacCreate,
+					CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+					E.ContactAudit,
+					E.ImageUrl,
+					CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+					E.StateId,
+					s.[Description] 'DescriptionState'
+				FROM [Events] E
+				 INNER JOIN Contacts CC
+				   ON CC.ContactId = E.ContacCreate
+				    INNER JOIN States S
+				   ON S.StateId = E.StateId
+				 LEFT JOIN Contacts CA 
+					ON CA.ContactId = E.ContactAudit
+				WHERE EventId = @EventId
+
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					'EventId', 
+					@EventId,
+					@ContactCreateId,
+					2,
+					GETDATE()
+				)
+			END
+	END
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_Update]    Script Date: 3/2/2024 19:03:04 ******/
+DROP PROCEDURE [dbo].[Events_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Events_Update]    Script Date: 3/2/2024 19:03:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Events_Update]
+(
+	@EventId INT,
+    @StartDate Datetime,
+    @EndDate Datetime,
+    @Title VARCHAR(1000),
+    @Description VARCHAR(MAX),
+    @ContactId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @EventId INT
+DECLARE @StartDate AS Datetime
+DECLARE @EndDate AS Datetime
+DECLARE @Title AS VARCHAR(255)
+DECLARE @Description AS VARCHAR(255)
+DECLARE @ContactId AS INT
+DECLARE @ResultCode AS INT
+
+SET @EventId = 10
+SET @StartDate = GETDATE()
+SET @Title = 'este es una prueba'
+SET @Description = 'este es una prueba'
+SET @ContactId = 1
+*/
+
+SET @ResultCode = 200
+
+IF @EventId IS NULL 
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+IF (@Title IS NULL OR @Title = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5008
+	END
+
+IF (@StartDate IS NULL OR @StartDate = '') AND  @ResultCode = 200
+	BEGIN
+		SET @ResultCode = 5007
+	END
+
+IF (SELECT TOP 1 EventId FROM [Events] (NOLOCK) WHERE EventId = @EventId AND ContacCreate = @ContactId) IS NULL
+	BEGIN
+		SET @ResultCode = 404 
+	END
+
+
+IF @ResultCode = 200
+	BEGIN
+		IF ISNULL(@EndDate, @StartDate) >= CAST(GETDATE() AS datetime)
+			BEGIN
+				UPDATE [Events] 
+				SET
+					Title = @Title, 
+					[Description] = @Description, 
+					StartDate = @StartDate, 
+					EndDate = ISNULL(@EndDate, @StartDate),
+					StateId = 1,
+					ContactAudit = NULL,
+					DateModify = GETDATE()
+				WHERE EventId = @EventId AND ContacCreate = @ContactId
+			END
+		  ELSE
+			BEGIN
+				UPDATE [Events] 
+				SET
+						Title = @Title, 
+						[Description] = @Description, 
+						StartDate = @StartDate, 
+						EndDate = ISNULL(@EndDate, @StartDate),
+						DateModify = GETDATE()
+				WHERE EventId = @EventId AND ContacCreate = @ContactId
+			END
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+		  ELSE
+			BEGIN
+
+				-- si es de confianza entonces se aprueba automaticamente
+				IF (SELECT Trusted FROM Contacts WHERE ContactId = @ContactId) = 'True' 
+					BEGIN
+						UPDATE [Events] 
+						SET 
+						StateId = 2,
+						ContactAudit = @ContactId
+						WHERE EventId = @EventId
+					END
+
+				SELECT 
+					E.EventId,
+					E.EndDate,
+					E.StartDate,
+					E.[Description],
+					E.Title,
+					E.DateEntered,
+					E.ContacCreate,
+					CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+					E.ContactAudit,
+					E.ImageUrl,
+					CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+					E.StateId,
+					s.[Description] 'DescriptionState'
+				FROM [Events] E
+				 INNER JOIN Contacts CC
+				   ON CC.ContactId = E.ContacCreate
+				    INNER JOIN States S
+				   ON S.StateId = E.StateId
+				 LEFT JOIN Contacts CA 
+					ON CA.ContactId = E.ContactAudit
+				WHERE EventId = @EventId
+
+				DECLARE @ContactCreateId INT
+				
+				SELECT 
+				 @ContactCreateId = ContacCreate
+				FROM [Events] (NOLOCK) E
+				WHERE EventId = @EventId
+
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					'EventId', 
+					@@Identity,
+					@ContactCreateId,
+					3,
+					GETDATE()
+				)
+			END
+	END
+GO
+
+

@@ -26,7 +26,6 @@ export class AuditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data != null) {
-     console.log(this.data)
       if (this.data.event != null) {
         this.eventElement = this.data.event;
         this.state = this.data.event.state;
@@ -106,7 +105,6 @@ export class AuditDialogComponent implements OnInit {
       showLoaderOnConfirm: true,
       cancelButtonText: 'Cancelar'
     }).then((result) => {
-      console.log(result)
       if (result.isConfirmed) {
         this.dialogRef.close(JSON.stringify({
           ...this.data,

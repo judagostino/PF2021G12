@@ -256,14 +256,14 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [GetAll]
-        // GET: api/v1/Events
+        // GET: api/v1/Events?a=1
         [HttpGet]
         [Authorize("AccessToken")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery(Name = "a")] int valideAuditor)
         {
             try
             {
-                ApiResponse response = await _eventsService.GetAll();
+                ApiResponse response = await _eventsService.GetAll(valideAuditor);
 
                 switch (response.Status)
                 {

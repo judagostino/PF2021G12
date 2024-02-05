@@ -8,6 +8,7 @@ export interface SearchItem {
    startDate: Date;
    title: string;
    description: string;
+   descriptionParagraphs?: string[];
    imageUrl: string;
    contactCreate: Contact;
    typeImpairment: TypeImpairment[];

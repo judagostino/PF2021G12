@@ -58,14 +58,11 @@ export class ObjectTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe((aux:string) => {
       if (aux != null && aux != undefined) {
         let result: {post?: Post, event?: Events, authorize?: boolean, reason?: string} = JSON.parse(aux);
-        console.log(result.authorize)
         if (result.authorize != null) {
           if (result.authorize == true) {
             if (result.post != null) {
-              console.log(result.post)
               this.btn_authorizePost(result.post.id)
             } else {
-              console.log(result.event)
               this.btn_authorizeEvent(result.event.id)
             }
           } else {
@@ -105,14 +102,14 @@ export class ObjectTableComponent implements OnInit {
   }
 
   private getGridEvent(): void {
-    this.eventsService.getAll().subscribe( resp => {
+    this.eventsService.getAll(true).subscribe( resp => {
       this.events = [];
       this.events = resp;
     });
   }
 
   private getGridPost(): void {
-    this.postService.getAll().subscribe( resp => {
+    this.postService.getAll(true).subscribe( resp => {
       this.posts = [];
       this.posts = resp;
     });

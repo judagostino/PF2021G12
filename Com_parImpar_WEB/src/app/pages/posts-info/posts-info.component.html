@@ -9,7 +9,7 @@
             <div class="col-6" style="display: inline-block;vertical-align: top;">
               <h6 >{{post.title}}</h6>
 
-              <span style="font-family:'Tilt Neon', sans-serif;">{{post.description}}</span>
+              <p *ngFor="let paragaph of post?.descriptionParagraphs" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
 
               <div *ngIf="post?.typeImpairment?.length > 0" class="etiqueta">
                 <h4 *ngFor="let type of post.typeImpairment;">
@@ -17,7 +17,7 @@
                 </h4>
               </div>
 
-              <p *ngFor="let paragaph of paragaphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
+              <p *ngFor="let paragaph of post?.bodyParagraphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
 
               <a (click)="redirectToProfile(result)" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
               <button class="submit" type="button" routerLink="/search">Volver</button>

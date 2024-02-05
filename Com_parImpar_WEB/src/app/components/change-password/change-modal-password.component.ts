@@ -53,7 +53,6 @@ export class ChangeModalPasswordComponent implements OnInit {
             this.dialogRef.close();
           })
         }, err => {
-            console.log(err?.error)
             if (err?.error?.code != null) {
               switch(err.error.code) {
                 case 5911: {

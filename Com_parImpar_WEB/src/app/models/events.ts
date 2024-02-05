@@ -7,6 +7,7 @@ export class Events {
     endDate?: Date;
     title?: string;
     description?: string;
+    descriptionParagraphs?: string[];
     state?: State;
     contactCreate?: Contact;
     contactAudit?: Contact;
@@ -19,6 +20,7 @@ export class Events {
         this.endDate = null;
         this.title = null;
         this.description = null;
+        this.descriptionParagraphs = [];
         this.state = null;
         this.contactCreate = null;
         this.contactAudit = null;

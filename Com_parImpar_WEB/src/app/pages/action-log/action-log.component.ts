@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EChartsOption } from 'echarts';
 import { ActionsLog } from 'src/app/intrergaces';
 import { ActionsLogService } from 'src/app/services';
 
@@ -9,30 +10,52 @@ import { ActionsLogService } from 'src/app/services';
 })
 export class ActionLogComponent implements OnInit {
   actionLog: ActionsLog = null;
-  type = 'PieChart';
-  options = {'backgroundColor': 'red'};
-  data = [];
-  columnNames = ['Tipo de discapacidad', 'cantidad'];
+  public chartOption: EChartsOption;
 
   constructor(private actionsLogService: ActionsLogService) { }
 
   ngOnInit(): void {
-     this.data = [];
+    this.chartOption = null;
     this.actionsLogService.getAll().subscribe( (resp: ActionsLog) => {
       this.actionLog = resp;
       if (this.actionLog.graphicImpediment.length != null) {
-        this.actionLog.graphicImpediment.forEach(element => {
-          this.data.push([element.description, element.countSearch])
-       });
-      
-      } 
-    }); 
-  
+        let dataColumns = [];
+        let dataSeries: {name: string, value: number}[] = [];
 
-  
-  
-  
-  
-  
+
+        this.actionLog.graphicImpediment.forEach(element => {
+          dataColumns.push(element.description);
+          dataSeries.push({name: element.description, value: element.countSearch});
+       });
+
+        this.chartOption = {
+          tooltip: {
+            trigger: 'item',
+            formatter: '{b} : {d}%',
+          },
+          legend: {
+            orient: 'vertical',
+            right: 0,
+            data: dataColumns,
+            top: 0,
+          },
+          series: [
+            {
+              data: dataSeries,
+              type: 'pie',
+              radius: '65%',
+              right: '30%',
+              center: ['50%', '50%'],
+              animation: false,
+              label: {
+                show: false,
+                formatter: '{c}%'
+              },
+            },
+          ],
+          grid: [{containLabel: true}]
+        };
+      } 
+    });
   }
 }

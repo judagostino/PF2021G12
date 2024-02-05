@@ -21,6 +21,15 @@ export class SearchService {
 
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
-    return this.http.post(`${this.URL}`, body, {headers}).pipe(map(response => response as SearchItem[]));
+    return this.http.post(`${this.URL}`, body, {headers}).pipe(map(response => {
+      let dataSearch = response as SearchItem[];
+      dataSearch.forEach(item => {
+        if(item.description != null) {
+          item.description = item.description.replace(/<br\s*\/?>/g, '\n');
+          item.descriptionParagraphs = item.description.split('\n');
+        }
+      });
+      return dataSearch;
+    }));
   }
 }

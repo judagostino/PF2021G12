@@ -10,7 +10,6 @@ import { ConfigService, PostsService } from 'src/app/services';
 })
 export class PostsInfoComponent implements OnInit {
   post: Post;
-  paragaphs: string[] = []; 
 
   constructor(
     private router: Router, 
@@ -25,7 +24,6 @@ export class PostsInfoComponent implements OnInit {
       if (id != null && id != 0) {
         this.postsService.getByIdMoreInfo(id).subscribe(resp => {
           this.post = resp;
-          this.paragaphs =this.post.text.split(/^/gm);
         })
       }
     });

@@ -61,7 +61,6 @@ export class ABMPostsComponent implements OnInit {
   public btn_SavePost(): void {
     if (this.form.valid) {
       let newPost = this.form.value;
-      console.log(newPost)
       if (newPost.id === 0) {
         this.insert(newPost);
       } else {
@@ -112,6 +111,8 @@ export class ABMPostsComponent implements OnInit {
       this.form.reset(resp)  
       if (resp.imageUrl) {
         this.imageAux = resp.imageUrl
+      } else {
+        this.imageAux = null;
       }
     });
   }
@@ -127,8 +128,14 @@ export class ABMPostsComponent implements OnInit {
       formData.append('Type', 'posts');
       formData.append('Id', id.toString());
   
-      this.uploadService.upload(formData).subscribe((resp: string) => {
-        //this.imageAux = resp.trim();
+      this.uploadService.upload(formData).subscribe((resp: {data:string}) => {
+        console.log(resp)
+        if (resp.data != null) {
+          this.imageAux = resp.data.trim();
+        }
+      },
+      (error) => {
+        console.error("Error en la carga de imágenes:", error);
       });
     }
   }
@@ -143,7 +150,9 @@ export class ABMPostsComponent implements OnInit {
   private insert(post: Post): void {
     this.postService.insert(post).subscribe(resp => {
       this.form.reset(resp)
-      this.uploadImage(resp.id);
+      if (this.uploadForm.value != null) {
+        this.uploadImage(resp.id)
+      }
       this.getGrid();
       Swal.fire(
         'Guardado',
@@ -162,7 +171,9 @@ export class ABMPostsComponent implements OnInit {
   private update(post: Post): void {
     this.postService.update(post.id,post).subscribe(resp => {
       this.form.reset(resp)
-      this.uploadImage(resp.id);
+      if (this.uploadForm.value != null) {
+        this.uploadImage(resp.id)
+      }
       this.getGrid();
       Swal.fire(
         'Guardado',

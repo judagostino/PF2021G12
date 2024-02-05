@@ -37,9 +37,9 @@ import { ChangeProfileComponent } from './pages/change-profile/change-profile.co
 import { ChangeModalPasswordComponent } from './components/change-password/change-modal-password.component';
 import { BlockTemplateCmp } from './components/block-template-cmp/block-template-cmp.component';
 import { ActionLogComponent } from './pages/action-log/action-log.component';
-import { GoogleChartsModule } from 'angular-google-charts';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
 import { TruncatePipe } from './pipe/truncate.pipe';
 
@@ -80,7 +80,9 @@ registerLocaleData(localeEs, 'es');
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    GoogleChartsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
     BlockUIModule.forRoot({
       template: BlockTemplateCmp,
       delayStart: 600,
@@ -101,6 +103,11 @@ registerLocaleData(localeEs, 'es');
       useFactory: appInitializerFactory,
       multi: true,
       deps: [ConfigService]
+    },
+    {
+      provide: NGX_ECHARTS_CONFIG, useValue: {
+        echarts: () => import('echarts')
+       }
     },
     { provide: LOCALE_ID, useValue: 'es' },
 ],
