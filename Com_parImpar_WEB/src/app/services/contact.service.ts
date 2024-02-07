@@ -92,6 +92,8 @@ export class ContactService {
   }  
   
   public changePassword(body: ChangePassword): Observable<any> {
-    return this.http.post(`${this.URL}/ChangePassword`, body);
+    let headers= new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    return this.http.post(`${this.URL}/ChangePassword`, body,{headers});
   }
 }

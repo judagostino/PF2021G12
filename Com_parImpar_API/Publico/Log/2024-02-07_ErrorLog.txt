@@ -1,0 +1,24 @@
+2024-02-07 20:08:02.9308 - INFO - 40000015-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-07 20:08:36.5876 - INFO - 4000000a-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-07 20:09:41.1203 - INFO - 40000016-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-07 20:13:15.5691 - INFO - 40000019-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/ChangePassword (ver: ) - 127.0.0.1
+     Message: Distint passwords
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiYWYzNzZhNi00NWVmLTQ1ZTctYjZhYi0zNzIwNDk4Y2NmYzEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3MzQ3NDY1LCJleHAiOjE3MDczNDgzNjUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.X7u2AUtbmMFQrtOVARz2Ki8m5grLS9vOvkq7dzi3ezY", 
+
+2024-02-07 20:16:48.0974 - INFO - 4000001a-0001-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"123456789Mm","KeepLoggedIn":true}
+

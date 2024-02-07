@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Console } from 'console';
+import { ChangePassword } from 'src/app/models/change-password';
 import { ContactRegistrer } from 'src/app/models/contact-register';
 import { ContactService } from 'src/app/services';
 import Swal  from 'sweetalert2';
@@ -13,7 +15,7 @@ import Swal  from 'sweetalert2';
 })
 export class ChangePasswordComponent implements OnInit {
   showMessage = true;
-  message = 'El tiempo ha expirado…';
+  message;
   form: FormGroup;
   id: number;
   code: string;
@@ -27,22 +29,19 @@ export class ChangePasswordComponent implements OnInit {
      private contactService: ContactService ) { }
 
   ngOnInit(): void {
-     this.activatedRoute.queryParams.subscribe(params => {
-      this.contactService.validateRecover({ id: Number.parseInt(params['i']), codeRecover: params['c']})
-      .subscribe( () =>{
-        this.id=Number.parseInt(params['i']);
-        this.code= params['c'];
-        this.initForm();
-        this.showMessage = false;
-      }, error => this.showMessage = true)
-    }); 
+    this.initForm();
+    this.showMessage = false;
+
   }
 
   private initForm(): void {
     this.form = this.formBuilder.group({ 
-      password: [null,[Validators.required]],
-      confirmPassword: [null,[Validators.required]]
+      lastPassword: ['', [Validators.required, Validators.minLength(8)]],
+      newPassword: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
     });
+    this.form.reset(new ChangePassword)
+
   }
 
   public btn_change_password():void{
@@ -54,28 +53,45 @@ export class ChangePasswordComponent implements OnInit {
         this.messageError = 'La contraseña no cumple con alguna de las políticas de seguridad establecidas, debe tener al menos una mayúscula, una minúscula, un número y poseer como mínimo 8 caracteres.';
       }
 
-      if (!this.compare('password','confirmPassword')) {
+      if (!this.compare('newPassword','confirmPassword')) {
         this.showError = true;
-        this.messageError = 'Los contraseñas no coinciden.';
+        this.message = 'La nueva contraseña no coinciden.';
       }
 
+      if (this.compare('lastPassword','newPassword')) {
+          this.showError = true;
+          this.message = 'La nueva contraseña es igual a la antigua.';
+      }
+
       if (!this.showError) {
-        const changePassword:ContactRegistrer = { ...this.form.value, id: this.id, codeRecover: this.code };
-        this.contactService.recoverChangePassword(changePassword).subscribe( () => {
+        let change : ChangePassword = this.form.value;
+        console.log(change)
+        /* this.contactService.changePassword(change).subscribe( () => {
           Swal.fire(
-            '',
             'Se actualizo tu contraseña',
-            'success'
+            'El cambio comienza a surtir efecto a partir del próximo inicio de sesión.',
+            'success'
           );
-          setTimeout( () => { this.router.navigate(['/login']) }, 3000);
+          setTimeout( () => { this.router.navigate(['/settings']) }, 3000);
         }, err => {
-        this.messageError = 'La contraseña no cumple con alguna de las políticas de seguridad establecidas, debe tener al menos una mayúscula, una minúscula, un número y poseer como mínimo 8 caracteres.';
-        this.showError = true;
-        })
+        console.log(err)
+        if (err?.error?.code != null) {
+          switch(err.error.code) {
+            case 5911: {
+              this.showError = true;
+              this.message = 'La nueva contraseña es igual a la antigua.';
+              break;
+            }
+            default: {
+              this.showError = true;
+              this.message = 'Parece haber ocurrido un error, por favor intentelo de nuevo mas tarde.';
+              break;
+            }
+              }
+        }}) */
       }
     } else {
-      this.messageError = 'Los campos son requeridos';
-      this.showError = true;
+      this.form.markAllAsTouched();
     }
   }
 
@@ -91,7 +107,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   private validateFormatPassword(): boolean {
-    let password = this.form.controls.password.value;
+    let password = this.form.controls.newPassword.value;
     let existNumber = false;
     let existCapitalLetter = false;
     let existLowerLetter = false;
