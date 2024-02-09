@@ -1,0 +1,145 @@
+2024-02-08 19:06:33.6643 - INFO - 40000022-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/ChangePassword (ver: ) - 127.0.0.1
+     Message: Incorrect format password
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxOWU4MTQ3Mi0zNzA1LTQ1NWEtYjZkZS00YjVjYjNjNGQzZDgiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDI5OTc0LCJleHAiOjE3MDc0MzA4NzQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.enAT1M_XRTB49i75o_N8mSLPp9kGWQvMX-Dcl4NIia4", 
+
+2024-02-08 19:08:31.3094 - INFO - 40000028-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/ChangePassword (ver: ) - 127.0.0.1
+     Message: Incorrect format password
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1OGNjYmMzYy1hY2Q0LTRhNDItYjA1YS00MmI2MzI1ZTc2MTEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDMwMDk2LCJleHAiOjE3MDc0MzA5OTYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.EIy8asPR6VnOtp1wp6t9x96jmpFIp2tWpwx_goTlt8o", 
+
+2024-02-08 19:54:43.2039 - INFO - 40000022-0001-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/Validate (ver: ) - 127.0.0.1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"Notifications":null,"CodeRecover":"19B0BC7C-87D6-4FEC-BFC5-FEC672F61A8E","DateBrirth":null}
+
+2024-02-08 20:19:41.4326 - INFO - 4000001e-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/Validate (ver: ) - 127.0.0.1
+     Message: Expired link
+     Headers: Authorization="", 
+     Body: {"Id":1,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":null,"ConfirmPassword":null,"ConfirmCode":null,"Notifications":null,"CodeRecover":"D82D3633-1164-4627-8813-C3975375998B","DateBrirth":null}
+
+2024-02-08 20:27:52.7127 - INFO - 4000003c-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail,com","Password":"123456Jd","KeepLoggedIn":true}
+
+2024-02-08 20:27:58.2887 - INFO - 4000003e-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail,com","Password":"123456Jd","KeepLoggedIn":true}
+
+2024-02-08 20:28:12.5910 - INFO - 40000040-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail,com","Password":"123456Jd","KeepLoggedIn":true}
+
+2024-02-08 20:28:17.6654 - INFO - 40000042-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail,com","Password":"123456789Jd","KeepLoggedIn":true}
+
+2024-02-08 20:32:09.4162 - INFO - 40000078-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjVmZWZlNi0wYWFhLTQ0OTItODdmZi1jYmIxZGYxYTQ2MTQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVkVERNVlBQeDZQdUJldEJPejBGYmJnb3lVQmFZdHJsQ2JxUWg5V2R6SDFwWDE1ay9wem9SUnF2dzBWUStBVUQ3QW1HWFpEcXZUQXdGNjgwTlhiT2RNdmZkM3RjdXljZWJlL0JSaFFkYzNNa1AycjloVVVmSTdvU2pzaHQ0T0llc2ZVOVRtUmJwbmdCMHN2NUNvcEp4b3Y5OVRaenJrQUR3d1BabXNsaElNK3J3aVpKcjNuUXdEcFEvZFlGYWxnc3MzTEd1MzdwdTRodkMrNjhqbG5vWXFwTCtqcjJkT0lvT0dCV0tyeFhyM1hDVGYwdUN2c0JlU0UyNy9XajBhUGhGa25jdzhLZ2FpWnhqaWk4RkZsN204bz0iLCJuYmYiOjE3MDc0MzQ5NDAsImV4cCI6MTcwNzUyMTM0MCwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.Y8KbUazK6MAkcpBicKCNZmTohPdWUplaOdciGObNtz8", 
+
+2024-02-08 20:32:09.6149 - INFO - 40000079-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjVmZWZlNi0wYWFhLTQ0OTItODdmZi1jYmIxZGYxYTQ2MTQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVkVERNVlBQeDZQdUJldEJPejBGYmJnb3lVQmFZdHJsQ2JxUWg5V2R6SDFwWDE1ay9wem9SUnF2dzBWUStBVUQ3QW1HWFpEcXZUQXdGNjgwTlhiT2RNdmZkM3RjdXljZWJlL0JSaFFkYzNNa1AycjloVVVmSTdvU2pzaHQ0T0llc2ZVOVRtUmJwbmdCMHN2NUNvcEp4b3Y5OVRaenJrQUR3d1BabXNsaElNK3J3aVpKcjNuUXdEcFEvZFlGYWxnc3MzTEd1MzdwdTRodkMrNjhqbG5vWXFwTCtqcjJkT0lvT0dCV0tyeFhyM1hDVGYwdUN2c0JlU0UyNy9XajBhUGhGa25jdzhLZ2FpWnhqaWk4RkZsN204bz0iLCJuYmYiOjE3MDc0MzQ5NDAsImV4cCI6MTcwNzUyMTM0MCwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.Y8KbUazK6MAkcpBicKCNZmTohPdWUplaOdciGObNtz8", 
+
+2024-02-08 20:39:38.0968 - INFO - 40000024-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMzU0ZGYyMy02NmJlLTQ0MzYtYTU0NS0zODBhYmJmOGIwMDMiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVWbEdHYkdxRDl2cjlldHhyVnlMTmg0WVd3RThtSWFFNGNGUmJGYkFCV09QUVcvdk5XaXZNWVNpQ2d2UkpsbmdFQjc2NTZaNWh0WXBoOFdWOHZMR2xOVWVYVjRPbXFBeUpDRHduQUtpZ1RCcFFoTzc5cy8rYktQSlVxYTN0TEVzdm1mekQxVWVkZC81U1d5TnVPL09jWnVvTHNrU21id1RVeG5aWVZoTFhZcTdvV0NOYVdCOFFWWldFSzAwaVYrVUdYUlM5OWF1bldodnJ0Nks4b3RTdTFWb2Uzd2lnS0ovbThhSEVRclJ0MzBkelFqOWVBRnE1YjRuUlBYZmhYZE40ZnYxNTBVM3hBRXlkeWNZU0ZFSHJIMD0iLCJuYmYiOjE3MDc0MzU0NDMsImV4cCI6MTcwNzUyMTg0MywiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.icV98Rgh56pKS_cQh3H0oG56NZwna76hjrBd6a_riuU", 
+
+2024-02-08 20:39:38.3021 - INFO - 40000027-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkMzU0ZGYyMy02NmJlLTQ0MzYtYTU0NS0zODBhYmJmOGIwMDMiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVWbEdHYkdxRDl2cjlldHhyVnlMTmg0WVd3RThtSWFFNGNGUmJGYkFCV09QUVcvdk5XaXZNWVNpQ2d2UkpsbmdFQjc2NTZaNWh0WXBoOFdWOHZMR2xOVWVYVjRPbXFBeUpDRHduQUtpZ1RCcFFoTzc5cy8rYktQSlVxYTN0TEVzdm1mekQxVWVkZC81U1d5TnVPL09jWnVvTHNrU21id1RVeG5aWVZoTFhZcTdvV0NOYVdCOFFWWldFSzAwaVYrVUdYUlM5OWF1bldodnJ0Nks4b3RTdTFWb2Uzd2lnS0ovbThhSEVRclJ0MzBkelFqOWVBRnE1YjRuUlBYZmhYZE40ZnYxNTBVM3hBRXlkeWNZU0ZFSHJIMD0iLCJuYmYiOjE3MDc0MzU0NDMsImV4cCI6MTcwNzUyMTg0MywiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.icV98Rgh56pKS_cQh3H0oG56NZwna76hjrBd6a_riuU", 
+
+2024-02-08 20:42:50.1027 - INFO - 40000040-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1ODlkODU1My0wZmFkLTRiNDktYTEzMS1kODllNzk2OWI5NDIiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVRa0Q2MDA1eEFZSExNRDhGekVtdnluczc0YW5GbGhjVGZSb3ZXaVIrakV1bkhJd20yQzJLQzVmUDlYRzFoTUlOZUZqNk9mTmw0OFRzVDdzc3ZtWFBYUGd1RWZFakV5K0NFUGNwdzBUbUZra0p1Q1VpZEkvY3pjZWsxRVlJM0p3ZUdFT2dNMXpLWjM3UEN6ZmVpa1ByT0R2VFQvbVhPM2dKU1hrNFYzRFd1akE3TTZoVWpCeGMxU0NiMUlPRkVHbzJOZ3dHSmxTM1BMeFM5ZXNsMjJRZ0pLbis0cmR5RTVEeEk3WVIralJwbzJ1UlJpRXdld254eTRzenZpZlRnWGlyczRObG1Mc0g5dk1kVnN1MmVWYlJXdz0iLCJuYmYiOjE3MDc0MzU2ODgsImV4cCI6MTcwNzUyMjA4OCwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.J8qS1bB1pPXmVALOiAYU1ZPBjk-PVNpmtXJP50I3TM8", 
+
+2024-02-08 20:58:30.0296 - INFO - 4000004b-0006-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNTkxYTQ5ZS1jNDI5LTRlN2ItYjRkMS01MmJiZDQ4NzJjNzMiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmbDhtT2pWajMxREplM2ZtVXcrKzM5c0ZWZUExbVRmRy9PaFpVSDVyQ1VpNDVGWEZRM3NmbFlyV0owUlEvQkh3OFltekFTWmVlVkF3bHZ0VmxnNTNmWVFCMmdKRWx3Nldic1p0Kys5ZUtyWUJjSWRXang3RkRGcVZvUC96dHdzMFBXUWl0bi81amNzQWtacG1Icjhtdmo1R2NyQXRoUGM0QlZDS1FoNllPM1dJWDdGTENzS1h2cHprcnhZQ2RXOU5BUVh2aDlNeldRU0M3c2VVT2ZhMCtoamkvNXdKaHhMc21pUGpnQzc4SDNnVEhrN1JUQTFQQkxpdlA1QnprbDNTd0p5bzY1aktiT0dDcW9tTmJlc0Mzaz0iLCJuYmYiOjE3MDc0MzY3MDksImV4cCI6MTcwNzUyMzEwOSwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.TrWaGURQEnJ2DjTsjP6velI0mljiJKN1eQ8xuc8zPiA", 
+
+2024-02-08 21:22:09.6669 - INFO - 40000051-0004-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxOTZlN2NlNC03OTA4LTRhMDQtYWM3MC00MGQwMDVhNWZiMDUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4MTI2LCJleHAiOjE3MDc0MzkwMjYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.7H3unaKnd3UdzwFw1AbtmmSotPtgmhbnxZw7pa9sGjk", 
+
+2024-02-08 21:22:24.6843 - INFO - 40000053-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Invalid Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxOTZlN2NlNC03OTA4LTRhMDQtYWM3MC00MGQwMDVhNWZiMDUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4MTI2LCJleHAiOjE3MDc0MzkwMjYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.7H3unaKnd3UdzwFw1AbtmmSotPtgmhbnxZw7pa9sGjk", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+
+2024-02-08 21:22:57.8351 - INFO - 40000015-0003-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxOTZlN2NlNC03OTA4LTRhMDQtYWM3MC00MGQwMDVhNWZiMDUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4MTI2LCJleHAiOjE3MDc0MzkwMjYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.7H3unaKnd3UdzwFw1AbtmmSotPtgmhbnxZw7pa9sGjk", 
+
+2024-02-08 21:23:07.2018 - INFO - 40000057-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Invalid Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxOTZlN2NlNC03OTA4LTRhMDQtYWM3MC00MGQwMDVhNWZiMDUiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4MTI2LCJleHAiOjE3MDc0MzkwMjYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.7H3unaKnd3UdzwFw1AbtmmSotPtgmhbnxZw7pa9sGjk", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+
+2024-02-08 21:28:23.6363 - INFO - 4000002e-0007-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MGIwNDdkMS1lOTI1LTQyODEtODU3NC0zNzk2YjNlOTM0YjIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4NTAwLCJleHAiOjE3MDc0Mzk0MDAsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.amMFuW77m_cXyGy9j8jeAc0IGmJwDREuLgXQhzg3RsM", 
+
+2024-02-08 21:29:26.2799 - INFO - 40000032-0007-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMWI2ZjA0Mi00MzMwLTQ4ZWUtOWRjMC1mYmQyNWZjMGI1MzciLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4NTY2LCJleHAiOjE3MDc0Mzk0NjYsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.yLuWjVLyM0605P0hyZH3szEvbsurNpFdQGebXnJx_p4", 
+
+2024-02-08 21:30:46.8931 - INFO - 40000033-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MTljNzBmMy01NjQyLTQxNzUtOTI5OS0xN2U3MWFjMjc4NjkiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVUV21xTWMxKzNCMEJ4S2x6MTBZVk5iaXl2MU9EUWp0VEwzWUc4ZS9Za0Z0c0g1U296eVRsSlhNaEdQcEtDVVpLTEJmeU13cFJab05NWUUxZ3VnZXlQSlcyU0xYWDR6VTB5YUtHYWcrMlNrbTlKblRGanRDd1JacUZvM2FmUDljMUR3MmQ1L21mUWJuY2hxdm1tT2l0bWlZRkltUDlkZEI0NEo5aXhJUURHZzVxMXZvSTZzaDl1ZkQydUczY1Vsc0pad2NYNXFzOEdGKzFhZ0FoTmVyekFqT0ZGM1VTVDlqKzFubzhpYTNnTUF2ZDAxdU4vNEdXWFJobnlEQ3hnYjVwNFBUaFRaN1pvN0tUemd4RFNoQ1hvaz0iLCJuYmYiOjE3MDc0Mzg1NjYsImV4cCI6MTcwNzUyNDk2NiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0._aeBx7iC20AkTq2P14Ea31Ktj4kvq8ZSSIk4V_RnAHo", 
+
+2024-02-08 21:31:06.7344 - INFO - 4000003c-0007-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMTg4N2FiZC1mOGY1LTRmZGItYTUxYi0yMjY5ZGZlYjJiNTAiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4NjY0LCJleHAiOjE3MDc0Mzk1NjQsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.Ex0X_TM6jKy2Rpbpgr2uUi9-cPtCi-Xoc3nMxHds_bY", 
+
+2024-02-08 21:33:01.5507 - INFO - 4000003f-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NDU1NjY5MC05NzBjLTQwMjItODBjNC05ZDNmNThmYzdhYzIiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVmYXlySFpwRW15WVBTTkNxYnVsdFZpRnpXeHJPSGN4WXp1d0ovQkpsNk5TRUllUkZuNmxVWC9Ua3lWZVl5RS9GeXhQdEpCTXg3NnRHOTBGQytHLzY3Wm9yaWZ1djVyNHF4Z05DdDQ5Nkt2OVhjdWNRUjN6RXdhY1NoRm1PMWNieVdzVkNuelZ0T2taQmxnTGpUQjBTYXhNV0kySTJrM1kxR1hFT1FvT0ErVVh3bFpxNVpYczNhbUYvRnBScHEzYkN0OEZ3d2ExTHd6V2ZTVllPL2xRSVhXUXdjVUJhN3NjbGNrZDdCbk9QbjluVloyUVpoZjBCQ3dNemFPUlBCandiNWxHZytuM1dQQkpqMnlrcW0wSDdoRT0iLCJuYmYiOjE3MDc0Mzg2NjQsImV4cCI6MTcwNzUyNTA2NCwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.9fBdzbgFmra38O90PPJ9TX6bRCol15ryy_KzM_aQZV4", 
+
+2024-02-08 21:34:47.8789 - INFO - 4000000b-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5YzNlMjA2YS02ODcwLTRkZTYtODVlZC0yOGJiOTlhOWY4MTQiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVSUm9iOGswT1NER0x2bWJTM0pFZ1A2YmNINnd0M2twNkl3Mm1memZ5MDZhdHliZGFkQmRQbHBCY2hGOTdVdGhobmxFR3cySzNTNHByK2kzbkhEK3poeFp4OE9QRGhhYVVMUUVTNEdqOHhPbGd6elJaZU1TTW5QTTczckRwWExSUnNraUlxcTJqQ3lEZW5UZGVCd3BMMVFOdjN2RVF6ZW8zMGtKalBmWk9LVnc0QzVxSFNXL0wwWXFOL3ZTY2JibHUwRmFSdWZVNENMZFcyRUxob3g4Vm9WYWQ1cVR2SFY5cVVMcGtlc210S09OZm1PaW8wNWxHZDFCRmFaMW8zYzFmODBvc3AzSG5yUWE4QWoyMkZoakpHTT0iLCJuYmYiOjE3MDc0Mzg4MDMsImV4cCI6MTcwNzUyNTIwMywiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.sLdjbKATqodh91pRbtMfW1bcIOrhwO_JnNX7k3kdW14", 
+
+2024-02-08 21:35:00.7185 - INFO - 40000017-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NDFkNjY5OS03NzYzLTQ4NmQtOTRmOC0zNDI0ODkzYjJiNTkiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4ODkzLCJleHAiOjE3MDc0Mzk3OTMsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.z6bSXTxiOmsd-Qm2ah1gsRFEW0yoetXzlrDpzOi8W58", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+
+2024-02-08 21:36:46.2140 - INFO - 4000001b-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NDFkNjY5OS03NzYzLTQ4NmQtOTRmOC0zNDI0ODkzYjJiNTkiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM4ODkzLCJleHAiOjE3MDc0Mzk3OTMsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.z6bSXTxiOmsd-Qm2ah1gsRFEW0yoetXzlrDpzOi8W58", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+
+2024-02-08 21:37:21.2135 - INFO - 40000020-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZjYyNWVkYy1mNmVhLTQ5OGQtOWNiNC0wNmM0MTRlZDk3NmIiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVXMWxSYjdmTmJhN1VzQ2lMYk9yUkhCUTRBcHA3OFVOamRqNEs5ZVZzY0EzcUFjTm5qVGhzQ253TGhSeVZSNUxMWGZST09pc0dIZHBicSsxclM3SnBmeXoza05EVU9TNzJ3aWE5WmFSdmxsZVBjb1dtY05XWUp0Q1A2N3IrMUZrNFd0VjJSQ1pJWjZqakdCbTEzMGhFRGg3bHVISnhKY2dZL3R3Z0VZajBTcXVtS3RBSXU4UFYvLy84eDNUcVVaQ1gzL0tVa1RqVDRLSndYdlE4ZnFyenJwSjNxQ0E1MkpYWDM3TGpWaDI3d0xVdEd4RTk3OXQydS9pT0FlQ0VMeUxEeGM2TFpqeXhUTFcrNEw4blh5aXFXRT0iLCJuYmYiOjE3MDc0Mzg4OTMsImV4cCI6MTcwNzUyNTI5MywiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.cChSodNXMIW81dCcWnCMNPbrzCIwT1Zl-i7JWUuTswA", 
+
+2024-02-08 21:37:21.5963 - INFO - 40000021-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZjYyNWVkYy1mNmVhLTQ5OGQtOWNiNC0wNmM0MTRlZDk3NmIiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVXMWxSYjdmTmJhN1VzQ2lMYk9yUkhCUTRBcHA3OFVOamRqNEs5ZVZzY0EzcUFjTm5qVGhzQ253TGhSeVZSNUxMWGZST09pc0dIZHBicSsxclM3SnBmeXoza05EVU9TNzJ3aWE5WmFSdmxsZVBjb1dtY05XWUp0Q1A2N3IrMUZrNFd0VjJSQ1pJWjZqakdCbTEzMGhFRGg3bHVISnhKY2dZL3R3Z0VZajBTcXVtS3RBSXU4UFYvLy84eDNUcVVaQ1gzL0tVa1RqVDRLSndYdlE4ZnFyenJwSjNxQ0E1MkpYWDM3TGpWaDI3d0xVdEd4RTk3OXQydS9pT0FlQ0VMeUxEeGM2TFpqeXhUTFcrNEw4blh5aXFXRT0iLCJuYmYiOjE3MDc0Mzg4OTMsImV4cCI6MTcwNzUyNTI5MywiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.cChSodNXMIW81dCcWnCMNPbrzCIwT1Zl-i7JWUuTswA", 
+
+2024-02-08 21:37:47.7925 - INFO - 4000002f-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwOWI2YmUxZS01ODlmLTQzMmQtOTczZS0yOGYwYTdkYWI2MGIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM5MDUyLCJleHAiOjE3MDc0Mzk5NTIsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.OlEOnHxYfx8Gg7a0KnEx-BtQ5UYspLgF38YH9vSxCnA", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+
+2024-02-08 21:37:52.5483 - INFO - 40000031-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwOWI2YmUxZS01ODlmLTQzMmQtOTczZS0yOGYwYTdkYWI2MGIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM5MDUyLCJleHAiOjE3MDc0Mzk5NTIsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.OlEOnHxYfx8Gg7a0KnEx-BtQ5UYspLgF38YH9vSxCnA", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+
+2024-02-08 21:39:02.7578 - INFO - 40000036-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NjcwODc4Ni01NWViLTRjNzEtOTIyOS03OTNmZGQyOGM0NzEiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVSYm1GOSs1dXFnaVdNQWt0c1dzMGg0cExtM2ZJcUIzcVk0ZGM5cnFlMVlUVlZ5WVU1elVReWh6eVdaL2ZUOSt6Rk15aE1jR2FzTVY2V2xCZTF3UHU1MDFIR1cxZ0F1cTZRam80SWpEWmlQVkVRbmF1MXRiY3JEOTBzQm1UL3dHVmZpOWtDOHQrUHVyYWZhbEk1SVVYdlNmb3RsZ012cjhvbW5WQktKaDFVWGFOTHdmdjY3YmFEbXV1RGJWZ3lwMEZaUnNoNU41U0t6QUdSM0lNb3VsT2tOUisyVmlwOS82Rko2QWttNXk2NlpVdHNySFpvYWRESVo5cS80b2hObWVHOG4yMVRocHlKNWhNZjBkeWlrdi8xOD0iLCJuYmYiOjE3MDc0MzkwNTIsImV4cCI6MTcwNzUyNTQ1MiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.DLB0lH9aAD9FpmC0ICUni3EfIukfOPLqmh0SmecVm_4", 
+
+2024-02-08 21:39:05.0566 - INFO - 40000039-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/Update (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NjcwODc4Ni01NWViLTRjNzEtOTIyOS03OTNmZGQyOGM0NzEiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVSYm1GOSs1dXFnaVdNQWt0c1dzMGg0cExtM2ZJcUIzcVk0ZGM5cnFlMVlUVlZ5WVU1elVReWh6eVdaL2ZUOSt6Rk15aE1jR2FzTVY2V2xCZTF3UHU1MDFIR1cxZ0F1cTZRam80SWpEWmlQVkVRbmF1MXRiY3JEOTBzQm1UL3dHVmZpOWtDOHQrUHVyYWZhbEk1SVVYdlNmb3RsZ012cjhvbW5WQktKaDFVWGFOTHdmdjY3YmFEbXV1RGJWZ3lwMEZaUnNoNU41U0t6QUdSM0lNb3VsT2tOUisyVmlwOS82Rko2QWttNXk2NlpVdHNySFpvYWRESVo5cS80b2hObWVHOG4yMVRocHlKNWhNZjBkeWlrdi8xOD0iLCJuYmYiOjE3MDc0MzkwNTIsImV4cCI6MTcwNzUyNTQ1MiwiaXNzIjoiUGFySW1wYXJSZWZyZXNoIiwiYXVkIjoiUGFySW1wYXJSZWZyZXNoIn0.DLB0lH9aAD9FpmC0ICUni3EfIukfOPLqmh0SmecVm_4", 
+
+2024-02-08 21:39:09.2073 - INFO - 4000003b-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYzEwZWZkNy1kOTYxLTQxNzYtODg1Ny02OTNkODUwYTkzNGQiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NDM5MTQyLCJleHAiOjE3MDc0NDAwNDIsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.9TSBJGU3a6pHF0qULfneGXzgkIMJ6mWennnnRrCU_yw", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+

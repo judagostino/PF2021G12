@@ -129,7 +129,6 @@ export class ABMPostsComponent implements OnInit {
       formData.append('Id', id.toString());
   
       this.uploadService.upload(formData).subscribe((resp: {data:string}) => {
-        console.log(resp)
         if (resp.data != null) {
           this.imageAux = resp.data.trim();
         }

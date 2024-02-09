@@ -34,7 +34,6 @@ import { ABMPostsComponent } from './pages/abm-posts/abm-posts.component';
 import { ObjectTableComponent } from './pages/object-table/object-table.component';
 import { AuditDialogComponent } from './components/audit-dialog/audit-dialog.component';
 import { ChangeProfileComponent } from './pages/change-profile/change-profile.component';
-import { ChangeModalPasswordComponent } from './components/change-password/change-modal-password.component';
 import { BlockTemplateCmp } from './components/block-template-cmp/block-template-cmp.component';
 import { ActionLogComponent } from './pages/action-log/action-log.component';
 import { registerLocaleData } from '@angular/common';
@@ -42,6 +41,7 @@ import localeEs from '@angular/common/locales/es';
 import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
 import { TruncatePipe } from './pipe/truncate.pipe';
+import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -66,11 +66,11 @@ registerLocaleData(localeEs, 'es');
     ObjectTableComponent,
     AuditDialogComponent,
     ChangeProfileComponent,
-    ChangeModalPasswordComponent, 
     ActionLogComponent,
     BlockTemplateCmp,
     ABMPermissionsComponent,
-    TruncatePipe
+    TruncatePipe,
+    RecoverConfirmPasswordComponent
   ],
   imports: [
     BrowserModule,

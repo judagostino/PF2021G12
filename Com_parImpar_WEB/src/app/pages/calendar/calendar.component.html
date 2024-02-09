@@ -23,6 +23,7 @@
                                         <th scope="col">Fecha</th>
                                         <th scope="col">Evento</th>
                                         <th scope="col">Propietario</th>
+                                        <th scope="col"></th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -33,10 +34,14 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr *ngFor="let event of events;">
+                                        <tr *ngFor="let event of events;" (click)="showEvents(event)" style="cursor: pointer;">
                                             <td>{{event.startDate | date: 'mediumDate'}}</td>
                                             <td>{{event.title}}</td>
                                             <td>{{event?.contactCreate?.name}}</td>
+                                            <td>
+                                                <button *ngIf = "validateAssit(event)" class="submit" (click)="assit(event,$event)">Asistir</button>
+                                                <button *ngIf = "validateCancelAssit(event)" class="submit" (click)="cancel_assit(event,$event)">No Asistir</button>
+                                            </td>
                                         </tr>
                                     </tbody>
                                   </table>

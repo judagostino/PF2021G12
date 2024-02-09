@@ -19,6 +19,7 @@ import { RecoverPassordComponent } from './pages/recover-passord/recover-passord
 import { RegisterComponent } from './pages/register/register.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
+import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
   {path:'table/:key',component: ObjectTableComponent},
   {path:'settings',component: ChangeProfileComponent},
   {path:'action-log',component: ActionLogComponent},
-  {path:'user/recover-password',component: ChangePasswordComponent},
+  {path:'user/recover-password',component: RecoverConfirmPasswordComponent},
   {path:'permissions',component: ABMPermissionsComponent},
   {path:'**',redirectTo:"home"}
   

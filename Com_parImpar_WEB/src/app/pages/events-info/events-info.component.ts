@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Events } from 'src/app/models/events';
 import { ConfigService, EventsService } from 'src/app/services';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-events-info',
@@ -15,7 +16,8 @@ export class EventsInfoComponent implements OnInit {
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private configService: ConfigService,
-    private eventsService: EventsService) { }
+    private eventsService: EventsService,
+    public location: Location) { }
 
   ngOnInit(): void {
     window.scroll({top: 0, left: 0});
@@ -39,5 +41,9 @@ export class EventsInfoComponent implements OnInit {
 
   public redirectToProfile(): void {
     this.router.navigateByUrl(`/profile/${this.eventElement.contactCreate.id}`)
+  }
+
+  public goBack(): void {
+    this.location.back();
   }
 }
