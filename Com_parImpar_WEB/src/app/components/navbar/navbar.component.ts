@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public btn_Login(): void {
-    if (!!this.configService.isLooged) {
+    if (!!this.configService.isLogged) {
       //this.router.navigateByUrl('/calendar');
     } else {
       this.router.navigateByUrl('/login');
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public btn_Logout(): void {
-    this.configService.isLooged = false;
+    this.configService.isLogged = false;
     this.configService.contact = null;
     this.authService.cleartokens();
     this.router.navigateByUrl('/home');

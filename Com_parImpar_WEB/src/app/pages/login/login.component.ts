@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       this.authService.credentialLogin(cedencialLogin).subscribe( response => {
         return this.contactService.myInfo().subscribe(res =>{
           this.configService.contact = res;
-          this.configService.isLooged = true;
+          this.configService.isLogged = true;
           this.router.navigateByUrl('/home');
         })
         // estra logeado

@@ -13,7 +13,7 @@
         <li >
           <a routerLink="/search" >B&uacute;squedas</a>
         </li>
-        <li *ngIf="configService?.isLooged">
+        <li *ngIf="configService?.isLogged">
           <a routerLink="/posts" >Publicaciones</a>
         </li>
         <li class="nav-item dropdown" *ngIf="configService?.contact?.auditor">
@@ -34,13 +34,13 @@
     
 </nav>
 <div class="d-flex flex-row-reverse" style="position: absolute;top: 16px;right: 10px;">
-<button class="btn_ingresar" *ngIf="!configService.isLooged"><a href="login"> Ingresar</a></button>
+<button class="btn_ingresar" *ngIf="!configService.isLogged"><a href="login"> Ingresar</a></button>
 </div>
 <div class="dropdown">
   <div style="position: absolute;top: -20px;right: -100px;white-space:nowrap;" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <div class="btn_ingresar" *ngIf="configService.isLooged">{{configService?.contact?.name}} </div> 
+    <div class="btn_ingresar" *ngIf="configService.isLogged">{{configService?.contact?.name}} </div> 
   </div>
-  <div class="dropdown-menu" aria-labelledby="settingsDropdown" *ngIf="configService.isLooged">
+  <div class="dropdown-menu" aria-labelledby="settingsDropdown" *ngIf="configService.isLogged">
     <a class="dropdown-item"  routerLink="/settings">Ajustes</a>
      <div class="dropdown-divider"></div> 
     <a class="dropdown-item"  (click)="btn_Logout()" href="#">Salir</a>      

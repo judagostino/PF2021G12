@@ -1,3 +1,66 @@
 <div class="container-fluid">
-    aca estoy 
-</div>
+    <div class="central">
+      <div class="row">
+        <div class="col-2"></div> 
+        <div class=" col-8 top-div">
+           <div *ngIf="configService?.isLogged && configService?.contact?.auditor">
+  
+               <div class="row" style="padding-bottom: 0;">
+  
+                   <div class="col-xs-12 col-sm-12 col-md-12" >
+                    <div class="titulo-top mb-5">
+                      Gestión de Permisos
+                  </div>
+                  <div class="info">
+                    <div class="row">
+                        {{contacSelected | json}}
+                    </div>
+                    <div class="row">
+                        <button type="button" (click)="auditor()" [deseabled] = "contacSelected!= null">
+                            {{contacSelected != null ? (contacSelected.auditor ? 'Marcar como auditor': 'Desmarcar como auditor'):'Marcar como auditor'}}
+                        </button>
+                        <button type="button" (click)="trusted()" [deseabled]= "contacSelected!= null">
+                            {{contacSelected != null ? (contacSelected.trusted ? 'Marcar de confianza': 'Desmarcar de confianza'):'Marcar de confianza'}}
+
+                        </button>
+                    </div>
+                  </div>
+        
+                    <div style="height: 100%; overflow: auto;">
+                      <table class="table" *ngIf="contacts?.length >= 0">
+                             <thead>
+                                 <tr>
+                                    <th scope="col"></th>
+                                     <th scope="col">Id</th>
+                                     <th scope="col">Nombre</th>
+                                     <th scope="col">Auditor</th>
+                                     <th scope="col">Confianza</th>
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                 <tr *ngFor="let contact of contacts">
+                                    <td>
+                                        <button (click)= "btn_SelectContact(contact)" class="icon-button" aria-label="Icon button">
+                                        <span>...</span>
+                                      </button>
+                                    </td>                      
+                                   <td>{{contact.id}}</td>
+                                   <td>{{contact.name}}</td>
+                                   <td>{{contact.auditor}}</td>
+                                   <td>{{contact.trusted}}</td>
+                                 </tr>
+                               </tbody>
+                      </table>
+                    </div>
+                   </div>
+                   </div>
+                   </div>
+        </div>
+        <div class="col-2"></div> 
+      </div>   
+  </div>
+  </div>
+  
+   
+  
+  

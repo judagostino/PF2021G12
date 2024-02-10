@@ -42,6 +42,7 @@ import { NgxEchartsModule, NGX_ECHARTS_CONFIG } from 'ngx-echarts';
 import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
+import { InscriptionEventDialogComponent } from './components/inscription-event/inscription-event.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -70,7 +71,8 @@ registerLocaleData(localeEs, 'es');
     BlockTemplateCmp,
     ABMPermissionsComponent,
     TruncatePipe,
-    RecoverConfirmPasswordComponent
+    RecoverConfirmPasswordComponent,
+    InscriptionEventDialogComponent
   ],
   imports: [
     BrowserModule,

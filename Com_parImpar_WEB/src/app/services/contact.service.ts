@@ -96,4 +96,23 @@ export class ContactService {
     headers = headers.append('Content-Type', 'application/json');
     return this.http.post(`${this.URL}/ChangePassword`, body,{headers});
   }
+
+  public getAllContacts(): Observable<Contact []> {
+    let headers= new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    return this.http.get(`${this.URL}/GetAll`,{headers}).pipe(map((resp) =>  resp as Contact []));
+  }
+
+  public auditor(body: Contact): Observable<any> {
+    return this.http.put(`${this.URL}/${body.id}/auditor`, body);
+  }  
+
+  public trusted(contact: Contact): Observable<any> {
+    return this.http.put(`${this.URL}/${contact.id}/trusted`, {});
+  }  
+
+  public untrusted(contact: Contact): Observable<any> {
+    return this.http.put(`${this.URL}/${contact.id}/untrusted`, {});
+  }  
+
 }

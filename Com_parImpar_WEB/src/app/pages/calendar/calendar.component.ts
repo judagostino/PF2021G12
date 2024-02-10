@@ -5,6 +5,8 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { ContactEventsService } from 'src/app/services/contact-event.service';
 import { Observable, of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { InscriptionEventDialogComponent } from 'src/app/components/inscription-event/inscription-event.component';
 
 @Component({
   selector: 'app-calendar',
@@ -26,7 +28,8 @@ export class CalendarComponent implements OnInit {
     private eventsService: EventsService,
     public router:Router,
     public changeDetectorRef: ChangeDetectorRef,
-    public contactEventsService:ContactEventsService) { }
+    public contactEventsService:ContactEventsService,
+    public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.createCalendar(this.now);
@@ -130,21 +133,37 @@ export class CalendarComponent implements OnInit {
 
   public assit (event:Events, evt:Event, index: number): void {
     evt.stopPropagation();
-    if(!this.configService?.isLooged){
+    if(!this.configService?.isLogged){
       return;
     }
     this.contactEventsService.postAssit(event.id).subscribe(resp => {
       this.events[index].assit = true;
-    });
+      const dialogRef = this.dialog.open(
+        InscriptionEventDialogComponent,
+        {data:{assist:true},panelClass:'modalInscription'})
+
+    },err =>{
+        const dialogRef = this.dialog.open(
+        InscriptionEventDialogComponent,
+        {data:{assist:true,err},panelClass:'modalInscription'})
+      });
   }
 
   public cancel_assit (event:Events, evt:Event, index: number): void {
     evt.stopPropagation();
-    if(!this.configService?.isLooged){
+    if(!this.configService?.isLogged){
       return;
     }
     this.contactEventsService.cancelAssit(event.id).subscribe(resp => {
       this.events[index].assit = false;
-    });
+      const dialogRef = this.dialog.open(
+        InscriptionEventDialogComponent,
+        {data:{assist:false},panelClass:'modalInscription'})
+
+    },err =>{
+        const dialogRef = this.dialog.open(
+        InscriptionEventDialogComponent,
+        {data:{assist:false,err},panelClass:'modalInscription'})
+      });
   }
 }

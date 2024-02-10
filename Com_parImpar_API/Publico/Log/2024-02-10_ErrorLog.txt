@@ -50,3 +50,53 @@
      Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YmZhZTY0YS0zZTdjLTQ5NjctYTIzMS0zMTliYjhiZDk0MDciLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NTM5MjE4LCJleHAiOjE3MDc1NDAxMTgsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.6kqMx58ykv5jlQnjnk6NxxkHiE2O02O2Rq7kc-3vMrE", 
      Body: {"Id":null,"ContactId":null,"EventId":9,"DateEntered":null}
 
+2024-02-10 18:23:22.5797 - ERROR - 40000066-0004-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMmExMzdkNi00MmE1LTQ0ZDItOGMzMC0zNTAyMTU1NDkzYWYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NjAwMTc3LCJleHAiOjE3MDc2MDEwNzcsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ._R12BCbQe__16GeSK7mlQgW2sQ6i9RmwRXG6KKaoOHY", 
+     Body: 2
+
+2024-02-10 18:23:31.3054 - ERROR - 4000006a-0004-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMmExMzdkNi00MmE1LTQ0ZDItOGMzMC0zNTAyMTU1NDkzYWYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NjAwMTc3LCJleHAiOjE3MDc2MDEwNzcsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ._R12BCbQe__16GeSK7mlQgW2sQ6i9RmwRXG6KKaoOHY", 
+     Body: 2
+
+2024-02-10 18:23:37.2205 - ERROR - 4000006d-0004-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMmExMzdkNi00MmE1LTQ0ZDItOGMzMC0zNTAyMTU1NDkzYWYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NjAwMTc3LCJleHAiOjE3MDc2MDEwNzcsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ._R12BCbQe__16GeSK7mlQgW2sQ6i9RmwRXG6KKaoOHY", 
+     Body: 2
+
+2024-02-10 19:12:56.0917 - ERROR - 40000023-0004-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NWVkODc5Yy0wYWQ4LTQ0ZjYtOGMzOC0wNjdkOTk1NGMxMWEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NjAzMTI5LCJleHAiOjE3MDc2MDQwMjksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.j0UtdksLf18KY1X44AReffvyu1H20VYdcDZwtLgEu0w", 
+     Body: 2
+
+2024-02-10 19:13:01.8435 - ERROR - 40000029-0004-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhZjAxYTlmZS1hZGZjLTQ3M2UtYTdhNC1mNzRmNTI4YWY1YWQiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NjAzMTgxLCJleHAiOjE3MDc2MDQwODEsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.hpx5kAvFPNI2i-AlIz49C9nmeN3oPr7taIEJq7jl5kY", 
+     Body: 2
+
+2024-02-10 19:21:09.4611 - INFO - 4000005c-0006-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMTcyOTczYy1iYmRlLTRhODYtOTBlZi1kNWUxNzI5ZjQ5MjIiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NjAzNjU1LCJleHAiOjE3MDc2MDQ1NTUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.UleagwV_FAYC9LnUGEVxwH4QOTttznS8i4klADOVsmI", 
+     Body: {"Id":null,"ContactId":null,"EventId":2,"DateEntered":null}
+

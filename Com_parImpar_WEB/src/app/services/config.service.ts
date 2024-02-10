@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class ConfigService {
-  public isLooged:boolean = false;
+  public isLogged:boolean = false;
   public contact:Contact = null;
 
   constructor(public authService: AuthService, private contactService:ContactService) {
@@ -17,19 +17,19 @@ export class ConfigService {
   public load(): Promise<void> {
     return new Promise((resolve) => {
       this.reAuthenticate().pipe(
-        mergeMap((isLooged: boolean) => {
-          this.isLooged = isLooged;
-          if(isLooged){
+        mergeMap((isLogged: boolean) => {
+          this.isLogged = isLogged;
+          if(isLogged){
             return this.contactService.myInfo().pipe(map(res =>{
               this.contact = res;
               return true;
             }))
           } else {
-            return of(isLooged);
+            return of(isLogged);
           }
         })
       ).subscribe((loadData) => resolve(), err => {
-        this.isLooged = false;
+        this.isLogged = false;
         resolve()}
         );
     });
