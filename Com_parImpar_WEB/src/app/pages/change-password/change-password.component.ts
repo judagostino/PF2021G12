@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Console } from 'console';
 import { ChangePassword } from 'src/app/models/change-password';
 import { ContactRegistrer } from 'src/app/models/contact-register';
 import { ContactService } from 'src/app/services';
@@ -65,8 +64,8 @@ export class ChangePasswordComponent implements OnInit {
 
       if (!this.showError) {
         let change : ChangePassword = this.form.value;
-        console.log(change)
-        /* this.contactService.changePassword(change).subscribe( () => {
+      
+         this.contactService.changePassword(change).subscribe( () => {
           Swal.fire(
             'Se actualizo tu contraseña',
             'El cambio comienza a surtir efecto a partir del próximo inicio de sesión.',
@@ -74,7 +73,7 @@ export class ChangePasswordComponent implements OnInit {
           );
           setTimeout( () => { this.router.navigate(['/settings']) }, 3000);
         }, err => {
-        console.log(err)
+      
         if (err?.error?.code != null) {
           switch(err.error.code) {
             case 5911: {
@@ -82,13 +81,19 @@ export class ChangePasswordComponent implements OnInit {
               this.message = 'La nueva contraseña es igual a la antigua.';
               break;
             }
+            case 5909: {
+              this.showError = true;
+              this.message = 'La contraseña actual no es correcta.';
+              break;
+            }
             default: {
               this.showError = true;
               this.message = 'Parece haber ocurrido un error, por favor intentelo de nuevo mas tarde.';
               break;
             }
+            
               }
-        }}) */
+        }}) 
       }
     } else {
       this.form.markAllAsTouched();
