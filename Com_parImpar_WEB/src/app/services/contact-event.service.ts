@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ContactEvents } from '../models/contact-events';
 
@@ -37,7 +37,7 @@ export class ContactEventsService {
 
   public postAssit(id:number): Observable<ContactEvents> {
     let headers= new HttpHeaders();
-
+    
     headers = headers.append('Content-Type', 'application/json');
     return this.http.post(`${this.URL}`,{eventId:id},{headers}).pipe(map(response => {
       let data = response as ContactEvents;

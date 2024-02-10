@@ -34,7 +34,24 @@ export class HttpParImparInterceptor implements HttpInterceptor {
           return this.managementErrror(error);
         })
       )
-    } else {
+    } else if (request.headers.get(HttpKey.AUTHORIZE_AS_POSSIBLE) !== undefined && request.headers.get(HttpKey.AUTHORIZE_AS_POSSIBLE)  !== null) {
+      const newHeaders = request.headers.delete("authorize_as_possible");
+      if (this.authSrervice.getAccessToken() != null && this.authSrervice.getAccessToken() != undefined) {
+        newRequest = request.clone({headers: newHeaders});
+        newRequest = this.updateHeader(request);
+      } else {
+        return next.handle(newRequest).pipe(
+          catchError((error) => {
+            if( error instanceof HttpErrorResponse) {
+              if (this.isTokenExpiryError(error)) {
+                return this.managementErrror(error);
+              }
+            }
+            return this.managementErrror(error);
+          })
+        )
+      }
+    } else  {
       newRequest = this.updateHeader(request);
     }
 

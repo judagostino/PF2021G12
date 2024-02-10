@@ -1,0 +1,8 @@
+2024-02-10 01:06:10.4130 - ERROR - 80000030-0007-fe00-b63f-84710c7967bb - (GET) https://localhost/api/v1/Events/Date?d=2024-02-1 (ver: ) - ::1
+     Message: AssitEvent
+     Exception: AssitEvent
+     StackTrace:    at ParImparApi.Services.EventsService.GetByDate(DateTime date) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 963
+   at ParImparApi.Services.EventsService.GetByDate(DateTime date) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 969
+   at ParImparApi.Controllers.EventsController.GetByDate(DateTime searchByDate) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 393
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZWI1OWVlMi1jZTY1LTQ1NDgtOTczMS02ZTIwZWY2MGZiYjYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NTM3OTM4LCJleHAiOjE3MDc1Mzg4MzgsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.1JRJK5v4l5BEW1vjQvRLwQGnXbVzN4JBKYPSzGjK3CM", 
+

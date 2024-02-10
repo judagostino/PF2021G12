@@ -584,6 +584,12 @@ namespace ParImparApi.Services
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         #region [SP Parameters]
+                        Dictionary<string, string> sessionValues = await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, new string[] { "ContactId" });
+
+                        if (sessionValues != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(sessionValues["ContactId"])));
+                        }
                         cmd.Parameters.Add(new SqlParameter("@EventId", eventId));
                         #endregion
 
@@ -639,6 +645,14 @@ namespace ParImparApi.Services
                                 if (reader["DateEntered"] != DBNull.Value)
                                 {
                                     newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
+                                }
+
+                                if (reader["Assit"] != DBNull.Value)
+                                {
+                                    newEvent.Assit = (bool)reader["Assit"];
+                                } else
+                                {
+                                    newEvent.Assit = false;
                                 }
 
                                 if (reader["ContacCreate"] != DBNull.Value)
@@ -851,6 +865,12 @@ namespace ParImparApi.Services
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         #region [SP Parameters]
+                        Dictionary<string, string> sessionValues = await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, new string[] { "ContactId" });
+
+                        if (sessionValues != null)
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(sessionValues["ContactId"])));
+                        }
                         cmd.Parameters.Add(new SqlParameter("@Date", date));
                         #endregion
 
@@ -909,6 +929,15 @@ namespace ParImparApi.Services
                                 if (reader["DateEntered"] != DBNull.Value)
                                 {
                                     newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
+                                }
+
+                                if (reader["Assit"] != DBNull.Value)
+                                {
+                                    newEvent.Assit = (bool)reader["Assit"];
+                                }
+                                else
+                                {
+                                    newEvent.Assit = false;
                                 }
 
                                 if (reader["ContacCreate"] != DBNull.Value)

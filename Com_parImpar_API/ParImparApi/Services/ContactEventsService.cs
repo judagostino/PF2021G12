@@ -85,18 +85,7 @@ namespace ParImparApi.Services
                         #endregion
 
 
-                        if (ContactXEvents != null && ContactXEvents.Count > 0)
-                        {
-                            return successResponse;
-                        }
-                        else
-                        {
-                            return new ApiResponse()
-                            {
-                                Status = CustomStatusCodes.NotFound
-                            };
-                        }
-
+                        return successResponse;
                     }
                     catch (Exception exc)
                     {

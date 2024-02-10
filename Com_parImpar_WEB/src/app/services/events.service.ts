@@ -30,7 +30,7 @@ export class EventsService {
     let headers= new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+    headers = headers.append(HttpKey.AUTHORIZE_AS_POSSIBLE, '');
 
     return this.http.get(`${this.URL}/${id}/moreInfo`, {headers}).pipe(map((response:Events) => {
       if(response.description != null) {
@@ -95,7 +95,7 @@ export class EventsService {
     let headers= new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');
-    headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
+    headers = headers.append(HttpKey.AUTHORIZE_AS_POSSIBLE, '');
 
     return this.http.get(`${this.URL}/Date?d=${date.getFullYear()}-${date.getMonth() + 1}-${1}`
     , {headers}).pipe(map((response:Events[]) => {

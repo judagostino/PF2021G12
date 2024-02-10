@@ -1,0 +1,14 @@
+2024-02-09 23:35:03.5211 - INFO - 800000e0-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Invalid Datetime Event (less than 48 hours)
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzc3ZjgwMS05Y2Y0LTQ1N2MtODk5ZC00NmEwNTZjYWFmZTQiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NTMyNDgzLCJleHAiOjE3MDc1MzMzODMsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.A_7A0xNcPp4hJPN382w3jppVv-8C5sjp1ylYf9jtdbE", 
+     Body: {"Id":null,"ContactId":null,"EventId":9,"DateEntered":null}
+
+2024-02-09 23:35:42.9334 - INFO - 800000e8-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Upload (ver: ) - 127.0.0.1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMzc3ZjgwMS05Y2Y0LTQ1N2MtODk5ZC00NmEwNTZjYWFmZTQiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NTMyNDgzLCJleHAiOjE3MDc1MzMzODMsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.A_7A0xNcPp4hJPN382w3jppVv-8C5sjp1ylYf9jtdbE", 
+
+2024-02-09 23:39:13.0179 - INFO - 80000047-0002-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Exist Contact Event
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNTNhNTU1Mi00M2ZhLTQwZTMtYjI1Mi0yMGE3YzgyYmQ5M2IiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NTMyNzM5LCJleHAiOjE3MDc1MzM2MzksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.ZNvUw1R4DpmUHaMqrLeHvh5XpV8VYnUGzKWc9cNo20M", 
+     Body: {"Id":null,"ContactId":null,"EventId":9,"DateEntered":null}
+

@@ -24,5 +24,7 @@ namespace ParImparApi.DTO
         public ContactDTO ContactCreate { get; set; }
 
         public ContactDTO ContactAudit { get; set; }
+
+        public bool? Assit { get; set; }
     }
 }

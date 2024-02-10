@@ -34,13 +34,15 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr *ngFor="let event of events;" (click)="showEvents(event)" style="cursor: pointer;">
+                                        <tr *ngFor="let event of events;let i = index;" (click)="showEvents(event)" style="cursor: pointer;">
                                             <td>{{event.startDate | date: 'mediumDate'}}</td>
                                             <td>{{event.title}}</td>
                                             <td>{{event?.contactCreate?.name}}</td>
                                             <td>
-                                                <button *ngIf = "validateAssit(event)" class="submit" (click)="assit(event,$event)">Asistir</button>
-                                                <button *ngIf = "validateCancelAssit(event)" class="submit" (click)="cancel_assit(event,$event)">No Asistir</button>
+                                                <div *ngIf="this.configService?.isLooged">
+                                                    <button *ngIf = "!event.assit" class="submit" (click)="assit(event,$event, i)">Asistir</button>
+                                                    <button *ngIf = "event.assit" class="submit" (click)="cancel_assit(event,$event, i)">No Asistir</button>
+                                                </div>
                                             </td>
                                         </tr>
                                     </tbody>
