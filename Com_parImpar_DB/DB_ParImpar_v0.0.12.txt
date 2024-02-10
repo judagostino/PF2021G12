@@ -373,3 +373,158 @@ GO
 
 
 
+USE [ParImpar]
+GO
+
+/** Object:  StoredProcedure [dbo].[Contact_ChangePassword]    Script Date: 7/2/2024 21:09:37 **/
+DROP PROCEDURE [dbo].[Contact_ChangePassword]
+GO
+
+/** Object:  StoredProcedure [dbo].[Contact_ChangePassword]    Script Date: 7/2/2024 21:09:37 **/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_ChangePassword]
+(
+	@ContactId INT,
+	@LastPassword VARCHAR(100),
+	@NewPassword VARCHAR(100),
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- Para testing
+DECLARE @ContactId INT = 1
+DECLARE @LastPassword VARCHAR(100) = 'ed78vWPkU9hDRVUf10qkfA=='
+DECLARE	@NewPassword VARCHAR(100) = 'OAqUPf+4PtAiey0+UVBDkA=='
+DECLARE @ResultCode INT
+*/
+
+
+SET @ResultCode = 200
+
+IF (SELECT COUNT(ContactId) FROM Contacts (NOLOCK) WHERE ContactId = @ContactId AND [Password] = @NewPassword ) <> 0
+	BEGIN
+		SET @ResultCode = 5911
+	END
+	
+IF @ResultCode = 200 AND (SELECT COUNT(ContactId) FROM Contacts (NOLOCK) WHERE ContactId = @ContactId AND [Password] != @LastPassword ) <> 0
+	BEGIN
+		SET @ResultCode = 5909
+	END
+
+
+IF @ResultCode = 200
+	BEGIN
+		UPDATE Contacts 
+		SET [Password] = @NewPassword
+		WHERE ContactId = @ContactId
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+		  ELSE 
+			BEGIN
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					'ContactId', 
+					@ContactId,
+					@ContactId,
+					15,
+					GETDATE()
+				)
+				SET @ResultCode = 200 
+			END
+	END
+GO
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[ContactXEvent_Insert]    Script Date: 8/2/2024 21:42:56 ******/
+DROP PROCEDURE [dbo].[ContactXEvent_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[ContactXEvent_Insert]    Script Date: 8/2/2024 21:42:56 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[ContactXEvent_Insert]
+(
+	@ContactId INT,
+	@EventId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @EventId INT = 8
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+	
+IF @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200 AND @EventId IS NULL
+	BEGIN
+		SET @ResultCode = 5006
+	END
+
+
+-- Verificar si la cancelación se realiza con al menos 48 horas de antelación
+IF @ResultCode = 200 AND (DATEDIFF(HOUR, GETDATE(), (SELECT TOP 1 StartDate FROM [Events] (NOLOCK) WHERE EventId = @EventId)) < 48)
+	BEGIN
+		SET @ResultCode = 5916
+	END
+
+-- Verificar si El evento esta activo
+IF @ResultCode = 200 AND (SELECT TOP 1 EventId FROM [Events] (NOLOCK) WHERE EventId = @EventId AND StateId <> 2 ) IS NOT NULL
+	BEGIN
+		SET @ResultCode = 5918
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		IF (
+			SELECT ContactEventId 
+			FROM ContactXEvent (NOLOCK)
+			WHERE ContactId = @ContactId AND EventId = @EventId AND DateCancellation IS NULL ) IS NULL
+			BEGIN
+				INSERT INTO ContactXEvent (ContactId, EventId, DateEntered) 
+				VALUES (@ContactId, @EventId, GETDATE())
+			END
+		  ELSE 
+			BEGIN 
+				SET @ResultCode = 5917
+			END
+	END
+
+GO
+
+
