@@ -122,6 +122,26 @@ export class ABMEventsComponent implements OnInit {
     });
   }
 
+  /**
+   * Metodo encargado de buscar todos los datos con los filtros actualles y generar el archivo Excel correspondiente.
+   */
+  public exportToExcel_Click(): void {
+    // this.sqvExportExcelService.title = this.excelTitle;
+    // this.sqvExportExcelService.titleWorksheet = this.excelTitleWorksheet;
+    // this.sqvExportExcelService.columns = this.columns;
+    // this.sqvExportExcelService.headerTotalizer = this.excelHeaderTotalizer;
+
+    // if (!!this.excelHeaderFontColor) {
+    //   this.sqvExportExcelService.headerFontColor = this.excelHeaderFontColor;
+    // }
+    // if (!!this.excelHeaderBgColor) {
+    //   this.sqvExportExcelService.headerBgColor = this.excelHeaderBgColor;
+    // }
+    // this.eventsService.getAllAssist(this.events).subscribe( (response: IqvDataPaged) => {
+    //     this.sqvExportExcelService.exportToExcel(response);
+    //   });
+  }
+
   private getGrid(): void {
     this.eventsService.getAll().subscribe( resp => {
       this.events = [];

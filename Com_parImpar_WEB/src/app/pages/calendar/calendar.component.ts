@@ -131,13 +131,13 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  public assit (event:Events, evt:Event, index: number): void {
+  public assist (event:Events, evt:Event, index: number): void {
     evt.stopPropagation();
     if(!this.configService?.isLogged){
       return;
     }
-    this.contactEventsService.postAssit(event.id).subscribe(resp => {
-      this.events[index].assit = true;
+    this.contactEventsService.postAssist(event.id).subscribe(resp => {
+      this.events[index].assist = true;
       const dialogRef = this.dialog.open(
         InscriptionEventDialogComponent,
         {data:{assist:true},panelClass:'modalInscription'})
@@ -149,13 +149,13 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  public cancel_assit (event:Events, evt:Event, index: number): void {
+  public cancel_assist (event:Events, evt:Event, index: number): void {
     evt.stopPropagation();
     if(!this.configService?.isLogged){
       return;
     }
-    this.contactEventsService.cancelAssit(event.id).subscribe(resp => {
-      this.events[index].assit = false;
+    this.contactEventsService.cancelAssist(event.id).subscribe(resp => {
+      this.events[index].assist = false;
       const dialogRef = this.dialog.open(
         InscriptionEventDialogComponent,
         {data:{assist:false},panelClass:'modalInscription'})

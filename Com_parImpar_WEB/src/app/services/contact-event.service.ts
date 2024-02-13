@@ -15,7 +15,7 @@ export class ContactEventsService {
     this.URL = `${environment.URL}/ContactEvents`;
   }
 
-  public getAllAssit(): Observable<ContactEvents[]> {
+  public getAllAssist(): Observable<ContactEvents[]> {
     let headers= new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');
@@ -25,7 +25,7 @@ export class ContactEventsService {
     }));
   }
 
-  public getAssit(id:number): Observable<ContactEvents> {
+  public getAssist(id:number): Observable<ContactEvents> {
     let headers= new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');
@@ -35,7 +35,7 @@ export class ContactEventsService {
     }));
   }
 
-  public postAssit(id:number): Observable<ContactEvents> {
+  public postAssist(id:number): Observable<ContactEvents> {
     let headers= new HttpHeaders();
     
     headers = headers.append('Content-Type', 'application/json');
@@ -45,7 +45,7 @@ export class ContactEventsService {
     }));
   }
   
-  public cancelAssit(id:number): Observable<ContactEvents> {
+  public cancelAssist(id:number): Observable<ContactEvents> {
     let headers= new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');

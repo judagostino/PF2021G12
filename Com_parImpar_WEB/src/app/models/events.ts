@@ -12,7 +12,8 @@ export class Events {
     contactCreate?: Contact;
     contactAudit?: Contact;
     imageUrl?: string;
-    assit?: boolean;
+    assist?: boolean;
+    attendeesCount?: number;
 
     constructor() {
         this.id = 0;
@@ -26,6 +27,6 @@ export class Events {
         this.contactCreate = null;
         this.contactAudit = null;
         this.imageUrl = null;
-        this.assit = false;
+        this.assist = false;
     }
 }

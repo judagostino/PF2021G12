@@ -40,8 +40,8 @@
                                             <td>{{event?.contactCreate?.name}}</td>
                                             <td>
                                                 <div *ngIf="this.configService?.isLogged">
-                                                    <button *ngIf = "!event.assit" class="btn_Asistir" (click)="assit(event,$event, i)">Asistir</button>
-                                                    <button *ngIf = "event.assit" class="btn_Asistir" (click)="cancel_assit(event,$event, i)">No Asistir</button>
+                                                    <button *ngIf = "!event.assist" class="btn_Asistir" (click)="assist(event,$event, i)">Asistir</button>
+                                                    <button *ngIf = "event.assist" class="btn_Asistir" (click)="cancel_assist(event,$event, i)">No Asistir</button>
                                                 </div>
                                             </td>
                                         </tr>
