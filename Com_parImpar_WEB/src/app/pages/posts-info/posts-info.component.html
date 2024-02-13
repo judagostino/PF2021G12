@@ -1,6 +1,8 @@
-<div class="central mt-3 mb-3" >
-  <div class="post-info">
-      <div class="row" >
+<div class="container-fluid">
+<div class="central" >
+  <div class="row">
+    <div class="col-2"></div>                
+    <div class="post-info col-8">
           <div *ngIf="post">
             <div class="col-6" style="display: inline-block;vertical-align: top;">
               <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
@@ -22,11 +24,9 @@
               <a (click)="redirectToProfile(result)" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
               <button class="submit" type="button" routerLink="/search">Volver</button>
             </div>  
-  
-
-
           </div>
-        </div>
+    </div>
+    <div class="col-2"></div>                
   </div>
 </div>
-
+</div>

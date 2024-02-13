@@ -1,0 +1,25 @@
+2024-02-13 00:09:12.9004 - INFO - 4000005c-0006-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/1/auditor (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NjBjMDQyZC1kYTQ3LTRkYmUtOWUzZi1mNWU2OWJkNGY1OTEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzkzNzQ3LCJleHAiOjE3MDc3OTQ2NDcsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.BmtA2xiYh4tCfsShte3HapDabsgXS-cDeKq0eH-o728", 
+     Body: {"Id":1,"Email":"judagostino96@gmail.com","UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":true,"Notifications":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-13 00:09:21.8941 - INFO - 4000005e-0006-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/2/auditor (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NjBjMDQyZC1kYTQ3LTRkYmUtOWUzZi1mNWU2OWJkNGY1OTEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzkzNzQ3LCJleHAiOjE3MDc3OTQ2NDcsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.BmtA2xiYh4tCfsShte3HapDabsgXS-cDeKq0eH-o728", 
+     Body: {"Id":2,"Email":"gastonlvottero@gmail.com","UserName":"gvottero","LastName":"Vottero","FirstName":"Gaston","Name":"Vottero, Gaston","ImageUrl":null,"Auditor":false,"Trusted":true,"Notifications":null,"DateBrirth":null,"Events":null,"Posts":null}
+
+2024-02-13 00:09:24.5008 - INFO - 4000005f-0006-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/2/auditor (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NjBjMDQyZC1kYTQ3LTRkYmUtOWUzZi1mNWU2OWJkNGY1OTEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzkzNzQ3LCJleHAiOjE3MDc3OTQ2NDcsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.BmtA2xiYh4tCfsShte3HapDabsgXS-cDeKq0eH-o728", 
+     Body: {"Id":2,"Email":"gastonlvottero@gmail.com","UserName":"gvottero","LastName":"Vottero","FirstName":"Gaston","Name":"Vottero, Gaston","ImageUrl":null,"Auditor":true,"Trusted":true,"Notifications":null,"DateBrirth":null,"Events":null,"Posts":null}
+
+2024-02-13 00:10:47.4506 - INFO - 4000006d-0006-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/2/auditor (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkZWI4ZDdmOC1iNzU3LTQ3YzktYjJkOC1mYmMzMDFiMjU5ODYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzkzODM1LCJleHAiOjE3MDc3OTQ3MzUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.xVDv7pLyrBPdtd6R5roIoyQ9IsD7JGa9n4wITzpo6K0", 
+     Body: {"Id":2,"Email":"gastonlvottero@gmail.com","UserName":"gvottero","LastName":"Vottero","FirstName":"Gaston","Name":"Vottero, Gaston","ImageUrl":null,"Auditor":false,"Trusted":true,"Notifications":null,"DateBrirth":null,"Events":null,"Posts":null}
+
+2024-02-13 00:11:19.8554 - INFO - 4000006f-0006-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/1/auditor (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkZWI4ZDdmOC1iNzU3LTQ3YzktYjJkOC1mYmMzMDFiMjU5ODYiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzkzODM1LCJleHAiOjE3MDc3OTQ3MzUsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.xVDv7pLyrBPdtd6R5roIoyQ9IsD7JGa9n4wITzpo6K0", 
+     Body: {"Id":1,"Email":"judagostino96@gmail.com","UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":true,"Notifications":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+

@@ -1,0 +1,63 @@
+2024-02-12 13:30:30.0396 - ERROR - 40000009-0005-fd00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="", 
+     Body: 2
+
+2024-02-12 13:30:34.6906 - ERROR - 4000000f-0005-fd00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/3/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="", 
+     Body: 3
+
+2024-02-12 13:30:38.9966 - ERROR - 40000014-0005-fd00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="", 
+     Body: 2
+
+2024-02-12 13:38:32.7792 - ERROR - 40000020-0002-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="", 
+     Body: 2
+
+2024-02-12 14:16:15.1834 - ERROR - 40000049-0002-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="", 
+     Body: 2
+
+2024-02-12 14:51:56.8670 - ERROR - 4000001f-0001-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/3/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZjBjMzBiNS04Zjk1LTRmZGItYTc5MC0yMDYzMTFiZTE3NDkiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzYwMzAxLCJleHAiOjE3MDc3NjEyMDEsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.bG3BGDgB6xlIoMk5W3d6n0PANHgL6A2NKSJH19wrwRg", 
+     Body: 3
+
+2024-02-12 23:30:25.5637 - ERROR - 4000000a-0004-fc00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/3/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0ZDRhMDBlYS0yNDk5LTQ0YWMtYTA2Ni0yZjcxYWUwOTgxZmMiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNzA3NzkxMjY5LCJleHAiOjE3MDc3OTIxNjksImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.tcSycqSTaO7c2TsD3e-owygoiG89fS-Nkw3eyKV-X-Y", 
+     Body: 3
+

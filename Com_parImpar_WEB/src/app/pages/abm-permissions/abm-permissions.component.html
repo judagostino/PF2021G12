@@ -13,16 +13,7 @@
                   </div>
                   <div class="info">
                     <div class="row">
-                        {{contacSelected | json}}
-                    </div>
-                    <div class="row">
-                        <button type="button" (click)="auditor()" [deseabled] = "contacSelected!= null">
-                            {{contacSelected != null ? (contacSelected.auditor ? 'Marcar como auditor': 'Desmarcar como auditor'):'Marcar como auditor'}}
-                        </button>
-                        <button type="button" (click)="trusted()" [deseabled]= "contacSelected!= null">
-                            {{contacSelected != null ? (contacSelected.trusted ? 'Marcar de confianza': 'Desmarcar de confianza'):'Marcar de confianza'}}
-
-                        </button>
+                   
                     </div>
                   </div>
         
@@ -30,24 +21,26 @@
                       <table class="table" *ngIf="contacts?.length >= 0">
                              <thead>
                                  <tr>
-                                    <th scope="col"></th>
                                      <th scope="col">Id</th>
                                      <th scope="col">Nombre</th>
+                                     <th scope="col">Usuario</th>
+                                     <th scope="col">Email</th>
                                      <th scope="col">Auditor</th>
                                      <th scope="col">Confianza</th>
                                  </tr>
                                </thead>
                                <tbody>
                                  <tr *ngFor="let contact of contacts">
-                                    <td>
-                                        <button (click)= "btn_SelectContact(contact)" class="icon-button" aria-label="Icon button">
-                                        <span>...</span>
-                                      </button>
-                                    </td>                      
                                    <td>{{contact.id}}</td>
                                    <td>{{contact.name}}</td>
-                                   <td>{{contact.auditor}}</td>
-                                   <td>{{contact.trusted}}</td>
+                                   <td>{{contact.userName}}</td>
+                                   <td>{{contact.email}}</td>
+                                   <td>
+                                    <input type=checkbox class="form-check-input" [(ngModel)] = 'contact.auditor' (change) = 'changeAuditor(contact)' [disabled] = 'configService?.contact?.id == contact.id' >
+                                   </td>
+                                   <td>
+                                    <input type=checkbox class="form-check-input" [(ngModel)] = 'contact.trusted' (change) = 'changeTrusted(contact)' >
+                                   </td>
                                  </tr>
                                </tbody>
                       </table>
