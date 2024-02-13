@@ -1,0 +1,1609 @@
+{
+	"info": {
+		"_postman_id": "04cb1265-c295-457d-8f4f-dd4a40e7f95b",
+		"name": "ParImparApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32096293"
+	},
+	"item": [
+		{
+			"name": "ActionLog",
+			"item": [
+				{
+					"name": "ActionLog_GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ActionsLog",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ActionsLog"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Aurth_CredencialLogin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"gastonvottero@hotmail.com\",\r\n    \"password\": \"123456789Mn\",\r\n    \"keepLoggedIn\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Auth/CredentialsLogin",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Auth",
+								"CredentialsLogin"
+							]
+						},
+						"description": "Metodo encargado para logrear un usuario, los errores que pueden dar son:  \n  \n  \n  \n401 no autorizado,  \n5919: Usuario no confirmado  \n5920: Usuario bloqueado  \n500: error interno del Store"
+					},
+					"response": []
+				},
+				{
+					"name": "Aurth_UpdateToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzYjcyMmNkNy04Mjk1LTQyZjgtODY3MS0yMDRhMTI2MGQ2OGUiLCJrZXkiOiJSVmJ4bTh1d2cxdlJHcUltVzlQTkVic3dINThtMkVaTzduQm5ST2lWajI4WXluR1g5eVlURFp5Zm16RnpPR2VJUVB4WkJ5bWkzQ3h1ZHp3aEUwc3RjT3VENFBXSEtlNkFMemQyeDFUQWxwZUc3eXBIRU81VnJhMmgxK0VLZUlldFR3TlNPTEd4ZllpMU5Zc29vNWNHaElyWkwrQVh4WGVnVDFlQUdmeG9Fclk9IiwibmJmIjoxNjMzNzE4MzEzLCJleHAiOjE2MzM4MDQ3MTMsImlzcyI6IlBhckltcGFyUmVmcmVzaCIsImF1ZCI6IlBhckltcGFyUmVmcmVzaCJ9.8K2h4fR0P-Q9c5g6rdiBFeFYZKgxFL-UFtx4jUYpTDs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3MzY3ZTA3MS0zYmM4LTQ0ZGMtYjI1My1jZTgzZWU3MmQyZmEiLCJDb250YWN0SWQiOiIxIiwibmJmIjoxNjMzNzE4MzEzLCJleHAiOjE2MzM3MTkyMTMsImlzcyI6IlBhckltcGFyIiwiYXVkIjoiUGFySW1wYXIifQ.3y5dSfkWY7Nf-mEumcXhEwqTPHKHdS9ouCGz9r7nqr4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Auth/Update",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Auth",
+								"Update"
+							]
+						},
+						"description": "Metodo encargado para mantener una sesion activa mientras el usuario use el sistema actualizando su token de acceso, los errores que pueden dar son: \n<br><br>\n401 no autorizado,<br>\n5902 token de acceso invalido,<br>\n5903 ip invalida,<br>\n5905 user-agent invalido,<br>\n500: error interno del Store"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Contact_Registrer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"macarenavaca.mv@gmail.com\",\r\n        \"confirmEmail\": \"macarenavaca.mv@gmail.com\",\r\n        \"userName\": \"MacaTiquita\",\r\n        \"lastName\": \"Vaca\",\r\n        \"firstName\": \"Macarena\",\r\n        \"password\": \"123456789Mn\",\r\n        \"confirmPassword\": \"123456789Mn\",\r\n        \"dateBrirth\": \"2020-10-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/Register",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"Register"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_ChangePassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"LastPassword\": \"123456789Mn\",\r\n        \"NewPassword\": \"123456789Mm\",\r\n        \"ConfirmPassword\": \"123456789Mm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/ChangePassword",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"ChangePassword"
+							]
+						},
+						"description": "Endpoint encargado de cambiar la contraseña de un usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n\n<br> 5002 PasswordRequiredField\n<br> 5009 NewPasswordRequired\n<br> 5010 ConfirmPasswordRequired\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword\n<br> 5911 NotChangePassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Confirm",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1008,\r\n    \"ConfirmCode\": \"FA973F57-29D1-4A97-940E-D0CC002BDAE2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/Confirm",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"Confirm"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Recover_Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"email\": \"gastonadmin@gmail.com\",\r\n        \"confirmEmail\": \"gastonadmin@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/Recover",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"Recover"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Deny_Recover",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1006,\r\n    \"codeRecover\": \"A404D5E4-27D4-4E3D-9D52-66C473E0760D\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/Deny",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"Deny"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Validate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1006,\r\n    \"ConfirmCode\": \"A404D5E4-27D4-4E3D-9D52-66C473E0760D\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/Validate",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"Validate"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_RecoverChange",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1006,\r\n    \"codeRecover\": \"A404D5E4-27D4-4E3D-9D52-66C473E0760D\",\r\n    \"password\": \"123456789Mn\",\r\n    \"confirmPassword\": \"123456789Mn\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/RecoverChange",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"RecoverChange"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_GetById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/1007",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"1007"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_GetInformation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/1007/Information",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"1007",
+								"Information"
+							]
+						},
+						"description": "Endpoint encargado de devolver la informacion de un usuario, solo es posible usarlo por un usuario Auditor.\n\nLos posibles errores son:  \n404: usuario no encontrado  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/GetAll",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"GetAll"
+							]
+						},
+						"description": "Endpoint encargado de devolver una lista de de usuarios, solo es posible usarlo por un usuario Auditor.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_MyInfo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/myInfo",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"myInfo"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dateBrirth\": \"1995-11-03T00:00:00\",\r\n    \"firstName\": \"Gaston3\",\r\n    \"lastName\": \"Vottero\",\r\n    \"userName\": \"gaston_vottero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact"
+							]
+						},
+						"description": "Endpoint encargado de registrar un nuevo usuario.\n<br>\n<br>\nLos errores que pude dar son:\n<br>\n<br>\n400 con codigo de error:\n<br> 5907 DistintEmail\n<br> 5906 EmailExist\n<br> 5003 EmailRequiredField\n<br> 5001 UserNameRequiredField\n<br> 5004 FirstNameRequiredField\n<br> 5005 LastNameRequiredField\n<br> 5002 PasswordRequiredField\n<br> 5908 DistintPassword \n<br> 5909 IncorretFormatPassword"
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Auditor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ind\": 1005,\r\n    \"firstName\": \"Gaston3\",\r\n    \"lastName\": \"Vottero\",\r\n    \"userName\": \"gaston_vottero\",\r\n    \"auditor\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/1005/Auditor",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"1005",
+								"Auditor"
+							]
+						},
+						"description": "Endpoint encargado de definir un usuario como auditor o no, solo es posible usarlo por un usuario Auditor.\n\nLa varialbe Auditor es la encargada de tefir si tendra permiso de Auditor o no.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Untrusted",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/1007/untrusted",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"1007",
+								"untrusted"
+							]
+						},
+						"description": "Endpoint encargado de quitarle el privilegio de un \"usuario de confianza\". Al quitarselo sus publicacioens (Eventos y Posts) ya no seran autorizados automaticamente, solo es posible usarlo por un usuario Auditor.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Trusted",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/1/trusted",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"1",
+								"trusted"
+							]
+						},
+						"description": "Endpoint encargado de definir un como un \"usuario de confianza\", para que se determine automaticamente sus publicaciones como aprobadas, solo es posible usarlo por un usuario Auditor.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_UnBlocked",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/2/UnBlocked",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"2",
+								"UnBlocked"
+							]
+						},
+						"description": "Endpoint encargado de desbloquear el acceso de un usuario a la plataforma, solo es posible usarlo por un usuario Auditor.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_Blocked",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/2/Blocked",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"2",
+								"Blocked"
+							]
+						},
+						"description": "Endpoint encargado de bloquear el acceso de un usuario a la plataforma, solo es posible usarlo por un usuario Auditor, elimina usus credenciales de acceso para que deba reingresar.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ContactEvents",
+			"item": [
+				{
+					"name": "ContactEvents_GetAllAssistEvents",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactEvents",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactEvents"
+							]
+						},
+						"description": "Endpoint encargado de devolver una lsita de los eventos a los cuales el usuario marco que asistira.\n\nEl la lista tiene el formato:  \nID : identificador de la relacion entre el usuario logueado y el evento.  \nEventId: ID del evento al cual esta subscripto.  \nTypeId: ID del tipo de discapacidad .  \nDateEntered: fecha en que se ingreso el registro.\n\nLos errores que pueden dar son los siguientes:  \n404: Eventos no encontrados.  \n5015: Usuario no encontrado."
+					},
+					"response": []
+				},
+				{
+					"name": "ContactEvents_AssistEventById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactEvents/5",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactEvents",
+								"5"
+							]
+						},
+						"description": "Endpoint encargado de devolver si el evento pasado por url se encuentra entre los eventos que asistira el usuario.\n\nEl la lista tiene el formato:  \nID : identificador de la relacion entre el usuario logueado y el evento.  \nEventId: ID del evento al cual esta subscripto.  \nTypeId: ID del tipo de discapacidad .  \nDateEntered: fecha en que se ingreso el registro.\n\nLos errores que pueden dar son los siguientes:  \n404: Eventos no encontrados.  \n5006: El Id del evento es requerido.  \n5015: Usuario no encontrado."
+					},
+					"response": []
+				},
+				{
+					"name": "ContactEvents_InsertAssistEvent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"eventId\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactEvents",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactEvents"
+							]
+						},
+						"description": "Endpoint Encargado de marcar la asistencia a un evento.  \nSe debe enviar el EventId correspondiente al evento que el usuario quiere asistir.\n\nLos errores que pueden dar son los siguientes:  \n404: Eventos no encontrados.  \n5006: El Id del evento es requerido.  \n5015: Usuario no encontrado.  \n5916: Ya no se puede quitar la asistencia al evento ya que faltan menos de 48HS para que comience.  \n5917: Ya se registro este usuario en este vento.  \n5918: Evento invalido."
+					},
+					"response": []
+				},
+				{
+					"name": "ContactEvents_CancelAssistEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactEvents/2",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactEvents",
+								"2"
+							]
+						},
+						"description": "Endpoint Encargado de marcar la la no asistencia a un evento.  \nSe debe enviar el EventId correspondiente al evento que el usuario quiere dejar de marcar su asistencia.\n\nLos errores que pueden dar son los siguientes:  \n404: Eventos no encontrados.  \n5006: El Id del evento es requerido.  \n5015: Usuario no encontrado.  \n5916: Ya no se puede quitar la asistencia al evento ya que faltan menos de 48HS para que comience."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ContactTypeImplairment",
+			"item": [
+				{
+					"name": "ContactTypeImplairment_GetAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactTypeImplairment",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactTypeImplairment"
+							]
+						},
+						"description": "Endpoint encargado de devolver una lista de los tipos de discapacidad a los que esta subscripto un usuario.\n\nEl la lista tiene el formato:\n\nID : identificador de la relacion entre el usuario logueado y el tipo de discapacidad\n\nContactId: ID del usuario logeuado.\n\nTypeId: ID del tipo de discapacidad .\n\nDateEntered: fecha en que se ingreso el registro.\n\nLos errores que pueden dar son los siguientes:\n\n5015: Usuario no encontrado."
+					},
+					"response": []
+				},
+				{
+					"name": "ContactTypeImplairment_Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"types\": [1,4]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactTypeImplairment/2",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactTypeImplairment",
+								"2"
+							]
+						},
+						"description": "Endpoint encargado de actualizar la lista de los tipos de discapacidad a los que esta subscripto un usuario.  \nSe envia un arreglo de ID de tipos de dicapacidad dentro del campo Types\n\nLos errores que pueden dar son los siguientes:  \n404: Lista no encontrada.  \n5015: Usuario no encontrado.  \n5913: Uno de los ID de los tipos de Discapacidad no existe."
+					},
+					"response": []
+				},
+				{
+					"name": "ContactTypeImplairment_Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"types\": [1,2,4]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactTypeImplairment",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactTypeImplairment"
+							]
+						},
+						"description": "Endpoint encargado de ingresar la lista de los tipos de discapacidad a los que esta subscripto un usuario.  \nSe envia un arreglo de ID de tipos de dicapacidad dentro del campo Types\n\nLos errores que pueden dar son los siguientes:\n\n5015: Usuario no encontrado.  \n5913: Uno de los ID de los tipos de Discapacidad no existe."
+					},
+					"response": []
+				},
+				{
+					"name": "ContactTypeImplairment_Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/ContactTypeImplairment/2",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"ContactTypeImplairment",
+								"2"
+							]
+						},
+						"description": "Endpoint encargado de Eliminar un elemento de la lista de los tipos de discapacidad a los que esta subscripto un usuario. El elemento que se elimina es el del ID de la relacion del usuario ocn el tipo de discapacidad enviado por la url.\n\nLos errores que pueden dar son los siguientes:  \n404: Lista no encontrada.  \n5015: Usuario no encontrado.  \n5913: Uno de los ID de los tipos de Discapacidad no existe."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DenyReason",
+			"item": [
+				{
+					"name": "DenyReason_GetByKeyAndId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/DenyReason/eventid/5",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"DenyReason",
+								"eventid",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "Events_Autorize",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/12/Autorize",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"12",
+								"Autorize"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events_Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/12",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events_Deny",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reason\": \"esto es texto para meter por 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/5/Deny",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"5",
+								"Deny"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Evetns_GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events?a=1",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events"
+							],
+							"query": [
+								{
+									"key": "a",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events_GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/1",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events_Insert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"startDate\": \"2020-03-01\",\r\n        \"endDate\": \"2020-03-02\",\r\n        \"title\": \"Test title\",\r\n        \"description\": \"Test description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Events_Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"startDate\": \"2020-03-01\",\r\n        \"endDate\": \"2020-03-02\",\r\n        \"title\": \"Test title\",\r\n        \"description\": \"Test description\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/12",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Evetns_GetByDate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/Date?d=2021-08-10",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"Date"
+							],
+							"query": [
+								{
+									"key": "d",
+									"value": "2021-08-10"
+								}
+							]
+						},
+						"description": "Devuelve un listado de eventos limitados al mes y al año pasado por query"
+					},
+					"response": []
+				},
+				{
+					"name": "Events_GetAllAssist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/6/AllAssist",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"6",
+								"AllAssist"
+							]
+						},
+						"description": "Devuelve una lista que usuarios que asistiran a un evento."
+					},
+					"response": []
+				},
+				{
+					"name": "Events_GetByIdMoreInfo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Events/1/moreInfo",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Events",
+								"1",
+								"moreInfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/health",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"health"
+							]
+						},
+						"description": "Valida que la Aplicacion este puiblicada correctamente. Responde un 200 si fue pocible espablecer la conexcion con el servidor"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notify",
+			"item": [
+				{
+					"name": "Notify_NewEventsAndPosts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1yugZxkwA0omc8uQR7QvbVWLnXgxTYnDEIc8eVSPJ800jUreiaXzUl5Co7hN0O6eDdJ2Y5KtARIg9Jv7wpEaZaNWmjU9vvfLOUzg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Notify/NewEventsAndPosts",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Notify",
+								"NewEventsAndPosts"
+							]
+						},
+						"description": "Se encarga de notificar a los usuarios sobre nuevos post publciados o cambios en los eventos donde esta subscript, es llamado internamente por el servidor y solo responde ante una clave unica."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Posts_Autorize",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts/1005/Autorize",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts",
+								"1005",
+								"Autorize"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts/7",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_Deny",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reason\": \"esto es texto para meter\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts/5/Deny",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts",
+								"5",
+								"Deny"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_GetById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts/8",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_Insert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"aca va el title\",\r\n        \"description\": \"Esta es la sona de la description\",\r\n        \"text\": \"esta es la zona del texto\",\r\n        \"TypeImpairment\": [\r\n            {\r\n            \"id\": 3\r\n            }\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"aca va el title\",\r\n        \"description\": \"Esta es la sona de la description\",\r\n        \"text\": \"esta es la zona del texto\",\r\n        \"TypeImpairment\": [\r\n             {\r\n                \"id\": 1,\r\n                \"description\": \"Discapacidad Física o Motora\"\r\n            },\r\n            {\r\n                \"id\": 2,\r\n                \"description\": \"Discapacidad Sensorial\"\r\n            },\r\n            {\r\n                \"id\": 3,\r\n                \"description\": \"Discapacidad intelectual\"\r\n            },\r\n            {\r\n                \"id\": 4,\r\n                \"description\": \"Discapacidad Psíquica\"\r\n            }\r\n        ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts/7",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Posts_GetByIdMoreInfo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Posts/3/moreInfo",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Posts",
+								"3",
+								"moreInfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Search_GetSearch",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchText\": \"desc\",\r\n    \"filters\": [\r\n        {\r\n            \"id\": 1,\r\n            \"description\": \"Discapacidad Física o Motora\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"description\": \"Discapacidad Sensorial\"\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"description\": \"Discapacidad intelectual\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"description\": \"Discapacidad Psíquica\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Search",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload_save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Type",
+									"value": "Events",
+									"type": "text"
+								},
+								{
+									"key": "Files",
+									"type": "file",
+									"src": "/C:/Users/User/Desktop/Poster_Comunidad_ParImpar_G12_PF_2021_5K3.png"
+								},
+								{
+									"key": "Id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Upload",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TypesImpairment",
+			"item": [
+				{
+					"name": "TypesImpairment_GetAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/TypesImpairment",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"TypesImpairment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyY2JkOTMxNy1mZWM3LTRmYTEtYjYzOS01NGU5OWNmY2ZlNzAiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwNzg0NDg1MywiZXhwIjoxNzA3ODQ1NzUzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0._fLsDnGt35OaSToqXQco3h5xtP5WfrvUZnOQMxxA4d0",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

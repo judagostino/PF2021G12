@@ -57,6 +57,8 @@ namespace ParImparApi.Common
         [Description("Invalid Datetime Event (less than 48 hours)")] InvalidDateEvent = 5916,
         [Description("Exist Contact Event")] ExistContactEvent = 5917,
         [Description("Invalid Event")] InvalidEvent = 5918,
+        [Description("Not Confirm User")] NotConfirmUser = 5919,
+        [Description("User Blocked")] UserBlocked = 5920,
     }
 
     internal static class Extensions

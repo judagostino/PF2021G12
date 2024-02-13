@@ -625,6 +625,90 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
+        #region [Unblocked]
+        // PUT: api/v1/Contact/ContactId/Unblocked
+        [HttpPut("{ContactId}/Unblocked")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> Unblocked(int contactId)
+        {
+            try
+            {
+                if (contactId <= 0)
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, contactId));
+                }
+
+                ApiResponse response = await _contactsService.Unblocked(contactId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.unauthorizedAction:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contactId));
+            }
+        }
+        #endregion
+
+        #region [Blocked]
+        // PUT: api/v1/Contact/ContactId/Blocked
+        [HttpPut("{ContactId}/Blocked")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> Blocked(int contactId)
+        {
+            try
+            {
+                if (contactId <= 0)
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.RequiredId, contactId));
+                }
+
+                ApiResponse response = await _contactsService.Blocked(contactId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.unauthorizedAction:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contactId));
+            }
+        }
+        #endregion
+
         #region [Auditor]
         // PUT: api/v1/Contact/ContactId/Auditor
         [HttpPut("{ContactId}/Auditor")]

@@ -292,6 +292,44 @@ namespace ParImparApi.Controllers
         }
         #endregion
 
+        #region [GetAllAssist]
+        // GET: api/v1/Events/id/AllAssist
+        [HttpGet("{EventId}/AllAssist")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> GetAllAssist(int eventId)
+        {
+            try
+            {
+                ApiResponse response = await _eventsService.GetAllAssist(eventId);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok(response.Data);
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    case CustomStatusCodes.BadRequest:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, eventId));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
+            }
+        }
+        #endregion
+
+
         #region [Authorize]
         // POST: api/v1/Events/Authorize
         [HttpPost("{EventId}/Autorize")]

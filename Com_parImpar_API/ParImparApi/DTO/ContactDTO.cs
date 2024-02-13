@@ -27,6 +27,8 @@ namespace ParImparApi.DTO
 
         public bool? Notifications { get; set; }
 
+        public string? Assist { get; set; }
+
         public DateTime? DateBrirth { get; set; }
 
         public List<EventRequestDTO> Events { get; set; }

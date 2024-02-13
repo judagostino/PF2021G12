@@ -512,6 +512,16 @@ namespace ParImparApi.Services
                                     newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
                                 }
 
+
+                                if (reader["AttendeesCount"] != DBNull.Value)
+                                {
+                                    newEvent.AttendeesCount = int.Parse(reader["AttendeesCount"].ToString());
+                                }
+                                else
+                                {
+                                    newEvent.AttendeesCount = 0;
+                                }
+
                                 if (reader["ContacCreate"] != DBNull.Value)
                                 {
                                     newEvent.ContactCreate = new ContactDTO()
@@ -647,12 +657,22 @@ namespace ParImparApi.Services
                                     newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
                                 }
 
-                                if (reader["Assit"] != DBNull.Value)
+                                if (reader["Assist"] != DBNull.Value)
                                 {
-                                    newEvent.Assit = (bool)reader["Assit"];
-                                } else
+                                    newEvent.Assist = (bool)reader["Assist"];
+                                }
+                                else
                                 {
-                                    newEvent.Assit = false;
+                                    newEvent.Assist = false;
+                                }
+
+                                if (reader["AttendeesCount"] != DBNull.Value)
+                                {
+                                    newEvent.AttendeesCount = int.Parse(reader["AttendeesCount"].ToString());
+                                }
+                                else
+                                {
+                                    newEvent.AttendeesCount = 0;
                                 }
 
                                 if (reader["ContacCreate"] != DBNull.Value)
@@ -854,6 +874,97 @@ namespace ParImparApi.Services
             }
         }
 
+        public async Task<ApiResponse> GetAllAssist(int eventId)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Events_GetAllAssist", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters]
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+                        cmd.Parameters.Add(new SqlParameter("@EventId", eventId));
+                        #endregion
+
+                        await cnn.OpenAsync();
+
+                        EventRequestDTO eventElement = new EventRequestDTO();
+
+                        ApiResponse successResponse = new ApiResponse()
+                        {
+                            Data = eventElement,
+                            Status = CustomStatusCodes.Success
+                        };
+
+                        #region [BD fireld mapping]
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                if (reader["EventId"] != DBNull.Value)
+                                {
+                                    eventElement.Id = eventId;
+                                }
+                                else
+                                {
+                                    eventElement.Id = null;
+                                }
+
+                                if (reader["EndDate"] != DBNull.Value)
+                                {
+                                    eventElement.EndDate = DateTime.Parse(reader["EndDate"].ToString());
+                                }
+
+                                if (reader["StartDate"] != DBNull.Value)
+                                {
+                                    eventElement.StartDate = DateTime.Parse(reader["StartDate"].ToString());
+                                }
+
+                                if (reader["Title"] != DBNull.Value)
+                                {
+                                    eventElement.Title = reader["Title"].ToString();
+                                }
+                            }
+
+                            await reader.NextResultAsync();
+
+                            List<ContactDTO> contacts = new List<ContactDTO>();
+                            eventElement.contacts = contacts;
+                            ContactDTO contact;
+
+                            while (await reader.ReadAsync())
+                            {
+                                contact = new ContactDTO();
+                                if (reader["Name"] != DBNull.Value)
+                                {
+                                    contact.Name = reader["Name"].ToString();
+                                    contact.Assist = "";
+                                    contacts.Add(contact);
+                                }
+                            }
+                        }
+                        #endregion
+
+                        return successResponse;
+
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
         public async Task<ApiResponse> GetByDate(DateTime date)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
@@ -931,13 +1042,13 @@ namespace ParImparApi.Services
                                     newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
                                 }
 
-                                if (reader["Assit"] != DBNull.Value)
+                                if (reader["Assist"] != DBNull.Value)
                                 {
-                                    newEvent.Assit = (bool)reader["Assit"];
+                                    newEvent.Assist = (bool)reader["Assist"];
                                 }
                                 else
                                 {
-                                    newEvent.Assit = false;
+                                    newEvent.Assist = false;
                                 }
 
                                 if (reader["ContacCreate"] != DBNull.Value)

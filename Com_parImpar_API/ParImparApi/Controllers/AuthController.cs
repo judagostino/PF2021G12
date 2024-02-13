@@ -51,6 +51,11 @@ namespace ParImparApi.Controllers
                         {
                             return Ok(response.Data);
                         }
+                    case CustomStatusCodes.NotConfirmUser:
+                    case CustomStatusCodes.UserBlocked:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
                     case CustomStatusCodes.Unauthorized:
                         {
                             return Unauthorized(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, credentialsLoginRequest));

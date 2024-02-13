@@ -41,6 +41,15 @@ namespace ParImparApi.Services
                 return await LoginProcess(loginData, credentialsLoginRequest.KeepLoggedIn);
             }
 
+            if (loginData.Status == CustomStatusCodes.NotConfirmUser || loginData.Status == CustomStatusCodes.UserBlocked)
+            {
+                // contacto bloqueado o no confirmado
+                return new ApiResponse()
+                {
+                    Status = (CustomStatusCodes)loginData.Status
+                };
+            }
+
             return new ApiResponse()
             {
                 Status = CustomStatusCodes.Unauthorized
@@ -187,6 +196,13 @@ namespace ParImparApi.Services
                         cmd.Parameters.Add(new SqlParameter("@Email", credentialsLoginRequest.User));
                         string pass = Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt);
                         cmd.Parameters.Add(new SqlParameter("@UserPassword", Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt)));
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
                         #endregion
 
                         await cnn.OpenAsync();
@@ -198,11 +214,19 @@ namespace ParImparApi.Services
                         {
                             while (await reader.ReadAsync())
                             {
-                                loginData.ContactId = (int)reader["ContactId"];
+                                if (reader["ContactId"] != DBNull.Value)
+                                {
+                                    loginData.ContactId = (int)reader["ContactId"];
+                                } else
+                                {
+                                    loginData.ContactId = null;
+                                }
                             }
                         }
+                        loginData.Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value;
 
                         return loginData;
+
                     }
                     catch (Exception exc)
                     {

@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace ParImparApi.DTO
 {
@@ -25,6 +26,10 @@ namespace ParImparApi.DTO
 
         public ContactDTO ContactAudit { get; set; }
 
-        public bool? Assit { get; set; }
+        public bool? Assist { get; set; }
+
+        public int? AttendeesCount { get; set; }
+
+        public List<ContactDTO> contacts { get; set; }
     }
 }
