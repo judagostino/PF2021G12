@@ -1,9 +1,8 @@
-<div class="mt-3 w-100 container-search">
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-10" style="margin-left: 100px;" >
-                <mat-card style="border-radius: 25px;">
+<div class="container-fluid">
+    <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10" >
+                <mat-card style="border-radius: 25px;margin-top: 20px;">
                     <mat-form-field class="w-100" appearance="fill">
                       <mat-label style="font-family: 'Nunito',sans-serif;">Buscar</mat-label>
                       <input [(ngModel)]="searchText" matInput (keyup.enter)="btn_search()">
@@ -20,37 +19,40 @@
                     </div>
                 </mat-card>
               </div>
-        </div>
+              <div class="col-1"></div>
+    </div>
 
+    <div class="row">
+            <div class="col-1"></div>
+            <div *ngIf="notResoult" class="col-10 mt-3 mb-3">
+                <h3 style="font-family: 'Nunito',sans-serif;">La búsqueda no obtuvo ningún resultado</h3>
+            </div>
+            <div class="col-1"></div>
+    </div>
 
-        <div *ngIf="notResoult" class=" mt-3 mb-3">
-            <h3 style="font-family: 'Nunito',sans-serif;">La búsqueda no obtuvo ningún resultado</h3>
-        </div>
-
-        <div *ngFor="let result of resultsSearch;" class=" mt-3 mb-3">
-            <div class="info">
-                <div class="row">
-                    
-                    <div class="col-4">
-                        <img style="height: 180px; max-width: 100%;" class="center" [src]="getImage(result)">
-                    </div>
-
-                    <div class="col-8">
-                        <h3>{{getTitle(result)}}</h3>
-                        <p>{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
-                        <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
-                            <h4 *ngFor="let type of result.typeImpairment;">
-                                <span class="badge badge-pill badge-primary">{{type.description}}</span>
-                            </h4>
+    <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div *ngFor="let result of resultsSearch;" class="info">
+                    <div class="row">
+                        <div class="col-4">
+                            <img style="height: 180px; max-width: 100%;" class="center" [src]="getImage(result)">
                         </div>
-                        <a (click)="redirectToProfile(result)" *ngIf ="result?.contactCreate?.name != null"> Creado por: {{result.contactCreate.name}}</a>
-                        <button type="submit" title="savePost" style="vertical-align: bottom;" class="submit" (click)= "redirectToMoreInfo(result)">Más Información</button>
-
-                        
+    
+                        <div class="col-8">
+                            <h3>{{getTitle(result)}}</h3>
+                            <p>{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
+                            <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
+                                <h4 *ngFor="let type of result.typeImpairment;">
+                                    <span class="badge badge-pill badge-primary">{{type.description}}</span>
+                                </h4>
+                            </div>
+                            <a (click)="redirectToProfile(result)" *ngIf ="result?.contactCreate?.name != null" style="cursor:pointer"> Creado por: {{result.contactCreate.name}}</a>
+                            <button type="button" title="Mas Información" style="vertical-align: bottom;" class="submit" (click)= "redirectToMoreInfo(result)">Más Información</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+            <div class="col-1"></div>
     </div>
 </div>

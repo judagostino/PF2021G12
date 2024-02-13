@@ -1,20 +1,13 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-/*.titles {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-}
+/*
 .opcionMenu {
     font-family: 'Quicksand', sans-serif;
     font-size: large;
     font-weight: 200;
 }
 
-body {
-    background-color: #C4DFE6; 
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(2,2,42,1) 35%, rgba(0,212,255,1) 100%);
-    background-repeat: no-repeat;
-}
+
 
 // .logo {
 //     background: rgb(41,41,41);
@@ -43,19 +36,7 @@ body {
     
 }
 
-/* ::-webkit-scrollbar {
-    width: 15px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #1995ad; 
-    border-radius: 3px; 
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: #e2e2e2; 
-  }
-   */
+
 
    mat-dialog-container {
     padding-left: 40px;
@@ -73,4 +54,11 @@ body {
       border-radius: 25px !important;
       padding-bottom: 15px;
       margin-top: 28px;
+   }
+
+   .snackBar-end {
+    margin-bottom: 50px !important;
+    font-family:'Tilt Neon', sans-serif !important;
+    --mat-mdc-snack-bar-button-color:#1995ad !important;
+    
    }

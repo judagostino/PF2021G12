@@ -1,0 +1,9 @@
+2024-02-11 12:21:43.5647 - ERROR - 40000004-0006-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Events/2/moreInfo (ver: ) - 127.0.0.1
+     Message: Assit
+     Exception: Assit
+     StackTrace:    at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 704
+   at ParImparApi.Services.EventsService.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\EventsService.cs:line 710
+   at ParImparApi.Controllers.EventsController.GetByIdMoreInfo(Int32 eventId) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\EventsController.cs:line 229
+     Headers: Authorization="", 
+     Body: 2
+

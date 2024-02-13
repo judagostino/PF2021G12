@@ -26,6 +26,7 @@
         font-family: 'Nunito', sans-serif;
         text-align: center;
         font-weight: bold;
+        
     }
 
     mat-checkbox {
@@ -39,7 +40,7 @@
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 25px;
       -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
       -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
       box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
@@ -49,19 +50,17 @@
       -webkit-border-radius: 3px 3px 3px 3px;
       
       box-sizing: border-box;
-      width: 950px;
-      height: 230px;
-    
+   
       border-radius: 25px;
-      margin-left: 170px;
       margin-top: 28px; 
+      margin-bottom: 20px;
 
 
     h3 {
         font-family:'Tilt Neon', sans-serif;
-    font-weight: bold;
-    font-size: x-large;
-    text-transform: uppercase;
+        font-weight: bold;
+        font-size: x-large;
+        text-transform: uppercase;
     }
 
     p {
@@ -73,6 +72,11 @@
         font-family: 'Nunito',sans-serif;
         font-size:medium;
         margin-left: 330px;
+        font-weight: bolder;
+    }
+
+    a:hover {
+        color: #1995AD; /* Cambiamos el color al pasar el cursor */
         font-weight: bolder;
     }
 
