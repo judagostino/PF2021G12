@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Contact } from "src/app/intrergaces/contact";
 import { ConfigService, ContactService } from "src/app/services";
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatDialog } from "@angular/material/dialog";
+import { BlockUserDialogComponent } from "src/app/components/block-user/block-user.component";
 
 @Component({
     selector:'app-abm-permissions',
@@ -11,7 +13,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ABMPermissionsComponent implements OnInit {
     contactSelected:Contact = null;
     contacts : Contact [] = []
-    constructor(public contactService:ContactService,public configService:ConfigService,public snackBar:MatSnackBar){}
+    constructor(
+        public contactService:ContactService,
+        public configService:ConfigService,
+        public snackBar:MatSnackBar,
+        public dialog:MatDialog){}
 
     ngOnInit(): void {
         if(this.configService?.isLogged && this.configService?.contact?.auditor){
@@ -57,5 +63,34 @@ export class ABMPermissionsComponent implements OnInit {
             this.snackBar.open('No se ha podido desmarcar el usuario como de confianza','Aceptar',{duration:3000,panelClass:'snackBar-end'})
         }) 
     }
-   }  
+   } 
+   
+   public blockUser(contact:Contact):void {
+    contact.blocked = true;
+    const dialogRef = this.dialog.open(
+        BlockUserDialogComponent,
+        {data:{contact},panelClass:'modalInscription'})
+    dialogRef.afterClosed().subscribe((resp:boolean) => {
+        if(resp == true){
+/*             if(contact.blocked){
+                this.contactService.blocked(contact).subscribe(resp1 => {
+                    this.snackBar.open('Se ha bloqueado con éxito el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
+                },
+                err => {
+                    this.snackBar.open('Hubo un problema al bloquear el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
+                })
+            }
+            else {
+                this.contactService.unblocked(contact).subscribe(resp1 =>{
+                    this.snackBar.open('Se ha desbloqueado con éxito el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
+                },
+                err => {
+                    this.snackBar.open('Hubo un problema al desbloquear el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
+                })  
+            }
+ */        
+            console.log(resp);
+        }
+    })
+   }
 }

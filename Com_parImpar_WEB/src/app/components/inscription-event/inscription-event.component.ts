@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
-  selector: 'app-inscription-event',
+  selector: 'app-inscription-event.component',
   templateUrl: './inscription-event.component.html',
   styleUrls: ['./inscription-event.component.scss']
 })

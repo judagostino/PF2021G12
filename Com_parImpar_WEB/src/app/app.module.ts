@@ -44,6 +44,7 @@ import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions
 import { TruncatePipe } from './pipe/truncate.pipe';
 import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
 import { InscriptionEventDialogComponent } from './components/inscription-event/inscription-event.component';
+import { BlockUserDialogComponent } from './components/block-user/block-user.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -73,7 +74,8 @@ registerLocaleData(localeEs, 'es');
     ABMPermissionsComponent,
     TruncatePipe,
     RecoverConfirmPasswordComponent,
-    InscriptionEventDialogComponent
+    InscriptionEventDialogComponent,
+    BlockUserDialogComponent
   ],
   imports: [
     BrowserModule,

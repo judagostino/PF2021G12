@@ -25,8 +25,9 @@
                                      <th scope="col">Nombre</th>
                                      <th scope="col">Usuario</th>
                                      <th scope="col">Email</th>
-                                     <th scope="col">Auditor</th>
-                                     <th scope="col">Confianza</th>
+                                     <th scope="col">Marcar como auditor</th>
+                                     <th scope="col">Marcar como usuario de confianza</th>
+                                     <th scope="col">Bloquear usuario</th>
                                  </tr>
                                </thead>
                                <tbody>
@@ -40,6 +41,9 @@
                                    </td>
                                    <td>
                                     <input type=checkbox class="form-check-input" [(ngModel)] = 'contact.trusted' (change) = 'changeTrusted(contact)' >
+                                   </td>
+                                   <td>
+                                    <button type="button" (click) = "blockUser(contact)">{{contact?.blocked ? 'Desbloquear' : 'Bloquear'}}</button>
                                    </td>
                                  </tr>
                                </tbody>

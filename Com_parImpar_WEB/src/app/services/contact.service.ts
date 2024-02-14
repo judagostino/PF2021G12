@@ -115,4 +115,11 @@ export class ContactService {
     return this.http.put(`${this.URL}/${contact.id}/untrusted`, {});
   }  
 
+  public blocked(contact: Contact): Observable<any> {
+    return this.http.put(`${this.URL}/${contact.id}/blocked`, {});
+  }  
+
+  public unblocked(contact: Contact): Observable<any> {
+    return this.http.put(`${this.URL}/${contact.id}/unblocked`, {});
+  }  
 }

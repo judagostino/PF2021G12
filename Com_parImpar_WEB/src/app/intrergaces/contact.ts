@@ -13,4 +13,5 @@ export interface Contact {
     auditor?: boolean;
     trusted?: boolean;
     notifications?: boolean;
+    blocked?: boolean;
 }
