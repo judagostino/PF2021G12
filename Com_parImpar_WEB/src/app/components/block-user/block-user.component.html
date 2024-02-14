@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex flex-row-reverse">
+        <i class="fa-regular fa-circle-xmark" (click)="closeModal()" style="color: red;cursor: pointer;"></i>
+      </div>
+    </div>
+  </div>
+  <div *ngIf = "contact?.blocked">
+    <h3>¿Está seguro que desea desbloquear al usuario {{contact?.name}} ?</h3>
+    <button type="button" class="submit" (click)="btn_YesBlockUser()">Si</button>
+    <button type="button" class="submit" (click)="btn_NoBlockUser()">No</button>
+
+  </div>
+  <div *ngIf = "contact?.blocked == false">
+    <h3>¿Está seguro que desea bloquear al usuario {{contact?.name}} ?</h3>
+    <button type="button" class="submit" (click)="btn_YesBlockUser()">Si</button>
+    <button type="button" class="submit"(click)="btn_NoBlockUser()">No</button>
+
+  </div>
+
+
+</div>

@@ -34,7 +34,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr *ngFor="let event of events;let i = index;" (click)="showEvents(event)" style="cursor: pointer;">
+                                        <tr *ngFor="let event of events;let i = index;" (click)="showEvents(event)" class="tableMoreInfo">
                                             <td>{{event.startDate | date: 'mediumDate'}}</td>
                                             <td>{{event.title}}</td>
                                             <td>{{event?.contactCreate?.name}}</td>

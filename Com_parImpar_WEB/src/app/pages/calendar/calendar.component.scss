@@ -18,6 +18,8 @@
     font-weight: 700;
     font-size:20px;
     color:#1f495f;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .calendar {
@@ -101,4 +103,11 @@
   background-color: transparent;
   font-size:15px;
   font-weight: bold;
+}
+
+.tableMoreInfo {
+  cursor: pointer;
+  :hover {
+    color:#1995AD !important;
+}
 }

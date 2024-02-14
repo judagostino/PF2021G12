@@ -110,6 +110,9 @@
                   <th scope="col">Fecha Inicio</th>
                   <th scope="col">Fecha Fin</th>
                   <th scope="col">Estado</th>
+                  <th scope="col">Inscriptos</th>
+                  <th scope="col"></th>
+
               </tr>
           </thead>
   
@@ -128,6 +131,9 @@
                       <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
                       <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
                   </td>
+                  <td></td>
+                  <td></td>
+
               </tr>
             </tbody>
         </table>
