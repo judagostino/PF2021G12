@@ -27,3 +27,21 @@
      Message: File is required
      Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkNTlmN2JjMS00YjNmLTQ1ODEtOWFhMC1hN2UzMDQ4Yjc0MmMiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwNzg2NjU1NiwiZXhwIjoxNzA3ODY3NDU2LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.ry5X3ckcfJeKAXfvUIruwedSEoSoo3LdQJU6PsCsmMw", 
 
+2024-02-13 21:54:24.5729 - INFO - 40000183-0005-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-13 21:54:53.8954 - INFO - 40000185-0005-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-13 21:57:52.7690 - INFO - 40000022-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: User Blocked
+     Headers: Authorization="", 
+
+2024-02-13 21:58:01.3869 - INFO - 40000024-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: User Blocked
+     Headers: Authorization="", 
+

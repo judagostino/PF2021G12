@@ -66,14 +66,14 @@ export class ABMPermissionsComponent implements OnInit {
    } 
    
    public blockUser(contact:Contact):void {
-    contact.blocked = true;
     const dialogRef = this.dialog.open(
         BlockUserDialogComponent,
         {data:{contact},panelClass:'modalInscription'})
     dialogRef.afterClosed().subscribe((resp:boolean) => {
         if(resp == true){
-/*             if(contact.blocked){
+            if(!contact.blocked){
                 this.contactService.blocked(contact).subscribe(resp1 => {
+                    contact.blocked = true;
                     this.snackBar.open('Se ha bloqueado con éxito el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
                 },
                 err => {
@@ -82,14 +82,15 @@ export class ABMPermissionsComponent implements OnInit {
             }
             else {
                 this.contactService.unblocked(contact).subscribe(resp1 =>{
+                   contact.blocked = false;
                     this.snackBar.open('Se ha desbloqueado con éxito el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
                 },
                 err => {
                     this.snackBar.open('Hubo un problema al desbloquear el usuario seleccionado','Aceptar',{duration:3000,panelClass:'snackBar-end'})
                 })  
             }
- */        
-            console.log(resp);
+         
+            
         }
     })
    }

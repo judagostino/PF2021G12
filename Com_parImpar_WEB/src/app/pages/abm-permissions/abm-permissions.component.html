@@ -43,7 +43,7 @@
                                     <input type=checkbox class="form-check-input" [(ngModel)] = 'contact.trusted' (change) = 'changeTrusted(contact)' >
                                    </td>
                                    <td>
-                                    <button type="button" (click) = "blockUser(contact)">{{contact?.blocked ? 'Desbloquear' : 'Bloquear'}}</button>
+                                    <button type="button" (click) = "blockUser(contact)" [disabled] = 'configService?.contact?.id == contact.id'>{{contact?.blocked ? 'Desbloquear' : 'Bloquear'}}</button>
                                    </td>
                                  </tr>
                                </tbody>

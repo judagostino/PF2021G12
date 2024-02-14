@@ -45,6 +45,8 @@ import { TruncatePipe } from './pipe/truncate.pipe';
 import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
 import { InscriptionEventDialogComponent } from './components/inscription-event/inscription-event.component';
 import { BlockUserDialogComponent } from './components/block-user/block-user.component';
+import { ConfirmUserDialogComponent } from './components/confirm-user/confirm-user.component';
+import { DenyRecoverDialogComponent } from './components/deny-recover/deny-recover.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -75,7 +77,9 @@ registerLocaleData(localeEs, 'es');
     TruncatePipe,
     RecoverConfirmPasswordComponent,
     InscriptionEventDialogComponent,
-    BlockUserDialogComponent
+    BlockUserDialogComponent,
+    ConfirmUserDialogComponent,
+    DenyRecoverDialogComponent
   ],
   imports: [
     BrowserModule,

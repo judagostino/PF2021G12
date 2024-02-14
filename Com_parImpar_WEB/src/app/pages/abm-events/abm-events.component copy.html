@@ -131,8 +131,10 @@
                       <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
                       <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
                   </td>
-                  <td></td>
-                  <td></td>
+                  <td>{{event.attendeesCount}}</td>
+                  <td>
+                    <i class="fa-solid fa-file-excel" style="cursor:pointer" (click)="exportToExcel_Click(event.id)"></i>                  
+                  </td>
 
               </tr>
             </tbody>
