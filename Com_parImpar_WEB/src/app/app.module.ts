@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { MaterialModule } from './material/material.component';
 

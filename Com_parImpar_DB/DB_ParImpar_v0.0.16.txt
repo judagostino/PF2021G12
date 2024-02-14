@@ -1,0 +1,124 @@
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_GetAll]    Script Date: 13/2/2024 21:18:35 ******/
+DROP PROCEDURE [dbo].[Contact_GetAll]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_GetAll]    Script Date: 13/2/2024 21:18:35 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_GetAll]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		SET @ResultCode = 200
+
+		SELECT
+			ContactId,
+			FirstName,
+			LastName,
+			UserName,
+			LastName + ', ' + FirstName 'Name',
+			email,
+			ISNULL(Auditor, 'False') 'Auditor',
+			ISNULL(Trusted, 'False') 'Trusted',
+			ISNULL(Blocked, 'False') 'Blocked',
+			Notifications,
+			DateBrirth,
+			ImageUrl
+		FROM Contacts (NOLOCK) 
+		WHERE ISNULL(Confirm, 'False') <> 'False'
+
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+GO
+
+
+USE [ParImpar]
+GO
+/****** Object:  StoredProcedure [dbo].[Events_GetAll]    Script Date: 13/2/2024 21:22:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[Events_GetAll]
+(
+	@ContactId INT,
+	@audit INT = NULL
+)
+AS
+
+ 
+ /*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @audit INT = 0
+*/
+
+DECLARE @IsAuditor BIT = 'False'
+
+IF (@audit IS NOT NULL AND @audit = 1) 
+	BEGIN
+		SELECT 
+			@IsAuditor = ISNULL(Auditor, 'False')
+		FROM Contacts 
+		WHERE ContactId = @ContactId 
+	END
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	CC.LastName + ', ' + CC.FirstName AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	E.StateId,
+	E.ImageUrl,
+	s.[Description] 'DescriptionState',
+	(SELECT COUNT(*) FROM ContactXEvent WHERE EventId = E.EventId AND DateCancellation IS NULL) AS 'AttendeesCount'
+FROM [Events] E (NOLOCK)
+	INNER JOIN Contacts (NOLOCK) CC
+	ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+	ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+	ON CA.ContactId = E.ContactAudit
+WHERE
+		@ContactId = E.ContacCreate
+		OR
+		@IsAuditor = 'True'
+		AND E.DateDeleted IS NULL

@@ -21,7 +21,7 @@
 
               <p *ngFor="let paragaph of post?.bodyParagraphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
 
-              <a (click)="redirectToProfile(result)" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
+              <a (click)="redirectToProfile()" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
               <button class="submit" type="button" routerLink="/search">Volver</button>
             </div>  
           </div>

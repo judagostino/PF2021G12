@@ -14,6 +14,7 @@ export class Events {
     imageUrl?: string;
     assist?: boolean;
     attendeesCount?: number;
+    contacts: Contact[];
 
     constructor() {
         this.id = 0;
@@ -28,5 +29,6 @@ export class Events {
         this.contactAudit = null;
         this.imageUrl = null;
         this.assist = false;
+        this.contacts = [];
     }
 }

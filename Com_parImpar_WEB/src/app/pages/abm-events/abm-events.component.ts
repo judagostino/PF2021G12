@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Events } from 'src/app/models/events';
 import { EventsService, UploadService } from 'src/app/services';
+import { ExportExcelService } from 'src/app/services/export-excel.service';
 import Swal  from 'sweetalert2';
 
 @Component({
@@ -21,7 +22,8 @@ export class ABMEventsComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private router: Router, 
     private uploadService: UploadService,
-    private eventsService: EventsService) { }
+    private eventsService: EventsService,
+    private exportExcelService: ExportExcelService) { }
 
 
 
@@ -124,22 +126,12 @@ export class ABMEventsComponent implements OnInit {
 
   /**
    * Metodo encargado de buscar todos los datos con los filtros actualles y generar el archivo Excel correspondiente.
+   * @param id Id del evento a buscar la lista.
    */
-  public exportToExcel_Click(): void {
-    // this.sqvExportExcelService.title = this.excelTitle;
-    // this.sqvExportExcelService.titleWorksheet = this.excelTitleWorksheet;
-    // this.sqvExportExcelService.columns = this.columns;
-    // this.sqvExportExcelService.headerTotalizer = this.excelHeaderTotalizer;
-
-    // if (!!this.excelHeaderFontColor) {
-    //   this.sqvExportExcelService.headerFontColor = this.excelHeaderFontColor;
-    // }
-    // if (!!this.excelHeaderBgColor) {
-    //   this.sqvExportExcelService.headerBgColor = this.excelHeaderBgColor;
-    // }
-    // this.eventsService.getAllAssist(this.events).subscribe( (response: IqvDataPaged) => {
-    //     this.sqvExportExcelService.exportToExcel(response);
-    //   });
+  public exportToExcel_Click(id: number): void {
+    this.eventsService.getAllAssist(id).subscribe( (response) => {
+        this.exportExcelService.exportToExcel(response);
+      });
   }
 
   private getGrid(): void {

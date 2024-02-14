@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SearchItem, TypeImpairment } from 'src/app/intrergaces';
 import { SearchService, TypeImpairmentService } from 'src/app/services';
 import { ConfigService } from 'src/app/services';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'app-search',

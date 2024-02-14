@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Events } from 'src/app/models/events';
 import { ConfigService, EventsService } from 'src/app/services';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Router } from '@angular/router';
 import { ContactEventsService } from 'src/app/services/contact-event.service';
 import { Observable, of } from 'rxjs';

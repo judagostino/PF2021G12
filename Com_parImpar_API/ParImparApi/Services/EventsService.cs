@@ -812,6 +812,15 @@ namespace ParImparApi.Services
                                     newEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
                                 }
 
+                                if (reader["AttendeesCount"] != DBNull.Value)
+                                {
+                                    newEvent.AttendeesCount = int.Parse(reader["AttendeesCount"].ToString());
+                                }
+                                else
+                                {
+                                    newEvent.AttendeesCount = 0;
+                                }
+
                                 if (reader["ContacCreate"] != DBNull.Value)
                                 {
                                     newEvent.ContactCreate = new ContactDTO()

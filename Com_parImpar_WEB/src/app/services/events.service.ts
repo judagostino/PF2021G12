@@ -83,6 +83,12 @@ export class EventsService {
     }));
   }
 
+  public getAllAssist(id: number): Observable<Events> {
+    return this.http.get(`${this.URL}/${id}/AllAssist`).pipe(map(resp => {
+      return resp as Events;
+    }));
+  }
+
   public authorize(id: number): Observable<any> {
     return this.http.post(`${this.URL}/${id}/Autorize`, {});
   }

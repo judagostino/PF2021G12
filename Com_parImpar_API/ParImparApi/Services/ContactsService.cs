@@ -953,6 +953,14 @@ namespace ParImparApi.Services
                                     contact.Trusted = (bool)reader["Trusted"];
                                 }
 
+                                if (reader["Blocked"] != DBNull.Value)
+                                {
+                                    contact.Blocked = (bool)reader["Blocked"];
+                                } else
+                                {
+                                    contact.Blocked = false;
+                                }
+
                                 contacts.Add(contact);
                             }
                         }
