@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ContactService } from 'src/app/services';
 
 
@@ -10,29 +9,24 @@ import { ContactService } from 'src/app/services';
   styleUrls: ['./confirm-user.component.scss']
 })
 export class ConfirmUserDialogComponent implements OnInit {
-  showCorrectMessage = false;
-  correctMessage = '';
-  showErrorMessage = false;
-  errorMessage = '';
   message = '';
 
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmUserDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {},
-    private router: Router, 
-    private activatedRoute: ActivatedRoute, 
+    @Inject(MAT_DIALOG_DATA) public data: {id:number,confirmCode:string,err?:string},
     private contactService: ContactService) {}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.contactService.confirmUser({ id: Number.parseInt(params['i']), confirmCode: params['c']}).subscribe( () => {
-        this.message='Usuario confirmado con éxito, redirigiendo al Login...';
-        setTimeout( () => { this.router.navigate(['/login']) }, 3000);
-      })
-    }, err => {
-      this.message='Ocurrió un error, vuelva a intentarlo...';
-    });
+      if(this.data.err != null){
+        this.message='Ocurrió un error, vuelva a intentarlo';
+        return;
+      }
+    this.contactService.confirmUser({
+        id:this.data.id,
+        confirmCode:this.data.confirmCode}).subscribe( () => {
+          this.message='Su usuario ha sido confirmado con éxito';
+        })
   }
 
   public closeModal():void {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmUserDialogComponent } from 'src/app/components/confirm-user/confirm-user.component';
 import { CredencialLogin } from 'src/app/intrergaces';
 import { AuthService } from 'src/app/services';
 import { ConfigService } from 'src/app/services';
@@ -17,9 +19,14 @@ export class LoginComponent implements OnInit {
   message: string;
   showError: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService:AuthService,
-    private contactService: ContactService, private configService: ConfigService) { 
-
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private authService:AuthService,
+    private contactService: ContactService, 
+    private configService: ConfigService,
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog) { 
   }
 
   ngOnInit(): void {
@@ -29,6 +36,17 @@ export class LoginComponent implements OnInit {
       password:['',Validators.required],
       keepLoggedIn: [true]
     })
+    this.activatedRoute.queryParams.subscribe(params => {
+      if(params['i'] != null){
+        const dialogRef = this.dialog.open(
+          ConfirmUserDialogComponent,
+          {data:{ 
+            id: Number.parseInt(params['i']), 
+            confirmCode: params['c']},
+            panelClass:'ModalConfirmUser'})
+      }
+     }
+    );
   }
 
   public btn_login():void {
