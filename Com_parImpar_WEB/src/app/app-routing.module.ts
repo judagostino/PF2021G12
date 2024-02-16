@@ -20,28 +20,30 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions.component';
 import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
+import { AuthGuard } from './guard/auth.guard';
+import { UnauthorizedGuard } from './guard/unauthorized.guard';
 
 
 const routes: Routes = [
-  {path:'login',component: LoginComponent},
-  {path:'register',component: RegisterComponent},
+  {path:'login', canActivate: [UnauthorizedGuard], component: LoginComponent},
+  {path:'register', canActivate: [UnauthorizedGuard], component: RegisterComponent},
   {path:'home',component: HomeComponent},
-  {path:'events',component: ABMEventsComponent},
-  {path:'posts',component: ABMPostsComponent},
+  {path:'events', canActivate: [AuthGuard], component: ABMEventsComponent},
+  {path:'posts', canActivate: [AuthGuard], component: ABMPostsComponent},
   {path:'calendar',component: CalendarComponent},
   {path:'search',component: SearchComponent},
   {path:'posts-info/:id',component: PostsInfoComponent},
   {path:'events-info/:id',component: EventsInfoComponent},
-  {path:'profile/:id',component: ProfileComponent},
+  {path:'profile/:id', component: ProfileComponent},
   {path:'user/recover',component: RecoverPassordComponent},
-  {path:'user/change-password',component: ChangePasswordComponent},
+  {path:'user/change-password', canActivate: [AuthGuard],component: ChangePasswordComponent},
   {path:'user/confirm',component: ConfirmUserComponent},
   {path:'user/cancel',component: DenyRecoverComponent},
-  {path:'table/:key',component: ObjectTableComponent},
-  {path:'settings',component: ChangeProfileComponent},
-  {path:'action-log',component: ActionLogComponent},
+  {path:'table/:key', canActivate: [AuthGuard], component: ObjectTableComponent},
+  {path:'settings', canActivate: [AuthGuard], component: ChangeProfileComponent},
+  {path:'action-log', canActivate: [AuthGuard], component: ActionLogComponent},
   {path:'user/recover-password',component: RecoverConfirmPasswordComponent},
-  {path:'permissions',component: ABMPermissionsComponent},
+  {path:'permissions', canActivate: [AuthGuard], component: ABMPermissionsComponent},
   {path:'**',redirectTo:"home"}
   
 ];

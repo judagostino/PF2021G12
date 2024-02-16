@@ -34,7 +34,7 @@
     
 </nav>
 <div class="d-flex flex-row-reverse" style="position: absolute;top: 16px;right: 10px;">
-<button class="btn_ingresar" *ngIf="!configService.isLogged"><a href="login"> Ingresar</a></button>
+<button class="btn_ingresar" *ngIf="!configService.isLogged" routerLink="/login"><a> Ingresar</a></button>
 </div>
 <div class="dropdown">
   <div style="position: absolute;top: -20px;right: -100px;white-space:nowrap;" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,7 +43,7 @@
   <div class="dropdown-menu" aria-labelledby="settingsDropdown" *ngIf="configService.isLogged">
     <a class="dropdown-item"  routerLink="/settings">Ajustes</a>
      <div class="dropdown-divider"></div> 
-    <a class="dropdown-item"  (click)="btn_Logout()" href="#">Salir</a>      
+    <a class="dropdown-item"  (click)="btn_Logout()" routerLink="/login">Salir</a>      
   </div>
   
 </div>

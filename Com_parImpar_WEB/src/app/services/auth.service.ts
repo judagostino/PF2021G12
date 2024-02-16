@@ -33,6 +33,10 @@ export class AuthService {
     );
   }
 
+  public isLoggedIn(): boolean {
+    return !!localStorage.getItem('pi_at') && localStorage.getItem('pi_at') != '';
+  }
+
   public reAuthentricate(): Observable<any|null> {
     let headers= new HttpHeaders();
 

@@ -48,9 +48,31 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/home');
         })
         // estra logeado
-      }, error => {
-        this.message = 'Usuario o contraseña invalido';
+      }, err => {
+        if (err?.status == 400) {
+          if(err?.error != null) {
+            switch (err?.error?.code) {
+              case 5920: {
+                this.message = 'Usuario bloqueado. Comuníquese con comunidadparimpar@gmail.com';
+                break;
+              }
+              case 5919: {
+                this.message = 'Usuario no confirmado. Por favor revise su correo';
+                break;
+              }
+              default: {
+                this.message = 'Usuario o contraseña invalido';
+                break;
+              }
+            }
+          } else {
+            this.message = 'Usuario o contraseña invalido';
+          }
+        } else {
+          this.message = 'Usuario o contraseña invalido';
+        }
         this.showError = true;
+        console.log(err)        
         // error
       });
     } else {

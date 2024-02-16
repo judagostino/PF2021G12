@@ -34,18 +34,18 @@
                         <input type="text" class="box"  formControlName = "user" placeholder="Ingresa tu correo">
                         <input type="password" class="box"  formControlName = "password" placeholder="Ingresa tu contraseña">
 
-                        <a href="/user/recover">¿Olvidaste tu contraseña?</a>
+                        <a routerLink="/user/recover">¿Olvidaste tu contraseña?</a>
                         
 
                         <button type="submit" title="Ingresar" class="submit" (click)= "btn_login()">Iniciar Sesi&oacute;n</button>
                     </div>
                     
                     <div class="options">
-                        <a href="/register">¿No tienes Cuenta? Registrate</a>
+                        <a routerLink="/register">¿No tienes Cuenta? Registrate</a>
                     </div>
                     
                     <div class="home">
-                        <a href="#">Volver</a>
+                        <a routerLink="/home">Volver</a>
                     </div>
                     
                 </form>
