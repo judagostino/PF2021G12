@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import moment from 'moment';
 import { TypeImpairment } from 'src/app/intrergaces';
 import { Post } from 'src/app/models/post';
 import { PostsService, TypeImpairmentService, UploadService } from 'src/app/services';
@@ -130,7 +131,7 @@ export class ABMPostsComponent implements OnInit {
   
       this.uploadService.upload(formData).subscribe((resp: {data:string}) => {
         if (resp.data != null) {
-          this.imageAux = resp.data.trim();
+          this.imageAux = resp.data.trim()+'?c='+moment().unix;
         }
       },
       (error) => {

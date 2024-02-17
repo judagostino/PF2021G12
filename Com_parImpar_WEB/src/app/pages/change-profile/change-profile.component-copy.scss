@@ -147,5 +147,27 @@ body {
   display: block;
 } 
 
+.imageStyle {
+  min-height: 200px;
+  max-height: 250px;
+  margin-bottom: 40px;
+  cursor:pointer;
+  border-radius: 25px;
+}
 
+.iconPlus{
+  top:-80px;
+  padding:4px;
+  background-color: #1995AD;
+  color:white;
+  border-radius: 50%;
+  position: relative;
+  left:35vw;
+  font-size: 30px;
+  cursor:pointer;
+  
+  
+  
+
+}
 

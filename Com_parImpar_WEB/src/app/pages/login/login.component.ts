@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { stream } from 'exceljs';
 import { ConfirmUserDialogComponent } from 'src/app/components/confirm-user/confirm-user.component';
 import { CredencialLogin } from 'src/app/intrergaces';
 import { AuthService } from 'src/app/services';
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
     this.showError = false;
     if(this.form.valid){
       let cedencialLogin: CredencialLogin = {
-        user: this.form.value.user, 
+        user: (this.form.value.user as string).trim(), 
         password: this.form.value.password,
         keepLoggedIn: true
       }
@@ -90,8 +91,6 @@ export class LoginComponent implements OnInit {
           this.message = 'Usuario o contraseña invalido';
         }
         this.showError = true;
-        console.log(err)        
-        // error
       });
     } else {
       this.message = 'Los campos son requeridos'

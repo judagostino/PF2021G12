@@ -3,17 +3,22 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8" id="profile-form">   
-      <form [formGroup] ="form" novalidate>
         
         <div class="row">
           <div class="col-12">
             <div class="d-flex justify-content-center">
-              <img *ngIf="configService?.contact" style="width:200px;margin-bottom: 40px;" [src]="getImage()">
+              <form [formGroup]="uploadForm" novalidate style="visibility: hidden;display: none;">      
+                <div class="archivo">
+                  <input #fileImageProfile type="file"  accept=".png, .jpg, .jpeg" name="file" (change)="onFileSelect($event)" />
+                </div>
+              </form>
+              <img *ngIf="configService?.contact" (click) = "selectImage($event)" class="imageStyle" [src]="getImage()">
             </div>
+            <i *ngIf = "configService?.contact?.imageUrl!= null" class="fa-solid fa-plus iconPlus" (click) = "selectImage($event)"></i>
             </div>
         </div>
 
-
+        <form [formGroup] ="form" novalidate>
           <div class="row">        
               <div class="col-1"></div>
                 <div class="col-5 box">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import moment from 'moment';
 import { Events } from 'src/app/models/events';
 import { EventsService, UploadService } from 'src/app/services';
 import { ExportExcelService } from 'src/app/services/export-excel.service';
@@ -171,7 +172,7 @@ export class ABMEventsComponent implements OnInit {
       formData.append('Id', id.toString());
   
       this.uploadService.upload(formData).subscribe((resp: string) => {
-        //this.imageAux = resp.trim();
+        this.imageAux = resp.trim()+'?c='+moment().unix;
       });
     }
   }

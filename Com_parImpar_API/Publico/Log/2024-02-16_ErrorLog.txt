@@ -1,0 +1,112 @@
+2024-02-16 19:36:15.2401 - INFO - 40000007-0007-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com\t","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-16 19:38:09.0031 - INFO - 40000009-0007-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com\t","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-16 19:39:01.4452 - INFO - 4000000b-0007-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com\t","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-16 19:39:32.5127 - INFO - 4000000d-0007-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: User Blocked
+     Headers: Authorization="", 
+
+2024-02-16 19:42:12.0151 - INFO - 40000010-0007-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"123456Jd","KeepLoggedIn":true}
+
+2024-02-16 20:02:36.7029 - ERROR - 4000001c-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4MTNiMDZjYy1mODhlLTQ1Y2QtYmIxNC04MTFkYTkzMjNlOTIiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNDUyNCwiZXhwIjoxNzA4MTI1NDI0LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.l7tqr9E_TQvyt9bc9Dczyfu-aeWOabHEv7lrToAlRTA", 
+     Body: {"Id":null,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":null,"ImageUrl":null,"Auditor":null,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:18:39.5473 - INFO - 4000000f-0001-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Upload (ver: ) - 127.0.0.1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNzNmMGY1Ni03YTA3LTRiNDEtYmVkZC04ZmI5Y2Y2M2E2NjgiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNTUwOCwiZXhwIjoxNzA4MTI2NDA4LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.UxUj4frvuFgE_UGvQQwvdpS7gYpnLOwTAvGLUQouE6Y", 
+
+2024-02-16 20:24:52.9604 - ERROR - 4000003e-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjMmEzZDQ0ZC1hOTE1LTQ1NTctYTQyOC02ZTMxN2NhZjg2ZTEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNTg3OSwiZXhwIjoxNzA4MTI2Nzc5LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.uYOM0pZvgCyZEks01HKlhhnRReK6eVRFGZYd82dvRXs", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:25:22.2145 - INFO - 40000040-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Upload (ver: ) - 127.0.0.1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkNjI4Nzg3YS00MWNhLTRmZmItOGE1MC0xNjdiNmM4MjM3ZDkiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNTkwNSwiZXhwIjoxNzA4MTI2ODA1LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.MSTio6-c_ZyZofddt12jlwcQnp4PHvQaW1ge_pItiKg", 
+
+2024-02-16 20:25:22.2145 - ERROR - 40000024-0007-fe00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkNjI4Nzg3YS00MWNhLTRmZmItOGE1MC0xNjdiNmM4MjM3ZDkiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNTkwNSwiZXhwIjoxNzA4MTI2ODA1LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.MSTio6-c_ZyZofddt12jlwcQnp4PHvQaW1ge_pItiKg", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:27:09.3731 - INFO - 4000002b-0007-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Upload (ver: ) - 127.0.0.1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZjU0YTIwZi04YzQ1LTQwYjYtODFmZS1iYzZkYzQwMGFjN2EiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNjAyNiwiZXhwIjoxNzA4MTI2OTI2LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.Rx5Hq44q8rBv4v2knlGJm28ANiUU3t6HSI3k2dKWdLc", 
+
+2024-02-16 20:27:09.3731 - ERROR - 40000042-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZjU0YTIwZi04YzQ1LTQwYjYtODFmZS1iYzZkYzQwMGFjN2EiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNjAyNiwiZXhwIjoxNzA4MTI2OTI2LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.Rx5Hq44q8rBv4v2knlGJm28ANiUU3t6HSI3k2dKWdLc", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:29:36.5351 - INFO - 40000014-0005-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Upload (ver: ) - 127.0.0.1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMzk1OGQzNS05MzZiLTQ4NTItYjExMy1mMGY1MGRkOGU2ZDEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNjEzMiwiZXhwIjoxNzA4MTI3MDMyLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.z9Xd9AoYKipLoqB1IpA8yoRKvY7rS2U1vngLYUJoHsY", 
+
+2024-02-16 20:29:36.5385 - ERROR - 40000049-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMzk1OGQzNS05MzZiLTQ4NTItYjExMy1mMGY1MGRkOGU2ZDEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNjEzMiwiZXhwIjoxNzA4MTI3MDMyLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.z9Xd9AoYKipLoqB1IpA8yoRKvY7rS2U1vngLYUJoHsY", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:30:34.9654 - ERROR - 40000050-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4M2I0NTAyZi1mNjY0LTQ4NzQtYWZkMC0xMTA1Nzc1ZWIxN2EiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNjIzMCwiZXhwIjoxNzA4MTI3MTMwLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.SOwZMMe-ks1DadP7nnIeRqKSuXoULvxPgZqcugNQddw", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:53:49.0437 - ERROR - 40000003-0000-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3Yzk1YjZlZi1jNTI4LTQ0ZjctYjEyOS0yN2Y1YzFiYjU2MDEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNzYyMSwiZXhwIjoxNzA4MTI4NTIxLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.LrCqEEEZ2R5q18MWt6rc3MLi8Mk0cavl5yO6wooIPTA", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
+2024-02-16 20:54:23.2357 - ERROR - 40000078-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact (ver: ) - 127.0.0.1
+     Message: Procedure or function Contact_Update has too many arguments specified.
+     Exception: Procedure or function Contact_Update has too many arguments specified.
+     StackTrace:    at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 853
+   at ParImparApi.Services.ContactsService.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ContactsService.cs:line 859
+   at ParImparApi.Controllers.ContactController.Update(ContactDTO contact) in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ContactController.cs:line 517
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiNDIzZjkyZS02MmZlLTQyMGMtOTNjMy00NzBkMzYxNjMyZjEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODEyNzY1NSwiZXhwIjoxNzA4MTI4NTU1LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.scDCwEwQokMz6y5h8qW8wIP1iVwdM-h8xOBNC1KW4Co", 
+     Body: {"Id":1,"Email":null,"UserName":"jdagostino","LastName":"Dagostino","FirstName":"Julieta","Name":"Dagostino, Julieta","ImageUrl":null,"Auditor":true,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"DateBrirth":"1996-09-02T00:00:00","Events":null,"Posts":null}
+
