@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment from 'moment';
-import { TypeImpairment } from 'src/app/intrergaces';
+import { TypeImpairment } from 'src/app/interfaces';
 import { Post } from 'src/app/models/post';
 import { PostsService, TypeImpairmentService, UploadService } from 'src/app/services';
 import Swal  from 'sweetalert2';

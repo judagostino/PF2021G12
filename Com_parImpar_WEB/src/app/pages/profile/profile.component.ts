@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import moment from 'moment';
-import { Contact } from 'src/app/intrergaces';
+import { Contact } from 'src/app/interfaces';
 import { ContactService } from 'src/app/services';
 
 @Component({

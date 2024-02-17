@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Contact } from "src/app/intrergaces/contact";
+import { Contact } from "src/app/interfaces/contact";
 import { ConfigService, ContactService } from "src/app/services";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { MatDialog } from "@angular/material/dialog";

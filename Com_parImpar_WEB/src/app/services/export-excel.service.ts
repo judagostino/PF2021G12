@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Events } from '../models/events';
-import { Contact } from '../intrergaces';
+import { Contact } from '../interfaces';
 import * as ExcelJS from 'exceljs';
 import * as fs from 'file-saver';
 import moment from 'moment';

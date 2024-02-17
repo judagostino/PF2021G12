@@ -1,4 +1,4 @@
-import { Contact, State } from "../intrergaces";
+import { Contact, State } from "../interfaces";
 
 export class Events {
     id?: number;

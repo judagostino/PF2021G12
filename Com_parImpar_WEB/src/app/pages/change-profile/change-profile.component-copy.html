@@ -82,8 +82,10 @@
    
     <div class="row justify-content-center">
       <div class="d-flex justify-content-center">
-        <button type="submit" class="submit" (click)= "btn_SaveChange()">Guardar</button>
-        <button type="button" class="button"  routerLink="/user/change-password">Cambiar contraseña</button> 
+        <button type="submit" class="submit" (click)= "btn_SaveChange()" style="margin-right: 20px;">Guardar</button>
+        <button type="button" class="submit"  routerLink="/user/change-password" style="margin-right: 20px;">Cambiar contraseña</button> 
+        <button type="button" class="submit"  (click)="openDialog()">Discapacidades de Interés</button> 
+
       </div>
     </div>
 

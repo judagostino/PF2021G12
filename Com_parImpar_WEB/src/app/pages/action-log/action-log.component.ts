@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { ActionsLog } from 'src/app/intrergaces';
+import { ActionsLog } from 'src/app/interfaces';
 import { ActionsLogService } from 'src/app/services';
 
 @Component({

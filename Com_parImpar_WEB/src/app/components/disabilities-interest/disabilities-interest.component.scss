@@ -1,0 +1,32 @@
+  body {
+    background-color: #FFFFFF; 
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    font-family: 'Nunito', sans-serif;
+    
+  }
+  
+  #central {
+    margin-top: 40px;
+    margin-bottom: 40px; 
+    border-radius: 25px;
+  } 
+
+  .submit {
+    font-family:'Tilt Neon', sans-serif;
+    font-size: 100%;
+    color:#FFFFFF;
+    min-width: 150px;
+    border: none;
+    margin-left: 28px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    background-color: #1995AD;
+    padding:7px;
+    margin-top: 50px;
+  } 
+
+  
+  

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpKey } from '../constans';
-import { AuthenticationTokens, CredencialLogin, HttpResponse } from '../intrergaces';
+import { AuthenticationTokens, CredencialLogin, HttpResponse } from '../interfaces';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 

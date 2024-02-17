@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ContactService } from './contact.service';
-import { Contact } from '../intrergaces';
+import { Contact } from '../interfaces';
 import { AuthService } from './auth.service';
 
 @Injectable()

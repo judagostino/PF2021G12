@@ -61,7 +61,9 @@
         </div>
 
         <div class=" col-12 col-sm-12 col-md-6 col-lg-6">
-            <label> Autorizado por: <span *ngIf="form?.value?.contactAudit?.name"> {{ form.value.contactAudit.name }}</span></label>
+            <label> 
+              {{form?.value?.state?.id === 2 ? 'Autorizado por: ':(form?.value?.state?.id === 3 ? 'Rechazado por: ' : 'Autorizado por: ')}} 
+              <span *ngIf="form?.value?.contactAudit?.name"> {{ form.value.contactAudit.name }}</span></label>
         </div>
     </div>
 

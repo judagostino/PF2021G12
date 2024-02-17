@@ -47,6 +47,7 @@ import { InscriptionEventDialogComponent } from './components/inscription-event/
 import { BlockUserDialogComponent } from './components/block-user/block-user.component';
 import { ConfirmUserDialogComponent } from './components/confirm-user/confirm-user.component';
 import { DenyRecoverDialogComponent } from './components/deny-recover/deny-recover.component';
+import { DisabilitiesInterestDialogComponent } from './components/disabilities-interest/disabilities-interest.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -79,7 +80,8 @@ registerLocaleData(localeEs, 'es');
     InscriptionEventDialogComponent,
     BlockUserDialogComponent,
     ConfirmUserDialogComponent,
-    DenyRecoverDialogComponent
+    DenyRecoverDialogComponent,
+    DisabilitiesInterestDialogComponent
   ],
   imports: [
     BrowserModule,

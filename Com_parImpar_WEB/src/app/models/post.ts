@@ -1,4 +1,4 @@
-import { Contact, State, TypeImpairment } from "../intrergaces";
+import { Contact, State, TypeImpairment } from "../interfaces";
 
 export class Post {
     id?: number;

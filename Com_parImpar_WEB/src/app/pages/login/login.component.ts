@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { stream } from 'exceljs';
 import { ConfirmUserDialogComponent } from 'src/app/components/confirm-user/confirm-user.component';
-import { CredencialLogin } from 'src/app/intrergaces';
+import { CredencialLogin } from 'src/app/interfaces';
 import { AuthService } from 'src/app/services';
 import { ConfigService } from 'src/app/services';
 import { ContactService } from 'src/app/services';

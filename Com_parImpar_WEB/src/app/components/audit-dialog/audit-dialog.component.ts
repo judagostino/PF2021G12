@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import moment from 'moment';
-import { Contact, State } from 'src/app/intrergaces';
+import { Contact, State } from 'src/app/interfaces';
 import { Events } from 'src/app/models/events';
 import { Post } from 'src/app/models/post';
 import { ConfigService, DenyReasonService } from 'src/app/services';

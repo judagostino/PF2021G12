@@ -1,0 +1,9 @@
+2024-02-17 19:06:45.9037 - INFO - 4000005e-0006-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactTypeImplairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwYjM3MDBiZC0wNzFjLTQ4N2ItOTEyZC01Nzc4MzNkNDM4ZGMiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODIwNzYwMywiZXhwIjoxNzA4MjA4NTAzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.DA1g4rrVd3oCf_f9qQKI0NRdqIogcTV0yphnFePf_I8", 
+
+2024-02-17 19:23:09.0681 - INFO - 40000028-0001-fc00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/ContactTypeImplairment/1 (ver: ) - 127.0.0.1
+     Message: Invalid Type
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNjA0YzIxOS02Y2RlLTQ5ODEtOGVhNy04YTFhOTZmNWNjNWUiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODIwODU3NSwiZXhwIjoxNzA4MjA5NDc1LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.9Q37YqB5JGFiXKDuFnf4Tz7SCDVrqUk3_1m9vHrgLo0", 
+     Body: {"Id":null,"ContactId":null,"TypeId":null,"Types":[],"DateEntered":null}
+

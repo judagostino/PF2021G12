@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchItem, TypeImpairment } from 'src/app/intrergaces';
+import { SearchItem, TypeImpairment } from 'src/app/interfaces';
 import { SearchService, TypeImpairmentService } from 'src/app/services';
 import { ConfigService } from 'src/app/services';
 import moment from 'moment';

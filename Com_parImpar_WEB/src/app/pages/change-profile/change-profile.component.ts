@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import moment from 'moment';
+import { DisabilitiesInterestDialogComponent } from 'src/app/components/disabilities-interest/disabilities-interest.component';
 import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
 import { ConfigService, ContactService, UploadService } from 'src/app/services';
 import Swal  from 'sweetalert2';
@@ -126,4 +127,13 @@ export class ChangeProfileComponent implements OnInit {
          };
          reader.readAsDataURL(selectedFile);
       }
+
+
+      public openDialog(): void {
+        const dialogRef = this.dialog.open(
+          DisabilitiesInterestDialogComponent,
+          {
+            panelClass:'modalDisabilities'
+          });
+      } 
 }

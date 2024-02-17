@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpKey } from '../constans';
-import { Contact } from '../intrergaces';
+import { Contact } from '../interfaces';
 import { ChangePassword } from '../models/change-password';
 import { ContactRegistrer } from '../models/contact-register';
 
