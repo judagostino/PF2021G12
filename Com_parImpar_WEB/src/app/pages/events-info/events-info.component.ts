@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Events } from 'src/app/models/events';
 import { ConfigService, EventsService } from 'src/app/services';
 import {Location} from '@angular/common';
+import moment from 'moment';
 
 @Component({
   selector: 'app-events-info',
@@ -33,7 +34,7 @@ export class EventsInfoComponent implements OnInit {
 
   public getImage(): string {
     if (this.eventElement != null && this.eventElement.imageUrl != null) {
-      return this.eventElement.imageUrl.trim();
+      return this.eventElement.imageUrl.trim()+'?c='+moment().unix();
     } else {
       return this.configService.dafaultImage();
     }

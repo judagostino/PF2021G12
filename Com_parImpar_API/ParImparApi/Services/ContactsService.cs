@@ -812,16 +812,6 @@ namespace ParImparApi.Services
                             cmd.Parameters.Add(new SqlParameter("@DateBrirth", DBNull.Value));
                         }
 
-                        if (contact.Trusted != null)
-                        {
-                            cmd.Parameters.Add(new SqlParameter("@Trusted", contact.Trusted));
-
-                        }
-                        else
-                        {
-                            cmd.Parameters.Add(new SqlParameter("@Trusted", DBNull.Value));
-                        }
-
                         if (contact.Notifications != null)
                         {
                             cmd.Parameters.Add(new SqlParameter("@Notifications", contact.Notifications));

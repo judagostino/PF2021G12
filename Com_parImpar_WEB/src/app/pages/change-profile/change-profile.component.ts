@@ -27,7 +27,11 @@ export class ChangeProfileComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.contactService.myInfo().subscribe(resp =>{
-      this.form.reset(resp);
+      if (resp?.dateBrirth != null) {
+        this.form.reset({...resp, dateBrirth: new Date(resp.dateBrirth).toISOString().split('T')[0]});
+      } else {
+        this.form.reset(resp);
+      }
     })
   }
 
@@ -51,10 +55,14 @@ export class ChangeProfileComponent implements OnInit {
   public btn_SaveChange(): void {
     if(this.form.valid) { 
       const contact = this.form.value;
-/*       this.contactService.update(contact).subscribe( resp => {
-        this.contactService.myInfo().subscribe(res =>{
-          this.configService.contact = res;
-          this.form.reset(res)
+      this.contactService.update(contact).subscribe( resp => {
+        this.contactService.myInfo().subscribe(resp2 =>{
+          this.configService.contact = resp2;
+          if (resp2?.dateBrirth != null) {
+            this.form.reset({...resp2, dateBrirth: new Date(resp2.dateBrirth).toISOString().split('T')[0]});
+          } else {
+            this.form.reset(resp2);
+          }
           Swal.fire(
             'Guardado',
             'Cambios realizados!',
@@ -62,10 +70,9 @@ export class ChangeProfileComponent implements OnInit {
           )
         })
       });
- */       if (this.uploadForm.value != null && this.uploadForm.get('file').value != null) {
-          this.uploadImage(contact.id)
-        
-      }
+      if (this.uploadForm.value != null && this.uploadForm.get('file').value != null) {
+        this.uploadImage(contact.id)
+      }
     } else {
       this.form.markAllAsTouched();
     }
@@ -96,7 +103,7 @@ export class ChangeProfileComponent implements OnInit {
   
       this.uploadService.upload(formData).subscribe((resp: {data:string}) => {
         if (resp.data != null) {
-          this.configService.contact.imageUrl = resp.data.trim()+'?c='+moment().unix;
+          this.configService.contact.imageUrl = resp.data.trim()+'?c='+moment().unix();
         }
       },
       (error) => {
@@ -111,9 +118,6 @@ export class ChangeProfileComponent implements OnInit {
       }
 
     public onFileSelect(event:any) : void {
-      if(event.target.files.lenght > 0){
-        
-         }
          const selectedFile = event.target.files[0];
          const reader = new FileReader();
          this.uploadForm.get('file').setValue(selectedFile);

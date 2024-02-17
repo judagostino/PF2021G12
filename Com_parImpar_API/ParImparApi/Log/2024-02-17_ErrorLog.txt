@@ -1,0 +1,4 @@
+2024-02-17 02:09:32.2278 - INFO - 0HN1FDS69P67M:00000305 - (POST) https://localhost/api/v1/Upload (ver: ) - ::1
+     Message: File is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhNWQ0YzcyMy0xOWI5LTQyNjktYmI3Mi0zMDlmYmFkODY1MzYiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODE0NjU2NywiZXhwIjoxNzA4MTQ3NDY3LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.-sFCjPS0TLIBy255yZ1BH4RI9Cf-wZ8S_o8yjp681SU", 
+

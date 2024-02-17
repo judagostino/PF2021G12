@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import moment from 'moment';
 import { Post } from 'src/app/models/post';
 import { ConfigService, PostsService } from 'src/app/services';
 
@@ -31,7 +32,7 @@ export class PostsInfoComponent implements OnInit {
 
   public getImage(): string {
     if (this.post != null && this.post.imageUrl != null) {
-      return this.post.imageUrl.trim();
+      return this.post.imageUrl.trim()+'?c='+moment().unix();
     } else {
       return this.configService.dafaultImage();
     }

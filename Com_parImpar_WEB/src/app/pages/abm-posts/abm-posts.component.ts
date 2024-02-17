@@ -55,7 +55,14 @@ export class ABMPostsComponent implements OnInit {
   public onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      const reader = new FileReader();
+
       this.uploadForm.get('file').setValue(file);
+
+      reader.onload = (e: any) => {
+        this.imageAux = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -90,6 +97,7 @@ export class ABMPostsComponent implements OnInit {
     }).then( resoult => {
       if (resoult.isConfirmed && resoult.value == true) {
         this.postService.delete(this.form.value.id).subscribe( () => {
+          this.getGrid();
           Swal.fire(
             'Guardado',
             'Publicación se elimino con exito!',
@@ -123,7 +131,7 @@ export class ABMPostsComponent implements OnInit {
   }
   
   private uploadImage(id: number) {
-    if (this.uploadForm.get('file').value != null) {
+    if (this.uploadForm.get('file').value != null && this.uploadForm.get('file').value != '') {
       const formData = new FormData();
       formData.append('File', this.uploadForm.get('file').value);
       formData.append('Type', 'posts');
@@ -131,7 +139,7 @@ export class ABMPostsComponent implements OnInit {
   
       this.uploadService.upload(formData).subscribe((resp: {data:string}) => {
         if (resp.data != null) {
-          this.imageAux = resp.data.trim()+'?c='+moment().unix;
+          this.imageAux = resp.data.trim()+'?c='+moment().unix();
         }
       },
       (error) => {

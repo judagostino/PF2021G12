@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import moment from 'moment';
 import { Contact } from 'src/app/intrergaces';
-import { ConfigService, ContactService } from 'src/app/services';
+import { ContactService } from 'src/app/services';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +13,8 @@ export class ProfileComponent implements OnInit {
   profile: Contact;
 
   constructor(
-    private router: Router, 
     private contactService: ContactService,
-    private activatedRoute: ActivatedRoute,
-
-    private configService: ConfigService) { }
+    private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
      window.scroll({top: 0, left: 0});
@@ -32,7 +30,7 @@ export class ProfileComponent implements OnInit {
 
   public getImage(): string {
     if (this.profile != null && this.profile.imageUrl != null) {
-      return this.profile.imageUrl.trim();
+      return this.profile.imageUrl.trim()+'?c='+moment().unix();
     } else {
       return '/assets/image/user.png';
     }

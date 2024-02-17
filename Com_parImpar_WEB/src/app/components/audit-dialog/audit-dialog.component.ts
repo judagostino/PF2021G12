@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import moment from 'moment';
 import { Contact, State } from 'src/app/intrergaces';
 import { Events } from 'src/app/models/events';
 import { Post } from 'src/app/models/post';
@@ -45,10 +46,10 @@ export class AuditDialogComponent implements OnInit {
 
   public getImage(): string {
     if (this.eventElement != null && this.eventElement.imageUrl != null) {
-      return this.eventElement.imageUrl.trim();
+      return this.eventElement.imageUrl.trim()+'?c='+moment().unix();
     }
     else if (this.post != null && this.post.imageUrl != null) {
-      return this.post.imageUrl.trim();
+      return this.post.imageUrl.trim()+'?c='+moment().unix();
     }
     else {
       return this.configService.dafaultImage();

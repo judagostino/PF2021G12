@@ -88,7 +88,7 @@ export class SearchComponent implements OnInit {
 
   public getImage(result: SearchItem): string {
     if (result != null && result.imageUrl != null) {
-      return result.imageUrl.trim();
+      return result.imageUrl.trim()+'?c='+moment().unix();
     } else {
       return this.configService.dafaultImage();
     }

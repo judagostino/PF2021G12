@@ -72,9 +72,10 @@ export class ContactService {
     return this.http.post(`${this.URL}/RecoverChange`, register, {headers});
   }
 
-  public myInfo(): Observable<any> {
+  public myInfo(): Observable<Contact> {
     return this.http.get(`${this.URL}/myInfo`).pipe(map( resp => {
-      return resp['data'] as Contact;
+      let contact: Contact = resp['data'];
+      return contact;
     }));
   }
 

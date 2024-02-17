@@ -90,10 +90,11 @@ export class ABMEventsComponent implements OnInit {
       if (resoult.isConfirmed && resoult.value == true) {
         this.eventsService.delete(this.form.value.id).subscribe( () => {
           Swal.fire(
-            'Guardado',
+            'Eliminado',
             'Evento se elimino con exito!',
             'success'
           )
+          this.getGrid();
           this.form.reset(new Events())
           this.imageAux = null;
         });
@@ -104,7 +105,14 @@ export class ABMEventsComponent implements OnInit {
   public onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      const reader = new FileReader();
+
       this.uploadForm.get('file').setValue(file);
+
+      reader.onload = (e: any) => {
+        this.imageAux = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
@@ -165,14 +173,14 @@ export class ABMEventsComponent implements OnInit {
   }
 
   private uploadImage(id: number) {
-    if (this.uploadForm.get('file').value != null) {
+    if (this.uploadForm.get('file').value != null && this.uploadForm.get('file').value != '') {
       const formData = new FormData();
       formData.append('File', this.uploadForm.get('file').value);
       formData.append('Type', 'events');
       formData.append('Id', id.toString());
   
-      this.uploadService.upload(formData).subscribe((resp: string) => {
-        this.imageAux = resp.trim()+'?c='+moment().unix;
+      this.uploadService.upload(formData).subscribe((resp: {data:string}) => {
+        this.imageAux = resp.data.trim()+'?c='+ (moment().unix());
       });
     }
   }
