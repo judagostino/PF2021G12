@@ -3,7 +3,7 @@ body {
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
-    font-family: 'Nunito', sans-serif;
+    
   }
   
   #central {
@@ -78,6 +78,9 @@ body {
     margin-top: 5px;
     display: flex;
     flex-direction: column;
+    font-family:'Assistant',sans-serif;
+
+   
     
 }
 
@@ -100,6 +103,8 @@ body {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
+  font-family:'Assistant',sans-serif;
+
 }
 
 .box2 label {
@@ -122,6 +127,8 @@ flex-direction: column;
   margin-top: 5px;
   display: flex;
   flex-direction: column;
+  font-family:'Assistant',sans-serif;
+
 }
 
 .box3 label {

@@ -3,7 +3,6 @@ body {
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
-  font-family: 'Nunito', sans-serif;
   
 }
 
@@ -29,6 +28,7 @@ body {
   font-family: 'Tilt Neon', sans-serif;
   text-transform: uppercase;
   text-align: center;
+  font-weight: 600;
 }
 
 .titulo h4 {
@@ -39,6 +39,7 @@ text-transform: uppercase;
 text-align: center;
 margin-top: 40px;
 }
+
 .left label {
   color:black;
   font-size: 15px;
@@ -73,7 +74,7 @@ margin-top: 40px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Assistant', sans-serif;
   width: 75%;
  
 }
@@ -89,14 +90,15 @@ margin-top: 40px;
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Assistant', sans-serif;
   width: 75%;
+  color: black;
 }
 
 
 
 .submit {
-  font-family:'Nunito', sans-serif;
+  font-family:'Tilt Neon', sans-serif;
   font-size: 100%;
   color:#FFFFFF;
   border: none;
@@ -106,7 +108,9 @@ margin-top: 40px;
   background-color: #1995AD;
   margin-top: 30px;
   margin-bottom: 15px;
-  padding: 15px;
+  
+  min-width: 130px;
+  height: 30px;
 } 
 
 

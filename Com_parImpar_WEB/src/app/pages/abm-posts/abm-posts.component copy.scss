@@ -19,6 +19,7 @@
   font-family: 'Tilt Neon', sans-serif;
   text-transform: uppercase;
   text-align: center;
+  font-weight: 600;
 }
 
 .row label {
@@ -56,7 +57,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Assistant', sans-serif;
 }
 
 .archivo  {
@@ -78,7 +79,7 @@
   font-family:'Tilt Neon', sans-serif;
   font-size: 100%;
   color:#FFFFFF;
-  width: 80px;
+  min-width: 130px;
   height: 30px;
   border: none;
   margin-left: 35px;
@@ -163,7 +164,7 @@
 
 .table tr td {
   border-bottom: 1.5px solid #1995ad; 
-  font-family: 'Tilt Neon', sans-serif !important;
+  font-family: 'Assistant', sans-serif !important;
   font-style: normal !important;
   background-color: transparent !important;
   font-size:13px;
@@ -175,7 +176,7 @@
   border-bottom: 1.5px solid #1995ad; 
   font-family: 'Nunito', sans-serif;
   background-color: transparent;
-  font-size:15px;
+  font-size:13px;
   font-weight: bold;
   text-align: center;
 }

@@ -20,14 +20,14 @@
           <div class="col-5 left">
             <label>Nombre <span style="color: #1995ad;;">*</span></label>
             <input type=text class="box" formControlName="firstName" required placeholder="Nombre">
-            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid" class="text-danger">
+            <div style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid" class="text-danger">
               El nombre es requerido
             </div>
           </div>
           <div class="col-5 right">
             <label>Apellido <span style="color: #1995ad;;">*</span></label>  
             <input class="box" formControlName="lastName" required placeholder="Apellido">
-            <div style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid" class="text-danger">
+            <div style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid" class="text-danger">
               El apellido es requerido
             </div>
           </div>
@@ -39,7 +39,7 @@
             <div class="col-5 left">
               <label > Correo electrónico <span style="color: #1995ad;;">*</span></label > 
                 <input class="box" formControlName="email" placeholder="correoelectronico@ejemplo.com" required aria-placeholder="Correo electrónico"> 
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.email?.touched && form?.controls?.email?.invalid" class="text-danger">
+                <div  style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.email?.touched && form?.controls?.email?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.email?.errors?.required">El correo electrónico es requerido</span>
                   <span *ngIf="form?.controls?.email?.errors?.email">El fomrato del correo es invalido</span>
                 </div>
@@ -48,7 +48,7 @@
               <div class="col-5 right">
               <label > Confirmar correo electrónico <span style="color: #1995ad;;">*</span></label > 
                 <input class="box" formControlName="confirmEmail" placeholder = "correoelectronico@ejemplo.com" required aria-placeholder="Confirmar correo electrónico"> 
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmEmail?.touched && form?.controls?.confirmEmail?.invalid" class="text-danger">
+                <div  style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.confirmEmail?.touched && form?.controls?.confirmEmail?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.confirmEmail?.errors?.required">El correo electrónico es requerido</span>
                   <span *ngIf="form?.controls?.confirmEmail?.errors?.email">El fomrato del correo es invalido</span>
                 </div>
@@ -62,7 +62,7 @@
              <div class="col-5 left">
               <label>Usuario <span style="color: #1995ad;;">*</span></label>
               <input class="box" formControlName="userName" required placeholder="Usuario">
-              <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid" class="text-danger">
+              <div  style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid" class="text-danger">
                 El Nombre de usuario es requerido
               </div>
             </div>
@@ -81,7 +81,7 @@
               <div class="col-5 left">
                 <label>Contraseña <span style="color: #1995ad;;">*</span></label>
                 <input class="box" formControlName="password" type="password" required placeholder="Contraseña">
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.password?.touched && form?.controls?.password?.invalid" class="text-danger">
+                <div  style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.password?.touched && form?.controls?.password?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.password?.errors?.required">La contraseña es requerida</span>
                   <span *ngIf="form?.controls?.password?.errors?.minlength">La contraseña debe tener al menos 8 caracterres</span>
                 </div>
@@ -89,7 +89,7 @@
           <div class="col-5 right">
                 <label>Confirmar contraseña <span style="color: #1995ad;;">*</span></label>
                 <input class="box" formControlName="confirmPassword" type="password" required placeholder="Confirmar contraseña">
-                <div  style="font-family:'Nunito', sans-serif;" *ngIf="form?.controls?.confirmPassword?.touched && form?.controls?.confirmPassword?.invalid" class="text-danger">
+                <div  style="font-family:'Assistant', sans-serif;" *ngIf="form?.controls?.confirmPassword?.touched && form?.controls?.confirmPassword?.invalid" class="text-danger">
                   <span *ngIf="form?.controls?.confirmPassword?.errors?.required">La contraseña es requerida</span>
                   <span *ngIf="form?.controls?.confirmPassword?.errors?.minlength">La contraseña debe tener al menos 8 caracterres</span>
                 </div>
