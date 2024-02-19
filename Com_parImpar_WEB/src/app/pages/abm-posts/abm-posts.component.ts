@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import moment from 'moment';
+import { ReasonRejectDialogComponent } from 'src/app/components/reason-reject/reason-reject.component';
 import { TypeImpairment } from 'src/app/interfaces';
 import { Post } from 'src/app/models/post';
 import { DenyReasonService, PostsService, TypeImpairmentService, UploadService } from 'src/app/services';
@@ -26,7 +28,8 @@ export class ABMPostsComponent implements OnInit {
     private postService: PostsService,
     private uploadService: UploadService,
     private denyReasonService: DenyReasonService,
-    private typeImpairmentService: TypeImpairmentService) { }
+    private typeImpairmentService: TypeImpairmentService,
+    public dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -135,9 +138,13 @@ export class ABMPostsComponent implements OnInit {
           if (respose != null && respose.reason != null) {
             this.reason = respose.reason
           }
+          else{
+            this.reason = '';
+          }
         });
       }
-    });
+    },
+    err => this.reason = '');
   }
 
   public objectComparisonFunction = function( option, value ) : boolean {
@@ -242,4 +249,9 @@ export class ABMPostsComponent implements OnInit {
       this.typeImpairmentsAux.forEach(typeAux => typeAux = false);
     }
   }
+
+  public reasonDescription() : void {
+    this.dialog.open(ReasonRejectDialogComponent,{data:{reason:this.reason},panelClass:'modalReason'});
+  }
 }
+

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpKey } from '../constans';
-import { Contact } from '../interfaces';
+import { Contact, CredencialLogin } from '../interfaces';
 import { ChangePassword } from '../models/change-password';
 import { ContactRegistrer } from '../models/contact-register';
 
@@ -123,4 +123,9 @@ export class ContactService {
   public unblocked(contact: Contact): Observable<any> {
     return this.http.put(`${this.URL}/${contact.id}/unblocked`, {});
   }  
+
+  public deleted(credencialLogin: CredencialLogin): Observable<any> {
+    return this.http.post(`${this.URL}`, credencialLogin);
+  }  
+
 }

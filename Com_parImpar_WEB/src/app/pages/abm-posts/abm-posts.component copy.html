@@ -21,8 +21,8 @@
           </div>
         </div>
     
-        <div class="row">
-          <div class="form-group">
+         <div class="row">
+          <div class="col-12 form-group">
             <label for="typeImpairment">Palabras claves <span style="color: #1995ad;;">*</span></label>
            <div class="row">
               <div class="col-6" *ngFor="let type of typeImpairments; let i = index" style="padding-top: 8px;">
@@ -35,7 +35,7 @@
               Debe elegir al menos una palabra clave del contenido del artículo.
             </div>
           </div>
-        </div>
+        </div> 
         
         <div class="row">        
           <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -69,7 +69,13 @@
         </div>
     </div>
 
-
+    <div *ngIf="reason != null && reason != ''" class="row">
+      <div class=" col-12 col-sm-12 col-md-6 col-lg-6">
+          <a style="cursor:pointer;" (click) = "reasonDescription()"> Ver motivo de rechazo 
+          </a>
+      </div>
+    </div>
+    
     <div class="row">
       <div class=" col-12 col-sm-12 col-md-8 col-lg-8">
           <form [formGroup]="uploadForm" novalidate>      
