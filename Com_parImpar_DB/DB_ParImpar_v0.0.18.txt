@@ -1,0 +1,274 @@
+-- Se agrego la fecha de borrado en un contact
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Contacts ADD
+	DateDeleted datetime NULL
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Delete]    Script Date: 18/2/2024 20:17:10 ******/
+DROP PROCEDURE [dbo].[Posts_Delete]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_Delete]    Script Date: 18/2/2024 20:17:10 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Posts_Delete]
+(
+    @PostId INT,
+    @ContactId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT
+DECLARE @EventId INT
+DECLARE @ResultCode AS INT
+
+SET @PostId = 4
+SET @ContactId = 2
+*/
+
+IF (SELECT TOP 1 PostId FROM [Posts] (NOLOCK) WHERE PostId = @PostId AND ContacCreate = @ContactId) IS NOT NULL
+	BEGIN
+		UPDATE [Posts] SET DateDeleted = GETDATE() WHERE PostId = @PostId AND ContacCreate = @ContactId
+
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 500 
+			END
+		  ELSE
+			BEGIN
+				
+				INSERT INTO ActionLog 
+					(
+						ObjectKey, 
+						ObjectId,
+						ContactId,
+						ActionTypeId,
+						DateEntered
+					) 
+					VALUES 
+					(
+						'PostId', 
+						@PostId,
+						@ContactId,
+						7,
+						GETDATE()
+					)
+				SET @ResultCode = 200 
+			END
+	END
+  ELSE 
+	BEGIN
+		SET @ResultCode = 404
+	END
+GO
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_CredentialsLogin]    Script Date: 18/2/2024 20:25:04 ******/
+DROP PROCEDURE [dbo].[Contact_CredentialsLogin]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_CredentialsLogin]    Script Date: 18/2/2024 20:25:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[Contact_CredentialsLogin]
+(
+	@Email VARCHAR(100),
+	@UserPassword VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @Email VARCHAR(100)
+SET @Email = 'gastonvottero@hotmail.com'
+DECLARE @UserPassword VARCHAR(100)
+SET @UserPassword = 'ed78vWPkU9hDRVUf10qkfA=='
+DECLARE @ResultCode INT
+*/
+
+DECLARE @ContactId INT
+SET @ResultCode = 200
+
+SELECT TOP 1 @ContactId = ContactId 
+FROM Contacts (NOLOCK) C
+WHERE @Email = C.Email 
+	AND @UserPassword = C.Password
+	AND DateDeleted IS NULL
+
+
+IF (@ContactId IS NULL) 
+	BEGIN 
+		SET @ResultCode = 404
+	END
+
+IF @ResultCode = 200 AND (SELECT TOP 1 ISNULL([Confirm], 'False') FROM Contacts (NOLOCK) C WHERE ContactId = @ContactId AND @ContactId IS NOT NULL) = 'False'
+	BEGIN 
+		SET @ResultCode = 5919
+	END
+
+IF @ResultCode = 200 AND (SELECT TOP 1 ISNULL(Blocked, 'False') FROM Contacts (NOLOCK) C WHERE ContactId = @ContactId AND @ContactId IS NOT NULL  ) = 'True'
+	BEGIN 
+		SET @ResultCode = 5920
+	END
+
+IF @ResultCode = 200 
+	BEGIN
+
+		SELECT @ContactId AS 'ContactId'
+
+
+		INSERT INTO ActionLog 
+		(
+			ObjectKey, 
+			ObjectId,
+			ContactId,
+			ActionTypeId,
+			DateEntered
+		) 
+		VALUES 
+		(
+			'ContactId', 
+			@ContactId,
+			@ContactId,
+			18,
+			GETDATE()
+		)
+	END
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[Contact_Delete]
+(
+    @ContactId INT,
+	@Password VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT
+DECLARE	@Password VARCHAR(MAX)
+DECLARE @ResultCode AS INT
+
+SET @ContactId = 2
+SET @Password = 'ed78vWPkU9hDRVUf10qkfA==' 
+
+*/
+
+DECLARE @Now DATETIME = GETDATE()
+DECLARE @ContentAux TABLE 
+(
+	[Key] VARCHAR(100),
+	Id INT
+)
+
+
+SET @ResultCode = 5921
+
+IF (
+	SELECT ContactId
+	FROM Contacts (NOLOCK)
+	WHERE 
+		ContactId = @ContactId 
+		AND DateDeleted IS NULL 
+		AND @Password = [Password]
+		AND ISNULL(Confirm, 'False') <> 'False' 
+		AND ISNULL(Blocked, 'False') <> 'True'
+	) IS NOT NULL
+	BEGIN
+		SET @ResultCode = 200
+	END
+
+
+IF @ResultCode = 200
+	BEGIN 
+		INSERT INTO @ContentAux
+		SELECT 'PostId', PostId FROM Posts (NOLOCK) WHERE ContacCreate = @ContactId
+
+		INSERT INTO @ContentAux
+		SELECT 'EventId', EventId FROM [Events] (NOLOCK) WHERE ContacCreate = @ContactId
+
+
+		UPDATE [Posts] SET DateDeleted = @Now WHERE PostId IN (SELECT Id FROM @ContentAux WHERE [Key] = 'PostId')
+		UPDATE [Events] SET DateDeleted = @Now WHERE EventId  IN (SELECT Id FROM @ContentAux WHERE [Key] = 'EventId')
+		UPDATE [Contacts] SET DateDeleted = @Now WHERE ContactId = @ContactId
+
+		-- Repetir por todos los elementos que hay en @ContentAux 
+		DECLARE curContentAux CURSOR FOR
+		SELECT [Key], Id FROM @ContentAux
+
+		DECLARE @ObjectKey VARCHAR(100)
+		DECLARE @ObjectId INT
+		OPEN curContentAux
+		FETCH NEXT FROM curContentAux INTO @ObjectKey, @ObjectId
+
+		WHILE @@FETCH_STATUS = 0
+			BEGIN
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					@ObjectKey, 
+					@ObjectId,
+					@ContactId,
+					10,
+					GETDATE()
+				)
+
+				FETCH NEXT FROM curContentAux INTO @ObjectKey, @ObjectId
+			END
+
+		CLOSE curContentAux
+		DEALLOCATE curContentAux
+
+	END
+

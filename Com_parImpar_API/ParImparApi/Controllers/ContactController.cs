@@ -787,5 +787,44 @@ namespace ParImparApi.Controllers
             }
         }
         #endregion
+
+        #region [Delete]
+        // DELETE: api/v1/Contact
+        [HttpDelete]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> Delete([FromBody] CredentialsLoginRequestDTO credentialsLoginRequest)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(credentialsLoginRequest.Password))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.PasswordRequiredField, credentialsLoginRequest));
+                }
+
+
+                ApiResponse response = await _contactsService.Delete(credentialsLoginRequest);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.PasswordInvalid:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, credentialsLoginRequest));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, credentialsLoginRequest));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, credentialsLoginRequest));
+            }
+        }
+        #endregion
     }
 }

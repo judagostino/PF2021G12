@@ -41,7 +41,6 @@ export class DisabilitiesInterestDialogComponent implements OnInit {
 
   private getPreference ():void {
     this.contactTypeImpairmentService.getAlll().subscribe(resp => {
-      console.log(resp);
       if(resp.length > 0){
         this.isFirst = false;
         resp.forEach(element => {

@@ -59,6 +59,7 @@ namespace ParImparApi.Common
         [Description("Invalid Event")] InvalidEvent = 5918,
         [Description("Not Confirm User")] NotConfirmUser = 5919,
         [Description("User Blocked")] UserBlocked = 5920,
+        [Description("Password Invalid")] PasswordInvalid= 5921,
     }
 
     internal static class Extensions

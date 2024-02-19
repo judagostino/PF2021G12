@@ -1,0 +1,263 @@
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Contacts
+	(
+	ContactId int NOT NULL IDENTITY (1, 1),
+	FirstName varchar(100) NULL,
+	LastName varchar(100) NULL,
+	dateEntered datetime NULL,
+	Email varchar(100) NOT NULL,
+	Password varchar(MAX) NOT NULL,
+	UserName varchar(100) NULL,
+	DateBrirth date NULL,
+	Auditor bit NULL,
+	[Confirm] bit NULL,
+	Trusted bit NULL,
+	Notifications bit NULL,
+	ConfirmCode varchar(100) NULL,
+	ExpiredRecover datetime NULL,
+	CodeRecover varchar(100) NULL,
+	ImageUrl nchar(255) NULL,
+	DateModify datetime NULL,
+	Blocked bit NULL,
+	DateDeleted datetime NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Contacts ON
+GO
+IF EXISTS(SELECT * FROM dbo.Contacts)
+	 EXEC('INSERT INTO dbo.Tmp_Contacts (ContactId, FirstName, LastName, dateEntered, Email, Password, UserName, DateBrirth, Auditor, [Confirm], Trusted, Notifications, ConfirmCode, ExpiredRecover, CodeRecover, ImageUrl, DateModify, Blocked, DateDeleted)
+		SELECT ContactId, FirstName, LastName, dateEntered, Email, CONVERT(varchar(MAX), Password), UserName, DateBrirth, Auditor, [Confirm], Trusted, Notifications, ConfirmCode, ExpiredRecover, CodeRecover, ImageUrl, DateModify, Blocked, DateDeleted FROM dbo.Contacts WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Contacts OFF
+GO
+ALTER TABLE dbo.ContactXEvent
+	DROP CONSTRAINT FK_ContactXEvent_Contacts
+GO
+ALTER TABLE dbo.ContactXTypeImplairment
+	DROP CONSTRAINT FK_ContactXTypeImplairment_Contacts
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__StateId__7D439ABD
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__ContactAu__7E37BEF6
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK__Events__StateId__5EBF139D
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK__Events__ContactA__5FB337D6
+GO
+ALTER TABLE dbo.ActionLog
+	DROP CONSTRAINT FK_ActionLog_Contacts
+GO
+ALTER TABLE dbo.DenyObject
+	DROP CONSTRAINT FK_DenyObject_Contacts
+GO
+DROP TABLE dbo.Contacts
+GO
+EXECUTE sp_rename N'dbo.Tmp_Contacts', N'Contacts', 'OBJECT' 
+GO
+ALTER TABLE dbo.Contacts ADD CONSTRAINT
+	PK__Contact__CFED658FE377AA2D PRIMARY KEY CLUSTERED 
+	(
+	ContactId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.DenyObject ADD CONSTRAINT
+	FK_DenyObject_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.DenyObject SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ActionLog ADD CONSTRAINT
+	FK_ActionLog_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ActionLog SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK__Events__StateId__5EBF139D FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK__Events__ContactA__5FB337D6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Events SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__StateId__7D439ABD FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__ContactAu__7E37BEF6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ContactXTypeImplairment ADD CONSTRAINT
+	FK_ContactXTypeImplairment_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ContactXTypeImplairment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ContactXEvent ADD CONSTRAINT
+	FK_ContactXEvent_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ContactXEvent SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[ContactXTypeImplairment_Update]    Script Date: 18/2/2024 21:32:22 ******/
+DROP PROCEDURE [dbo].[ContactXTypeImplairment_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[ContactXTypeImplairment_Update]    Script Date: 18/2/2024 21:32:22 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[ContactXTypeImplairment_Update]
+(
+	@ContactId INT,
+	@Types AS VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+DECLARE @Types AS VARCHAR(MAX) = ''
+*/
+
+SET @ResultCode = 200
+
+	
+IF @ResultCode = 200 AND @ContactId IS NULL
+	BEGIN
+		SET @ResultCode = 5015
+	END
+
+IF @ResultCode = 200
+	BEGIN
+
+		IF (SELECT TOP 1 ContactTypeImplairmentId FROM ContactXTypeImplairment (NOLOCK) WHERE ContactId = @ContactId AND DateDelete IS NULL) IS NOT NULL
+			BEGIN
+				UPDATE ContactXTypeImplairment 
+				SET DateDelete = GETDATE()
+				WHERE ContactId = @ContactId AND DateDelete IS NULL
+			END
+
+		-- Insertar datos en la tabla ContactXTypeImplairment
+		IF @Types IS NULL OR @Types <> ''
+			BEGIN
+				INSERT INTO ContactXTypeImplairment (ContactId, DateEntered, TypeId)
+				SELECT @ContactId, GETDATE(), [value]
+				FROM STRING_SPLIT(@Types , ',')
+			END
+		
+	END
+GO
+
+
+

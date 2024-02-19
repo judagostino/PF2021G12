@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { Events } from 'src/app/models/events';
-import { EventsService, UploadService } from 'src/app/services';
+import { DenyReasonService, EventsService, UploadService } from 'src/app/services';
 import { ExportExcelService } from 'src/app/services/export-excel.service';
 import Swal  from 'sweetalert2';
 
@@ -17,6 +17,7 @@ export class ABMEventsComponent implements OnInit {
   events: Events[] = [];
   uploadForm:FormGroup;
   imageAux = null;
+  reason: string= '';
 
 
   constructor(
@@ -24,6 +25,7 @@ export class ABMEventsComponent implements OnInit {
     private router: Router, 
     private uploadService: UploadService,
     private eventsService: EventsService,
+    private denyReasonService: DenyReasonService,
     private exportExcelService: ExportExcelService) { }
 
 
@@ -129,6 +131,14 @@ export class ABMEventsComponent implements OnInit {
         this.imageAux = resp.imageUrl
       } else {
         this.imageAux = null;
+      }
+
+      if (resp?.state?.id == 3) {
+        this.denyReasonService.getByKeyAndId('EventId',resp.id).subscribe((respose: {reason:string})=> {
+          if (respose != null && respose.reason != null) {
+            this.reason = respose.reason
+          }
+        });
       }
     });
   }

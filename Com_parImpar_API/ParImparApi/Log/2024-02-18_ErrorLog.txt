@@ -1,0 +1,15 @@
+2024-02-18 20:59:39.1185 - INFO - 0HN1GRLAKATKT:00000002 - (DELETE) https://localhost/api/v1/Contact (ver: ) - ::1
+     Message: Password Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YzhmNzA5MS1iM2U2LTRmNWYtYWZlNy03MzIyYzU3NTdiNjIiLCJDb250YWN0SWQiOiIyIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODMwMDc0MywiZXhwIjoxNzA4MzAxNjQzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.BXpZxRmUhosD5ZaJPKzGOIMnZmdnMq85equtlW_UDow", 
+     Body: {"User":null,"Password":"123456789M","KeepLoggedIn":false}
+
+2024-02-18 20:59:46.0542 - INFO - 0HN1GRLAKATKT:00000003 - (DELETE) https://localhost/api/v1/Contact (ver: ) - ::1
+     Message: Password is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YzhmNzA5MS1iM2U2LTRmNWYtYWZlNy03MzIyYzU3NTdiNjIiLCJDb250YWN0SWQiOiIyIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODMwMDc0MywiZXhwIjoxNzA4MzAxNjQzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.BXpZxRmUhosD5ZaJPKzGOIMnZmdnMq85equtlW_UDow", 
+     Body: {"User":null,"Password":null,"KeepLoggedIn":false}
+
+2024-02-18 21:00:05.6990 - INFO - 0HN1GRLAKATKT:00000005 - (POST) https://localhost/api/v1/Auth/CredentialsLogin (ver: ) - ::1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonadmin2@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+

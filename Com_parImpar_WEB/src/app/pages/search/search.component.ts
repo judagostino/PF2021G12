@@ -101,6 +101,7 @@ export class SearchComponent implements OnInit {
         aux.splice(0,0, this.typeImpairments[i]);
       }
     }
+    
     return aux.length > 0 ? aux : null;
   }
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import moment from 'moment';
 import { TypeImpairment } from 'src/app/interfaces';
 import { Post } from 'src/app/models/post';
-import { PostsService, TypeImpairmentService, UploadService } from 'src/app/services';
+import { DenyReasonService, PostsService, TypeImpairmentService, UploadService } from 'src/app/services';
 import Swal  from 'sweetalert2';
 
 @Component({
@@ -16,22 +16,28 @@ export class ABMPostsComponent implements OnInit {
   posts: Post[] = [];
   uploadForm: FormGroup;  
   imageAux = null;
-  types: TypeImpairment[] = [];
+  typeImpairments: TypeImpairment[] = [];
+  typeImpairmentsAux: boolean[] = [];
+  reason: string= '';
 
 
   constructor(
     private formBuilder: FormBuilder, 
     private postService: PostsService,
     private uploadService: UploadService,
+    private denyReasonService: DenyReasonService,
     private typeImpairmentService: TypeImpairmentService) { }
 
   ngOnInit(): void {
-    this.typeImpairmentService.getAlll().subscribe(response => {
-      this.types = response;
-    })
-    this.initForm();  
+    this.initForm();
     this.imageAux = null;
-    this.form.reset(new Post());
+    this.typeImpairmentService.getAlll().subscribe(response => {
+      for(let i = 0; i < response.length; i++) {
+        this.typeImpairmentsAux.splice(0,0,false)
+      }
+      this.typeImpairments = response;
+      this.populate(new Post());
+    })
     this.getGrid();
   }
 
@@ -67,8 +73,8 @@ export class ABMPostsComponent implements OnInit {
   }
 
   public btn_SavePost(): void {
+    let newPost = this.getPost();
     if (this.form.valid) {
-      let newPost = this.form.value;
       if (newPost.id === 0) {
         this.insert(newPost);
       } else {
@@ -80,7 +86,7 @@ export class ABMPostsComponent implements OnInit {
   }
 
   public btn_NewPost(): void {
-    this.form.reset(new Post());
+    this.populate(new Post());
     this.imageAux = null;
   } 
 
@@ -103,7 +109,7 @@ export class ABMPostsComponent implements OnInit {
             'Publicación se elimino con exito!',
             'success'
           )
-          this.form.reset(new Post())
+          this.populate(new Post())
           this.imageAux = null;
         });
       }
@@ -117,11 +123,19 @@ export class ABMPostsComponent implements OnInit {
         left: 0,
         behavior: 'smooth'
       });
-      this.form.reset(resp)  
+      this.populate(resp)  
       if (resp.imageUrl) {
         this.imageAux = resp.imageUrl
       } else {
         this.imageAux = null;
+      }
+
+      if (resp?.state?.id == 3) {
+        this.denyReasonService.getByKeyAndId('PostId',resp.id).subscribe((respose: {reason:string})=> {
+          if (respose != null && respose.reason != null) {
+            this.reason = respose.reason
+          }
+        });
       }
     });
   }
@@ -157,7 +171,7 @@ export class ABMPostsComponent implements OnInit {
 
   private insert(post: Post): void {
     this.postService.insert(post).subscribe(resp => {
-      this.form.reset(resp)
+      this.populate(resp)
       if (this.uploadForm.value != null) {
         this.uploadImage(resp.id)
       }
@@ -178,7 +192,7 @@ export class ABMPostsComponent implements OnInit {
 
   private update(post: Post): void {
     this.postService.update(post.id,post).subscribe(resp => {
-      this.form.reset(resp)
+      this.populate(resp)
       if (this.uploadForm.value != null) {
         this.uploadImage(resp.id)
       }
@@ -195,5 +209,37 @@ export class ABMPostsComponent implements OnInit {
         'error'
       )
     });
+  }
+
+  private getPost(): Post {
+    let aux:TypeImpairment[] = [];
+    
+    for(let i = 0; i < this.typeImpairments.length; i++) {
+      if (this.typeImpairmentsAux[i]) {
+        aux.splice(0,0, this.typeImpairments[i]);
+      }
+    }
+
+    this.form.controls.typeImpairment.setValue(aux);
+
+    let post = this.form.value;
+    
+    return post;
+  }
+
+  private populate(post: Post): void {
+    this.form.reset(post)
+
+    if (post.typeImpairment?.length > 0) {
+      post.typeImpairment.forEach(impementSelect => {
+        this.typeImpairments.forEach((type,index) => {
+          if(impementSelect?.id == type.id){
+            this.typeImpairmentsAux[index] = true;
+          }
+        });
+      });
+    } else {
+      this.typeImpairmentsAux.forEach(typeAux => typeAux = false);
+    }
   }
 }

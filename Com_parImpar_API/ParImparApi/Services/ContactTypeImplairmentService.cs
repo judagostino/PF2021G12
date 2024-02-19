@@ -191,11 +191,7 @@ namespace ParImparApi.Services
                         }
                         else
                         {
-                            return new ApiResponse()
-                            {
-                                Status = CustomStatusCodes.InvalidType
-                            };
-
+                            cmd.Parameters.Add(new SqlParameter("@Types", ""));
                         }
 
                         cmd.Parameters.Add(new SqlParameter()

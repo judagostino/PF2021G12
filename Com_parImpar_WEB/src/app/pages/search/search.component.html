@@ -12,9 +12,16 @@
                     <div class="w-100  text-center" id="more-filters">
                         <button (click)="showMoreInfo=!showMoreInfo">Más filtros...</button>
                         <div *ngIf="showMoreInfo" class="row">
-                            <div class="col-6" *ngFor="let type of typeImpairments; let i = index">
-                                <mat-checkbox  (click)="typeImpairmentsAux[i]=!typeImpairmentsAux[i]">{{type.description}}</mat-checkbox>
+                            <div class="col-2"></div>
+                            <div class="col-10">
+                                <div class="row" style="text-align: left;">
+                                    <div class="col-6" *ngFor="let type of typeImpairments; let i = index" style="padding-top: 8px;">
+                                        <input type=checkbox [(ngModel)]="typeImpairmentsAux[i]" style="margin-right: 10px;">{{type.description}}
+                                    </div>
+                                </div>
                             </div>
+                            <div class="col-2"></div>
+                           
                         </div>
                     </div>
                 </mat-card>

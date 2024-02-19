@@ -1048,6 +1048,52 @@ namespace ParImparApi.Services
             }
         }
 
+        public async Task<ApiResponse> Delete(CredentialsLoginRequestDTO credentialsLoginRequest)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_Delete", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters] 
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+                        cmd.Parameters.Add(new SqlParameter("@Password", Crypto.EncryptGeneric(credentialsLoginRequest.Password, Constants.Encryption.Login.Key, Constants.Encryption.Login.Salt)));
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+
         public async Task<ApiResponse> TrustedAndUntrusted(int? contactId, bool trusted)
         {
             using (SqlConnection cnn = new SqlConnection(_connectionString))
