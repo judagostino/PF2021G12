@@ -18,15 +18,15 @@
                   </div>
         
                     <div style="height: 100%; overflow: auto;">
-                      <table class="table" *ngIf="contacts?.length >= 0">
+                      <table class="table" *ngIf="contacts?.length >= 0" style="border-collapse: collapse;">
                              <thead>
                                  <tr>
                                      <th scope="col">Id</th>
                                      <th scope="col">Nombre</th>
                                      <th scope="col">Usuario</th>
                                      <th scope="col">Email</th>
-                                     <th scope="col">Marcar como auditor</th>
-                                     <th scope="col">Marcar como usuario de confianza</th>
+                                     <th scope="col">Usuario Auditor</th>
+                                     <th scope="col">Usuario de Confianza</th>
                                      <th scope="col">Bloquear usuario</th>
                                  </tr>
                                </thead>
@@ -40,10 +40,12 @@
                                     <input type=checkbox class="form-check-input" [(ngModel)] = 'contact.auditor' (change) = 'changeAuditor(contact)' [disabled] = 'configService?.contact?.id == contact.id' >
                                    </td>
                                    <td>
-                                    <input type=checkbox class="form-check-input" [(ngModel)] = 'contact.trusted' (change) = 'changeTrusted(contact)' >
-                                   </td>
+                                    <input type=checkbox  class="form-check-input" [(ngModel)] = 'contact.trusted' (change) = 'changeTrusted(contact)' >
+                                    
+
+                                  </td>
                                    <td>
-                                    <button type="button" (click) = "blockUser(contact)" [disabled] = 'configService?.contact?.id == contact.id'>{{contact?.blocked ? 'Desbloquear' : 'Bloquear'}}</button>
+                                    <button type="button" class="btn_Bloquear" (click) = "blockUser(contact)" [disabled] = 'configService?.contact?.id == contact.id'>{{contact?.blocked ? 'Desbloquear' : 'Bloquear'}}</button>
                                    </td>
                                  </tr>
                                </tbody>

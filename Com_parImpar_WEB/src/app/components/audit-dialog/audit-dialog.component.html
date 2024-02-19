@@ -15,12 +15,12 @@
               </div>
               <div class="col-12">
                 <div class="d-flex justify-content-center">
-                  <P>{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'dd/MM/yyyy HH:mm'}}</P>
+                  <P class="date">Fecha del Evento: {{eventElement.startDate | date: 'dd/MM/yyyy HH:mm'}}- {{eventElement.endDate | date: 'dd/MM/yyyy HH:mm'}}</P>
                 </div>
               </div>
               <div class="col-12">
                 <div class="d-flex justify-content-center">
-                  <p style="font-family:'Tilt Neon', sans-serif;max-height: 300px;overflow-y: auto;">{{eventElement.description}}</p>
+                  <p style="font-family:'Assistant', sans-serif;max-height: 300px;overflow-y: auto;">{{eventElement.description}}</p>
                 </div>
               </div>
               <div class="col-12">
@@ -44,8 +44,11 @@
                 <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
               </div>
               <div class="col-6 cuerpoModal" style="display: inline-block;vertical-align: top;">
-                <h6>{{post.title}}</h6>
-                <p style="font-family:'Tilt Neon', sans-serif;max-height: 100px;overflow-y: auto;">{{post.description}}</p>
+                <div class="col-12">
+                  <div class="d-flex justify-content-center">
+                    <h6>{{post.title}}</h6>
+                  </div>
+                <p style="font-family:'Assistant', sans-serif;max-height: 100px;overflow-y: auto;">{{post.description}}</p>
                 
                 <div *ngIf="post?.typeImpairment?.length > 0" class="mt-2 d-flex flex-wrap etiqueta">
                   <h4 *ngFor="let type of post.typeImpairment;">
@@ -56,7 +59,7 @@
                 <div class="col-12">
                   <div class="d-flex justify-content-center flex-column">
                     <h3>Autor: {{autor?.name}}</h3>
-                    <p class="reason-error" *ngIf="reason != ''">Motivo del rechazo: <samp>{{reason}}</samp></p>
+                    <p class="reason-error" *ngIf="reason != ''">MOTIVO DEL RECHAZO:  <samp>{{reason}}</samp></p>
                   </div>
               </div>  
             </div>

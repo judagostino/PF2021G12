@@ -19,6 +19,7 @@ body {
   font-family: 'Tilt Neon', sans-serif;
   text-transform: uppercase;
   text-align: center;
+  font-weight: 600;
 }
 
 .row label {
@@ -61,7 +62,7 @@ body {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito',sans-serif;
+  font-family: 'Assistant',sans-serif;
   width: 100%;
 
 }
@@ -77,7 +78,7 @@ body {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-  font-family: 'Nunito',sans-serif;  
+  font-family: 'Assistant',sans-serif;  
   width: 100%;
 }
 
@@ -172,7 +173,7 @@ body {
 
 .table tr td {
   border-bottom: 1.5px solid #1995ad; 
-  font-family: 'Nunito', sans-serif !important;
+  font-family: 'Assistant', sans-serif !important;
   font-style: normal !important;
   background-color: transparent !important;
   font-size:13px;
@@ -182,19 +183,8 @@ body {
 
 .table tr th {
   border-bottom: 1.5px solid #1995ad; 
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif !important;
   background-color: transparent;
-  font-size:15px;
-  font-weight: bold;
+  font-size:13px;
   text-align: center;
 }
-
-.mi-modal-custom .swal-title {
-  font-family: 'Nunito', sans-serif; /* Cambia 'Arial' por el nombre de la fuente que desees utilizar */
-}
-
-.mi-modal-custom .swal-text {
-  font-family: 'Arial', sans-serif; /* Cambia 'Arial' por el nombre de la fuente que desees utilizar */
-}
-
-/* Puedes agregar más estilos según sea necesario */

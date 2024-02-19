@@ -3,7 +3,6 @@
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
-    font-family: 'Nunito', sans-serif;
     
   }
   
@@ -20,6 +19,7 @@
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 28px;
+    font-weight: 600;
   }
   
   #table {
@@ -71,7 +71,7 @@
   
   .table tr td {
     border-bottom: 1.5px solid #1995ad; 
-    font-family: 'Nunito', sans-serif !important;
+    font-family: 'Assistant', sans-serif !important;
     font-style: normal !important;
     background-color: transparent !important;
     font-size:13px;

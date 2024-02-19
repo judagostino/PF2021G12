@@ -6,17 +6,27 @@
           <div class="row">
             <div *ngIf="eventElement">
 
-            <div  class="col-6" style="display: inline-block;vertical-align: top;">
+            <div  class="col-6 mjeInscripcion" style="display: inline-block;vertical-align: top;">
               <img style="max-width: 100%;" [src]="getImage()" alt="">
-              <h2 *ngIf="eventElement?.attendeesCount > 1">Se han inscripto {{eventElement.attendeesCount}} personas a este evento</h2>
-              <h2 *ngIf="eventElement?.attendeesCount == 1">Se ha inscripto {{eventElement.attendeesCount}} persona a este evento</h2>
-              <h2 *ngIf="eventElement?.attendeesCount == 0">Aun no se ha inscripto ninguna persona a este evento</h2>
+              <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount > 1">Se han inscripto {{eventElement.attendeesCount}} personas a este evento</h2>
+              <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount == 1">Se ha inscripto {{eventElement.attendeesCount}} persona a este evento</h2>
+              <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount == 0">Aun no se ha inscripto ninguna persona a este evento</h2>
             </div>
 
             <div class="col-6" style="display: inline-block;vertical-align: top;">
-              <h6 class="titulo" >{{eventElement.title}}</h6>
-              <P class="title-post">{{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'shortDate'}}</P>
-              <p *ngFor="let paragaph of eventElement?.descriptionParagraphs"  style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
+              <div class="col-12">
+                <div class="d-flex justify-content-center">
+                  <h6 class="titulo" >{{eventElement.title}}</h6>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="d-flex justify-content-center title-post">
+                  <p>Fecha del Evento: {{eventElement.startDate | date: 'shortDate'}}- {{eventElement.endDate | date: 'shortDate'}}</p>
+                </div>
+              </div>
+              
+              <p *ngFor="let paragaph of eventElement?.descriptionParagraphs">{{paragaph}}</p>
           </div>
         </div>
     </div>

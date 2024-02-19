@@ -3,7 +3,6 @@ body {
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
-  font-family: 'Nunito', sans-serif;
   
 }
 
@@ -34,14 +33,6 @@ body {
     margin-top: 28px;
   }
 
-  .title-profile {
-    color: black;
-    font-size: 25px;
-    font-family: 'Nunito', sans-serif;
-    text-transform: uppercase;
-    margin-top: 10px;
-    margin-left: 15%;
-  }
 
   .submit {
     font-family:'Tilt Neon', sans-serif;
@@ -77,7 +68,8 @@ body {
   margin-bottom: 15px;
   margin-top: 10px;
   display: inline-block;
-  font-family: 'Nunito',sans-serif; 
+  font-family: 'Assistant',sans-serif; 
+  min-width: 250px;
   
 }
 .box label {
@@ -96,8 +88,9 @@ body {
   background-color: #f9f9f9;
   margin-bottom: 15px;
   margin-top: 10px;
-    font-family: 'Nunito',sans-serif; 
+  font-family: 'Assistant',sans-serif; 
   display: inline-block;
+  min-width: 250px;
 }
 
 .box2 label {
@@ -115,6 +108,7 @@ body {
     text-align: center;
     display: flex;
     margin-top: 10px;
+    min-width: 250px;
     }
 
 .box3_input {
@@ -128,15 +122,13 @@ body {
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito',sans-serif; 
+  font-family: 'Assistant',sans-serif; 
 
 }
 .button {
   font-family:'Tilt Neon', sans-serif;
   font-size: 100%;
   color:#FFFFFF;
-  // width: 80px;
-  // height: 40px;
   border: none;
   margin-left: 35px;
   border-radius: 3px 3px 3px 3px;
@@ -145,6 +137,7 @@ body {
   background-color: #1995AD;
   margin-top: 30px;
   display: block;
+  min-width: 130px;
 } 
 
 .imageStyle {
@@ -165,9 +158,9 @@ body {
   left:35vw;
   font-size: 30px;
   cursor:pointer;
-  
-  
-  
+}
 
+.box2_input:disabled{
+  color: grey;
 }
 

@@ -34,7 +34,7 @@ body {
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
     box-sizing: border-box;
-    width: 100%;
+    width: 600px;
     height: 100%;
     border-radius: 25px;
     margin-top: 28px;
@@ -43,19 +43,25 @@ body {
   
   .table tr td {
     border-bottom: 1.5px solid #1995ad; 
-    font-family: 'Nunito', sans-serif !important;
+    font-family: 'Assistant', sans-serif !important;
     font-style: normal !important;
     background-color: transparent !important;
     font-size:13px;
     font-weight: normal;
+    padding: 10px; /* Espaciado interior de las celdas */
+    text-align: center; /* Alineación horizontal de los contenidos */
+    vertical-align:auto; /* Alineación vertical de los contenidos */
+
   } 
 
   .table tr th {
     border-bottom: 1.5px solid #1995ad; 
     font-family: 'Nunito', sans-serif;
     background-color: transparent;
-    font-size:15px;
+    font-size:13px;
     font-weight: bold;
+    text-align: center;
+    padding: 10px; /* Espaciado interior de las celdas */
   }
   
   .submit {
@@ -76,4 +82,24 @@ body {
     cursor: pointer;
   }
 
-  
+  .btn_Bloquear {
+    font-family:'Tilt Neon', sans-serif;
+    font-size: 90%;
+    color:black;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border: 1.9px solid #1995AD;
+    background-color: #FFFFFF;
+    min-width: 100px;
+  }
+
+  .btn_Bloquear:hover {
+      cursor: pointer;
+      background-color: #A1D6E2;
+  }
+
+  .btn_Bloquear:disabled {
+    cursor: not-allowed;
+    background-color: #BCBABE;
+}

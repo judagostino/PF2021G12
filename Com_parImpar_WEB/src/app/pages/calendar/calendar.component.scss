@@ -1,5 +1,5 @@
 .title-calendar {
-        font-family: 'Nunito',sans-serif;
+        font-family: 'Tilt Neon',sans-serif;
         font-weight: 700;
         font-size:x-large;
         color:#1995AD;
@@ -15,7 +15,7 @@
 }
 
 .title-listEvent {
-    font-weight: 700;
+    font-weight: 600;
     font-size:20px;
     color:#1f495f;
     padding-top: 15px;
@@ -65,10 +65,9 @@
   font-family:'Tilt Neon', sans-serif;
   font-size: 100%;
   color:#FFFFFF;
-  width: 20%;
+  min-width: 130px;
   height: 40px;
   border: none;
-  margin-left: 35px;
   border-radius: 3px 3px 3px 3px;
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px 3px 3px 3px;
@@ -80,34 +79,38 @@
 .btn_Asistir{
   font-family:'Tilt Neon', sans-serif;
   font-size: 100%;
-  color:#FFFFFF;
-  border: none;
+  color:black;
   border-radius: 3px 3px 3px 3px;
   -moz-border-radius: 3px 3px 3px 3px;
   -webkit-border-radius: 3px 3px 3px 3px;
-  background-color: #1995AD;
+  border: 1.9px solid #1995AD;
+  background-color: #FFFFFF;
+  min-width: 100px;
 }
   
 .table tr td {
   border-bottom: 1.5px solid #1995ad; 
-  font-family: 'Nunito', sans-serif !important;
+  font-family: 'Assistant', sans-serif !important;
   font-style: normal !important;
   background-color: transparent !important;
   font-size:13px;
   font-weight: normal;
+  text-align: center;
 } 
 
 .table tr th {
   border-bottom: 1.5px solid #1995ad; 
   font-family: 'Nunito', sans-serif;
   background-color: transparent;
-  font-size:15px;
-  font-weight: bold;
+  font-size:13px;
+  text-align: center;
+
 }
 
 .tableMoreInfo {
   cursor: pointer;
   :hover {
-    color:#1995AD !important;
+    background-color: #A1D6E2;
+
 }
 }

@@ -9,8 +9,8 @@
                       <mat-icon (click)="btn_search()"  style="cursor: pointer;" matSuffix>search</mat-icon>
                     </mat-form-field>
                     
-                    <div class="w-100  text-center" id="more-filters">
-                        <button (click)="showMoreInfo=!showMoreInfo">Más filtros...</button>
+                    <div class="  text-center" id="more-filters">
+                        <button (click)="showMoreInfo=!showMoreInfo" style="margin-bottom: 25px;">Seleccione a continuación un filtro de su agrado</button>
                         <div *ngIf="showMoreInfo" class="row">
                             <div class="col-2"></div>
                             <div class="col-10">
@@ -32,7 +32,7 @@
     <div class="row">
             <div class="col-1"></div>
             <div *ngIf="notResoult" class="col-10 mt-3 mb-3">
-                <h3 style="font-family: 'Nunito',sans-serif;">La búsqueda no obtuvo ningún resultado</h3>
+                <h3 style="font-family: 'Assistant',sans-serif;">La búsqueda no obtuvo ningún resultado</h3>
             </div>
             <div class="col-1"></div>
     </div>
@@ -48,7 +48,7 @@
     
                         <div class="col-8">
                             <h3>{{getTitle(result)}}</h3>
-                            <p>{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
+                            <p style="font-family: 'Assistant',sans-serif;">{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
                             <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
                                 <h4 *ngFor="let type of result.typeImpairment;">
                                     <span class="badge badge-pill badge-primary">{{type.description}}</span>
