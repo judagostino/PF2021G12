@@ -665,7 +665,7 @@
 				{
 					"name": "Contact_Delete",
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -677,14 +677,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{url_api}}/api/{{version}}/Contact",
+							"raw": "{{url_api}}/api/{{version}}/Contact/Delete",
 							"host": [
 								"{{url_api}}"
 							],
 							"path": [
 								"api",
 								"{{version}}",
-								"Contact"
+								"Contact",
+								"Delete"
 							]
 						},
 						"description": "Endpoint encargado de Eliminar un suario marcando sus eventos y post como eliminados, espera recibir la contraseña del usuario para valdiar que el borrado sea correcto y no se haya pedido por error.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint.  \n5002: La contraseña es requerida.  \n5921: La contraseña es incorrecta."

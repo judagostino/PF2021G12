@@ -789,8 +789,8 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [Delete]
-        // DELETE: api/v1/Contact
-        [HttpDelete]
+        // DELETE: api/v1/Contact/Delete
+        [HttpPost("Delete")]
         [Authorize("AccessToken")]
         public async Task<IActionResult> Delete([FromBody] CredentialsLoginRequestDTO credentialsLoginRequest)
         {
