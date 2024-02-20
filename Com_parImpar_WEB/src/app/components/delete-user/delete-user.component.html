@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex flex-row-reverse">
+        <i class="fa-regular fa-circle-xmark" (click)="closeModal()"
+          style="color: red;cursor: pointer;font-size: 30px;"></i>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justifiy-content-center">
+    <i class="fa-solid fa-triangle-exclamation" style="color: red;font-size: 80px;"></i>
+  </div>
+
+  <div class="d-flex justifiy-content-center">
+    <h2>¿Está seguro que desea eliminar su usuario?</h2>
+  </div>
+
+  <div class="d-flex justifiy-content-center">
+    <p>Al borrar tu cuenta, no podrás crear otra cuenta con la misma dirección de correo electrónico. Además, ten en
+      cuenta que los administradores retienen el derecho de no mostrar o hacer uso de tus publicaciones e información de
+      perfil si lo consideran necesario. Esta acción es irreversible. ¿Estás seguro de que deseas proceder con la
+      eliminación de tu cuenta?</p>
+  </div>
+  
+  <form [formGroup] ="form" novalidate>
+    <div >
+      <input type="password" required formControlName = "password" placeholder="Ingresa su contraseña para confirmar">
+      <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.password?.touched && form?.controls?.password.invalid" class="text-danger">
+        La contraseña es requerida
+      </div>  
+    </div>
+    <div class="d-flex justifiy-content-center">
+      <button type="button" class="submit" (click)="closeModal()">Cancelar</button>
+      <button type="button" class="submit" (click)="btn_delete()" [diseabled] = "form?.value?.password != null">Eliminar</button>  
+    </div>
+
+  </form>
+
+
+
+</div>

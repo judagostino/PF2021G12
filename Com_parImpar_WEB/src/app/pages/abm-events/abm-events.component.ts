@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import moment from 'moment';
+import { ReasonRejectDialogComponent } from 'src/app/components/reason-reject/reason-reject.component';
 import { Events } from 'src/app/models/events';
 import { DenyReasonService, EventsService, UploadService } from 'src/app/services';
 import { ExportExcelService } from 'src/app/services/export-excel.service';
@@ -18,6 +20,7 @@ export class ABMEventsComponent implements OnInit {
   uploadForm:FormGroup;
   imageAux = null;
   reason: string= '';
+  
 
 
   constructor(
@@ -26,8 +29,8 @@ export class ABMEventsComponent implements OnInit {
     private uploadService: UploadService,
     private eventsService: EventsService,
     private denyReasonService: DenyReasonService,
-    private exportExcelService: ExportExcelService) { }
-
+    private exportExcelService: ExportExcelService,
+    public dialog:MatDialog,) { }
 
 
   ngOnInit(): void {
@@ -138,7 +141,11 @@ export class ABMEventsComponent implements OnInit {
           if (respose != null && respose.reason != null) {
             this.reason = respose.reason
           }
-        });
+          else {
+            this.reason = '';
+          }
+        },
+        err => this.reason = '');
       }
     });
   }
@@ -214,5 +221,10 @@ export class ABMEventsComponent implements OnInit {
         'error'
       )
     });
+  }
+
+
+  public reasonDescription() : void {
+    this.dialog.open(ReasonRejectDialogComponent,{data:{reason:this.reason},panelClass:'modalReason'});
   }
 }

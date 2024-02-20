@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import moment from 'moment';
+import { DeleteUserDialogComponent } from 'src/app/components/delete-user/delete-user.component';
 import { DisabilitiesInterestDialogComponent } from 'src/app/components/disabilities-interest/disabilities-interest.component';
 import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
 import { ConfigService, ContactService, UploadService } from 'src/app/services';
@@ -136,4 +137,15 @@ export class ChangeProfileComponent implements OnInit {
             panelClass:'modalDisabilities'
           });
       } 
+
+      public openDeleteDialog() : void {
+        const dialogRef = this.dialog.open(
+          DeleteUserDialogComponent,
+          {
+            panelClass:'modalDeleteUser'
+          });
+          dialogRef.afterClosed().subscribe(resp=>{
+            console.log(resp);
+          })
+      }
 }

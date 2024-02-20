@@ -48,6 +48,8 @@ import { BlockUserDialogComponent } from './components/block-user/block-user.com
 import { ConfirmUserDialogComponent } from './components/confirm-user/confirm-user.component';
 import { DenyRecoverDialogComponent } from './components/deny-recover/deny-recover.component';
 import { DisabilitiesInterestDialogComponent } from './components/disabilities-interest/disabilities-interest.component';
+import { ReasonRejectDialogComponent } from './components/reason-reject/reason-reject.component';
+import { DeleteUserDialogComponent } from './components/delete-user/delete-user.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -81,8 +83,11 @@ registerLocaleData(localeEs, 'es');
     BlockUserDialogComponent,
     ConfirmUserDialogComponent,
     DenyRecoverDialogComponent,
-    DisabilitiesInterestDialogComponent
+    DisabilitiesInterestDialogComponent,
+    ReasonRejectDialogComponent,
+    DeleteUserDialogComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
