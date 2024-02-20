@@ -1,0 +1,15 @@
+2024-02-19 21:06:56.3107 - INFO - 4000004d-0007-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/delete (ver: ) - 127.0.0.1
+     Message: Password Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNTRmMGEzNi1mZmUxLTQ0NzgtOWZjZC0xZTI1Mjk3NmRlYzEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODM4NzYwOCwiZXhwIjoxNzA4Mzg4NTA4LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.N85HS3cuizKbNxcTOqGAHozsU1BM97v0rBSfSmnnNPk", 
+     Body: {"User":null,"Password":"gzhzghbdz","KeepLoggedIn":false}
+
+2024-02-19 21:14:37.6606 - INFO - 40000096-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/delete (ver: ) - 127.0.0.1
+     Message: Password Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhZjUyZDY2Yy1iNmRmLTQxZTAtYTUxYy1lYTUxYzI0MjYxZGEiLCJDb250YWN0SWQiOiI0IiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODM4ODA2NSwiZXhwIjoxNzA4Mzg4OTY1LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.kYniNW-gJHGW93XPCabcm4jaVjQMuLyOLcXew-5atTk", 
+     Body: {"User":null,"Password":"jghguvjvu","KeepLoggedIn":false}
+
+2024-02-19 21:16:26.2296 - INFO - 4000009a-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"molysimone13@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+

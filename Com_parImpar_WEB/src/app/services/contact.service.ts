@@ -125,7 +125,7 @@ export class ContactService {
   }  
 
   public deleted(credencialLogin: CredencialLogin): Observable<any> {
-    return this.http.post(`${this.URL}`, credencialLogin);
+    return this.http.post(`${this.URL}/delete`, credencialLogin);
   }  
 
 }

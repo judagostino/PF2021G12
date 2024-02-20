@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import moment from 'moment';
 import { DeleteUserDialogComponent } from 'src/app/components/delete-user/delete-user.component';
 import { DisabilitiesInterestDialogComponent } from 'src/app/components/disabilities-interest/disabilities-interest.component';
 import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
-import { ConfigService, ContactService, UploadService } from 'src/app/services';
+import { AuthService, ConfigService, ContactService, UploadService } from 'src/app/services';
 import Swal  from 'sweetalert2';
 
 @Component({
@@ -24,6 +25,8 @@ export class ChangeProfileComponent implements OnInit {
     public dialog: MatDialog,
     private contactService: ContactService,
     private uploadService: UploadService,
+    private router: Router, 
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
@@ -145,7 +148,12 @@ export class ChangeProfileComponent implements OnInit {
             panelClass:'modalDeleteUser'
           });
           dialogRef.afterClosed().subscribe(resp=>{
-            console.log(resp);
+            if(resp == true){
+              this.configService.isLogged = false;
+              this.configService.contact = null;
+              this.authService.cleartokens();
+              this.router.navigateByUrl('/home');
+            }
           })
       }
 }
