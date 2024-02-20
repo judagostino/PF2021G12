@@ -10,20 +10,27 @@
             
             <div class="col-6" style="display: inline-block;vertical-align: top;">
               <h6 >{{post.title}}</h6>
-
-              <p *ngFor="let paragaph of post?.descriptionParagraphs" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
-
-              <div *ngIf="post?.typeImpairment?.length > 0" class="etiqueta">
+              <div *ngIf="post?.typeImpairment?.length > 0" class="d-flex align-content-start flex-wrap">
                 <h4 *ngFor="let type of post.typeImpairment;">
                     <span class="badge badge-pill badge-primary etiqueta">{{type.description}}</span>
                 </h4>
               </div>
+              <p *ngFor="let paragaph of post?.descriptionParagraphs" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
 
-              <p *ngFor="let paragaph of post?.bodyParagraphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
-
-              <a (click)="redirectToProfile()" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
-              <button class="submit" type="button" routerLink="/search">Volver</button>
+              <div class="divider div-transparent div-dot"></div>
+              
+              <div style=" max-height: 60vh; overflow-y: auto;"> 
+                <p *ngFor="let paragaph of post?.bodyParagraphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
+              </div>
             </div>  
+
+            <div class="row" style="margin-top: 20px;">
+              <div class="col-6"></div>
+              <div class="col-6">
+                <a (click)="redirectToProfile()" *ngIf ="post?.contactCreate?.name != null"> Creado por: {{post.contactCreate.name}}</a>
+                <button class="submit" type="button" routerLink="/search">Volver</button>
+              </div>
+            </div>
           </div>
     </div>
     <div class="col-2"></div>                

@@ -92,6 +92,10 @@ export class AuditDialogComponent implements OnInit {
 
   }
 
+  public closeModal():void {
+    this.dialogRef.close();
+  }
+
   private openmodalReason(): void {
     Swal.fire({
       title: 'Motivo del rechazo.',

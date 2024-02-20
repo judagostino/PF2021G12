@@ -26,11 +26,13 @@
                 </div>
               </div>
               
-              <p *ngFor="let paragaph of eventElement?.descriptionParagraphs">{{paragaph}}</p>
+              <div style="max-height: 68vh; overflow-y: auto;">
+                <p *ngFor="let paragaph of eventElement?.descriptionParagraphs">{{paragaph}}</p>
+              </div>
           </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 20px;">
       <div class="col-6"></div>
       <div class="col-6">
         <div class="row">
