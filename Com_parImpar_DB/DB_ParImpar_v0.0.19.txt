@@ -260,4 +260,116 @@ IF @ResultCode = 200
 GO
 
 
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_Delete]    Script Date: 19/2/2024 21:22:56 ******/
+DROP PROCEDURE [dbo].[Contact_Delete]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_Delete]    Script Date: 19/2/2024 21:22:56 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[Contact_Delete]
+(
+    @ContactId INT,
+	@Password VARCHAR(MAX),
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT
+DECLARE	@Password VARCHAR(MAX)
+DECLARE @ResultCode AS INT
+
+SET @ContactId = 2
+SET @Password = 'ed78vWPkU9hDRVUf10qkfA==' 
+
+*/
+
+DECLARE @Now DATETIME = GETDATE()
+DECLARE @ContentAux TABLE 
+(
+	[Key] VARCHAR(100),
+	Id INT
+)
+
+
+SET @ResultCode = 5921
+
+IF (
+	SELECT ContactId
+	FROM Contacts (NOLOCK)
+	WHERE 
+		ContactId = @ContactId 
+		AND DateDeleted IS NULL 
+		AND @Password = [Password]
+		AND ISNULL(Confirm, 'False') <> 'False' 
+		AND ISNULL(Blocked, 'False') <> 'True'
+	) IS NOT NULL
+	BEGIN
+		SET @ResultCode = 200
+	END
+
+
+IF @ResultCode = 200
+	BEGIN 
+		INSERT INTO @ContentAux
+		SELECT 'PostId', PostId FROM Posts (NOLOCK) WHERE ContacCreate = @ContactId
+
+		INSERT INTO @ContentAux
+		SELECT 'EventId', EventId FROM [Events] (NOLOCK) WHERE ContacCreate = @ContactId
+
+
+		UPDATE [Posts] SET DateDeleted = @Now WHERE PostId IN (SELECT Id FROM @ContentAux WHERE [Key] = 'PostId')
+		UPDATE [Events] SET DateDeleted = @Now WHERE EventId  IN (SELECT Id FROM @ContentAux WHERE [Key] = 'EventId')
+		UPDATE [Contacts] SET DateDeleted = @Now, Notifications = 'False' WHERE ContactId = @ContactId
+
+		-- Repetir por todos los elementos que hay en @ContentAux 
+		DECLARE curContentAux CURSOR FOR
+		SELECT [Key], Id FROM @ContentAux
+
+		DECLARE @ObjectKey VARCHAR(100)
+		DECLARE @ObjectId INT
+		OPEN curContentAux
+		FETCH NEXT FROM curContentAux INTO @ObjectKey, @ObjectId
+
+		WHILE @@FETCH_STATUS = 0
+			BEGIN
+				INSERT INTO ActionLog 
+				(
+					ObjectKey, 
+					ObjectId,
+					ContactId,
+					ActionTypeId,
+					DateEntered
+				) 
+				VALUES 
+				(
+					@ObjectKey, 
+					@ObjectId,
+					@ContactId,
+					10,
+					GETDATE()
+				)
+
+				FETCH NEXT FROM curContentAux INTO @ObjectKey, @ObjectId
+			END
+
+		CLOSE curContentAux
+		DEALLOCATE curContentAux
+
+	END
+GO
+
+
 
