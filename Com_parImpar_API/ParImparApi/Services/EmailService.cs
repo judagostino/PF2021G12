@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ParImparApi.Services
 {
@@ -25,15 +26,17 @@ namespace ParImparApi.Services
 
         public async Task<ApiResponse> SendEmailNotifyAsync(ApiResponse response)
         {
-             List<ContactDTO> contacts = (List<ContactDTO>)response.Data;
+            List<ContactDTO> contacts = (List<ContactDTO>)response.Data;
             List<Task> emailTasks = new List<Task>();
 
             string subjectTemplate = "¡Hey[NameUser]! ¡Te Contamos las Últimas Novedades en Comunidad ParImpar! 🚀";
-            string messageTemplate = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>Comunidad ParImpar</title></head><body style=\"padding: 0px; margin: 20px; align-content: center; border: 1px solid black; background-color: #eeeeee;\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #dee3ff;\"><tr><td align=\"left\" style=\"padding-left: 20px; padding-right: 20px; padding-top: 10px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"15\" style=\"font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 17px;\"><tr><td align=\"left\">¡Hola [NameUser]!</td></tr><tr><td align=\"left\">¿Cómo estás? ¡Esperamos que estés teniendo un día genial! ☀️ Nosotros estamos emocionados de contarte las últimas novedades que ocurrieron por aquí.</td></tr>[PostsContainer][EventsContainer]<tr><td align=\"left\" style=\"padding-top: 10px\">Gracias por ser parte de la familia Comunidad ParImpar. ¡Que tengas un día tan increíble!</td></tr><tr><td align=\"left\" style=\"padding-top: 30px; padding-bottom: 15px;\">Con cariño,<br>El Equipo de  Comunidad ParImpar 🚀✨</td></tr></table></td></tr></table></body></html>";
-            string postsTemplate = "<tr><td align=\"left\" ><div style=\"color: #2a41c2; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 24px;\">📚 Nuevos Posts que pueden interesarte:</div><div style=\"font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 17px; padding-bottom: 15px; padding-top: 8px;\">Sabemos que te pueden gustar muchos temas, y aquí tienes algunos de los nuevos Post que han publicado y que pueden llamarte la atención. ¡Échales un vistazo!</div><div style=\"padding-left: 25px; display: inline-grid;\">[PostList]</div></td></tr>";
-            string postTemplate = "<div style=\"display: inline-flex;\"><div style=\"margin-right: 15px; color: #2a41c2;\">●</div><a href=\"[PostURL]\" style=\"color: #7b89db; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 20px;\" target=\"_blank\">[PostTitle]</a></div>";
-            string eventsTemplate = "<tr><td align=\"left\" ><div style=\"color: #2a41c2; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 24px;\">🎉 Cambios en tus Eventos:</div><div style=\"font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 17px; padding-bottom: 15px; padding-top: 8px;\">¿Recuerdas esos eventos asombrosos que marcaste en tu calendario? Pues bien, han habido algunos cambios emocionantes que pensamos que te gustaría saber</div><div style=\"padding-left: 25px; display: inline-grid;\">[EventList]</div></td></tr>";
-            string eventTemplate = "<div style=\"display: inline-flex;\"><div style=\"margin-right: 15px; color: #2a41c2;\">●</div><a href=\"[EventURL]\" style=\"color: #7b89db; font-family: Roboto, 'Helvetica Neue', sans-serif; font-size: 20px;\" target=\"_blank\">[EventTitle]</a></div>";
+            string messageTemplate = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" style=\"background-color: transparent;\"><head><title>Comunidad ParImpar</title><link href=\"https://fonts.googleapis.com/css2?family=Assistant:wght@500&family=Tilt+Neon&display=swap\" rel=\"stylesheet\"></head><body style=\"padding: 0px; margin: 20px; align-content: center; border: 3px solid #a1d6e2; background-color: #EAEAEB; border-radius: 25px;\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-radius: 25px; background-color: #EAEAEB;\"><tr><td align=\"left\" style=\"padding-left: 20px; padding-right: 20px; padding-top: 10px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"15\" style=\"font-family: 'Assistant',sans-serif; font-size: 17px;\"><tr><td align=\"left\" style=\"font-family: 'Tilt Neon', sans-serif; color: #1995ad; font-size: 24px;\">¡Hola [NameUser]!</td></tr><tr></tr><tr><td align=\"left\" style=\"font-family: 'Assistant',sans-serif; font-size: 17px;\">¿Cómo estás? ¡Esperamos que estés teniendo un día genial! ☀️ Nosotros estamos emocionados de contarte las últimas novedades que ocurrieron por aquí.</td></tr><tr></tr>[PostsContainer]<tr></tr>[EventsContainer]<tr><td align=\"left\" style=\"padding-top: 10px\">Gracias por ser parte de la familia Comunidad ParImpar. ¡Que tengas un día tan increíble!</td></tr><tr><td align=\"left\" style=\"padding-top: 30px; padding-bottom: 15px;\">Con cariño,<br>El Equipo de  Comunidad ParImpar 🚀✨</td></tr></table></td></tr></table></body></html>";
+           
+            string postsTemplate = "<tr><td align=\"left\" ><div style=\"font-family: 'Tilt Neon', sans-serif; color: #1995ad; font-size: 20px;\">📚 Nuevos Posts que pueden interesarte:</div><div style=\"font-family: 'Assistant',sans-serif; font-size: 17px; padding-bottom: 15px; padding-top: 8px;\">Sabemos que te pueden gustar muchos temas, y aquí tienes algunos de los nuevos Post que han publicado y que pueden llamarte la atención. ¡Échales un vistazo!</div><div style=\"padding-left: 25px; display: inline-grid;\">[PostList]</div></td></tr>";
+            string postTemplate = "<div style=\"display: inline-flex;\"><div style=\"margin-right: 15px; color: #0a7d94;\">●</div> <a href=\"[PostURL]\" style=\"color: #0C6C7F; font-family: 'Assistant',sans-serif; font-size: 20px;\" target=\"_blank\">[PostTitle]</a> </div>";
+            
+            string eventsTemplate = "<tr><td align=\"left\"><div style=\"font-family: 'Tilt Neon', sans-serif; color: #1995ad; font-size: 20px;\">🎉 Cambios en tus Eventos:</div><div style=\"font-family: 'Assistant',sans-serif;font-size: 17px; padding-bottom: 15px; padding-top: 8px;\">¿Recuerdas esos eventos asombrosos que marcaste en tu calendario? Pues bien, han habido algunos cambios emocionantes que pensamos que te gustaría saber</div><div style=\"padding-left: 25px; display: inline-grid;\">[EventList]</div></td></tr>";
+            string eventTemplate = "<div style=\"display: inline-flex;\"> <div style=\"margin-right: 15px; color: #0a7d94;\">●</div> <a href=\"[EventURL]\" style=\"color: #0C6C7F; font-family: 'Assistant',sans-serif; font-size: 20px;\" target=\"_blank\">[EventTitle]</a></div>";
 
             for (int i = 0; i < contacts.Count; i++) {
                 ContactDTO contact = contacts[i];
@@ -87,8 +90,7 @@ namespace ParImparApi.Services
                             EventRequestDTO eventRequest = contact.Events[j];
 
                             eventString = eventString.Replace("[EventURL]", host + "/events-info/" + eventRequest.Id);
-                            eventString = eventString.Replace("[EventTitle]", eventRequest.Title + " (" + eventRequest.StartDate.ToString() + ")");
-
+                            eventString = eventString.Replace("[EventTitle]", eventRequest.Title + " (" + ((DateTime)eventRequest.StartDate).ToString("dd/MM/yyyy HH:mm") + ")");
                             EventsStrings = EventsStrings + eventString;
                         }
                         evetns = evetns.Replace("[EventList]", EventsStrings);

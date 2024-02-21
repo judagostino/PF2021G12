@@ -1,0 +1,5 @@
+2024-02-20 20:54:17.2481 - INFO - 80000079-0000-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents (ver: ) - 127.0.0.1
+     Message: Invalid Datetime Event (less than 48 hours)
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YzFiYjFkZC00MzMzLTQxZTMtYWJmNC01MmJhNTk3YjFjNTYiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODQ3MzI0OSwiZXhwIjoxNzA4NDc0MTQ5LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.ItRwdUAiHI0NR3MdIJB1ljdAOvBq5MNnI8vfvrdUGhA", 
+     Body: {"Id":null,"ContactId":null,"EventId":9,"DateEntered":null}
+
