@@ -13,20 +13,34 @@
     border-radius: 25px;
   } 
 
+  h3{
+    font-family: 'Tilt Neon',sans-serif;
+    font-size:medium;
+    font-weight: bolder;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    text-align: justify;
+  }
+
   .submit {
     font-family:'Tilt Neon', sans-serif;
     font-size: 100%;
     color:#FFFFFF;
-    min-width: 150px;
+    min-width: 130px;
+    height: 30px;
     border: none;
-    margin-left: 28px;
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
     background-color: #1995AD;
     padding:7px;
     margin-top: 50px;
+    text-align: center;
   } 
 
-  
+  i{
+    color: red;
+    cursor: pointer;
+    font-size: 30px;
+  }
   

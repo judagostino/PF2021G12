@@ -2,32 +2,38 @@
   <div class="row">
     <div class="col-12">
       <div class="d-flex flex-row-reverse">
-        <i class="fa-regular fa-circle-xmark" (click)="closeModal()" style="color: red;cursor: pointer;"></i>
+        <i class="fa-regular fa-circle-xmark" (click)="closeModal()" ></i>
       </div>
     </div>
   </div>
   <div class="row">
-    <h3>Seleccione sus discapacidades de interés</h3>
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h3>Seleccione sus discapacidades de interés</h3>
+    </div>
+    <div class="col-3"></div>
   </div>
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
+    <div class="col-2"></div>
+    <div class="col-8">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-12 col-xl-6" *ngFor="let type of typeImpairments;let i = index">
           <div style="display: inline-block;">
-            <input type="checkbox" [(ngModel)]="typeImpairmentsAux[i]">
-            <label>{{type.description}}</label>  
+            <input  type="checkbox" [(ngModel)]="typeImpairmentsAux[i]">
+            <label style="margin-left: 10px; font-family: 'Assistant', sans-serif;">{{type.description}}</label>  
           </div>
         </div>
       </div>
     </div>
-    <div class="col-1"></div>
+    <div class="col-2"></div>
   </div>
 
   <div class="row justify-content-center">
-    <div class="d-flex justify-content-center">
+    <div class="col-2"></div>
+    <div class="d-flex justify-content-center col-8">
       <button type="button" class="submit" (click)= "btn_Save()" style="margin-right: 20px;">Guardar</button>
       <button type="button" class="submit" (click)= "closeModal()">Cancelar</button> 
     </div>
+    <div class="col-2"></div>
   </div>
 </div>

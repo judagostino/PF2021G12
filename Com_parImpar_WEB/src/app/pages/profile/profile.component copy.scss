@@ -2,8 +2,6 @@ body {
     background-color: #FFFFFF; 
     display: grid;
     min-height: 100vh;
-    grid-template-rows: auto 1fr auto;
-    
   }
   
   #central {
@@ -13,45 +11,41 @@ body {
   } 
   
   #profile-form {
-    padding-left: 40px;
-    padding-right: 40px;
     padding-top: 30px;
     padding-bottom: 15px;
-      -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-      -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-      box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
       
-      border-radius: 3px 3px 3px 3px;
-      -moz-border-radius: 3px 3px 3px 3px;
-      -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
       
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
+    box-sizing: border-box;
+    height: 100%;
     
-      border-radius: 25px;
-      margin-top: 28px;
+    border-radius: 25px;
+    margin-top: 28px;
     
     }
 
   .title-profile {
     color: black;
-    font-size: 25px;
+    font-size: 35px;
     font-family: 'Nunito', sans-serif;
-    text-transform: uppercase;
     margin-top: 10px;
-    
+    text-transform: uppercase;
+    font-weight: bolder;
   }
   
   .subtitle-profile {
     color: #1995AD;
-    font-size: 25px;
+    font-size: 28px;
     font-family: 'Tilt Neon', sans-serif;
     margin-top: 20px;
-    text-transform: uppercase;
-
-
   }
+
+
   .submit {
         font-family:'Tilt Neon', sans-serif;
         font-size: 100%;
@@ -61,81 +55,31 @@ body {
         -moz-border-radius: 3px 3px 3px 3px;
         -webkit-border-radius: 3px 3px 3px 3px;
         background-color: #1995AD;
-        margin-top: 30px;
-        padding: 10px;
-        min-width: 200px;
+        min-width: 130px;
+        height: 30px;
       }
 
 
-.box span {
-    outline: none;
-    border-color: #1995AD;
-    border-width: 0px 0px 0px 5px;
-    border-style: solid;
-    padding: 15px 35px;
-    background-color: #f9f9f9;
-    margin-bottom: 25px;
-    margin-top: 5px;
+.box a {
     display: flex;
     flex-direction: column;
     font-family:'Assistant',sans-serif;
-
-   
-    
+    font-size: 16px;
+    margin-left: 30px;
+    margin-bottom: 30px;
 }
 
 .box label {
   color:black;
-  font-size: 15px;
+  font-size: 18px;
   font-family: 'Tilt Neon', sans-serif;
   display: flex;
+  text-transform: uppercase;
 }
 
-  
-.box2 span {
-  outline: none;
-  border-color: #1995AD;
-  border-width: 0px 0px 0px 5px;
-  border-style: solid;
-  padding: 15px 35px;
-  background-color: #f9f9f9;
-  margin-bottom: 25px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  font-family:'Assistant',sans-serif;
-
-}
-
-.box2 label {
-color:black;
-font-size: 15px;
-font-family: 'Tilt Neon', sans-serif;
-display: flex;
-flex-direction: column;
+.box i {
+  color: #1995ad;
+  font-size:18px;
+  margin-right: 10px;
 }
   
-
-.box3 span {
-  outline: none;
-  border-color: #1995AD;
-  border-width: 0px 0px 0px 5px;
-  border-style: solid;
-  padding: 15px 35px;
-  background-color: #f9f9f9;
-  margin-bottom: 25px;
-  margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  font-family:'Assistant',sans-serif;
-
-}
-
-.box3 label {
-color:black;
-font-size: 15px;
-font-family: 'Tilt Neon', sans-serif;
-text-align: center;
-display: flex;
-}
-

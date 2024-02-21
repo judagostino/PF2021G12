@@ -1,34 +1,5 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-/*
-.opcionMenu {
-    font-family: 'Quicksand', sans-serif;
-    font-size: large;
-    font-weight: 200;
-}
-
-
-
-// .logo {
-//     background: rgb(41,41,41);
-//     background: radial-gradient(circle, rgba(41,41,41,1) 0%, rgba(50,130,184,0.5942576859845501) 84%);
-// }
-
-//html, body { height: 100%; }
-body { margin: 0;font-family:'Tilt Neon', sans-serif; }
-
-
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
-.block-ui-wrapper {
-    background: rgba(255, 255, 255, 0.678) !important;
-}
-*/
 
 body {
         background: url("/assets/image/fondo_pag.jpg") no-repeat;
@@ -72,3 +43,17 @@ body {
     min-height: 60vh;
     max-height: 86vh;
    }
+
+   .modalDeleteUser{
+    max-width: 700px !important;
+  }
+
+  .modalReason{
+    min-width: 300px !important;
+    max-width: 700px !important;
+
+  }
+  .modalDisabilities{
+      max-width: 750px !important;
+      min-width: 500px !important;
+  }

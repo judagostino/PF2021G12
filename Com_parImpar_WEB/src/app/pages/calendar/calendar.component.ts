@@ -131,7 +131,7 @@ export class CalendarComponent implements OnInit {
   }
 
 
-  public assist (event:Events, evt:Event, index: number): void {
+  public assist (event:Events, evt:any, index: number): void {
     evt.stopPropagation();
     if(!this.configService?.isLogged){
       return;
@@ -149,7 +149,7 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  public cancel_assist (event:Events, evt:Event, index: number): void {
+  public cancel_assist (event:Events, evt:any, index: number): void {
     evt.stopPropagation();
     if(!this.configService?.isLogged){
       return;
@@ -165,5 +165,13 @@ export class CalendarComponent implements OnInit {
         InscriptionEventDialogComponent,
         {data:{assist:false,err},panelClass:'modalInscription'})
       });
+  }
+
+  public validateDate(event:Events):boolean {
+    if(event?.startDate != null && !moment(event.startDate).isAfter(moment().add(48,'hours')))
+    {
+      return true;
+    }
+    return false;
   }
 }

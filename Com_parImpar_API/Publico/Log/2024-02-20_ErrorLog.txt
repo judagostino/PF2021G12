@@ -1,0 +1,10 @@
+2024-02-20 21:01:36.9944 - INFO - 400000f6-0004-ff00-b63f-84710c7967bb - (DELETE) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents/2 (ver: ) - 127.0.0.1
+     Message: Invalid Datetime Event (less than 48 hours)
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YTBiMmExZC1lNmJmLTQwOTUtODIzMy0wZDI0OTZkNzExNmYiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODQ3MzU5MywiZXhwIjoxNzA4NDc0NDkzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.CNnNRDdgxpOQx7chodlwM3snuZ_kIrrCn-_p4W2GwQ0", 
+     Body: 2
+
+2024-02-20 21:01:39.8060 - INFO - 400000f7-0004-ff00-b63f-84710c7967bb - (DELETE) http://comunidad-parimpar-api.com.ar/api/v1/ContactEvents/2 (ver: ) - 127.0.0.1
+     Message: Invalid Datetime Event (less than 48 hours)
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YTBiMmExZC1lNmJmLTQwOTUtODIzMy0wZDI0OTZkNzExNmYiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODQ3MzU5MywiZXhwIjoxNzA4NDc0NDkzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.CNnNRDdgxpOQx7chodlwM3snuZ_kIrrCn-_p4W2GwQ0", 
+     Body: 2
+

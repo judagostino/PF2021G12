@@ -145,6 +145,8 @@
   background: none;
   border: none;
   cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .status-cell {
@@ -179,4 +181,16 @@
   font-size:13px;
   font-weight: bold;
   text-align: center;
+}
+
+.reasonReject {
+  color:black;
+  font-size: 15px;
+  font-family: 'Tilt Neon', sans-serif;
+  padding-top: 10px;
+  cursor:pointer;
+}
+
+.reasonReject:hover{
+  color: #1995AD;
 }

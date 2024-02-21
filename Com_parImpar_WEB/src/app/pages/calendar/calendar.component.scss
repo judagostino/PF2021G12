@@ -111,6 +111,10 @@
   cursor: pointer;
   :hover {
     background-color: #A1D6E2;
+}
+}
+.btn_Asistir:disabled{
+  cursor: not-allowed;
+  background-color: #BCBABE;
+}
 
-}
-}
