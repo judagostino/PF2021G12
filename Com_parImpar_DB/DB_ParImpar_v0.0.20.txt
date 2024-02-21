@@ -1,0 +1,145 @@
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Notify_NewEventsAndPosts]    Script Date: 20/2/2024 22:21:42 ******/
+DROP PROCEDURE [dbo].[Notify_NewEventsAndPosts]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Notify_NewEventsAndPosts]    Script Date: 20/2/2024 22:21:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Notify_NewEventsAndPosts]
+(
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+/*
+--para test
+DECLARE @ResultCode INT
+*/
+
+-- Declaro variables necesarias
+DECLARE @LimitDate DATETIME
+DECLARE @Now DATETIME = GETDATE()
+DECLARE @HasContacts BIT = 'False'
+DECLARE @HasEvents BIT = 'False'
+DECLARE @HasPosts BIT = 'False'
+
+CREATE TABLE #ContactNotification (
+	ContactId INT, 
+	FirstName VARCHAR(100), 
+	Email VARCHAR(100)
+)
+
+
+-- Busco la fecha de la ultima Ejecucion
+SELECT @LimitDate = LastExecution FROM MailExecutions WHERE [Send] = 'SendNotificy'
+
+-- Busco los contactos que desean ser notificados
+INSERT INTO #ContactNotification
+SELECT ContactId, FirstName, Email 
+FROM Contacts (NOLOCK)
+WHERE ISNULL(Confirm, 'False') <> 'False' AND ISNULL(Notifications, 'true') <> 'False'
+
+IF (SELECT TOP 1 ContactId FROM #ContactNotification) IS NOT NULL 
+	BEGIN
+		SELECT * FROM #ContactNotification
+		SET @HasContacts = 'True'
+	END
+
+IF @HasContacts = 'True'
+	BEGIN
+		-- Busco los nuevos eventos a notificar de la ultima vez y que no se incluyeron en la ultima notificacion y que esten aprobados.
+		SELECT CN.ContactId, CE.EventId, E.Title, E.StartDate, E.EndDate
+		FROM ContactXEvent (NOLOCK) CE
+			LEFT JOIN [Events] (NOLOCK) E 
+			ON E.EventId = CE.EventId
+			INNER JOIN #ContactNotification CN
+			ON CE.ContactId = CN.ContactId
+		WHERE 
+			CE.DateCancellation IS NULL
+			AND E.StateId = 2
+			AND E.DateDeleted IS NULL
+			AND (
+					@LimitDate IS NULL
+					OR 
+					(
+						@LimitDate IS NOT NULL
+						AND
+						(E.DateModify IS NOT NULL AND E.DateModify > @LimitDate AND E.DateModify <= @Now)
+						OR 
+						(E.DateModify IS NULL AND E.DateEntered > @LimitDate AND E.DateEntered <= @Now)
+						OR 
+						(E.DateModify IS NULL AND E.DateEntered <= @LimitDate AND E.DateEntered <= @Now AND E.DateEntered = E.DateModify)
+					)
+				)
+		GROUP BY CN.ContactId, CE.EventId, E.Title, E.StartDate, E.EndDate
+		ORDER BY CN.ContactId
+
+		IF @@ROWCOUNT > 0
+			BEGIN
+				SET @hasEvents = 'True'
+			END
+
+
+		SELECT CN.ContactId,  P.PostId, P.Title
+		FROM Posts (NOLOCK) P
+			LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+			ON P.PostId = PTI.PostId
+			INNER JOIN ContactXTypeImplairment (NOLOCK) CTI
+			ON PTI.TypeId = CTI.TypeId
+			INNER JOIN #ContactNotification CN
+			ON CTI.ContactId = CN.ContactId
+		WHERE 
+			P.StateId = 2
+			AND P.DateDeleted IS NULL
+			AND (
+					@LimitDate IS NULL
+						OR 
+						(
+							P.DateModify BETWEEN ISNULL(@LimitDate, P.DateModify) AND @Now
+							OR 
+							P.DateEntered BETWEEN ISNULL(@LimitDate, P.DateEntered) AND @Now
+						)
+				)
+		GROUP BY CN.ContactId, P.PostId, P.Title
+		ORDER BY CN.ContactId
+
+		IF @@ROWCOUNT > 0
+			BEGIN
+				SET @HasPosts = 'True'
+			END
+	END
+
+-- Se actualiza la fecha de Guardado.
+IF @LimitDate IS NULL
+	BEGIN
+		INSERT INTO MailExecutions ([Send], LastExecution) VALUES ('SendNotificy', @Now)
+	END
+  ELSE 
+	BEGIN
+		UPDATE MailExecutions SET LastExecution = @Now WHERE [Send] = 'SendNotificy'
+	END
+
+-- Se limpia la tabla temporal
+DROP TABLE #ContactNotification
+
+IF @HasContacts = 'True' AND (@HasEvents = 'True' OR @HasPosts = 'True')
+	BEGIN
+		SET @ResultCode = 200
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 404
+	END
+
+GO
+
+
