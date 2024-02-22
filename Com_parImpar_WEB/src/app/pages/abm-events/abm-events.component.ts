@@ -38,7 +38,6 @@ export class ABMEventsComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.form.reset(new Events());
-    this.uploadForm.reset('');
     this.getGrid();
     this.imageAux = null;
   }
@@ -76,7 +75,6 @@ export class ABMEventsComponent implements OnInit {
 
   public btn_NewEvent(): void {
     this.form.reset(new Events());
-    this.uploadForm.reset('');
     this.imageAux = null;
   } 
 
@@ -105,7 +103,6 @@ export class ABMEventsComponent implements OnInit {
           )
           this.getGrid();
           this.form.reset(new Events())
-          this.uploadForm.reset('');
           this.imageAux = null;
         });
       }

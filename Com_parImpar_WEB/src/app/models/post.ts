@@ -25,6 +25,6 @@ export class Post {
         this.contactCreate = null;
         this.contactAudit = null;
         this.imageUrl = null;
-        this.typeImpairment = null;
+        this.typeImpairment = [];
     }
 }

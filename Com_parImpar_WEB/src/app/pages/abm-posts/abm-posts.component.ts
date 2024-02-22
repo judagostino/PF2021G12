@@ -238,8 +238,6 @@ export class ABMPostsComponent implements OnInit {
 
   private populate(post: Post): void {
     this.form.reset(post);
-    this.uploadForm.reset('');
-
 
     if (post.typeImpairment?.length > 0) {
       post.typeImpairment.forEach(impementSelect => {
@@ -250,7 +248,7 @@ export class ABMPostsComponent implements OnInit {
         });
       });
     } else {
-      this.typeImpairmentsAux.forEach(typeAux => typeAux = false);
+      this.typeImpairmentsAux.forEach((typeAux, index) => this.typeImpairmentsAux[index] = false);
     }
   }
 
