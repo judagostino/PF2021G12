@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AnyARecord } from 'dns';
 import moment from 'moment';
 import { ReasonRejectDialogComponent } from 'src/app/components/reason-reject/reason-reject.component';
 import { Events } from 'src/app/models/events';
@@ -20,6 +21,7 @@ export class ABMEventsComponent implements OnInit {
   uploadForm:FormGroup;
   imageAux = null;
   reason: string= '';
+  @ViewChild('loadImage') loadImage:ElementRef;
   
 
 
@@ -36,6 +38,7 @@ export class ABMEventsComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.form.reset(new Events());
+    this.uploadForm.reset('');
     this.getGrid();
     this.imageAux = null;
   }
@@ -73,6 +76,7 @@ export class ABMEventsComponent implements OnInit {
 
   public btn_NewEvent(): void {
     this.form.reset(new Events());
+    this.uploadForm.reset('');
     this.imageAux = null;
   } 
 
@@ -101,6 +105,7 @@ export class ABMEventsComponent implements OnInit {
           )
           this.getGrid();
           this.form.reset(new Events())
+          this.uploadForm.reset('');
           this.imageAux = null;
         });
       }
@@ -226,5 +231,10 @@ export class ABMEventsComponent implements OnInit {
 
   public reasonDescription() : void {
     this.dialog.open(ReasonRejectDialogComponent,{data:{reason:this.reason},panelClass:'modalReason'});
+  }
+
+  public selectImage($event:any): void {
+    $event.stopPropagation();
+    this.loadImage.nativeElement.click();
   }
 }

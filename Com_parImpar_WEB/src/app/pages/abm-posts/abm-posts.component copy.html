@@ -80,7 +80,9 @@
       <div class=" col-12 col-sm-12 col-md-8 col-lg-8">
           <form [formGroup]="uploadForm" novalidate>      
               <div class="archivo">
-                <input type="file"  accept=".png, .jpg, .jpeg" name="file" (change)="onFileSelect($event)" />
+                <input type="file" accept=".png, .jpg, .jpeg" style="visibility: hidden;display:none;" #loadImage name="file" (change)="onFileSelect($event)" />
+                <button type="button" (click)="selectImage($event)">Seleccionar archivo</button>
+
               </div>
             </form>
       </div>

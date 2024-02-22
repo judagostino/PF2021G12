@@ -1,0 +1,100 @@
+2024-02-21 20:46:57.6784 - INFO - 400000a0-0006-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"jdagostino","Password":"Anjumarti1996","KeepLoggedIn":true}
+
+2024-02-21 20:47:25.4509 - INFO - 400000a2-0006-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Not Confirm User
+     Headers: Authorization="", 
+
+2024-02-21 20:50:41.2531 - INFO - 4000015f-0002-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-21 21:04:24.5305 - INFO - 400000ce-0001-fb00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/TypesImpairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-02-21 21:04:25.8682 - INFO - 400000d0-0001-fb00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2024-02-21 21:04:29.3620 - INFO - 400000f4-0003-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/TypesImpairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-02-21 21:04:36.2216 - INFO - 400000d4-0001-fb00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/TypesImpairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-02-21 21:04:43.0640 - INFO - 400000d6-0001-fb00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2024-02-21 21:07:01.1337 - INFO - 40000210-0004-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/TypesImpairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-02-21 21:07:03.2706 - INFO - 40000212-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2024-02-21 21:07:42.9842 - INFO - 40000218-0004-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/TypesImpairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-02-21 21:07:46.0029 - INFO - 4000021a-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2024-02-21 21:07:58.2134 - INFO - 40000220-0004-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/TypesImpairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-02-21 21:07:59.9497 - INFO - 40000222-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2024-02-21 21:49:21.6699 - ERROR - 400000de-0006-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ActionsLog (ver: ) - 127.0.0.1
+     Message: Cannot find either column "dbo" or the user-defined function or aggregate "dbo.SearchTypesImpairment", or the name is ambiguous.
+     Exception: Cannot find either column "dbo" or the user-defined function or aggregate "dbo.SearchTypesImpairment", or the name is ambiguous.
+     StackTrace:    at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 265
+   at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 271
+   at ParImparApi.Controllers.ActionsLogController.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ActionsLogController.cs:line 39
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZjhjMDY1MS0wNDIyLTRmYzYtODQ2Ni1iYjYxZGY0NmRlOTEiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODU2MjgzMCwiZXhwIjoxNzA4NTYzNzMwLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.xz-vrWKGh5Kmcl_Nj1vVuQ0aWsmsKN31_NbiqL6nT0Q", 
+
+2024-02-21 21:58:33.2044 - ERROR - 40000119-0006-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ActionsLog (ver: ) - 127.0.0.1
+     Message: Cannot find either column "dbo" or the user-defined function or aggregate "dbo.SearchTypesImpairment", or the name is ambiguous.
+     Exception: Cannot find either column "dbo" or the user-defined function or aggregate "dbo.SearchTypesImpairment", or the name is ambiguous.
+     StackTrace:    at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 265
+   at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 271
+   at ParImparApi.Controllers.ActionsLogController.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ActionsLogController.cs:line 39
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4ODgwMzhlZC1kNGNmLTQ4OWMtYTA5Ny1mYjQ1NDQyODY3NjIiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODU2MzQ1MiwiZXhwIjoxNzA4NTY0MzUyLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.Othrrt6m5Caylj3HNKWlfPU9PvbJFo6mKyvRRjdyKSw", 
+
+2024-02-21 21:58:47.7456 - ERROR - 4000011f-0006-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ActionsLog (ver: ) - 127.0.0.1
+     Message: Cannot find either column "dbo" or the user-defined function or aggregate "dbo.SearchTypesImpairment", or the name is ambiguous.
+     Exception: Cannot find either column "dbo" or the user-defined function or aggregate "dbo.SearchTypesImpairment", or the name is ambiguous.
+     StackTrace:    at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 265
+   at ParImparApi.Services.ActionLogService.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Services\ActionLogService.cs:line 271
+   at ParImparApi.Controllers.ActionsLogController.GetAll() in C:\Users\User\Desktop\Gaston\UTN\Proyecto\GitHub\PF2021G12\Com_parImpar_API\ParImparApi\Controllers\ActionsLogController.cs:line 39
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMTBkNjkzMS01NjJhLTQyNzItYWE3ZS1jZjBiM2I3NTkwM2UiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODU2MzUyNywiZXhwIjoxNzA4NTY0NDI3LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.3Llb6DR4nDIflzsFgJaw5f7ibD-glkr5k6nD3mCU9aU", 
+
+2024-02-21 22:02:04.5443 - INFO - 40000070-0005-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactTypeImplairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0NWViODRiOS1jMDAyLTQwZjktYmFiMS05MjNiOGQ5ZGJjODUiLCJDb250YWN0SWQiOiIyIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODU2MzQ1MSwiZXhwIjoxNzA4NTY0MzUxLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.fVAHoSyyz41jAbDD6xfBmZa1b9RYtvYX6MfamEnVAsk", 
+
+2024-02-21 22:10:33.5417 - INFO - 40000018-0002-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"molylupemaxA1996","KeepLoggedIn":true}
+
+2024-02-21 22:10:43.4718 - INFO - 4000001a-0002-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: User Blocked
+     Headers: Authorization="", 
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import moment from 'moment';
@@ -21,6 +21,8 @@ export class ABMPostsComponent implements OnInit {
   typeImpairments: TypeImpairment[] = [];
   typeImpairmentsAux: boolean[] = [];
   reason: string= '';
+  @ViewChild('loadImage') loadImage:ElementRef;
+
 
 
   constructor(
@@ -235,7 +237,9 @@ export class ABMPostsComponent implements OnInit {
   }
 
   private populate(post: Post): void {
-    this.form.reset(post)
+    this.form.reset(post);
+    this.uploadForm.reset('');
+
 
     if (post.typeImpairment?.length > 0) {
       post.typeImpairment.forEach(impementSelect => {
@@ -252,6 +256,11 @@ export class ABMPostsComponent implements OnInit {
 
   public reasonDescription() : void {
     this.dialog.open(ReasonRejectDialogComponent,{data:{reason:this.reason},panelClass:'modalReason'});
+  }
+
+  public selectImage($event:any): void {
+    $event.stopPropagation();
+    this.loadImage.nativeElement.click();
   }
 }
 

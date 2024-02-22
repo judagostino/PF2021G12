@@ -4,16 +4,14 @@
       <div class="col-2"></div>
     <div class="col-8" id="event-info">
           <div class="row">
-            <div *ngIf="eventElement">
+            <div class="col-12" *ngIf="eventElement">
 
-            <div  class="col-6 mjeInscripcion" style="display: inline-block;vertical-align: top;">
-              <img style="max-width: 100%;" [src]="getImage()" alt="">
+            <div  class=" mjeInscripcion">
+              <img style="width: 100%;padding-left: 100px;padding-right: 100px;object-fit: contain;max-height: 40%;" [src]="getImage()" alt="">
               <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount > 1">Se han inscripto {{eventElement.attendeesCount}} personas a este evento</h2>
               <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount == 1">Se ha inscripto {{eventElement.attendeesCount}} persona a este evento</h2>
               <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount == 0">Aun no se ha inscripto ninguna persona a este evento</h2>
-            </div>
 
-            <div class="col-6" style="display: inline-block;vertical-align: top;">
               <div class="col-12">
                 <div class="d-flex justify-content-center">
                   <h6 class="titulo" >{{eventElement.title}}</h6>

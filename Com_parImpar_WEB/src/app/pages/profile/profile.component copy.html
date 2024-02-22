@@ -15,7 +15,7 @@
                   </div>
                   <div class="col-12">
                     <div class="d-flex justify-content-center">
-                  <img  class="justify-content-center" style="width: 300px;margin-bottom: 60px;" [src]="getImage()">
+                  <img  class="justify-content-center" style="width: 200px;margin-bottom: 60px;" [src]="getImage()">
                 </div>
             </div>
           </div>
@@ -41,29 +41,16 @@
 
              <div class="row">  
               <div class="col-1"></div> 
-                <div class="col-4 box">
+                <div class="col-5 box">
                   <div class="d-flex flex-row">
                     <i class="fa-solid fa-user"></i>
                     <label>Usuario</label>  
                   </div>
                   <a *ngIf="profile?.userName != null">{{profile.userName}}</a>
                 </div>
-            
-            
-             <div class="col-2"></div>
-            
-             <div class="col-4 box">
-              <div class="d-flex flex-row">
-                <i class="fa-solid fa-calendar-days"></i>
-                <label>Fecha de Nacimiento</label>
-              </div>
-                  <a  *ngIf="profile?.dateBrirth != null">{{profile.dateBrirth| date:'shortDate'}}</a>
-                </div>
-                <div class="col-1"></div>
-             </div>
+              
+                <div class="col-1"></div>  
 
-             <div class="row">
-              <div class="col-1"></div>           
                 <div class="col-5 box">
                   <div class="d-flex flex-row">
                   <i class="fa-regular fa-envelope"></i>
@@ -71,7 +58,6 @@
                   </div>
                   <a  *ngIf="profile?.email != null"> {{profile.email}}</a>
                 </div>
-                <div class="col-6"></div>
               </div>
       
      

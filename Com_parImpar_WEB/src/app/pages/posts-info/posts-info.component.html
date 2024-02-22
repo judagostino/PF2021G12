@@ -4,23 +4,21 @@
     <div class="col-2"></div>                
     <div class="post-info col-8">
           <div *ngIf="post">
-            <div class="col-6" style="display: inline-block;vertical-align: top;">
-              <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
-            </div>
-            
-            <div class="col-6" style="display: inline-block;vertical-align: top;">
-              <h6 >{{post.title}}</h6>
+            <div class="col-12" >
+              <img style="width: 100%;padding-left: 100px;padding-right: 100px;object-fit: contain;max-height: 40%;" class="center" [src]="getImage()" alt="">
+
+              <h6 style="padding: 15px;">{{post.title}}</h6>
               <div *ngIf="post?.typeImpairment?.length > 0" class="d-flex align-content-start flex-wrap">
                 <h4 *ngFor="let type of post.typeImpairment;">
                     <span class="badge badge-pill badge-primary etiqueta">{{type.description}}</span>
                 </h4>
               </div>
-              <p *ngFor="let paragaph of post?.descriptionParagraphs" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
+              <p *ngFor="let paragaph of post?.descriptionParagraphs" style="font-family:'Assistant', sans-serif;text-align: justify;">{{paragaph}}</p>
 
               <div class="divider div-transparent div-dot"></div>
               
               <div style=" max-height: 60vh; overflow-y: auto;"> 
-                <p *ngFor="let paragaph of post?.bodyParagraphs" class="mt-4" style="font-family:'Tilt Neon', sans-serif;">{{paragaph}}</p>
+                <p *ngFor="let paragaph of post?.bodyParagraphs" class="mt-4" style="font-family:'Assistant', sans-serif;">{{paragaph}}</p>
               </div>
             </div>  
 
