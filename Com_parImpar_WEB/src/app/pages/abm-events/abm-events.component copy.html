@@ -71,7 +71,7 @@
           </div>
       </div>
       
-      <div *ngIf="reason != null && reason != ''" class="row">
+      <div *ngIf="reason != null && reason != ''" class="row reasonReject">
         <div class=" col-12 col-sm-12 col-md-6 col-lg-6">
             <a style="cursor:pointer;" (click) = "reasonDescription()"> Ver motivo de rechazo 
             </a>
@@ -83,7 +83,7 @@
             <form [formGroup]="uploadForm" novalidate>      
                 <div class="archivo">
                   <input type="file" accept=".png, .jpg, .jpeg" style="visibility: hidden;display:none;" #loadImage name="file" (change)="onFileSelect($event)" />
-                  <button type="button" (click)="selectImage($event)">Seleccionar archivo</button>
+                  <button type="button"  class="btn_Asistir"   (click)="selectImage($event)">Seleccionar archivo</button>
                 </div>
               </form>
         </div>

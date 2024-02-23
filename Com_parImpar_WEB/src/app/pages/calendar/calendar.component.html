@@ -28,13 +28,13 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngIf="notResoults">
-                                            <td colspan="3">
+                                            <td colspan="4">
                                                 <div class="center">
                                                     Sin resultados
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr *ngFor="let event of events;let i = index;" (click)="showEvents(event)" >
+                                        <tr *ngFor="let event of events;let i = index;" (click)="showEvents(event)" class="hoverInfo" >
                                             <td>{{event.startDate | date: 'mediumDate'}}</td>
                                             <td>{{event.title}}</td>
                                             <td>{{event?.contactCreate?.name}}</td>

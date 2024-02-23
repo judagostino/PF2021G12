@@ -240,6 +240,7 @@ export class ABMPostsComponent implements OnInit {
     this.form.reset(post);
 
     if (post.typeImpairment?.length > 0) {
+      this.typeImpairmentsAux.forEach((typeAux, index) => this.typeImpairmentsAux[index] = false);
       post.typeImpairment.forEach(impementSelect => {
         this.typeImpairments.forEach((type,index) => {
           if(impementSelect?.id == type.id){

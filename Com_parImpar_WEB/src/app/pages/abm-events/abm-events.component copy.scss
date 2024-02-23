@@ -188,3 +188,28 @@ body {
   font-size:13px;
   text-align: center;
 }
+
+
+.btn_Asistir{
+  font-family:'Tilt Neon', sans-serif;
+  color:black;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border: 1.9px solid #1995AD;
+  background-color: #FFFFFF;
+  white-space: nowrap;
+  padding: 5px;
+}
+
+.reasonReject {
+  color:black;
+  font-size: 15px;
+  font-family: 'Tilt Neon', sans-serif;
+  padding-top: 10px;
+  cursor:pointer;
+}
+
+.reasonReject:hover{
+  color: #1995AD;
+}
