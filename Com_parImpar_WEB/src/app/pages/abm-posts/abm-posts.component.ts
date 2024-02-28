@@ -130,7 +130,7 @@ export class ABMPostsComponent implements OnInit {
       });
       this.populate(resp)  
       if (resp.imageUrl) {
-        this.imageAux = resp.imageUrl
+        this.imageAux = resp.imageUrl+'?c='+moment().unix();
       } else {
         this.imageAux = null;
       }

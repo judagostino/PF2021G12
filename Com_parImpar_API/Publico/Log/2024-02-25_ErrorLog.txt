@@ -1,0 +1,15 @@
+2024-02-25 13:27:52.3474 - INFO - 4000000f-0003-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"Alma1234","KeepLoggedIn":true}
+
+2024-02-25 13:34:28.2638 - INFO - 400000c0-0000-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+
+2024-02-25 13:34:35.0171 - INFO - 400000c2-0000-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null}
+

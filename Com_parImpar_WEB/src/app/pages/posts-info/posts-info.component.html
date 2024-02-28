@@ -5,7 +5,9 @@
     <div class="post-info col-8">
           <div *ngIf="post">
             <div class="col-12" >
-              <img style="width: 100%;padding-left: 100px;padding-right: 100px;object-fit: contain;max-height: 40%;" class="center" [src]="getImage()" alt="">
+              <div class="d-flex justify-content-center" style="width: 100%;padding-left: 50px;padding-right: 50px;">
+                <img style="width: 80%;object-fit: contain;max-height: 40%;" class="center" [src]="getImage()" alt="">
+              </div>
 
               <h6 style="padding: 15px;">{{post.title}}</h6>
               <div *ngIf="post?.typeImpairment?.length > 0" class="d-flex align-content-start flex-wrap">

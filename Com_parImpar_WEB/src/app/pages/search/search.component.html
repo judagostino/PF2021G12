@@ -43,7 +43,9 @@
                 <div *ngFor="let result of resultsSearch;" class="info">
                     <div class="row">
                         <div class="col-4">
-                            <img style="height: 180px; max-width: 100%;" class="center" [src]="getImage(result)">
+                            <div class="d-flex justify-content-center" style="width: 100%;padding-left: 50px;padding-right: 50px;">
+                                <img style="height: 180px; max-width: 100%;border-radius: 5px;" class="center" [src]="getImage(result)">
+                            </div>
                         </div>
     
                         <div class="col-8">

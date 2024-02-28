@@ -37,8 +37,8 @@
 <button class="btn_ingresar" *ngIf="!configService.isLogged" routerLink="/login"><a> Ingresar</a></button>
 </div>
 <div class="dropdown">
-  <div style="position: absolute;top: -20px;right: -100px;white-space:nowrap;" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <div class="btn_ingresar" *ngIf="configService.isLogged">{{configService?.contact?.name}} </div> 
+  <div style="position: absolute;top: -20px;right: -100px;white-space:nowrap;"  *ngIf="configService.isLogged" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="btn_ingresar" >{{configService?.contact?.name}} </div> 
   </div>
   <div class="dropdown-menu" aria-labelledby="settingsDropdown" *ngIf="configService.isLogged">
     <a class="dropdown-item"  routerLink="/settings">Ajustes</a>
