@@ -31,7 +31,7 @@ export class ActionLogComponent implements OnInit {
         this.chartOption = {
           tooltip: {
             trigger: 'item',
-            formatter: '{b} : {d}%',
+            formatter: '{b} : Cantidad: {c} Porcentaje: {d}%',
           },
           legend: {
             orient: 'vertical',
