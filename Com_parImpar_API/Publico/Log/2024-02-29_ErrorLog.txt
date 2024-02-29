@@ -1,0 +1,20 @@
+2024-02-29 20:12:41.8679 - INFO - 40000021-0001-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null,"events":false,"posts":false}
+
+2024-02-29 20:12:45.8452 - INFO - 40000022-0001-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null,"events":false,"posts":false}
+
+2024-02-29 20:15:37.4906 - INFO - 40000017-0004-f900-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null,"events":false,"posts":false}
+
+2024-02-29 20:15:39.2495 - INFO - 40000018-0004-f900-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Search (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+     Body: {"SearchText":"","Filters":null,"events":false,"posts":false}
+

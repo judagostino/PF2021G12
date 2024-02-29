@@ -17,6 +17,8 @@ export class SearchComponent implements OnInit {
   resultsSearch: SearchItem[] = [];
   searchText: string = '';
   notResoult: boolean = false;
+  events:boolean = true;
+  posts:boolean = true;
 
   constructor( 
     private router: Router,
@@ -50,7 +52,8 @@ export class SearchComponent implements OnInit {
     this.searchService.search(
       {
         searchText: this.searchText, 
-        filters: (this.showMoreInfo ? this.getFilters() : null) 
+        filters: (this.showMoreInfo ? this.getFilters() : null),
+        events:this.events,posts:this.posts
       }).subscribe(resp => {
       this.resultsSearch = resp;
       if (resp.length == 0) {
