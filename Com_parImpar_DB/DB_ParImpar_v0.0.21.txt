@@ -1,0 +1,255 @@
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 29/2/2024 19:58:30 ******/
+DROP PROCEDURE [dbo].[Search_GetSearch]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Search_GetSearch]    Script Date: 29/2/2024 19:58:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Search_GetSearch]
+(
+	@SearchText AS VARCHAR(MAX),
+	@Filters AS VARCHAR(MAX),
+	@inclusivePosts AS BIT = NULL,
+	@inclusiveEvents AS BIT = NULL
+)
+
+AS
+
+/*
+-- para trest
+DECLARE	@SearchText AS VARCHAR(MAX) = null
+DECLARE	@Filters AS VARCHAR(MAX) = null
+DECLARE @inclusivePosts AS BIT = 'True'
+DECLARE @inclusiveEvents AS BIT = 'False'
+*/
+DECLARE @TableFilters TABLE 
+(
+	[filter] INT
+)
+
+DECLARE @TableSearchText TABLE 
+(
+	TextFilter varchar(60)
+)
+
+DECLARE @PostsAux TABLE 
+(
+	PostId INT,
+	DateOrder DateTime
+)
+
+DECLARE @TableSearchAux TABLE
+(
+	[Key]  VARCHAR(250),
+	Id INT,
+	StartDate DATETIME,
+	NameCreate  VARCHAR(500),
+	ContacCreateId INT,
+	Description  VARCHAR(MAX),
+	Title  VARCHAR(1000),
+	ImageUrl VARCHAR(500),
+	TypeId  VARCHAR(250),
+	TypeDescription VARCHAR(500),
+	DateOrder DateTime,
+	DateEntered  DateTime
+)
+
+IF (@SearchText IS NOT NULL)
+	BEGIN
+		INSERT INTO @TableSearchText
+		SELECT value
+		FROM STRING_SPLIT(@SearchText , ' ')
+	END
+
+
+IF ISNULL(@inclusiveEvents, 'True') = 'True'
+	BEGIN
+		INSERT INTO @TableSearchAux
+		SELECT DISTINCT TOP 10
+			'EventId' AS 'Key',
+			E.EventId AS 'Id',
+			E.StartDate,
+			C.LastName + ', ' + C.FirstName AS 'NameCreate',
+			C.ContactId AS 'ContacCreateId',
+			E.[Description],
+			E.Title,
+			E.ImageUrl,
+			NULL 'TypeId',
+			NULL 'TypeDescription',
+			ISNULL(ISNULL(ISNULL(E.EndDate, E.StartDate),E.DateModify), E.DateEntered),
+			E.StartDate
+		FROM [Events] (NOLOCK) E
+			INNER JOIN Contacts (NOLOCK) C
+				ON C.ContactId = E.ContacCreate
+		WHERE 
+			(
+				EXISTS (
+						SELECT TextFilter 
+						FROM @TableSearchText AUX
+						WHERE 
+						E.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+						OR
+						E.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+					)
+				OR (@SearchText IS NULL)
+			)
+			AND E.StateId = 2
+			AND E.DateDeleted IS NULL
+		ORDER BY E.StartDate DESC
+	END
+
+
+IF ISNULL(@inclusivePosts, 'True') = 'True'
+	BEGIN
+		IF (@Filters IS NOT NULL)
+			BEGIN
+				INSERT INTO @TableFilters
+				SELECT value
+				FROM STRING_SPLIT(@Filters , ',')
+
+				IF EXISTS(SELECT * FROM @TableFilters) 
+					BEGIN
+						INSERT INTO @PostsAux
+						SELECT DISTINCT TOP 50
+							PTI.PostId,
+							ISNULL(P.DateModify, P.DateEntered)
+						FROM [Posts] (NOLOCK) P
+							LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+								ON PTI.PostId = P.PostId 
+						WHERE 
+							( 
+								PTI.TypeId IN (SELECT * FROM @TableFilters)
+							) 
+							AND P.StateId = 2
+							AND P.DateDeleted IS NULL
+						ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+					END
+				  ELSE 
+					BEGIN
+						INSERT INTO @PostsAux
+						SELECT DISTINCT TOP 50
+							PTI.PostId,
+							ISNULL(P.DateModify, P.DateEntered)
+						FROM [Posts] (NOLOCK) P
+							LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+								ON PTI.PostId = P.PostId 
+						WHERE  P.StateId = 2
+							AND P.DateDeleted IS NULL
+						ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+					END
+			END
+	   ELSE 
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 50
+					PTI.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+						ON PTI.PostId = P.PostId 
+				WHERE  P.StateId = 2
+						AND P.DateDeleted IS NULL
+				ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+			END
+
+		IF @Filters IS NOT NULL
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 50
+					P.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					INNER JOIN @PostsAux PA
+						ON P.PostId = PA.PostId
+				WHERE EXISTS (
+							SELECT TextFilter 
+							FROM @TableSearchText AUX
+							WHERE 
+							P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+						)
+					OR (@SearchText IS NULL)
+					AND P.StateId = 2
+						AND P.DateDeleted IS NULL
+				ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+			END
+		  ELSE 
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 50
+					P.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					INNER JOIN @PostsAux PA
+						ON P.PostId = PA.PostId
+				WHERE EXISTS (
+							SELECT TextFilter 
+							FROM @TableSearchText AUX
+							WHERE 
+							P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+						)
+					OR (@SearchText IS NULL)
+					AND P.StateId = 2
+					AND P.DateDeleted IS NULL
+			END
+	
+		INSERT INTO @TableSearchAux
+			SELECT
+				'PostId' AS 'Key',
+				P.PostId AS 'Id',
+				NULL 'StartDate',
+				C.LastName + ', ' + C.FirstName AS 'NameCreate',
+				C.ContactId AS 'ContacCreateId',
+				P.[Description],
+				P.Title,
+				P.ImageUrl,
+				PTI.TypeId,
+				TI.Description 'TypeDescription',
+				ISNULL(P.DateModify, P.DateEntered),
+				P.DateEntered
+			FROM [Posts] (NOLOCK) P
+				INNER JOIN Contacts (NOLOCK) C
+					ON C.ContactId = P.ContacCreate
+				INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
+					ON PTI.PostId = P.PostId
+				INNER JOIN TypesImpairment (NOLOCK) TI
+					ON PTI.TypeId = TI.TypeId
+				INNER JOIN @PostsAux PA
+					ON PA.PostId = P.PostId
+		END
+
+			
+SELECT DISTINCT * FROM @TableSearchAux ORDER BY [Key], Id, DateOrder DESC
+
+INSERT INTO ActionLog 
+(
+	filters,
+	SearchText,
+	ActionTypeId,
+	DateEntered
+) 
+VALUES 
+(
+	@Filters,
+	@SearchText,
+	1,
+	GETDATE()
+)
+GO
+
+

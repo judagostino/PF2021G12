@@ -9,5 +9,10 @@ namespace ParImparApi.DTO
         public string SearchText { get; set; }
 
         public List<TypeImpairmentDTO> Filters { get; set; }
+
+        public bool? events { get; set; }
+
+        public bool? posts { get; set; }
+
     }
 }
