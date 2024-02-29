@@ -22,6 +22,15 @@ body {
   font-weight: 600;
 }
 
+.title-table {
+  color: #1995AD;
+  font-size: 20px;
+  font-family: 'Tilt Neon', sans-serif;
+  text-align: center;
+  margin-bottom: 15px;
+
+}
+
 .row label {
   color:black;
   font-size: 15px;
@@ -135,7 +144,7 @@ body {
       
       box-sizing: border-box;
       
-      height: 200px;
+      min-height: 200px;
       width: 100%;
     
       border-radius: 25px;
@@ -165,10 +174,11 @@ body {
 }
 
 .status-cell span {
-  border: 2px solid ;
   border-radius: 10px;
   padding: 4px;
   text-align: center;
+  font-family: 'Assistant',sans-serif;
+  font-weight: normal;
 }
 
 .table tr td {

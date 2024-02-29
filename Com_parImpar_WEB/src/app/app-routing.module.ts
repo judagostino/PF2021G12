@@ -22,6 +22,7 @@ import { ABMPermissionsComponent } from './pages/abm-permissions/abm-permissions
 import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-password/recover-confirm-password.component';
 import { AuthGuard } from './guard/auth.guard';
 import { UnauthorizedGuard } from './guard/unauthorized.guard';
+import { InfoContactComponent } from './pages/info-contact/info-contact.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path:'action-log', canActivate: [AuthGuard], component: ActionLogComponent},
   {path:'user/recover-password',component: RecoverConfirmPasswordComponent},
   {path:'permissions', canActivate: [AuthGuard], component: ABMPermissionsComponent},
+  {path:'info-contact',component:InfoContactComponent},
   {path:'**',redirectTo:"home"}
   
 ];

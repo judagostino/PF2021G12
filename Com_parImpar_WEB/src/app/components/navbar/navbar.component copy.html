@@ -16,6 +16,10 @@
         <li *ngIf="configService?.isLogged">
           <a routerLink="/posts" >Publicaciones</a>
         </li>
+        <li>
+          <a routerLink="/info-contact" >Contacto</a>
+        </li>
+
         <li class="nav-item dropdown" *ngIf="configService?.contact?.auditor">
           <a class="nav-link dropdown-toggle" href="#" id="auditorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Auditoría
@@ -38,7 +42,7 @@
 </div>
 <div class="dropdown">
   <div style="position: absolute;top: -20px;right: -100px;white-space:nowrap;"  *ngIf="configService.isLogged" id="settingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <div class="btn_ingresar" >{{configService?.contact?.name}} </div> 
+    <div class="btn_ingresar" > ¡ Hola {{configService?.contact?.firstName}} ! </div> 
   </div>
   <div class="dropdown-menu" aria-labelledby="settingsDropdown" *ngIf="configService.isLogged">
     <a class="dropdown-item"  routerLink="/settings">Ajustes</a>

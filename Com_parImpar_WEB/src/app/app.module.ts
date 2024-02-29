@@ -50,6 +50,7 @@ import { DenyRecoverDialogComponent } from './components/deny-recover/deny-recov
 import { DisabilitiesInterestDialogComponent } from './components/disabilities-interest/disabilities-interest.component';
 import { ReasonRejectDialogComponent } from './components/reason-reject/reason-reject.component';
 import { DeleteUserDialogComponent } from './components/delete-user/delete-user.component';
+import { InfoContactComponent } from './pages/info-contact/info-contact.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -85,7 +86,8 @@ registerLocaleData(localeEs, 'es');
     DenyRecoverDialogComponent,
     DisabilitiesInterestDialogComponent,
     ReasonRejectDialogComponent,
-    DeleteUserDialogComponent
+    DeleteUserDialogComponent,
+    InfoContactComponent
   ],
 
   imports: [

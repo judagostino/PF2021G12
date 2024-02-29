@@ -10,7 +10,7 @@
       
           <div class="row">        
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-              <label>Titulo   <span style="color: #1995ad;;">*</span></label>
+              <label>Nombre del Evento   <span style="color: #1995ad;;"> *</span></label>
               <input type=text class="box" formControlName="title" required>
               <div style="font-family: 'Nunito', sans-serif;" *ngIf="form?.controls?.title?.touched && form?.controls?.title?.invalid" class="text-danger">
                 El título es requerido
@@ -110,12 +110,15 @@
   <div class="row">
     <div class="col-2"></div> 
      <div  class = "col-8" id="event-table" style="padding-bottom: 25px; margin-bottom: 25px;">
+      <div class="title-table">
+        Mis Eventos
+    </div> 
       <div style="height: 100%; overflow: auto; margin-bottom: 25px; padding-bottom: 25px;">
         <table class="table">
           <thead>
               <tr>
                   <th scope="col"></th>
-                  <th scope="col">Titulo</th>
+                  <th scope="col">Evento</th>
                   <th scope="col">Fecha Inicio</th>
                   <th scope="col">Fecha Fin</th>
                   <th scope="col">Estado</th>
@@ -136,8 +139,8 @@
                   <td>{{event.startDate | date: 'dd/MM/yyyy HH:mm'}}</td>
                   <td>{{event.endDate | date: 'dd/MM/yyyy HH:mm'}}</td>
                   <td class="status-cell">
-                      <span style="background-color: green;" *ngIf="event?.state?.id === 2">Autorizado</span> 
-                      <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
+                      <span style="background-color: #157347;" *ngIf="event?.state?.id === 2">Autorizado</span> 
+                      <span style="background-color: #b02a37;" *ngIf="event?.state?.id === 3">Rechazado</span>  
                       <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
                   </td>
                   <td>{{event.attendeesCount}}</td>
