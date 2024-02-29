@@ -21,5 +21,7 @@ namespace ParImparApi.DTO
         public ContactDTO ContactCreate { get; set; }
 
         public List<TypeImpairmentDTO> TypeImpairment { get; set; }
+
+        public DateTime? DateEntered { get; set; }
     }
 }

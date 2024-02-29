@@ -47,6 +47,23 @@ namespace ParImparApi.Services
                                 cmd.Parameters.Add(new SqlParameter("@SearchText", DBNull.Value));
                             }
 
+                            if(searchBody.events != null) {
+                                cmd.Parameters.Add(new SqlParameter("@inclusiveEvents", searchBody.events));
+                            }
+                            else
+                            {
+                                cmd.Parameters.Add(new SqlParameter("@inclusiveEvents", DBNull.Value));
+                            }
+
+                            if (searchBody.posts != null)
+                            {
+                                cmd.Parameters.Add(new SqlParameter("@inclusivePosts", searchBody.posts));
+                            }
+                            else
+                            {
+                                cmd.Parameters.Add(new SqlParameter("@inclusivePosts", DBNull.Value));
+                            }
+
                             if (searchBody.Filters != null && searchBody.Filters.Count > 0)
                             {
                                 string filtersAux = null;
@@ -154,6 +171,11 @@ namespace ParImparApi.Services
                                             };
                                         }
 
+                                        if (reader["DateEntered"] != DBNull.Value)
+                                        {
+                                            itemEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
+                                        }
+
                                         results.Add(itemEvent);
                                     }
                                     else
@@ -209,6 +231,11 @@ namespace ParImparApi.Services
                                                 };
                                                 itemPost.TypeImpairment = new List<TypeImpairmentDTO>();
                                                 itemPost.TypeImpairment.Add(typeImpairment);
+                                            }
+
+                                            if (reader["DateEntered"] != DBNull.Value)
+                                            {
+                                                itemPost.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
                                             }
 
                                             results.Add(itemPost);
