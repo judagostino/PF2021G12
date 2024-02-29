@@ -1,0 +1,20 @@
+2024-02-28 14:22:01.9156 - INFO - 4000005c-0000-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"ana@example.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-28 14:56:33.8693 - INFO - 40000031-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Gv","KeepLoggedIn":true}
+
+2024-02-28 14:56:41.5085 - INFO - 40000033-0004-fe00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-28 15:21:22.3972 - INFO - 400000e6-0002-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/delete (ver: ) - 127.0.0.1
+     Message: Password Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlODc5NDhhZS0zOTllLTQ3ODQtOWJkMi1kMjFmMDkzMjM0ZWEiLCJDb250YWN0SWQiOiIyIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwOTE0NDQwMCwiZXhwIjoxNzA5MTQ1MzAwLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.IOwoc5KnlHL4wOrrcP7lyNrpOrYoqW4ArDGKKpLOyjo", 
+     Body: {"User":null,"Password":"123456","KeepLoggedIn":false}
+
