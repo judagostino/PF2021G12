@@ -133,7 +133,7 @@ export class ABMEventsComponent implements OnInit {
       });
       this.form.reset(resp);
       if (resp.imageUrl) {
-        this.imageAux = resp.imageUrl
+        this.imageAux = resp.imageUrl+'?c='+moment().unix();
       } else {
         this.imageAux = null;
       }

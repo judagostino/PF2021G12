@@ -1,0 +1,25 @@
+2024-02-24 20:31:57.4695 - INFO - 4000001d-0006-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/RecoverChange (ver: ) - 127.0.0.1
+     Message: Incorrect format password
+     Headers: Authorization="", 
+     Body: {"Id":2,"Email":null,"ConfirmEmail":null,"UserName":null,"LastName":null,"FirstName":null,"Password":"Alma123","ConfirmPassword":"Alma123","ConfirmCode":null,"Notifications":null,"CodeRecover":"23A48771-8C1E-4083-8CAE-13C4B27322A8","DateBrirth":null}
+
+2024-02-24 20:44:31.0601 - INFO - 40000006-0004-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"judagostino96@gmail.com","Password":"Anjumarti1996","KeepLoggedIn":true}
+
+2024-02-24 21:16:17.3317 - INFO - 400000a3-0000-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"comunidadparim@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-02-24 21:38:55.4514 - INFO - 40000020-0004-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Gv","KeepLoggedIn":true}
+
+2024-02-24 21:39:59.6575 - INFO - 4000002a-0004-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Contact/delete (ver: ) - 127.0.0.1
+     Message: Password Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZGU0OTQ5OC0xYjJmLTQ1NzYtYWRiNC1hYjcwMjVkNjJjYmMiLCJDb250YWN0SWQiOiIyIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODgyMTU0NiwiZXhwIjoxNzA4ODIyNDQ2LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.WvWjdRWBRr-2WRjp-ICU8HtT7q3mVFz96F4dmxeRkCc", 
+     Body: {"User":null,"Password":"alma123","KeepLoggedIn":false}
+

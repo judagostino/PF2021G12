@@ -11,7 +11,11 @@
       <div class="audit-event" *ngIf="eventElement">
       <div class="row">
           <div class="col-6" style="display: inline-block;vertical-align: top;">
-            <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
+            <div class="d-flex justify-content-center" style="width: 100%;padding-left: 50px;padding-right: 50px;">
+              <img style="max-width: 100%;border-radius: 25px;" class="center" [src]="getImage()" alt="">
+            </div>
+
+            
           </div>
           <div class="col-6 cuerpoModal" style="display: inline-block;vertical-align: top;">
             <div class="col-12">
@@ -43,7 +47,9 @@
       <div class="col-12 audit-post" *ngIf="post">
         <div class="row">
             <div class="col-6">
-              <img style="max-width: 100%;" class="center" [src]="getImage()" alt="">
+              <div class="d-flex justify-content-center" style="width: 100%;padding-left: 50px;padding-right: 50px;">
+              <img style="max-width: 100%;border-radius: 25px;" class="center" [src]="getImage()" alt="">
+            </div>
             </div>
             <div class="col-6 cuerpoModal">  
               <div class="col-12">

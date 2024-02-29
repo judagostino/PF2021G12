@@ -7,7 +7,10 @@
             <div class="col-12" *ngIf="eventElement">
 
             <div  class=" mjeInscripcion">
-              <img style="width: 100%;padding-left: 100px;padding-right: 100px;object-fit: contain;max-height: 40%;" [src]="getImage()" alt="">
+              <div class="d-flex justify-content-center" style="width: 100%;padding-left: 50px;padding-right: 50px;">
+                <img style="width: 80%;object-fit: contain;max-height: 40%;border-radius: 55px;" [src]="getImage()" alt="">
+              </div>
+
               <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount > 1">Se han inscripto {{eventElement.attendeesCount}} personas a este evento</h2>
               <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount == 1">Se ha inscripto {{eventElement.attendeesCount}} persona a este evento</h2>
               <h2 style = "font-family: 'Assistant',sans-serif;font-weight: bolder;" *ngIf="eventElement?.attendeesCount == 0">Aun no se ha inscripto ninguna persona a este evento</h2>

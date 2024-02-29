@@ -11,7 +11,7 @@ import moment from 'moment';
 })
 export class ExportExcelService {
 
-  titleWorksheet = 'sheet1';
+  titleWorksheet = 'Asistencia';
   headerBgColor = '1995AD';
   headerFontColor = 'FFFFFF';
   constructor() { }
@@ -105,7 +105,7 @@ export class ExportExcelService {
     const nameHeader = worksheet.getCell('B7');
     const assistHearder = worksheet.getCell('C7');
     
-    nameHeader.value = 'Nombre';
+    nameHeader.value = 'Apellido,Nombre';
     nameHeader.fill = {
         type: 'pattern',
         pattern: 'solid',
