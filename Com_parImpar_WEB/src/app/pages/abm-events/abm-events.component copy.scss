@@ -162,6 +162,8 @@ body {
   background: none;
   border: none;
   cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /* Estilos para la celda de estado */
@@ -170,6 +172,7 @@ body {
   border-radius: 5px;
   color: #fff;
   font-weight: bold !important;
+  white-space: nowrap;
 
 }
 

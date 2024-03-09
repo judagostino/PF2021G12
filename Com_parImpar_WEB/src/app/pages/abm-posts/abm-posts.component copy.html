@@ -13,7 +13,7 @@
     
         <div class="row">        
           <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-            <label>Titulo <span style="color: #1995ad;;">*</span> </label>
+            <label>Título <span style="color: #1995ad;;">*</span> </label>
             <input type=text class="box" style="width: 100%;" formControlName="title" required>
             <div style="font-family: 'Assistant', sans-serif;" *ngIf="form?.controls?.title?.touched && form?.controls?.title?.invalid" class="text-danger">
               El título es requerido
@@ -32,14 +32,14 @@
               </div>
            </div>
             <div style="font-family: 'Assistant', sans-serif;" *ngIf="form?.controls?.typeImpairment?.touched && form?.controls?.typeImpairment?.invalid" class="text-danger">
-              Debe elegir al menos una palabra clave del contenido del artículo.
+              Debe elegir al menos una palabra clave del contenido de la publicación.
             </div>
           </div>
         </div> 
         
         <div class="row">        
           <div class="col-12">
-            <label>Descripcion <span style="color: #1995ad;;">*</span> </label>
+            <label>Descripción <span style="color: #1995ad;;">*</span> </label>
             <textarea rows="3" class="box" style="width: 100%;" formControlName="description" required></textarea>
             <div style="font-family: 'Assistant', sans-serif;" *ngIf="form?.controls?.title?.touched && form?.controls?.description?.touched && form?.controls?.description?.invalid" class="text-danger"> 
                             La descripción es requerida
@@ -52,7 +52,7 @@
                   <label>Cuerpo <span style="color: #1995ad;;">*</span></label>
                   <textarea rows="50" style="width: 100%;" class="box" formControlName="text" required></textarea>
                   <div style="font-family: 'Assistant', sans-serif;" *ngIf="form?.controls?.text?.touched && form?.controls?.text?.invalid" class="text-danger">
-                      El contenido del articulo es requerido
+                      El contenido de la publicación es requerida
                   </div>
           </div>
       </div>
@@ -115,11 +115,16 @@
   <div class="col-2"></div>
   <div class="col-8" id="post-table" style="padding-bottom: 25px; margin-bottom: 25px;">
     
+    <div class="title-table">
+      Mis Publicaciones
+    </div> 
+
     <div style="height: 100%; overflow: auto;">
       <table class="table">
         <thead>
             <tr>
                 <th scope="col"></th>
+                <th scope="col">Fecha Creación</th>
                 <th scope="col">Título</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Estado</th>
@@ -132,6 +137,7 @@
                 <span>...</span>
               </button>
             </td>
+            <td>{{post.dateEntered | date: 'dd/MM/yyyy HH:mm'}}</td>
               <td>{{post.title}}</td>
               <td>{{post.description | truncate}}</td>
               <td class="status-cell">

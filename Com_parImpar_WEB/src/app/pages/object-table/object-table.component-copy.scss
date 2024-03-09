@@ -53,6 +53,8 @@
     background: none;
     border: none;
     cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
   }
   
   .status-cell {
@@ -64,10 +66,11 @@
   }
   
   .status-cell span {
-    border: 2px solid ;
     border-radius: 10px;
     padding: 4px;
     text-align: center;
+    font-family: 'Assistant',sans-serif;
+    font-weight: normal;
   }
   
   .table tr td {
@@ -90,7 +93,11 @@
     font-size:15px;
 
   }
-  
+    /* Por ejemplo, para la primera columna */
+td:nth-child(2),
+th:nth-child(2) {
+    width: 130px; /* Puedes usar porcentajes para un ancho relativo */
+}
  
   
   
