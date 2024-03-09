@@ -16,9 +16,7 @@
         <li *ngIf="configService?.isLogged">
           <a routerLink="/posts" >Publicaciones</a>
         </li>
-        <li>
-          <a routerLink="/info-contact" >Contacto</a>
-        </li>
+       
 
         <li class="nav-item dropdown" *ngIf="configService?.contact?.auditor">
           <a class="nav-link dropdown-toggle" href="#" id="auditorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,7 +29,9 @@
             <a class="dropdown-item" routerLink="/permissions">Gestión de Permisos</a>
           </div>
         </li>
-        
+        <li>
+          <a routerLink="/info-contact" >Contacto</a>
+        </li>
        
       </ul>
 

@@ -16,7 +16,7 @@ export class SearchService {
     this.URL = `${environment.URL}/Search`;
   }
 
-  public search(body: {searchText: string, filters?: TypeImpairment[]}): Observable<SearchItem[]> {
+  public search(body: {searchText: string, filters?: TypeImpairment[],events?:boolean,posts?:boolean}): Observable<SearchItem[]> {
     let headers= new HttpHeaders();
 
     headers = headers.append('Content-Type', 'application/json');

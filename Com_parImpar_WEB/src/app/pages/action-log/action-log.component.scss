@@ -60,3 +60,33 @@ body {
     min-width: 150px;
   }
   
+  button {
+    outline: none;
+    background-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    font-family:'Tilt Neon', sans-serif; 
+    font-size: 15px;
+    color:black;
+    border-radius: 25PX;
+    -moz-border-radius: 25PX;
+    -webkit-border-radius: 25PX;
+    border: 1.9px solid #1995AD;
+    background-color: #FFFFFF;
+    min-width: 150px;
+    min-height: 30px;
+    
+} 
+button:hover {
+    background-color: #A1D6E2;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background-color: #BCBABE;
+}
+
+.filterMenu{
+  font-family: 'Assistant',sans-serif;
+  border: 1.9px solid #1995ad
+}

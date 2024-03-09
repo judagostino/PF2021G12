@@ -11,6 +11,8 @@ import { ActionsLogService } from 'src/app/services';
 export class ActionLogComponent implements OnInit {
   actionLog: ActionsLog = null;
   public chartOption: EChartsOption;
+  public page:number = 0;
+  public search:string = '';
 
   constructor(private actionsLogService: ActionsLogService) { }
 
@@ -57,5 +59,20 @@ export class ActionLogComponent implements OnInit {
         };
       } 
     });
+  }
+
+  public nextPage(){
+    this.page += 5;
+  }
+
+  public prevPage(){
+    if(this.page > 0)
+    this.page -= 5;
+  }
+
+  public onSearch(search:string){
+    this.page = 0;
+    this.search = search;
+
   }
 }
