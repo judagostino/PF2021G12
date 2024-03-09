@@ -1,0 +1,1311 @@
+-- Se agrego el nombre de la fundacion en el la tabla de Contacts
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Tmp_Contacts
+	(
+	ContactId int NOT NULL IDENTITY (1, 1),
+	FirstName varchar(200) NULL,
+	LastName varchar(200) NULL,
+	dateEntered datetime NULL,
+	Email varchar(200) NOT NULL,
+	Password varchar(MAX) NOT NULL,
+	UserName varchar(200) NULL,
+	DateBrirth date NULL,
+	Auditor bit NULL,
+	[Confirm] bit NULL,
+	Trusted bit NULL,
+	Notifications bit NULL,
+	ConfirmCode varchar(100) NULL,
+	ExpiredRecover datetime NULL,
+	CodeRecover varchar(100) NULL,
+	ImageUrl varchar(255) NULL,
+	DateModify datetime NULL,
+	Blocked bit NULL,
+	DateDeleted datetime NULL,
+	FoundationName varchar(500) NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+SET IDENTITY_INSERT dbo.Tmp_Contacts ON
+GO
+IF EXISTS(SELECT * FROM dbo.Contacts)
+	 EXEC('INSERT INTO dbo.Tmp_Contacts (ContactId, FirstName, LastName, dateEntered, Email, Password, UserName, DateBrirth, Auditor, [Confirm], Trusted, Notifications, ConfirmCode, ExpiredRecover, CodeRecover, ImageUrl, DateModify, Blocked, DateDeleted)
+		SELECT ContactId, FirstName, LastName, dateEntered, Email, Password, UserName, DateBrirth, Auditor, [Confirm], Trusted, Notifications, ConfirmCode, ExpiredRecover, CodeRecover, CONVERT(varchar(255), ImageUrl), DateModify, Blocked, DateDeleted FROM dbo.Contacts WITH (HOLDLOCK TABLOCKX)')
+GO
+SET IDENTITY_INSERT dbo.Tmp_Contacts OFF
+GO
+ALTER TABLE dbo.ActionLog
+	DROP CONSTRAINT FK_ActionLog_Contacts
+GO
+ALTER TABLE dbo.ContactXEvent
+	DROP CONSTRAINT FK_ContactXEvent_Contacts
+GO
+ALTER TABLE dbo.ContactXTypeImplairment
+	DROP CONSTRAINT FK_ContactXTypeImplairment_Contacts
+GO
+ALTER TABLE dbo.DenyObject
+	DROP CONSTRAINT FK_DenyObject_Contacts
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK__Events__ContactA__5FB337D6
+GO
+ALTER TABLE dbo.Events
+	DROP CONSTRAINT FK__Events__StateId__5EBF139D
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__ContactAu__7E37BEF6
+GO
+ALTER TABLE dbo.Posts
+	DROP CONSTRAINT FK__Posts__StateId__7D439ABD
+GO
+DROP TABLE dbo.Contacts
+GO
+EXECUTE sp_rename N'dbo.Tmp_Contacts', N'Contacts', 'OBJECT' 
+GO
+ALTER TABLE dbo.Contacts ADD CONSTRAINT
+	PK__Contact__CFED658FE377AA2D PRIMARY KEY CLUSTERED 
+	(
+	ContactId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__ContactAu__7E37BEF6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts ADD CONSTRAINT
+	FK__Posts__StateId__7D439ABD FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Posts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK__Events__ContactA__5FB337D6 FOREIGN KEY
+	(
+	ContactAudit
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Events ADD CONSTRAINT
+	FK__Events__StateId__5EBF139D FOREIGN KEY
+	(
+	ContacCreate
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.Events SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.DenyObject ADD CONSTRAINT
+	FK_DenyObject_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.DenyObject SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ContactXTypeImplairment ADD CONSTRAINT
+	FK_ContactXTypeImplairment_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ContactXTypeImplairment SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ContactXEvent ADD CONSTRAINT
+	FK_ContactXEvent_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ContactXEvent SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.ActionLog ADD CONSTRAINT
+	FK_ActionLog_Contacts FOREIGN KEY
+	(
+	ContactId
+	) REFERENCES dbo.Contacts
+	(
+	ContactId
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.ActionLog SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+
+
+-- Modificacion de stored agrgando que muestre el nombre de la fundacion
+
+ALTER PROCEDURE [dbo].[Contact_GetAll]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		SET @ResultCode = 200
+
+		SELECT
+			ContactId,
+			FirstName,
+			LastName,
+			UserName,
+			ISNULL(FoundationName, LastName + ', ' + FirstName ) 'Name',
+			email,
+			ISNULL(Auditor, 'False') 'Auditor',
+			ISNULL(Trusted, 'False') 'Trusted',
+			ISNULL(Blocked, 'False') 'Blocked',
+			Notifications,
+			DateBrirth,
+			ImageUrl
+		FROM Contacts (NOLOCK) 
+		WHERE ISNULL(Confirm, 'False') <> 'False'
+		AND DateDeleted IS NULL
+
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+
+
+
+ALTER PROCEDURE [dbo].[Contact_GetById]
+(
+	@ContactId INT,
+	@ActionLog INT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT = 1
+DECLARE @ActionLog INT = 0
+*/
+
+
+SELECT
+	ContactId,
+	FirstName,
+	LastName,
+	UserName,
+	FirstName + ' ' + LastName 'Name',
+	FoundationName,
+	email,
+	ISNULL(Auditor, 'False') 'Auditor',
+	ISNULL(Trusted, 'False') 'Trusted',
+	ISNULL(Notifications, 'True') AS 'Notifications',
+	DateBrirth,
+	ImageUrl
+FROM Contacts (NOLOCK) 
+WHERE ContactId = @ContactId
+
+IF EXISTS (SELECT ContactId FROM Contacts (NOLOCK)WHERE ContactId = @ContactId) AND @ActionLog = 1
+	BEGIN
+		INSERT INTO ActionLog 
+		(
+			ObjectKey, 
+			ObjectId,
+			ContactId,
+			ActionTypeId,
+			DateEntered
+		) 
+		VALUES 
+		(
+			'ContactId', 
+			@ContactId,
+			@ContactId,
+			13,
+			GETDATE()
+		)
+	END
+
+
+
+ALTER PROCEDURE [dbo].[Contact_GetByIdInformation]
+(
+	@ContactLoggedId INT,
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactLoggedId INT = 1
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		SET @ResultCode = 404 
+		
+		SELECT
+			ContactId,
+			FirstName,
+			LastName,
+			UserName,
+			LastName + ', ' + FirstName 'Name',
+			FoundationName,
+			email,
+			ISNULL(Auditor, 'False') 'Auditor',
+			ISNULL(Trusted, 'False') 'Trusted',
+			ISNULL(Notifications, 'True') AS 'Notifications',
+			DateBrirth,
+			ImageUrl
+		FROM Contacts (NOLOCK) 
+		WHERE 
+			ContactId = @ContactId
+			AND
+			ISNULL(Confirm, 'False') <> 'False'
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+
+
+
+
+ALTER PROCEDURE [dbo].[Events_GetAll]
+(
+	@ContactId INT,
+	@audit INT = NULL
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @audit INT = 0
+*/
+
+DECLARE @IsAuditor BIT = 'False'
+
+IF (@audit IS NOT NULL AND @audit = 1) 
+	BEGIN
+		SELECT 
+			@IsAuditor = ISNULL(Auditor, 'False')
+		FROM Contacts 
+		WHERE ContactId = @ContactId 
+	END
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	E.StateId,
+	E.ImageUrl,
+	s.[Description] 'DescriptionState',
+	(SELECT COUNT(*) FROM ContactXEvent WHERE EventId = E.EventId AND DateCancellation IS NULL) AS 'AttendeesCount'
+FROM [Events] (NOLOCK) E
+	INNER JOIN Contacts (NOLOCK) CC
+	ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+	ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+	ON CA.ContactId = E.ContactAudit
+WHERE
+		(
+			@ContactId = E.ContacCreate
+			OR
+			@IsAuditor = 'True'
+		)
+		AND E.DateDeleted IS NULL
+ORDER BY E.StartDate DESC
+		
+
+
+ALTER PROCEDURE [dbo].[Events_GetByDate]
+(
+	@ContactId INT = NULL,
+	@Date Datetime
+)
+AS
+
+/*
+-- para trest
+DECLARE @Date Datetime = '2024-1-2'
+DECLARE @ContactId INT = 3
+*/
+
+
+DECLARE @EventAssist TABLE 
+(
+	[EventId] INT,
+	Assist BIT
+)
+
+INSERT INTO @EventAssist
+SELECT EventId, 'True'
+FROM ContactXEvent (NOLOCK) CE
+WHERE @ContactId IS NOT NULL AND ContactId = @ContactId AND DateCancellation IS NULL
+
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	E.StateId,
+	E.ImageUrl,
+	s.[Description] 'DescriptionState',
+	ISNULL(EA.Assist, 'False') Assist
+FROM [Events] E (NOLOCK)
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = E.ContactAudit
+	LEFT JOIN  @EventAssist  EA
+		ON EA.EventId = E.EventId
+WHERE 
+		MONTH(e.StartDate) = MONTH(@Date)
+	 AND
+		YEAR(e.StartDate) = YEAR(@Date)
+	 AND
+		e.StateId = 2
+	AND E.DateDeleted IS NULL
+
+
+
+ALTER PROCEDURE [dbo].[Events_GetById]
+(
+	@ContactId INT,
+	@EventId INT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @EventId INT = 2
+*/
+
+DECLARE @IsAuditor BIT
+DECLARE @AttendeesCount INT = 0
+
+
+SELECT @AttendeesCount = COUNT(*) 
+FROM ContactXEvent 
+WHERE EventId = @EventId AND  DateCancellation IS NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	E.StateId,
+	E.ImageUrl,
+	s.[Description] AS 'DescriptionState',
+	@AttendeesCount AS 'AttendeesCount'
+FROM [Events] E (NOLOCK)
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = E.ContactAudit
+WHERE 
+	EventId = @EventId
+	AND 
+		(
+			@ContactId = E.ContacCreate
+			OR
+			@IsAuditor = 'True'
+		)
+	AND E.DateDeleted IS NULL
+
+
+
+
+ALTER PROCEDURE [dbo].[Events_GetByIdMoreInfo]
+(
+	@ContactId INT = NULL,
+	@EventId INT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @EventId INT = 6
+DECLARE @ContactId INT = 1
+*/
+
+DECLARE @AttendeesCount INT = 0
+
+SELECT @AttendeesCount = COUNT(EventId) 
+FROM ContactXEvent 
+WHERE EventId = @EventId AND  DateCancellation IS NULL
+
+
+
+SELECT 
+	E.EventId,
+	E.EndDate,
+	E.StartDate,
+	E.[Description],
+	E.Title,
+	E.DateEntered,
+	E.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	E.ContactAudit,
+	CASE WHEN E.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	E.StateId,
+	E.ImageUrl,
+	s.[Description] 'DescriptionState',
+	CAST( 
+	 CASE
+        WHEN EXISTS (
+			SELECT 1 
+			FROM ContactXEvent (NOLOCK) CE 
+			WHERE @ContactId IS NOT NULL AND CE.ContactId = @ContactId AND CE.EventId = @EventId AND CE.DateCancellation IS NULL
+			) 
+		THEN 'True'
+        ELSE 'False'
+    END 
+	AS BIT)
+	AS 'Assist',
+	@AttendeesCount AS 'AttendeesCount'
+FROM [Events] E (NOLOCK)
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = E.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = E.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = E.ContactAudit
+WHERE 
+	EventId = @EventId
+	AND E.StateId = 2
+	AND E.DateDeleted IS NULL
+
+	
+IF EXISTS (SELECT E.EventId FROM [Events] E (NOLOCK) WHERE EventId = @EventId AND E.StateId = 2)
+	BEGIN
+		INSERT INTO ActionLog 
+		(
+			ObjectKey, 
+			ObjectId,
+			ActionTypeId,
+			ContactId,
+			DateEntered
+		) 
+		VALUES 
+		(
+			'EventId', 
+			@EventId,
+			11,
+			@ContactId,
+			GETDATE()
+		)
+	END
+
+
+
+ALTER PROCEDURE [dbo].[Search_GetSearch]
+(
+	@SearchText AS VARCHAR(MAX),
+	@Filters AS VARCHAR(MAX),
+	@inclusivePosts AS BIT = NULL,
+	@inclusiveEvents AS BIT = NULL
+)
+AS
+
+
+/*
+-- para trest
+DECLARE	@SearchText AS VARCHAR(MAX) = null
+DECLARE	@Filters AS VARCHAR(MAX) = null
+DECLARE @inclusivePosts AS BIT = 'True'
+DECLARE @inclusiveEvents AS BIT = 'False'
+*/
+
+
+DECLARE @TableFilters TABLE 
+(
+	[filter] INT
+)
+
+DECLARE @TableSearchText TABLE 
+(
+	TextFilter varchar(60)
+)
+
+DECLARE @PostsAux TABLE 
+(
+	PostId INT,
+	DateOrder DateTime
+)
+
+DECLARE @TableSearchAux TABLE
+(
+	[Key]  VARCHAR(250),
+	Id INT,
+	StartDate DATETIME,
+	NameCreate  VARCHAR(500),
+	ContacCreateId INT,
+	Description  VARCHAR(MAX),
+	Title  VARCHAR(1000),
+	ImageUrl VARCHAR(500),
+	TypeId  VARCHAR(250),
+	TypeDescription VARCHAR(500),
+	DateOrder DateTime,
+	DateEntered  DateTime
+)
+
+IF (@SearchText IS NOT NULL)
+	BEGIN
+		INSERT INTO @TableSearchText
+		SELECT value
+		FROM STRING_SPLIT(@SearchText , ' ')
+	END
+
+
+IF ISNULL(@inclusiveEvents, 'True') = 'True'
+	BEGIN
+		INSERT INTO @TableSearchAux
+		SELECT DISTINCT TOP 10
+			'EventId' AS 'Key',
+			E.EventId AS 'Id',
+			E.StartDate,
+			ISNULL(C.FoundationName, C.LastName + ', ' + C.FirstName) AS 'NameCreate',
+			C.ContactId AS 'ContacCreateId',
+			E.[Description],
+			E.Title,
+			E.ImageUrl,
+			NULL 'TypeId',
+			NULL 'TypeDescription',
+			ISNULL(ISNULL(ISNULL(E.EndDate, E.StartDate),E.DateModify), E.DateEntered),
+			E.StartDate
+		FROM [Events] (NOLOCK) E
+			INNER JOIN Contacts (NOLOCK) C
+				ON C.ContactId = E.ContacCreate
+		WHERE 
+			(
+				EXISTS (
+						SELECT TextFilter 
+						FROM @TableSearchText AUX
+						WHERE 
+						E.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+						OR
+						E.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+					)
+				OR (@SearchText IS NULL)
+			)
+			AND E.StateId = 2
+			AND E.DateDeleted IS NULL
+		ORDER BY E.StartDate DESC
+	END
+
+
+IF ISNULL(@inclusivePosts, 'True') = 'True'
+	BEGIN
+		IF (@Filters IS NOT NULL)
+			BEGIN
+				INSERT INTO @TableFilters
+				SELECT value
+				FROM STRING_SPLIT(@Filters , ',')
+
+				IF EXISTS(SELECT * FROM @TableFilters) 
+					BEGIN
+						INSERT INTO @PostsAux
+						SELECT DISTINCT TOP 50
+							PTI.PostId,
+							ISNULL(P.DateModify, P.DateEntered)
+						FROM [Posts] (NOLOCK) P
+							LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+								ON PTI.PostId = P.PostId 
+						WHERE 
+							( 
+								PTI.TypeId IN (SELECT * FROM @TableFilters)
+							) 
+							AND P.StateId = 2
+							AND P.DateDeleted IS NULL
+						ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+					END
+				  ELSE 
+					BEGIN
+						INSERT INTO @PostsAux
+						SELECT DISTINCT TOP 50
+							PTI.PostId,
+							ISNULL(P.DateModify, P.DateEntered)
+						FROM [Posts] (NOLOCK) P
+							LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+								ON PTI.PostId = P.PostId 
+						WHERE  P.StateId = 2
+							AND P.DateDeleted IS NULL
+						ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+					END
+			END
+	   ELSE 
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 50
+					PTI.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+						ON PTI.PostId = P.PostId 
+				WHERE  P.StateId = 2
+						AND P.DateDeleted IS NULL
+				ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+			END
+
+		IF @Filters IS NOT NULL
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 50
+					P.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					INNER JOIN @PostsAux PA
+						ON P.PostId = PA.PostId
+				WHERE EXISTS (
+							SELECT TextFilter 
+							FROM @TableSearchText AUX
+							WHERE 
+							P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+						)
+					OR (@SearchText IS NULL)
+					AND P.StateId = 2
+						AND P.DateDeleted IS NULL
+				ORDER BY ISNULL(P.DateModify, P.DateEntered) DESC
+			END
+		  ELSE 
+			BEGIN
+				INSERT INTO @PostsAux
+				SELECT DISTINCT TOP 50
+					P.PostId,
+					ISNULL(P.DateModify, P.DateEntered)
+				FROM [Posts] (NOLOCK) P
+					INNER JOIN @PostsAux PA
+						ON P.PostId = PA.PostId
+				WHERE EXISTS (
+							SELECT TextFilter 
+							FROM @TableSearchText AUX
+							WHERE 
+							P.Title LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Description LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+							OR
+							P.Text LIKE (SELECT CONCAT('%', AUX.TextFilter ,'%'))
+						)
+					OR (@SearchText IS NULL)
+					AND P.StateId = 2
+					AND P.DateDeleted IS NULL
+			END
+	
+		INSERT INTO @TableSearchAux
+			SELECT
+				'PostId' AS 'Key',
+				P.PostId AS 'Id',
+				NULL 'StartDate',
+				ISNULL(C.FoundationName, C.LastName + ', ' + C.FirstName) AS 'NameCreate',
+				C.ContactId AS 'ContacCreateId',
+				P.[Description],
+				P.Title,
+				P.ImageUrl,
+				PTI.TypeId,
+				TI.Description 'TypeDescription',
+				ISNULL(P.DateModify, P.DateEntered),
+				P.DateEntered
+			FROM [Posts] (NOLOCK) P
+				INNER JOIN Contacts (NOLOCK) C
+					ON C.ContactId = P.ContacCreate
+				INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
+					ON PTI.PostId = P.PostId
+				INNER JOIN TypesImpairment (NOLOCK) TI
+					ON PTI.TypeId = TI.TypeId
+				INNER JOIN @PostsAux PA
+					ON PA.PostId = P.PostId
+		END
+
+			
+SELECT DISTINCT * FROM @TableSearchAux ORDER BY [Key], Id, DateOrder DESC
+
+INSERT INTO ActionLog 
+(
+	filters,
+	SearchText,
+	ActionTypeId,
+	DateEntered
+) 
+VALUES 
+(
+	@Filters,
+	@SearchText,
+	1,
+	GETDATE()
+)
+
+
+
+ALTER PROCEDURE [dbo].[Posts_GetByIdMoreInfo]
+(
+	@PostId INT
+)
+AS
+
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @PostId INT = 2
+*/
+
+SELECT 
+	P.PostId,
+	P.[Description],
+	P.Text,
+	P.Title,
+	P.DateEntered,
+	P.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	P.ContactAudit,
+	CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	P.StateId,
+	P.ImageUrl,
+	s.[Description] 'DescriptionState',
+	PTI.TypeId,
+	TI.Description 'DescriptionTypeImpairment'
+FROM [Posts] (NOLOCK) P
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = P.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = P.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = P.ContactAudit
+	INNER JOIN PostsXTypesImpairment (NOLOCK) PTI
+		ON PTI.PostId = P.PostId
+	LEFT JOIN TypesImpairment (NOLOCK) TI
+		ON PTI.TypeId = TI.TypeId
+WHERE
+	P.PostId = @PostId
+	AND P.StateId = 2
+	AND P.DateDeleted IS NULL
+
+IF EXISTS (SELECT P.PostId FROM [Posts] (NOLOCK) P WHERE P.PostId = @PostId AND P.StateId = 2) 
+	INSERT INTO ActionLog 
+	(
+		ObjectKey, 
+		ObjectId,
+		ActionTypeId,
+		DateEntered
+	) 
+	VALUES 
+	(
+		'PostId', 
+		@PostId,
+		12,
+		GETDATE()
+)
+
+
+
+
+ALTER PROCEDURE [dbo].[Posts_GetById]
+(
+	@ContactId INT,
+	@PostId INT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @PostId INT = 2
+*/
+
+DECLARE @IsAuditor BIT
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+SELECT 
+	P.PostId,
+	P.[Description],
+	P.Text,
+	P.Title,
+	P.DateEntered,
+	P.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	P.ContactAudit,
+	CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	P.StateId,
+	P.ImageUrl,
+	s.[Description] 'DescriptionState',
+	PTI.TypeId,
+	TI.Description 'DescriptionTypeImpairment'
+FROM [Posts] (NOLOCK) P
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = P.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = P.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = P.ContactAudit
+	LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+		ON PTI.PostId = P.PostId
+	LEFT JOIN TypesImpairment (NOLOCK) TI
+		ON PTI.TypeId = TI.TypeId
+WHERE
+	P.PostId = @PostId
+	AND 
+		(
+			@ContactId = P.ContacCreate
+			OR
+			@IsAuditor = 'True'
+		)
+	AND P.DateDeleted IS NULL
+
+
+
+ALTER PROCEDURE [dbo].[Posts_GetAll]
+(
+	@ContactId INT,
+	@audit INT = NULL
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @audit INT = 0
+*/
+
+DECLARE @IsAuditor BIT
+
+IF (@audit IS NOT NULL AND @audit = 1) 
+	BEGIN
+		SELECT 
+			@IsAuditor = ISNULL(Auditor, 'False')
+		FROM Contacts 
+		WHERE ContactId = @ContactId 
+	END
+
+SELECT 
+	P.PostId,
+	P.[Description],
+	P.Text,
+	P.Title,
+	P.DateEntered,
+	P.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	P.ContactAudit,
+	CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	P.StateId,
+	P.ImageUrl,
+	s.[Description] 'DescriptionState',
+	PTI.TypeId,
+	TI.Description 'DescriptionTypeImpairment'
+FROM [Posts] (NOLOCK) P
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = P.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = P.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = P.ContactAudit
+	LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+		ON PTI.PostId = P.PostId
+	LEFT JOIN TypesImpairment (NOLOCK) TI
+		ON PTI.TypeId = TI.TypeId
+WHERE
+		(
+			@ContactId = P.ContacCreate
+			OR
+			@IsAuditor = 'True'
+		)
+	AND P.DateDeleted IS NULL
+ORDER BY P.PostId
+
+
+
+
+ALTER PROCEDURE [dbo].[ActionLog_GetActions]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para test
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		-- Tabla de actiones de usuario
+			SELECT 
+				AL.ActionLogId,
+				AL.DateEntered,
+				AT.[Description],
+				dbo.SearchTypesImpairment(AL.filters) 'FiltersDescription',
+				AL.SearchText,
+				CASE ObjectKey
+					-- contacts
+					WHEN 'ContactId' THEN ISNULL(C.FoundationName, C.LastName + ', ' + C.FirstName)
+					-- Events
+					WHEN 'EventId' THEN E.Title
+					-- Posts
+					WHEN 'PostId' THEN P.Title
+					-- Busqueda
+					ELSE 'Texto buscardo: ' + AL.SearchText
+				END 'ActionDone',
+				CASE WHEN ISNULL(AL.ContactId,0) <> 0 THEN  ISNULL(AC.FoundationName, AC.LastName + ', ' + AC.FirstName) ELSE NULL END 'ContactAction'
+			FROM ActionLog (NOLOCK) AL
+				INNER JOIN ActionType (NOLOCK) AT
+				 ON AL.ActionTypeId = AT.ActionTypeId
+				LEFT JOIN [Events] (NOLOCK) E
+					ON E.EventId = AL.ObjectId AND AL.ObjectKey = 'EventId'
+				LEFT JOIN [Posts] (NOLOCK) P
+					ON P.PostId = AL.ObjectId AND AL.ObjectKey = 'PostId'
+				LEFT JOIN [Contacts] (NOLOCK) C
+					ON C.ContactId= AL.ObjectId AND AL.ObjectKey = 'ContactId'
+				LEFT JOIN [Contacts] (NOLOCK) AC
+					ON AC.ContactId = AL.ContactId
+			ORDER BY AL.DateEntered DESC
+
+			-- Tabla de los 5 post con mas visitas
+			SELECT TOP 5
+				AL.ObjectKey,
+				COUNT(AL.ObjectId) 'Viewrs',
+				AL.ObjectId,
+				P.Title,
+				 ISNULL(C.FoundationName, C.LastName + ', ' + C.FirstName) AS 'name'
+			FROM ActionLog (NOLOCK) AL
+				LEFT JOIN [Posts] (NOLOCK) P
+					ON P.PostId = AL.ObjectId
+				LEFT JOIN [Contacts] (NOLOCK) C
+					ON C.ContactId = P.ContacCreate
+			WHERE AL.ActionTypeId = 12
+			GROUP BY AL.ObjectId, P.Title, C.FoundationName, C.LastName, C.FirstName, AL.ObjectKey 
+			ORDER BY 2 DESC
+
+			-- Tabla de los 5 events con mas visitas
+			SELECT TOP 5
+				AL.ObjectKey,
+				COUNT(AL.ObjectId) 'Viewrs',
+				AL.ObjectId,
+				E.Title,
+				ISNULL(C.FoundationName, C.LastName + ', ' + C.FirstName) AS 'name'
+			FROM ActionLog (NOLOCK) AL
+				LEFT JOIN [Events] (NOLOCK) E
+					ON E.EventId = AL.ObjectId
+				LEFT JOIN [Contacts] (NOLOCK) C
+					ON C.ContactId = E.ContacCreate
+			WHERE AL.ActionTypeId = 11
+			GROUP BY AL.ObjectId, E.Title, C.FoundationName, C.LastName, C.FirstName, AL.ObjectKey
+			ORDER BY 2 DESC
+
+			-- Tabla de los 5 perfiles con mas visitas
+			SELECT TOP 5
+				AL.ObjectKey,
+				COUNT(AL.ObjectId) 'Viewrs',
+				AL.ObjectId,
+				ISNULL(C.FoundationName, C.LastName + ', ' + C.FirstName) AS 'name'
+			FROM ActionLog (NOLOCK) AL
+				LEFT JOIN [Contacts] (NOLOCK) C
+					ON C.ContactId = AL.ObjectId
+			WHERE AL.ActionTypeId = 13
+			GROUP BY AL.ObjectId, C.FoundationName, C.LastName, C.FirstName, AL.ObjectKey
+			ORDER BY 2 DESC
+
+			-- Grafico de tipos de discapacidad mas buscados
+			SELECT
+				COUNT(TI.TypeId) 'CountSearchs',
+				TI.TypeId,
+				TI.[Description]
+			FROM ActionLog (NOLOCK) AL
+				LEFT JOIN TypesImpairment (NOLOCK) TI
+				 ON TypeId IN (SELECT value FROM STRING_SPLIT(AL.filters , ','))
+			WHERE AL.ActionTypeId = 1 AND al.filters IS NOT NULL
+			GROUP BY TI.TypeId, TI.[Description]
+			ORDER BY 1 DESC
+
+		SET @ResultCode = 200
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 401
+	END
+
+
+
+-- corrigo campos mal tipiados
+UPDATE ActionType SET [Description] = 'Rechazar Evento' WHERE [Description] = 'Rechzar Evento'
+UPDATE ActionType SET [Description] = 'Rechazar Contenido' WHERE [Description] = 'Rechzar Contenido'
+
+
+-- Check if the stored procedure exists before dropping
+IF OBJECT_ID('[dbo].[Contact_DeleteFoundation]', 'P') IS NOT NULL
+BEGIN
+    DROP PROCEDURE [dbo].[Contact_DeleteFoundation]
+END
+GO
+
+-- Create the stored procedure if it doesn't exist
+IF OBJECT_ID('[dbo].[Contact_DeleteFoundation]', 'P') IS NULL
+BEGIN
+    SET ANSI_NULLS ON
+    GO
+    
+    SET QUOTED_IDENTIFIER ON
+    GO
+    
+    CREATE PROCEDURE [dbo].[Contact_DeleteFoundation]
+    (
+        @ContactId INT,
+        @ResultCode INT OUTPUT
+    )
+    AS
+    /*
+    --para test
+    DECLARE @ContactId INT = 4
+    DECLARE @ResultCode INT
+    */
+    
+    IF (
+        SELECT TOP 1 
+            C.ContactId 
+        FROM Contacts (NOLOCK) C 
+        WHERE C.ContactId = @ContactId) IS NOT NULL
+    BEGIN
+        UPDATE Contacts 
+        SET FoundationName = NULL
+        WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+                
+        IF @@ROWCOUNT = 0
+            BEGIN 
+                SET @ResultCode = 404 
+            END
+            ELSE
+            BEGIN 
+                SET @ResultCode = 200
+            END
+    END
+    ELSE 
+    BEGIN
+        SET @ResultCode = 404
+    END
+    GO
+END
+
+
+-- Check if the stored procedure exists before dropping it
+IF OBJECT_ID('[dbo].[Contact_UpdateFoundation]', 'P') IS NOT NULL
+BEGIN
+    -- Drop the stored procedure if it exists
+    DROP PROCEDURE [dbo].[Contact_UpdateFoundation]
+    PRINT 'Dropped existing stored procedure [dbo].[Contact_UpdateFoundation]'
+END
+GO
+
+-- Create the stored procedure
+CREATE PROCEDURE [dbo].[Contact_UpdateFoundation]
+(
+	@ContactId INT,
+	@FoundationName VARCHAR(500),
+	@ResultCode INT OUTPUT
+)
+AS
+BEGIN
+    /*
+    --para test
+    DECLARE @ContactId INT = 1
+    DECLARE @FoundationName VARCHAR(500) = 'Test S.A'
+    DECLARE @ResultCode INT
+    */
+
+    SET @ResultCode = 200
+
+    IF (@FoundationName IS NULL OR @FoundationName = '')
+    BEGIN
+        SET @ResultCode = 5016
+    END
+
+    IF (SELECT TOP 1 
+            C.ContactId 
+        FROM Contacts (NOLOCK) C 
+        WHERE C.ContactId = @ContactId) IS NULL
+    BEGIN
+        SET @ResultCode = 404
+    END
+
+    IF @ResultCode = 200
+        AND (SELECT TOP 1 
+                C.ContactId 
+            FROM Contacts (NOLOCK) C 
+            WHERE 
+                ISNULL(C.Confirm, 'False') <> 'False'
+                AND C.DateDeleted IS NOT NULL
+                AND C.FoundationName = @FoundationName
+                AND C.ContactId <> @ContactId
+            ) IS NOT NULL
+    BEGIN 
+        SET @ResultCode = 5922
+    END
+
+    IF @ResultCode = 200
+    BEGIN
+        UPDATE Contacts 
+        SET FoundationName = @FoundationName
+        WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+                
+        IF @@ROWCOUNT = 0
+        BEGIN 
+            SET @ResultCode = 404 
+        END
+        ELSE
+        BEGIN 
+            SET @ResultCode = 200
+        END
+    END
+END
+GO
+

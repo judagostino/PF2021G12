@@ -1,0 +1,5 @@
+2024-03-09 20:23:17.9084 - INFO - 0HN20HUVKVGOM:00000004 - (PUT) https://localhost/api/v1/Contact/UpdateFoundation (ver: ) - ::1
+     Message: Foundation Name Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NzQyMmY4OS00ZDE1LTQ4NTYtYTlhYS04NGE5ZjlhODc4YTYiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDAyNjU2MiwiZXhwIjoxNzEwMDI3NDYyLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.tR9SLJ6f3SshDUx_PvohvoTbfCNXwXuT6gdqtLFuhwg", 
+     Body: {"Id":null,"Email":null,"UserName":null,"LastName":null,"FirstName":null,"Name":null,"ImageUrl":null,"Auditor":null,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"FoundationName":"Test S.A","DateBrirth":null,"Events":null,"Posts":null}
+

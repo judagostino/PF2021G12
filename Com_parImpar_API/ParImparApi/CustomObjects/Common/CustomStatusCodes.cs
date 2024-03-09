@@ -31,6 +31,7 @@ namespace ParImparApi.Common
         [Description("Description is required")] DescriptionRequired = 5013,
         [Description("Text is required")] TextRequired = 5014,
         [Description("User ID is required")] ContactIdRequired = 5015,
+        [Description("Foundation Name is required")] FoundationNameRequired = 5016,
 
 
         // Item not exists
@@ -60,6 +61,7 @@ namespace ParImparApi.Common
         [Description("Not Confirm User")] NotConfirmUser = 5919,
         [Description("User Blocked")] UserBlocked = 5920,
         [Description("Password Invalid")] PasswordInvalid= 5921,
+        [Description("Foundation Name Invalid")] FoundationNameInvalid = 5922,
     }
 
     internal static class Extensions

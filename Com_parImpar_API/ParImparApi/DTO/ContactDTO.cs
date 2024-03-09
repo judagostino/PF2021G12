@@ -31,11 +31,13 @@ namespace ParImparApi.DTO
 
         public string? Assist { get; set; }
 
+        public string? FoundationName { get; set; }
+
         public DateTime? DateBrirth { get; set; }
 
-        public List<EventRequestDTO> Events { get; set; }
+        public List<EventRequestDTO>? Events { get; set; }
 
-        public List<PostsDTO> Posts { get; set; }
+        public List<PostsDTO>? Posts { get; set; }
 
         public static ContactDTO GetContactById(List<ContactDTO> contacts, int? id)
         {

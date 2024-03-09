@@ -593,6 +593,11 @@ namespace ParImparApi.Services
                                     contact.Name = reader["Name"].ToString();
                                 }
 
+                                if (reader["FoundationName"] != DBNull.Value)
+                                {
+                                    contact.FoundationName = reader["FoundationName"].ToString();
+                                }
+
                                 if (reader["Email"] != DBNull.Value)
                                 {
                                     contact.Email = reader["Email"].ToString();
@@ -719,6 +724,11 @@ namespace ParImparApi.Services
                                 if (reader["Name"] != DBNull.Value)
                                 {
                                     contact.Name = reader["Name"].ToString();
+                                }
+
+                                if (reader["FoundationName"] != DBNull.Value)
+                                {
+                                    contact.FoundationName = reader["FoundationName"].ToString();
                                 }
 
                                 if (reader["Email"] != DBNull.Value)
@@ -1093,6 +1103,94 @@ namespace ParImparApi.Services
             }
         }
 
+        public async Task<ApiResponse> UpdateFoundation(ContactDTO contact)
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_UpdateFoundation", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters] 
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+                        cmd.Parameters.Add(new SqlParameter("@FoundationName", contact.FoundationName));
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
+
+        public async Task<ApiResponse> DeleteFoundation()
+        {
+            using (SqlConnection cnn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("Contact_DeleteFoundation", cnn))
+                {
+                    try
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        #region [SP Parameters] 
+                        cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
+
+                        cmd.Parameters.Add(new SqlParameter()
+                        {
+                            ParameterName = "@ResultCode",
+                            SqlDbType = System.Data.SqlDbType.Int,
+                            Direction = System.Data.ParameterDirection.Output
+                        });
+                        #endregion
+
+                        await cnn.OpenAsync();
+                        await cmd.ExecuteNonQueryAsync();
+
+                        return new ApiResponse()
+                        {
+                            Status = (CustomStatusCodes)(int)cmd.Parameters["@ResultCode"].Value
+                        };
+                    }
+                    catch (Exception exc)
+                    {
+                        throw exc;
+                    }
+                    finally
+                    {
+                        if (cnn.State == System.Data.ConnectionState.Open)
+                        {
+                            await cnn.CloseAsync();
+                        }
+                    }
+                }
+            }
+        }
 
         public async Task<ApiResponse> TrustedAndUntrusted(int? contactId, bool trusted)
         {

@@ -691,6 +691,66 @@
 						"description": "Endpoint encargado de Eliminar un suario marcando sus eventos y post como eliminados, espera recibir la contraseña del usuario para valdiar que el borrado sea correcto y no se haya pedido por error.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n401: No tiene permisos para usar este Endpoint.  \n5002: La contraseña es requerida.  \n5921: La contraseña es incorrecta."
 					},
 					"response": []
+				},
+				{
+					"name": "Contact_DeleteFoundation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/DeleteFoundation",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"DeleteFoundation"
+							]
+						},
+						"description": "Endpoint encargado de eliminar la visibilidad de una fundacion.\n\nLos posibles errores son:  \n404: no se encontraron usuarios."
+					},
+					"response": []
+				},
+				{
+					"name": "Contact_UpdateFoundation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"foundationName\": \"Test S.A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/api/{{version}}/Contact/UpdateFoundation",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"api",
+								"{{version}}",
+								"Contact",
+								"UpdateFoundation"
+							]
+						},
+						"description": "Endpoint encargado de modificar o crear una fundacion.\n\nLos posibles errores son:  \n404: no se encontraron usuarios.  \n5016: en nombre de fundacion es requerido.  \n5922: La findacion ya existe."
+					},
+					"response": []
 				}
 			]
 		},
@@ -1611,7 +1671,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YzhmNzA5MS1iM2U2LTRmNWYtYWZlNy03MzIyYzU3NTdiNjIiLCJDb250YWN0SWQiOiIyIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcwODMwMDc0MywiZXhwIjoxNzA4MzAxNjQzLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.BXpZxRmUhosD5ZaJPKzGOIMnZmdnMq85equtlW_UDow",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NzQyMmY4OS00ZDE1LTQ4NTYtYTlhYS04NGE5ZjlhODc4YTYiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDAyNjU2MiwiZXhwIjoxNzEwMDI3NDYyLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.tR9SLJ6f3SshDUx_PvohvoTbfCNXwXuT6gdqtLFuhwg",
 				"type": "string"
 			}
 		]

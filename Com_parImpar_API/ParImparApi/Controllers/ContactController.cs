@@ -789,7 +789,7 @@ namespace ParImparApi.Controllers
         #endregion
 
         #region [Delete]
-        // DELETE: api/v1/Contact/Delete
+        // POST: api/v1/Contact/Delete
         [HttpPost("Delete")]
         [Authorize("AccessToken")]
         public async Task<IActionResult> Delete([FromBody] CredentialsLoginRequestDTO credentialsLoginRequest)
@@ -823,6 +823,80 @@ namespace ParImparApi.Controllers
             catch (Exception exc)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, credentialsLoginRequest));
+            }
+        }
+        #endregion
+
+        #region [UpdateFoundation]
+        // PUT: api/v1/Contact/UpdateFoundation
+        [HttpPut("UpdateFoundation")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> UpdateFoundation([FromBody] ContactDTO contactDTO)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(contactDTO.FoundationName))
+                {
+                    return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, CustomStatusCodes.FoundationNameRequired, contactDTO));
+                }
+
+
+                ApiResponse response = await _contactsService.UpdateFoundation(contactDTO);
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.FoundationNameRequired:
+                    case CustomStatusCodes.FoundationNameInvalid:
+                        {
+                            return BadRequest(Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactDTO));
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, contactDTO));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, contactDTO));
+            }
+        }
+        #endregion
+
+        #region [Delete_Foundation]
+        // DELETE: api/v1/Contact/Delete
+        [HttpDelete("DeleteFoundation")]
+        [Authorize("AccessToken")]
+        public async Task<IActionResult> DeleteFoundation()
+        {
+            try
+            {
+
+                ApiResponse response = await _contactsService.DeleteFoundation();
+
+                switch (response.Status)
+                {
+                    case CustomStatusCodes.Success:
+                        {
+                            return Ok();
+                        }
+                    case CustomStatusCodes.NotFound:
+                        {
+                            return NotFound();
+                        }
+                    default:
+                        {
+                            return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateErrorResponse(_httpContextAccessor.HttpContext, _logger, response.Status, null));
+                        }
+                }
+            }
+            catch (Exception exc)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, Functions.GenerateExceptionResponse(_httpContextAccessor.HttpContext, _logger, exc, null));
             }
         }
         #endregion
