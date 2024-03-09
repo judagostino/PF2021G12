@@ -52,10 +52,13 @@ namespace ParImparApi.Services
                         actionLog.PostViews = new List<ViewrsActionLogDTO>();
                         actionLog.ProfileViews = new List<ViewrsActionLogDTO>();
                         actionLog.UserActionLog = new List<UserActionLogDTO>();
+                        actionLog.TypesActionLo = new List<TypesActionLogDTO>();
 
                         ViewrsActionLogDTO viewrsActionLog;
                         GraphicImpedimentDTO graphicImpediment;
                         UserActionLogDTO userActionLog;
+                        TypesActionLogDTO typesActionLog;
+
 
                         ApiResponse successResponse = new ApiResponse()
                         {
@@ -186,7 +189,6 @@ namespace ParImparApi.Services
 
                             await reader.NextResultAsync();
 
-
                             /* Perfiles mas vistos */
                             while (await reader.ReadAsync())
                             {
@@ -218,7 +220,6 @@ namespace ParImparApi.Services
 
                             await reader.NextResultAsync();
 
-
                             /* Perfiles mas vistos */
                             while (await reader.ReadAsync())
                             {
@@ -242,6 +243,22 @@ namespace ParImparApi.Services
                                 {
                                     actionLog.GraphicImpediment.Add(graphicImpediment);
                                 }
+                            }
+
+
+                            await reader.NextResultAsync();
+
+                            /* typos de Acciones */
+                            while (await reader.ReadAsync())
+                            {
+                                typesActionLog = new TypesActionLogDTO();
+
+                                if (reader["Description"] != DBNull.Value)
+                                {
+                                    typesActionLog.Description = reader["Description"].ToString();
+                                }
+
+                                actionLog.TypesActionLo.Add(typesActionLog);
                             }
                         }
                         #endregion

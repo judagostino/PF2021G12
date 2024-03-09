@@ -14,5 +14,7 @@ namespace ParImparApi.Services
 
         public List<GraphicImpedimentDTO> GraphicImpediment { get; set; }
 
+        public List<TypesActionLogDTO> TypesActionLo { get; set; }
+
     }
 }

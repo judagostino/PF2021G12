@@ -1168,6 +1168,8 @@ IF @IsAuditor = 'True'
 			GROUP BY TI.TypeId, TI.[Description]
 			ORDER BY 1 DESC
 
+			-- Tipos de Acciones de usuario
+			SELECT [Description] FROM ActionType
 		SET @ResultCode = 200
 	END
   ELSE
