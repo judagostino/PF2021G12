@@ -51,6 +51,7 @@ import { DisabilitiesInterestDialogComponent } from './components/disabilities-i
 import { ReasonRejectDialogComponent } from './components/reason-reject/reason-reject.component';
 import { DeleteUserDialogComponent } from './components/delete-user/delete-user.component';
 import { InfoContactComponent } from './pages/info-contact/info-contact.component';
+import { FiltroPagination } from './pipe/filtro-pagination.pipe';
 
 
 registerLocaleData(localeEs, 'es');
@@ -80,6 +81,7 @@ registerLocaleData(localeEs, 'es');
     BlockTemplateCmp,
     ABMPermissionsComponent,
     TruncatePipe,
+    FiltroPagination,
     RecoverConfirmPasswordComponent,
     InscriptionEventDialogComponent,
     BlockUserDialogComponent,

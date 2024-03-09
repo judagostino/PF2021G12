@@ -17,8 +17,8 @@ export class SearchComponent implements OnInit {
   resultsSearch: SearchItem[] = [];
   searchText: string = '';
   notResoult: boolean = false;
-  events:boolean = true;
-  posts:boolean = true;
+  events: boolean = true;
+  posts: boolean = true;
 
   constructor( 
     private router: Router,
@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit {
       }
       this.typeImpairments = resp;
     });
+    this.btn_search();
   }
 
   public prepareDate(date: Date): string {

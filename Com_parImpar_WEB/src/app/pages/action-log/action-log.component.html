@@ -114,9 +114,32 @@
           <div class="col-10 top-div">
          <div *ngIf="actionLog?.userActionLog?.length >= 0" >
              <div class="titulo-top mb-5">
-                 Acciones por usuario
+                 Acciones por usuarios
              </div>
          <div style="max-height: 600px;">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-2">
+              <select class="form-select form-select-sm filterMenu" aria-label=".form-select-sm example">
+                <option selected style="text-align: center;">Fecha</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>              
+            </div>
+            <div class="col-2">
+              <select class="form-select form-select-sm filterMenu" aria-label=".form-select-sm example">
+                <option selected style="text-align: center;">Acción</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>              
+            </div>
+            <div class="col-4">
+              <input type="text" class="form-control mb-2 form-control-sm filterMenu" placeholder="Buscar autor" #txtSearch (keyup) = "onSearch(txtSearch.value)">
+            </div>
+            <div class="col-2"></div>
+          </div>
              <table class="table" >
                  <thead>
                      <tr>
@@ -129,7 +152,7 @@
                      </tr>
                    </thead>
                     <tbody >
-                      <tr *ngFor="let userAction of actionLog?.userActionLog">
+                      <tr *ngFor="let userAction of actionLog?.userActionLog |filtro:page:search">
                         <td style="white-space:nowrap;">{{userAction.dateEntered | date: 'dd/MM/yyyy HH:mm'}}</td>
                         <td>{{userAction.description}}</td>
                         <td>{{userAction.filtersDescription}}</td>
@@ -140,19 +163,27 @@
                     </tbody>
                    
                </table>
-               <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                  </li>
-                  <li class="page-item-active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item-active"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item-active"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Siguiente</a>
-                  </li>
-                </ul>
-              </nav>
+               <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6 justify-contact-center">
+                      <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                          <button (click)="prevPage()">Anterior</button>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                          <button (click)="nextPage()" [disabled]="(actionLog?.userActionLog |filtro:page:search)?.length == 0">Siguiente</button>
+                        </div>
+                        <div class="col-1"></div>
+                      </div>
+                    </div>
+                    <div class="col-3"></div>
+                  </div>
+                </div>
+               </div>
           </div>  
          </div>
         </div>
