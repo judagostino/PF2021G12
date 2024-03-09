@@ -52,6 +52,7 @@ import { ReasonRejectDialogComponent } from './components/reason-reject/reason-r
 import { DeleteUserDialogComponent } from './components/delete-user/delete-user.component';
 import { InfoContactComponent } from './pages/info-contact/info-contact.component';
 
+
 registerLocaleData(localeEs, 'es');
 
 @NgModule({

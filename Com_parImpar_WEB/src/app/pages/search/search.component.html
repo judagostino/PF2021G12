@@ -10,8 +10,11 @@
                     </mat-form-field>
                     
                     <div class="  text-center" id="more-filters">
-                        <button (click)="showMoreInfo=!showMoreInfo" style="margin-bottom: 25px;">Seleccione a continuación un filtro de su agrado</button>
+                        <button (click)="showMoreInfo=!showMoreInfo" class="titulo-filtros">FILTROS</button>
                         <div *ngIf="showMoreInfo" class="row">
+                            <div class="row col-12 justify-content-center titulo-discapacidad">
+                                Tipos de Discapacidades
+                            </div>
                             <div class="col-2"></div>
                             <div class="col-10">
                                 <div class="row" style="text-align: left;">
@@ -24,6 +27,31 @@
                                     <div class="col-6"  style="padding-top: 8px;">
                                         <input type=checkbox [(ngModel)]="posts" style="margin-right: 10px;">Publicaciones
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-2"></div>
+                           
+                        </div>
+                    </div>
+
+                    <div class="  text-center" id="more-filters">
+                        <div *ngIf="showMoreInfo" class="row">
+                            <div class="row col-12 justify-content-center titulo-postEvent">
+                                Opciones de Contenido
+                            </div>
+
+                            <div class="col-2"></div>
+                            <div class="col-10">
+                                <div class="row" style="text-align: left;">
+                                    
+                                    <div class="col-6"  style="padding-top: 8px;">
+                                        <input type=checkbox  style="margin-right: 10px;">Eventos
+                                    </div>
+
+                                    <div class="col-6"  style="padding-top: 8px;">
+                                        <input type=checkbox  style="margin-right: 10px;">Publicaciones
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-2"></div>

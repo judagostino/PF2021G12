@@ -14,7 +14,7 @@
               <th scope="col"></th>
               <th scope="col">Inicio</th>
               <th scope="col">Fin</th>
-              <th scope="col">Título</th>
+              <th scope="col">Evento</th>
               <th scope="col">Estado</th>
             </tr>
           </thead>
@@ -29,8 +29,8 @@
             <td>{{event.endDate | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{event.title}}</td>
             <td class="status-cell">
-              <span style="background-color: green;" *ngIf="event?.state?.id === 2">Autorizado</span> 
-              <span style="background-color: red;" *ngIf="event?.state?.id === 3">Rechazado</span>  
+              <span style="background-color: #157347;" *ngIf="event?.state?.id === 2">Autorizado</span> 
+              <span style="background-color: #b02a37;" *ngIf="event?.state?.id === 3">Rechazado</span>  
               <span style="background-color: grey;" *ngIf="event?.state?.id === 1 || event?.state === null ">En espera</span>
             </td>
             </tr>
@@ -46,7 +46,7 @@
     <div class="col-2"></div>
   <div class="col-8" id="table" *ngIf="key == 'post'">
     <div class="titulo">
-      Publicacion de Contenido
+      Publicaciones de Contenido
     </div> 
     
     <div style="height: 100%; overflow: auto;">
@@ -54,6 +54,7 @@
         <thead>
             <tr>
               <th scope="col"></th>
+              <th scope="col">Fecha Creación</th>
               <th scope="col">Título</th>
               <th scope="col">Descripción</th>
               <th scope="col">Estado</th>
@@ -66,11 +67,12 @@
                 <span>...</span>
               </button>
             </td>
+            <td>{{post.dateEntered | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td>{{post.title}}</td>
             <td>{{post.description | truncate}}</td>
             <td class="status-cell">
-              <span style="background-color: green;" *ngIf="post?.state?.id === 2">Autorizado</span> 
-              <span style="background-color: red;" *ngIf="post?.state?.id === 3">Rechazado</span>  
+              <span style="background-color: #157347;" *ngIf="post?.state?.id === 2">Autorizado</span> 
+              <span style="background-color: #b02a37;" *ngIf="post?.state?.id === 3">Rechazado</span>  
               <span style="background-color: grey;" *ngIf="post?.state?.id === 1 || post?.state === null ">En espera</span> 
             </td>
             </tr>

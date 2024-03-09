@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="central">
     <div class="row">
-      <div class="col-2"></div> 
-      <div class=" col-8 top-div">
+      <div class="col-1"></div> 
+      <div class=" col-10 top-div">
          <div *ngIf="actionLog?.postViews?.length >= 0 || actionLog?.postViews?.length >= 0 || actionLog?.profileViews?.length >= 0">
 
              <div class="row" style="padding-bottom: 0;">
@@ -17,7 +17,7 @@
                            <thead>
                                <tr>
                                    <th scope="col">Cantidad de visitas</th>
-                                   <th scope="col">Titulo de la publicacion</th>
+                                   <th scope="col">Título de la publicacion</th>
                                    <th scope="col">Autor</th>
                                </tr>
                              </thead>
@@ -43,7 +43,7 @@
                          <thead>
                              <tr>
                                  <th scope="col">Cantidad de visitas</th>
-                                 <th scope="col">Titulo del evento</th>
+                                 <th scope="col">Nombre del evento</th>
                                  <th scope="col">Autor</th>
                              </tr>
                            </thead>
@@ -84,55 +84,48 @@
                </div>
              </div>
       </div>
-      <div class="col-2"></div> 
+      <div class="col-1"></div> 
     </div>   
 
 
     <div class="row">
-      <div class="col-2"></div>       
-      <div class="col-8 top-div">
+      <div class="col-1"></div>       
+      <div class="col-10 top-div">
         <div class="row">
         <div class="col-2"></div> 
         <div class="col-8" *ngIf="actionLog?.graphicImpediment?.length >= 0" >
              <div class="titulo-top mb-5">
-                 Filtros mas aplicados
+                 Búsquedas más solicitadas
              </div>
 
             <div> 
               <div *ngIf="chartOption != null" echarts [options]="chartOption" [theme]="'macarons'"></div>
-
-             <!-- <google-chart class="center"
-                 [data]="data"
-                 [columns]="columnNames"
-                 [options]="{'backgroundColor': 'transparent',fontName:'Nunito', fontSize: '15'}"
-                 >
-             </google-chart> -->
             </div> 
            </div>
            <div class="col-2"></div> 
           </div>
           </div>  
-      <div class="col-2"></div> 
+      <div class="col-1"></div> 
     </div>  
 
 
     <div class="row">
-      <div class="col-2"></div>       
-          <div class="col-8 top-div">
+      <div class="col-1"></div>       
+          <div class="col-10 top-div">
          <div *ngIf="actionLog?.userActionLog?.length >= 0" >
              <div class="titulo-top mb-5">
-                 Acciones de usuario
+                 Acciones por usuario
              </div>
-         <div style="overflow: auto;max-height: 600px;">
+         <div style="max-height: 600px;">
              <table class="table" >
                  <thead>
                      <tr>
                          <th scope="col">Fecha</th>
-                         <th scope="col">Accion</th>
+                         <th scope="col">Acción</th>
                          <th scope="col">Filtros Aplicados</th>
                          <th scope="col">Texto buscado</th>
-                         <th scope="col">Accion realizada en:</th>
-                         <th scope="col">Autor de la accion</th>
+                         <th scope="col">Acción realizada en:</th>
+                         <th scope="col">Autor de la acción</th>
                      </tr>
                    </thead>
                     <tbody >
@@ -147,10 +140,23 @@
                     </tbody>
                    
                </table>
+               <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                  </li>
+                  <li class="page-item-active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item-active"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item-active"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Siguiente</a>
+                  </li>
+                </ul>
+              </nav>
           </div>  
          </div>
         </div>
-        <div class="col-2"></div> 
+        <div class="col-1"></div> 
       </div>  
    
 </div>

@@ -19,17 +19,26 @@
 
     }
 
-    button {
-        border: none;
+     button {
         outline: none;
         background-color: transparent;
-        color: black;
-        font-size: 18px;
-        font-family: 'Nunito', sans-serif;
         text-align: center;
-        font-weight: bold;
-        
+        text-transform: uppercase;
+        font-family:'Tilt Neon', sans-serif; 
+        font-size: 20px;
+        color:black;
+        border-radius: 25PX;
+        -moz-border-radius: 25PX;
+        -webkit-border-radius: 25PX;
+        border: 1.9px solid #1995AD;
+        background-color: #FFFFFF;
+        min-width: 150px;
+        min-height: 30px;
+    } 
+    button:hover {
+        background-color: #A1D6E2;
     }
+    
 
     mat-checkbox {
         font-family:'Assistant', sans-serif !important;
@@ -107,3 +116,22 @@
     background-color: #1995AD;
     
   } 
+
+  .titulo-discapacidad{
+   color: black;
+   font-family: 'Assistant',sans-serif;
+   text-transform: uppercase;
+   font-size: 15px;
+  }
+
+  .titulo-postEvent{
+    color: black;
+   font-family: 'Assistant',sans-serif;
+   text-transform: uppercase;
+   font-size: medium;
+   padding-top: 15px;
+  }
+
+  .titulo-filtros{
+   margin-bottom: 25px;
+  }
