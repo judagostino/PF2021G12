@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './info-contact.component.html',
   styleUrls: ['./info-contact.component.scss']
 })
-export class InfoContactComponent implements OnInit {
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
+export class InfoContactComponent {
+  
 }

@@ -23,6 +23,7 @@ import { RecoverConfirmPasswordComponent } from './pages/recover-confirm-passwor
 import { AuthGuard } from './guard/auth.guard';
 import { UnauthorizedGuard } from './guard/unauthorized.guard';
 import { InfoContactComponent } from './pages/info-contact/info-contact.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 
 
 const routes: Routes = [
@@ -45,7 +46,8 @@ const routes: Routes = [
   {path:'action-log', canActivate: [AuthGuard], component: ActionLogComponent},
   {path:'user/recover-password',component: RecoverConfirmPasswordComponent},
   {path:'permissions', canActivate: [AuthGuard], component: ABMPermissionsComponent},
-  {path:'info-contact',component:InfoContactComponent},
+  {path:'info-contact',component: InfoContactComponent},
+  {path:'terms-and-conditions',component: TermsAndConditionsComponent},
   {path:'**',redirectTo:"home"}
   
 ];

@@ -13,6 +13,8 @@ export class ActionLogComponent implements OnInit {
   public chartOption: EChartsOption;
   public page:number = 0;
   public search:string = '';
+  public actionFilter = null;
+  public dateFilter = null;
 
   constructor(private actionsLogService: ActionsLogService) { }
 

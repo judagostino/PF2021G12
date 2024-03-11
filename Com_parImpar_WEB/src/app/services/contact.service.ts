@@ -128,4 +128,11 @@ export class ContactService {
     return this.http.post(`${this.URL}/delete`, credencialLogin);
   }  
 
+  public updateFoundation(body: Contact): Observable<any> {
+    return this.http.put(`${this.URL}/UpdateFoundation`, body);
+  }  
+
+  public deleteFoundation(): Observable<any> {
+    return this.http.delete(`${this.URL}/DeleteFoundation`);
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import moment from 'moment';
 import { DeleteUserDialogComponent } from 'src/app/components/delete-user/delete-user.component';
@@ -16,7 +17,10 @@ import Swal  from 'sweetalert2';
 })
 export class ChangeProfileComponent implements OnInit {
   form: FormGroup;
+  formFundation: FormGroup;
   uploadForm: FormGroup;
+  foundationName: string = null;
+  tabSelected: 'principal' | 'foundation' = 'principal';
   @ViewChild('fileImageProfile') fileImageProfile: ElementRef;
 
   constructor(
@@ -26,21 +30,34 @@ export class ChangeProfileComponent implements OnInit {
     private contactService: ContactService,
     private uploadService: UploadService,
     private router: Router, 
-    private authService: AuthService
+    private authService: AuthService,
+    public snackBar: MatSnackBar,
     ) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.contactService.myInfo().subscribe(resp =>{
+    this.contactService.myInfo().subscribe(resp => {
       if (resp?.dateBrirth != null) {
         this.form.reset({...resp, dateBrirth: new Date(resp.dateBrirth).toISOString().split('T')[0]});
       } else {
         this.form.reset(resp);
       }
+      if (resp != null && resp?.foundationName != null) {
+        this.foundationName = resp.foundationName;
+      }
+      this.formFundation.reset(resp);
     })
   }
 
+  selectTab(tabName: 'principal' | 'foundation', event: any) {
+    event.preventDefault();
+    this.tabSelected = tabName;
+  }
+
   private initForm(): void {
+    this.formFundation = this.formBuilder.group({
+      foundationName: ['']
+    })
     this.form = this.formBuilder.group({
       id:{value:null},
       name:{value:null},
@@ -53,8 +70,8 @@ export class ChangeProfileComponent implements OnInit {
       notifications: [true]
     })
     this.uploadForm = this.formBuilder.group({
-      file: ['']
-    });
+      file: ['']
+    });
   }
 
   public btn_SaveChange(): void {
@@ -81,6 +98,64 @@ export class ChangeProfileComponent implements OnInit {
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  public btn_SaveFoundation(): void {
+    if (this.formFundation.value?.foundationName != null &&  this.formFundation.value?.foundationName != '') {
+      let foundationName: string = this.formFundation.value.foundationName;
+      this.contactService.updateFoundation({id: 0, foundationName}).subscribe(resp => {
+        this.foundationName = foundationName;
+        this.snackBar.open('Su fundación se registro con exito','Aceptar',{duration:5000,panelClass:'snackBar-end'})
+      }, errorResponse => {
+        let message: string = 'Parece haber ocurrido un error, intentelo de nuevo mas tarde. si el error persiste, comuniquese con nostros.';
+        
+        if (errorResponse?.error != null) {
+          if (errorResponse.error?.code == 5016)  {
+            message = 'Parece haber ocurrido un error, debe ingresar un nombre.';
+          } else if (errorResponse.error?.code == 5922)  {
+            message = 'Ya existe un usuario que es responsable de esa fundación';
+          }
+        }
+        Swal.fire(
+          'Ops...',
+          message,
+          'error'
+        )
+      });
+    } else {
+      Swal.fire(
+        'Ops...',
+        'Parece haber ocurrido un error, debe ingresar un nombre.',
+        'error'
+      )
+    }
+  }
+
+  public deleteFoundation(): void {
+    Swal.fire({
+      title:'¿Estás seguro?',
+      text:'Esta seguro que desea dejar de ser visible como fundación',
+      icon:'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1995AD',
+      cancelButtonColor: '#1995AD',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then( resoult => {
+      if (resoult.isConfirmed && resoult.value == true) {
+        this.contactService.deleteFoundation().subscribe( () => {
+          this.foundationName = null;
+          this.formFundation.reset( {foundationName: ''})
+          this.snackBar.open('Su fundación se dio de baja con exito','Aceptar',{duration:5000,panelClass:'snackBar-end'})
+        }, err => {
+          Swal.fire(
+            'Ops...',
+            'Parece haber ocurrido un error, intentelo de nuevo mas tarde. si el error persiste, comuniquese con nostros.',
+            'error'
+          )
+        });
+      }
+    })
   }
 
   public getImage(): string {
@@ -113,9 +188,9 @@ export class ChangeProfileComponent implements OnInit {
       },
       (error) => {
         console.error("Error en la carga de imágenes:", error);
-      });
-    }
-  }
+      });
+    }
+  }
 
     public selectImage ($event:any): void {
       $event.stopPropagation();

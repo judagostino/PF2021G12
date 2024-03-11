@@ -1,0 +1,20 @@
+2024-03-11 18:45:42.5290 - INFO - 8000005c-0004-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/UpdateFoundation (ver: ) - 127.0.0.1
+     Message: Foundation Name is required
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjZTg2ODU2YS0yNmMwLTRhYmUtYWYzNC03YzlhNTMxYzg4N2EiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDE5MzUzNywiZXhwIjoxNzEwMTk0NDM3LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.wNvvGdlUF-cRNPxQ11Jb_oO5TibxIwuG8rp7tTfz2BE", 
+     Body: {"Id":0,"Email":null,"UserName":null,"LastName":null,"FirstName":null,"Name":null,"ImageUrl":null,"Auditor":null,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"FoundationName":"","DateBrirth":null,"Events":null,"Posts":null}
+
+2024-03-11 18:53:43.3339 - INFO - 80000020-0001-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/UpdateFoundation (ver: ) - 127.0.0.1
+     Message: Foundation Name Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyZDZjYzU4Yy03NTE0LTRjOTYtYjE0MS1lMWUyZjA5YjlkZmUiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDE5MzY0NCwiZXhwIjoxNzEwMTk0NTQ0LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.qxgdugAdXJ83ZCVnzgaeS8kv7QgElzG5tJQFyppWPXQ", 
+     Body: {"Id":0,"Email":null,"UserName":null,"LastName":null,"FirstName":null,"Name":null,"ImageUrl":null,"Auditor":null,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"FoundationName":"Gaston Vottero Ayudante","DateBrirth":null,"Events":null,"Posts":null}
+
+2024-03-11 18:56:11.0136 - INFO - 80000028-0001-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/UpdateFoundation (ver: ) - 127.0.0.1
+     Message: Foundation Name Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ODQwNzcyYS0wZTM3LTQ2ZTUtOTkzYi1iMDIxYTk4ZmI1YWMiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDE5NDEwNiwiZXhwIjoxNzEwMTk1MDA2LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.1J3rlMuYPt0e7SRVfFqhG-0dFqj5rjAJbVWYRQOkRDw", 
+     Body: {"Id":0,"Email":null,"UserName":null,"LastName":null,"FirstName":null,"Name":null,"ImageUrl":null,"Auditor":null,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"FoundationName":"Gaston Vottero Ayudante","DateBrirth":null,"Events":null,"Posts":null}
+
+2024-03-11 18:57:35.3138 - INFO - 8000002c-0001-ff00-b63f-84710c7967bb - (PUT) http://comunidad-parimpar-api.com.ar/api/v1/Contact/UpdateFoundation (ver: ) - 127.0.0.1
+     Message: Foundation Name Invalid
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2ODQwNzcyYS0wZTM3LTQ2ZTUtOTkzYi1iMDIxYTk4ZmI1YWMiLCJDb250YWN0SWQiOiIxIiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDE5NDEwNiwiZXhwIjoxNzEwMTk1MDA2LCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.1J3rlMuYPt0e7SRVfFqhG-0dFqj5rjAJbVWYRQOkRDw", 
+     Body: {"Id":0,"Email":null,"UserName":null,"LastName":null,"FirstName":null,"Name":null,"ImageUrl":null,"Auditor":null,"Trusted":null,"Blocked":null,"Notifications":null,"Assist":null,"FoundationName":"Esto es prueba","DateBrirth":null,"Events":null,"Posts":null}
+

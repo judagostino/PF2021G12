@@ -13,7 +13,6 @@ body {
 } 
 
 .title-profile {
-  
     color: #1995AD;
     font-size: 35px;
     font-family: 'Tilt Neon', sans-serif;
@@ -22,6 +21,45 @@ body {
     font-weight: 600;
     margin-bottom: 50px;
   
+}
+
+.submit_danger:disabled {
+  cursor: not-allowed;
+  background-color: #BCBABE;
+}
+
+
+p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+.visible {
+  visibility: visible;
+  display: inherit;
+}
+
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+
+.nav-tabs {
+  margin-left: 20px;
+  &.active {
+    color: #1995AD !important;
+    border-bottom: 2px solid #1995AD !important;
+  }
+  .nav-link.active {
+    color: #1995AD !important;
+    border-bottom: 2px solid #1995AD !important;
+  }
+}
+
+
+.tab-content {
+  border: solid 1px rgb(92, 92, 92);
+  border-radius: 25px;
 }
 
 #profile-form {
@@ -152,6 +190,23 @@ body {
   min-width: 130px;
   height: 30px;
 } 
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-tabs .nav-link {
+  color: #636b6f;
+}
+
+.nav-tabs .nav-link.active {
+  color: #000;
+  border-bottom: 2px solid #000;
+}
+
+.tab-content {
+  padding: 20px;
+}
 
 .imageStyle {
   min-height: 150px;

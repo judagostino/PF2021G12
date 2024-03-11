@@ -113,6 +113,10 @@ margin-top: 40px;
   height: 30px;
 } 
 
+.submit:disabled {
+  cursor: not-allowed;
+  background-color: #BCBABE;
+}
 
 
 #register {

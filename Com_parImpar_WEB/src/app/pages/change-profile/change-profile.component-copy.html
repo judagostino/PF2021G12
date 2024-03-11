@@ -13,86 +13,140 @@
                 <div class="archivo">
                   <input #fileImageProfile type="file"  accept=".png, .jpg, .jpeg" name="file" (change)="onFileSelect($event)" />
                 </div>
-              </form>
+              </form>
               <img *ngIf="configService?.contact" (click) = "selectImage($event)" class="imageStyle" [src]="getImage()">
             </div>
             <i *ngIf = "configService?.contact?.imageUrl!= null" class="fa-solid fa-plus iconPlus" (click) = "selectImage($event)"></i>
             </div>
         </div>
 
-        <form [formGroup] ="form" novalidate>
-          <div class="row">        
-              <div class="col-1"></div>
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a 
+              class="nav-link" 
+              [ngClass]="{'active': ('principal' == tabSelected)}" 
+              (click)="selectTab('principal', $event)">Principal</a>
+            </li>
+            <li class="nav-item">
+              <a 
+              class="nav-link" 
+              [ngClass]="{'active': ('foundation' == tabSelected)}" 
+              (click)="selectTab('foundation', $event)">Fundación</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div 
+            class="tab-pane" 
+            [ngClass]="{'active visible': ('principal' == tabSelected), 'hidden': ('principal' != tabSelected)}" 
+            id="principal">
+              <form [formGroup] ="form" novalidate>
+                <div class="row">        
+                    <div class="col-1"></div>
+                      <div class="col-5 box">
+                      <label>Usuario: </label>
+                      <input type=text class="box_input" formControlName="userName" required>
+                      <div *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid" class="text-danger">
+                        El Nombre de usuario es requerido
+                      </div>
+                    </div>
+                
+                  
+                    <div class="col-5 box2">
+                    <label>Correo electrónico: </label>
+                    <input type=text class="box2_input" formControlName="email" placeholder="correoelectronico@ejemplo.com">
+                  </div>
+                  <div class="col-1"></div>
+                
+              </div>
+          
+      
+              <div class="row">
+                <div class="col-1"></div>
                 <div class="col-5 box">
-                <label>Usuario: </label>
-                <input type=text class="box_input" formControlName="userName" required>
-                <div *ngIf="form?.controls?.userName?.touched && form?.controls?.userName?.invalid">
-                  El Nombre de usuario es requerido
-                </div>
-              </div>
-          
+                  <label for="typeImpairment">Nombre:</label>
+                    <input type=text class="box_input" formControlName="firstName" required>
+                    <div *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid" class="text-danger">
+                      El nombre es requerido
+                    </div>
+                  </div>
+                     
             
-              <div class="col-5 box2">
-              <label>Correo electrónico: </label>
-              <input type=text class="box2_input" formControlName="email" placeholder="correoelectronico@ejemplo.com">
+                  <div class="col-5 box2">
+                    <label for="typeImpairment">Apellido:</label>
+                      <input type=text class="box2_input" formControlName="lastName" required>
+                      <div *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid" class="text-danger">
+                        El apellido es requerido
+                      </div>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+      
+                  <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5 box">
+                        <label for="dateBrirth">Fecha Nacimiento:</label>
+                        <input type="date" class="box_input" formControlName="dateBrirth" id="dateBrirth" style="display: flex;flex-direction: row;">
+                    </div>
+                    
+                    <div class="col-5 box">
+                      <div class="d-flex flex-row form-check" style="margin-top: 10px;">
+                      <label for="typeImpairment" class="form-check-label" style="padding-top: 2px;">Recibir Notifaciones</label>
+                        <input type=checkbox class="form-check-input"  formControlName="notifications">
+                      </div>
+                  </div>
+      
+                    <div class="col-1"></div>
+      
+                </div>
+         
+                <div class="row justify-content-center">
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="submit" (click)= "btn_SaveChange()" style="margin-right: 20px;">Guardar</button>
+                    <button type="button" class="submit"  routerLink="/user/change-password" style="margin-right: 20px;">Cambiar contraseña</button> 
+                    <button type="button" class="submit"  (click)="openDialog()" style="margin-right: 20px;">Discapacidades de Interés</button> 
+                    <button type="button" class="submit_danger"  (click)="openDeleteDialog()">Eliminar Usuario</button> 
+      
+                  </div>
+                </div>
+      
+              </form>
             </div>
-            <div class="col-1"></div>
-          
-        </div>
+            <div 
+            class="tab-pane" 
+            [ngClass]="{'active visible': ('foundation' == tabSelected), 'hidden': ('foundation' != tabSelected)}" 
+            id="foundation">
+            <div class="row">        
+              <div class="col-1"></div>
+                <div class="col-10">
+                  <p>Al introducir el nombre de una fundación, usted asume la responsabilidad de publicar información en nombre de la misma. En caso de que desee cesar la publicación en representación de una fundación, le instamos a utilizar el botón designado como "Eliminar fundación".</p>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <form [formGroup] ="formFundation" novalidate>
+              <div class="row">        
+                  <div class="col-1"></div>
+                    <div class="col-5 box">
+                    <label>Nombre de la Fundación: </label>
+                    <input type=text class="box_input" formControlName="foundationName" required>
+                    <div *ngIf="formFundation?.controls?.foundationName?.touched && formFundation?.controls?.foundationName?.invalid" class="text-danger">
+                      El Nombre de la fundación es requerido
+                    </div>
+                  </div>
+            </div>
+        
+              <div class="row justify-content-center">
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="submit" (click)= "btn_SaveFoundation()" style="margin-right: 20px;">Guardar fundación</button>
+                  <button type="button" class="submit_danger" (click)="deleteFoundation()" [disabled]="foundationName == null">Eliminar fundación</button> 
+                </div>
+              </div>
     
-
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-5 box">
-            <label for="typeImpairment">Nombre:</label>
-              <input type=text class="box_input" formControlName="firstName" required>
-              <div *ngIf="form?.controls?.firstName?.touched && form?.controls?.firstName?.invalid">
-                El nombre es requerido
-              </div>
+            </form>
             </div>
-               
-      
-            <div class="col-5 box2">
-              <label for="typeImpairment">Apellido:</label>
-                <input type=text class="box2_input" formControlName="lastName" required>
-                <div *ngIf="form?.controls?.lastName?.touched && form?.controls?.lastName?.invalid">
-                  El apellido es requerido
-                </div>
-              </div>
-              <div class="col-1"></div>
-            </div>
-
-            <div class="row">
-              <div class="col-1"></div>
-              <div class="col-5 box">
-                  <label for="dateBrirth">Fecha Nacimiento:</label>
-                  <input type="date" class="box_input" formControlName="dateBrirth" id="dateBrirth" style="display: flex;flex-direction: row;">
-              </div>
-              
-              <div class="col-5 box">
-                <div class="d-flex flex-row form-check" style="margin-top: 10px;">
-                <label for="typeImpairment" class="form-check-label" style="padding-top: 2px;">Recibir Notifaciones</label>
-                  <input type=checkbox class="form-check-input"  formControlName="notifications">
-                </div>
-            </div>
-
-              <div class="col-1"></div>
-
           </div>
-      
+        </div>
 
-   
-    <div class="row justify-content-center">
-      <div class="d-flex justify-content-center">
-        <button type="submit" class="submit" (click)= "btn_SaveChange()" style="margin-right: 20px;">Guardar</button>
-        <button type="button" class="submit"  routerLink="/user/change-password" style="margin-right: 20px;">Cambiar contraseña</button> 
-        <button type="button" class="submit"  (click)="openDialog()" style="margin-right: 20px;">Discapacidades de Interés</button> 
-        <button type="button" class="submit_danger"  (click)="openDeleteDialog()">Eliminar Usuario</button> 
-
-      </div>
-    </div>
-
-  </form>
       </div>
       <div class="col-2"></div>
     </div>

@@ -120,19 +120,17 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-2">
-              <select class="form-select form-select-sm filterMenu" aria-label=".form-select-sm example">
-                <option selected style="text-align: center;">Fecha</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select [(ngModel)]="dateFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
+                <option [ngValue]="null" style="text-align: center;">Fecha</option>
+                <option [ngValue]="1">Última semana</option>
+                <option [ngValue]="2">Último mes</option>
+                <option [ngValue]="3">Último año</option>
               </select>              
             </div>
             <div class="col-2">
-              <select class="form-select form-select-sm filterMenu" aria-label=".form-select-sm example">
-                <option selected style="text-align: center;">Acción</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select [(ngModel)]="actionFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
+                <option [ngValue]="null" style="text-align: center;">Acción</option>
+                <option [ngValue]="type.description" *ngFor="let type of actionLog?.typesActionLo">{{type.description}}</option>
               </select>              
             </div>
             <div class="col-4">
@@ -152,13 +150,13 @@
                      </tr>
                    </thead>
                     <tbody >
-                      <tr *ngFor="let userAction of actionLog?.userActionLog |filtro:page:search">
+                      <tr *ngFor="let userAction of actionLog?.userActionLog |filtro: page: search: actionFilter: dateFilter">
                         <td style="white-space:nowrap;">{{userAction.dateEntered | date: 'dd/MM/yyyy HH:mm'}}</td>
-                        <td>{{userAction.description}}</td>
-                        <td>{{userAction.filtersDescription}}</td>
-                        <td>{{userAction.searchText}}</td>
-                        <td>{{userAction.actionDone}}</td>
-                        <td>{{userAction.contactAction}}</td>
+                        <td title="{{userAction.description}}" >{{userAction.description | truncate: 30}}</td>
+                        <td title="{{userAction.filtersDescription}}">{{userAction.filtersDescription | truncate: 30}}</td>
+                        <td title="{{userAction.searchText}}">{{userAction.searchText | truncate: 30}}</td>
+                        <td title="{{userAction.actionDone}}">{{userAction.actionDone | truncate: 30}}</td>
+                        <td title="{{userAction.contactAction}}">{{userAction.contactAction | truncate: 30}}</td>
                       </tr>
                     </tbody>
                    
@@ -175,7 +173,7 @@
                         </div>
                         <div class="col-2"></div>
                         <div class="col-4">
-                          <button (click)="nextPage()" [disabled]="(actionLog?.userActionLog |filtro:page:search)?.length == 0">Siguiente</button>
+                          <button (click)="nextPage()" [disabled]="(actionLog?.userActionLog |filtro: page: search: actionFilter: dateFilter)?.length == 0">Siguiente</button>
                         </div>
                         <div class="col-1"></div>
                       </div>

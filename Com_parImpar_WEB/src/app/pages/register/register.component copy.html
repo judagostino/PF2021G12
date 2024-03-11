@@ -97,6 +97,18 @@
           <div class="col-1"></div>
 
             </div>
+
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5">
+              <div class="d-flex flex-row form-check" style="margin-top: 10px;">
+                <input type=checkbox class="form-check-input"  formControlName="termsAndConditions">
+                <label class="form-check-label" style="padding-top: 2px;">
+                  Acepto las <a routerLink="/terms-and-conditions" target="_blank">bases y condiciones</a>.
+                </label>
+                </div>
+            </div>
+          </div>
     
             <div class="row justify-content-center">
               <div class="col-1"></div>
@@ -104,7 +116,7 @@
                   <button class="submit" type="button" (click)="btn_NewEvent()">Volver</button>
                 </div>
                 <div class="col-5">
-                  <button class="submit" type="submit" (click)=btn_SaveEvent()>Registrarse</button> 
+                  <button class="submit" type="submit" (click)=btn_SaveEvent() [disabled]="!form?.valid">Registrarse</button> 
                 </div>
               <div class="col-1"></div>
 

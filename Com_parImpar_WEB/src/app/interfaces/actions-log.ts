@@ -4,6 +4,7 @@ export interface ActionsLog {
     eventViews: ViewrsActionLog[];
     profileViews: ViewrsActionLog[];
     graphicImpediment: GraphicImpediment[];
+    typesActionLo?: {description: string} [];
 }
 
 export interface GraphicImpediment {

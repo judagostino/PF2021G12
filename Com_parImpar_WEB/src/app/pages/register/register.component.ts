@@ -95,9 +95,20 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
       dateBrirth: [''],
+      termsAndConditions: [false, Validators.required]
+    }, {
+      validators: this.termsAndConditionsValidator.bind(this)
     });
     
     this.form.reset(new ContactRegistrer);
+  }
+
+  termsAndConditionsValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const termsAndConditions = control.get('termsAndConditions');
+    if (termsAndConditions && !termsAndConditions.value) {
+      return { 'termsNotAccepted': true };
+    }
+    return null;
   }
 
   compare(firstNameControl: String, twoNameControl: String){

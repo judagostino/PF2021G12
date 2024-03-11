@@ -14,5 +14,6 @@ export interface Contact {
     trusted?: boolean;
     notifications?: boolean;
     blocked?: boolean;
-    assist?: string
+    assist?: string;
+    foundationName?: string;
 }

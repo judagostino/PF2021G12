@@ -1,0 +1,77 @@
+USE [ParImpar2]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_UpdateFoundation]    Script Date: 11/3/2024 18:55:12 ******/
+DROP PROCEDURE [dbo].[Contact_UpdateFoundation]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_UpdateFoundation]    Script Date: 11/3/2024 18:55:12 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the stored procedure
+CREATE PROCEDURE [dbo].[Contact_UpdateFoundation]
+(
+	@ContactId INT,
+	@FoundationName VARCHAR(500),
+	@ResultCode INT OUTPUT
+)
+AS
+/*
+--para test
+DECLARE @ContactId INT = 1
+DECLARE @FoundationName VARCHAR(500) = 'Gaston Vottero Ayudante'
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+
+IF (@FoundationName IS NULL OR @FoundationName = '')
+	BEGIN
+		SET @ResultCode = 5016
+	END
+
+IF @ResultCode = 200
+	AND (SELECT TOP 1 
+        C.ContactId 
+    FROM Contacts (NOLOCK) C 
+    WHERE C.ContactId = @ContactId) IS NULL
+	BEGIN
+		SET @ResultCode = 404
+	END
+
+IF @ResultCode = 200
+	AND (SELECT TOP 1 
+			C.ContactId 
+		FROM Contacts (NOLOCK) C 
+		WHERE 
+			ISNULL(C.Confirm, 'False') <> 'False'
+			AND C.DateDeleted IS NULL
+			AND C.FoundationName = @FoundationName
+			AND C.ContactId <> @ContactId
+		) IS NOT NULL
+	BEGIN 
+		SET @ResultCode = 5922
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		UPDATE Contacts 
+		SET FoundationName = @FoundationName
+		WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+                
+		IF @@ROWCOUNT = 0
+		BEGIN 
+			SET @ResultCode = 404 
+		END
+		ELSE
+		BEGIN 
+			SET @ResultCode = 200
+		END
+	END
+GO
+
+
