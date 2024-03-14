@@ -622,6 +622,41 @@ namespace ParImparApi.Services
                                 {
                                     contact.ImageUrl = reader["ImageUrl"].ToString();
                                 }
+
+                                if (reader["Address"] != DBNull.Value)
+                                {
+                                    contact.Address = reader["Address"].ToString();
+                                }
+
+                                if (reader["UrlWeb"] != DBNull.Value)
+                                {
+                                    contact.UrlWeb = reader["UrlWeb"].ToString();
+                                }
+
+                                if (reader["Description"] != DBNull.Value)
+                                {
+                                    contact.Description = reader["Description"].ToString();
+                                }
+
+                                if (reader["UserFacebook"] != DBNull.Value)
+                                {
+                                    contact.UserFacebook = reader["UserFacebook"].ToString();
+                                }
+
+                                if (reader["UserInstagram"] != DBNull.Value)
+                                {
+                                    contact.UserInstagram = reader["UserInstagram"].ToString();
+                                }
+
+                                if (reader["UserLinkedin"] != DBNull.Value)
+                                {
+                                    contact.UserLinkedin = reader["UserLinkedin"].ToString();
+                                }
+
+                                if (reader["UserX"] != DBNull.Value)
+                                {
+                                    contact.UserX = reader["UserX"].ToString();
+                                }
                             }
                         }
                         #endregion
@@ -759,6 +794,41 @@ namespace ParImparApi.Services
                                 if (reader["ImageUrl"] != DBNull.Value)
                                 {
                                     contact.ImageUrl = reader["ImageUrl"].ToString();
+                                }
+
+                                if (reader["Address"] != DBNull.Value)
+                                {
+                                    contact.Address = reader["Address"].ToString();
+                                }
+
+                                if (reader["UrlWeb"] != DBNull.Value)
+                                {
+                                    contact.UrlWeb = reader["UrlWeb"].ToString();
+                                }
+
+                                if (reader["Description"] != DBNull.Value)
+                                {
+                                    contact.Description = reader["Description"].ToString();
+                                }
+
+                                if (reader["UserFacebook"] != DBNull.Value)
+                                {
+                                    contact.UserFacebook = reader["UserFacebook"].ToString();
+                                }
+
+                                if (reader["UserInstagram"] != DBNull.Value)
+                                {
+                                    contact.UserInstagram = reader["UserInstagram"].ToString();
+                                }
+
+                                if (reader["UserLinkedin"] != DBNull.Value)
+                                {
+                                    contact.UserLinkedin = reader["UserLinkedin"].ToString();
+                                }
+
+                                if (reader["UserX"] != DBNull.Value)
+                                {
+                                    contact.UserX = reader["UserX"].ToString();
                                 }
                             }
                         }
@@ -1116,6 +1186,70 @@ namespace ParImparApi.Services
                         #region [SP Parameters] 
                         cmd.Parameters.Add(new SqlParameter("@ContactId", int.Parse(await Functions.GetSessionValuesAsync(_httpContextAccessor.HttpContext, "ContactId"))));
                         cmd.Parameters.Add(new SqlParameter("@FoundationName", contact.FoundationName));
+
+                        if (!string.IsNullOrWhiteSpace(contact.Address))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Address", contact.Address));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Address", DBNull.Value));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(contact.UrlWeb))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UrlWeb", contact.UrlWeb));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UrlWeb", DBNull.Value));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(contact.Description))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Description", contact.Description));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@Description", DBNull.Value));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(contact.UserFacebook))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserFacebook", contact.UserFacebook));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserFacebook", DBNull.Value));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(contact.UserInstagram))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserInstagram", contact.UserInstagram));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserInstagram", DBNull.Value));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(contact.UserLinkedin))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserLinkedin", contact.UserLinkedin));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserLinkedin", DBNull.Value));
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(contact.UserX))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserX", contact.UserX));
+                        }
+                        else
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@UserX", DBNull.Value));
+                        }
+
 
                         cmd.Parameters.Add(new SqlParameter()
                         {

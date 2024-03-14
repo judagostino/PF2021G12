@@ -59,6 +59,12 @@ body {
         height: 30px;
       }
 
+i {
+  color: black;
+  &:hover {
+    color: #1995AD;
+  }
+}
 
 .box a {
     display: flex;
@@ -82,4 +88,10 @@ body {
   font-size:18px;
   margin-right: 10px;
 }
-  
+
+p{
+  font-family: 'Assistant',sans-serif;
+  font-size:medium;
+  padding-top: 5px;
+  text-align: justify;
+}

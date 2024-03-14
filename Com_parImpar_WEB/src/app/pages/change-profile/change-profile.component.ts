@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import moment from 'moment';
 import { DeleteUserDialogComponent } from 'src/app/components/delete-user/delete-user.component';
 import { DisabilitiesInterestDialogComponent } from 'src/app/components/disabilities-interest/disabilities-interest.component';
+import { Contact } from 'src/app/interfaces';
 import { ChangePasswordComponent } from 'src/app/pages/change-password/change-password.component';
 import { AuthService, ConfigService, ContactService, UploadService } from 'src/app/services';
 import Swal  from 'sweetalert2';
@@ -56,7 +57,14 @@ export class ChangeProfileComponent implements OnInit {
 
   private initForm(): void {
     this.formFundation = this.formBuilder.group({
-      foundationName: ['']
+      foundationName: [''],
+      address: [null],
+      urlWeb: [null],
+      description: [null],
+      userFacebook: [null],
+      userInstagram: [null],
+      userLinkedin: [null],
+      userX: [null],
     })
     this.form = this.formBuilder.group({
       id:{value:null},
@@ -102,9 +110,9 @@ export class ChangeProfileComponent implements OnInit {
 
   public btn_SaveFoundation(): void {
     if (this.formFundation.value?.foundationName != null &&  this.formFundation.value?.foundationName != '') {
-      let foundationName: string = this.formFundation.value.foundationName;
-      this.contactService.updateFoundation({id: 0, foundationName}).subscribe(resp => {
-        this.foundationName = foundationName;
+      let contact: Contact = this.formFundation.value;
+      this.contactService.updateFoundation({...contact, id: 0}).subscribe(resp => {
+        this.foundationName = contact.foundationName;
         this.snackBar.open('Su fundación se registro con exito','Aceptar',{duration:5000,panelClass:'snackBar-end'})
       }, errorResponse => {
         let message: string = 'Parece haber ocurrido un error, intentelo de nuevo mas tarde. si el error persiste, comuniquese con nostros.';
@@ -145,7 +153,16 @@ export class ChangeProfileComponent implements OnInit {
       if (resoult.isConfirmed && resoult.value == true) {
         this.contactService.deleteFoundation().subscribe( () => {
           this.foundationName = null;
-          this.formFundation.reset( {foundationName: ''})
+          this.formFundation.reset({
+            foundationName: '',
+            address: null,
+            urlWeb: null,
+            description: null,
+            userFacebook: null,
+            userInstagram: null,
+            userLinkedin: null,
+            userX: null,
+          })
           this.snackBar.open('Su fundación se dio de baja con exito','Aceptar',{duration:5000,panelClass:'snackBar-end'})
         }, err => {
           Swal.fire(

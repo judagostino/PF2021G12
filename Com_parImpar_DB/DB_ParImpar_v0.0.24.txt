@@ -1,0 +1,335 @@
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.Contacts ADD
+	Address varchar(500) NULL,
+	UrlWeb varchar(500) NULL,
+	Description varchar(MAX) NULL,
+	UserFacebook varchar(500) NULL,
+	UserInstagram varchar(500) NULL,
+	UserLinkedin varchar(500) NULL,
+	UserX varchar(500) NULL
+GO
+ALTER TABLE dbo.Contacts SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+UPDATE TypesImpairment
+SET description = REPLACE(description, 'Discapacidad ', 'Condición ')
+WHERE description LIKE 'Discapacidad %';
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_GetById]    Script Date: 13/3/2024 20:17:34 ******/
+DROP PROCEDURE [dbo].[Contact_GetById]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_GetById]    Script Date: 13/3/2024 20:17:34 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_GetById]
+(
+	@ContactId INT,
+	@ActionLog INT
+)
+
+AS
+
+
+/*
+--para test
+DECLARE @ContactId INT = 1
+DECLARE @ActionLog INT = 0
+*/
+
+
+SELECT
+	ContactId,
+	FirstName,
+	LastName,
+	UserName,
+	FirstName + ' ' + LastName 'Name',
+	FoundationName,
+	email,
+	ISNULL(Auditor, 'False') 'Auditor',
+	ISNULL(Trusted, 'False') 'Trusted',
+	ISNULL(Notifications, 'True') AS 'Notifications',
+	DateBrirth,
+	ImageUrl,
+	[Description],
+	UrlWeb,
+	[Address],
+	UserFacebook,
+	UserInstagram,
+	UserLinkedin,
+	UserX
+FROM Contacts (NOLOCK) 
+WHERE ContactId = @ContactId
+
+IF EXISTS (SELECT ContactId FROM Contacts (NOLOCK)WHERE ContactId = @ContactId) AND @ActionLog = 1
+	BEGIN
+		INSERT INTO ActionLog 
+		(
+			ObjectKey, 
+			ObjectId,
+			ContactId,
+			ActionTypeId,
+			DateEntered
+		) 
+		VALUES 
+		(
+			'ContactId', 
+			@ContactId,
+			@ContactId,
+			13,
+			GETDATE()
+		)
+	END
+GO
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_GetByIdInformation]    Script Date: 13/3/2024 20:17:48 ******/
+DROP PROCEDURE [dbo].[Contact_GetByIdInformation]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_GetByIdInformation]    Script Date: 13/3/2024 20:17:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_GetByIdInformation]
+(
+	@ContactLoggedId INT,
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactLoggedId INT = 1
+DECLARE @ContactId INT = 1
+DECLARE @ResultCode INT
+*/
+
+DECLARE @IsAuditor BIT
+SET @ResultCode = NULL
+
+SELECT 
+	@IsAuditor = ISNULL(Auditor, 'False')
+FROM Contacts 
+WHERE ContactId = @ContactId 
+
+IF @IsAuditor = 'True'
+	BEGIN
+		SET @ResultCode = 404 
+		
+		SELECT
+			ContactId,
+			FirstName,
+			LastName,
+			UserName,
+			LastName + ', ' + FirstName 'Name',
+			FoundationName,
+			email,
+			ISNULL(Auditor, 'False') 'Auditor',
+			ISNULL(Trusted, 'False') 'Trusted',
+			ISNULL(Notifications, 'True') AS 'Notifications',
+			DateBrirth,
+			ImageUrl,
+			[Description],
+			UrlWeb,
+			[Address],
+			UserFacebook,
+			UserInstagram,
+			UserLinkedin,
+			UserX
+		FROM Contacts (NOLOCK) 
+		WHERE 
+			ContactId = @ContactId
+			AND
+			ISNULL(Confirm, 'False') <> 'False'
+	END
+  ELSE
+	BEGIN
+		SET @ResultCode = 5910
+	END
+GO
+
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_UpdateFoundation]    Script Date: 13/3/2024 20:22:58 ******/
+DROP PROCEDURE [dbo].[Contact_UpdateFoundation]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_UpdateFoundation]    Script Date: 13/3/2024 20:22:58 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_UpdateFoundation]
+(
+	@ContactId INT,
+	@FoundationName VARCHAR(500),
+	@Address varchar(500),
+	@UrlWeb varchar(500),
+	@Description varchar(MAX),
+	@UserFacebook varchar(500),
+	@UserInstagram varchar(500),
+	@UserLinkedin varchar(500),
+	@UserX varchar(500),
+	@ResultCode INT OUTPUT
+)
+AS
+/*
+--para test
+DECLARE @ContactId INT = 1
+DECLARE @FoundationName VARCHAR(500) = 'Gaston Vottero Ayudante'
+DECLARE @ResultCode INT
+*/
+
+SET @ResultCode = 200
+
+IF (@FoundationName IS NULL OR @FoundationName = '')
+	BEGIN
+		SET @ResultCode = 5016
+	END
+
+IF @ResultCode = 200
+	AND (SELECT TOP 1 
+        C.ContactId 
+    FROM Contacts (NOLOCK) C 
+    WHERE C.ContactId = @ContactId) IS NULL
+	BEGIN
+		SET @ResultCode = 404
+	END
+
+IF @ResultCode = 200
+	AND (SELECT TOP 1 
+			C.ContactId 
+		FROM Contacts (NOLOCK) C 
+		WHERE 
+			ISNULL(C.Confirm, 'False') <> 'False'
+			AND C.DateDeleted IS NULL
+			AND C.FoundationName = @FoundationName
+			AND C.ContactId <> @ContactId
+		) IS NOT NULL
+	BEGIN 
+		SET @ResultCode = 5922
+	END
+
+IF @ResultCode = 200
+	BEGIN
+		UPDATE Contacts 
+		SET FoundationName = @FoundationName,
+		[Address] = @Address,
+		UrlWeb = @UrlWeb,
+		[Description] = @Description,
+		UserFacebook = @UserFacebook,
+		UserInstagram = @UserInstagram,
+		UserLinkedin = @UserLinkedin,
+		UserX = @UserX
+		WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+                
+		IF @@ROWCOUNT = 0
+		BEGIN 
+			SET @ResultCode = 404 
+		END
+		ELSE
+		BEGIN 
+			SET @ResultCode = 200
+		END
+	END
+GO
+
+
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_DeleteFoundation]    Script Date: 13/3/2024 20:29:11 ******/
+DROP PROCEDURE [dbo].[Contact_DeleteFoundation]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Contact_DeleteFoundation]    Script Date: 13/3/2024 20:29:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[Contact_DeleteFoundation]
+(
+	@ContactId INT,
+	@ResultCode INT OUTPUT
+)
+AS
+
+/*
+--para test
+DECLARE @ContactId INT = 4
+DECLARE @ResultCode INT
+*/
+
+IF (
+	SELECT TOP 1 
+		C.ContactId 
+	FROM Contacts (NOLOCK) C 
+	WHERE C.ContactId = @ContactId) IS NOT NULL
+	BEGIN
+		UPDATE Contacts 
+		SET FoundationName = NULL,
+		[Address] = NULL,
+		UrlWeb = NULL,
+		[Description] = NULL,
+		UserFacebook = NULL,
+		UserInstagram = NULL,
+		UserLinkedin = NULL,
+		UserX = NULL
+		WHERE ContactId = @ContactId AND ISNULL(Confirm, 'False') <> 'False'
+				
+		IF @@ROWCOUNT = 0
+			BEGIN 
+				SET @ResultCode = 404 
+			END
+			ELSE
+			BEGIN 
+				SET @ResultCode = 200
+			END
+	END
+  ELSE 
+	BEGIN
+		SET @ResultCode = 404
+	END
+GO
+
+
+

@@ -16,4 +16,12 @@ export interface Contact {
     blocked?: boolean;
     assist?: string;
     foundationName?: string;
+    address?: string;
+    urlWeb?: string;
+    description?: string;
+    descriptionParagraphs?: string[];
+    userFacebook?: string;
+    userInstagram?: string;
+    userLinkedin?: string;
+    userX?: string;
 }
