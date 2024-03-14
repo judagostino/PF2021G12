@@ -29,9 +29,23 @@ namespace ParImparApi.DTO
 
         public bool? Notifications { get; set; }
 
-        public string? Assist { get; set; }
+        public string Address { get; set; }
 
-        public string? FoundationName { get; set; }
+        public string UrlWeb { get; set; }
+
+        public string Description { get; set; }
+
+        public string UserFacebook { get; set; }
+
+        public string UserInstagram { get; set; }
+
+        public string UserLinkedin { get; set; }
+
+        public string UserX { get; set; }
+
+        public string Assist { get; set; }
+
+        public string FoundationName { get; set; }
 
         public DateTime? DateBrirth { get; set; }
 

@@ -75,6 +75,13 @@ export class ContactService {
   public myInfo(): Observable<Contact> {
     return this.http.get(`${this.URL}/myInfo`).pipe(map( resp => {
       let contact: Contact = resp['data'];
+      if(contact.description != null) {
+        contact = {
+          ...contact, 
+          description: contact.description.replace(/<br\s*\/?>/g, '\n'),
+          descriptionParagraphs: contact.description.replace(/<br\s*\/?>/g, '\n').split('\n')
+        };
+      }
       return contact;
     }));
   }
@@ -85,7 +92,17 @@ export class ContactService {
     headers = headers.append('Content-Type', 'application/json');
     headers = headers.append(HttpKey.SKIP_INTERCEPTOR, '');
 
-    return this.http.get(`${this.URL}/${id}`, {headers}).pipe(map((resp) =>  resp['data'] as Contact));
+    return this.http.get(`${this.URL}/${id}`, {headers}).pipe(map((resp) => {
+      let contact: Contact = resp['data'];
+      if(contact.description != null) {
+        contact = {
+          ...contact, 
+          description: contact.description.replace(/<br\s*\/?>/g, '\n'),
+          descriptionParagraphs: contact.description.replace(/<br\s*\/?>/g, '\n').split('\n')
+        };
+      }
+      return contact;
+    }));
   }
 
   public update(body: Contact): Observable<any> {
@@ -129,6 +146,9 @@ export class ContactService {
   }  
 
   public updateFoundation(body: Contact): Observable<any> {
+    if(body.description != null) {
+      body = {...body, description: body.description.replace(/\n/g, '<br>')};
+    }
     return this.http.put(`${this.URL}/UpdateFoundation`, body);
   }  
 

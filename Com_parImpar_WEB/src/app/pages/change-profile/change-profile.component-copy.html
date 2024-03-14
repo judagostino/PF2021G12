@@ -126,17 +126,71 @@
                 <div class="col-1"></div>
             </div>
             <form [formGroup] ="formFundation" novalidate>
-              <div class="row">        
+                  <div class="row">        
+                      <div class="col-1"></div>
+                        <div class="col-5 box">
+                        <label>Nombre de la Fundación: <span style="color: #1995ad;;"> *</span>  </label>
+                        <input type=text class="box_input" formControlName="foundationName" required>
+                        <div *ngIf="formFundation?.controls?.foundationName?.touched && formFundation?.controls?.foundationName?.invalid" class="text-danger">
+                          El Nombre de la fundación es requerido
+                        </div>
+                      </div>
+
+                      <div class="col-5 box2">
+                        <label>Dirección: </label>
+                        <input type=text class="box2_input" formControlName="address" placeholder="Av. Hipólito Yrigoyen xxx, Nueva Córdoba">
+                      </div>
+                      <div class="col-1"></div>
+                  </div>
+
+                  <div class="row">        
+                    <div class="col-1"></div>
+                      <div class="col-5 box">
+                      <label>Sitio Web: </label>
+                      <input type=text class="box_input" formControlName="urlWeb" placeholder="http://tuSito.com" >
+                    </div>
+
+                    <div class="col-5 box2">
+                      <label>Cuenta de Facebook: </label>
+                      <input type=text class="box2_input" formControlName="userFacebook" placeholder="https://facebook.com/tuPagina">
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+
+                <div class="row">        
                   <div class="col-1"></div>
                     <div class="col-5 box">
-                    <label>Nombre de la Fundación: </label>
-                    <input type=text class="box_input" formControlName="foundationName" required>
-                    <div *ngIf="formFundation?.controls?.foundationName?.touched && formFundation?.controls?.foundationName?.invalid" class="text-danger">
-                      El Nombre de la fundación es requerido
-                    </div>
+                    <label>Cuenta de Instagram: </label>
+                    <input type=text class="box_input" formControlName="userInstagram" placeholder="https://instagram.com/tuPerfil">
+                  
                   </div>
-            </div>
-        
+
+                  <div class="col-5 box2">
+                    <label>Cuenta de Linkedin: </label>
+                    <input type=text class="box2_input" formControlName="userLinkedin" placeholder="https://linkedin.com/in/tuPerfil">
+                  </div>
+                  <div class="col-1"></div>
+              </div>
+
+              <div class="row">        
+                <div class="col-1"></div>
+                  <div class="col-5 box">
+                  <label>Cuenta de X (twitter): </label>
+                  <input type=text class="box_input" formControlName="userX" placeholder="https://twitter.com/tuUsuario">
+                
+                </div>
+              </div>
+
+              <div class="row">
+                
+                <div class="col-1"></div>
+                <div class="col-10">
+                  <label>Descripción </label>
+                  <textarea  rows="8"  class="box_input" formControlName="description" required style="width: 100%;" placeholder="cuentanos un poco de la fundación"></textarea>
+                </div>
+              </div>
+      
+            
               <div class="row justify-content-center">
                 <div class="d-flex justify-content-center">
                   <button type="submit" class="submit" (click)= "btn_SaveFoundation()" style="margin-right: 20px;">Guardar fundación</button>

@@ -1,89 +1,119 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-3"></div>
-    <div class="col-6" id="profile-form">     
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex justify-content-center">
-                  <h3 *ngIf="profile?.name != null" class="title-profile">Perfil</h3>
+
+    <div class="col-6" id="profile-form">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-center">
+            <h3 *ngIf="profile?.name != null" class="title-profile">Perfil</h3>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="d-flex justify-content-center">
+            <h1 class="justify-content-center subtitle-profile">{{ profile?.foundationName != null ? profile.foundationName : profile.name}}</h1>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="d-flex justify-content-center">
+            <img  class="justify-content-center" style="width: 200px;margin-bottom: 60px;" [src]="getImage()">
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="profile?.foundationName != null" style="margin-bottom: 20px;">
+        <div class="row"  style="margin-bottom: 20px;">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <div class="d-flex justify-content-around">
+              <div *ngIf="profile?.urlWeb != null"> 
+                <a style="cursor: pointer;" [title]="profile.urlWeb" [href]="profile.urlWeb" target="_blank"><i class="fa-solid fa-globe"></i></a> 
               </div>
-            </div>
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                  <h1 class="justify-content-center subtitle-profile">{{ profile?.foundationName != null ? profile.foundationName : profile.name}}</h1>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                  <img  class="justify-content-center" style="width: 200px;margin-bottom: 60px;" [src]="getImage()">
-                </div>
+              <div *ngIf="profile?.userFacebook != null"> 
+                <a style="cursor: pointer;" [title]="profile.userFacebook" [href]="profile.userFacebook" target="_blank"><i class="fa-brands fa-facebook"></i></a> 
+              </div>
+              <div *ngIf="profile?.userInstagram != null"> 
+                <a style="cursor: pointer;" [title]="profile.userInstagram" [href]="profile.userInstagram" target="_blank"><i class="fa-brands fa-square-instagram"></i></a> 
+              </div>
+              <div *ngIf="profile?.userX != null"> 
+                <a style="cursor: pointer;" [title]="profile.userX" [href]="profile.userX" target="_blank"><i class="fa-brands fa-square-x-twitter"></i></a> 
+              </div>
+              <div *ngIf="profile?.userLinkedin != null"> 
+                <a style="cursor: pointer;" [title]="profile.userLinkedin" [href]="profile.userLinkedin" target="_blank"><i class="fa-brands fa-linkedin"></i></a> 
+              </div>
             </div>
           </div>
-          
-            <div class="row "> 
-              <div class="col-1"></div>                
-              <div class="col-5 box">
-                <div class="d-flex flex-row">  
-                <i class="fa-regular fa-address-card"></i>
-                  <label>Nombre</label>
-                </div>
-                  <a *ngIf="profile?.firstName != null">{{profile.firstName}}</a>
+          <div class="col-2"></div>
+        </div>
+        
+        <div class="row">
+          <div class="col-1"></div>
+          <div *ngIf="profile?.address != null" class="col-10">
+            <label style="margin-right: 10px; font-weight: bold;">Dirección: </label> <a [href]="'https://www.google.com/maps/search/'+ profile.address" target="_blank" >{{profile.address}}</a>
+          </div>
+        </div>
+        
+        <div *ngIf="profile?.descriptionParagraphs != null  && profile?.descriptionParagraphs?.length > 0" class="row">
+          <label style="margin-top: 20px; margin-left: 25px; font-weight: bold; font-size: 20px;">Un poco de nosotros: </label>
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-11">
+              <div style="max-height: 68vh; overflow-y: auto; padding-right: 20px;">
+                <p *ngFor="let paragaph of profile?.descriptionParagraphs">{{paragaph}}</p>
               </div>
-                <div class="col-1"></div>
-                <div class="col-5 box">
-                  <div class="d-flex flex-row">  
-                  <i class="fa-regular fa-address-card"></i>
-                  <label>Apellido</label>
-                  </div>
-                  <a *ngIf="profile?.lastName != null">{{profile.lastName}}</a>
-                </div>
-             </div>
-
-             <div class="row">  
-              <div class="col-1"></div> 
-                <div class="col-5 box">
-                  <div class="d-flex flex-row">
-                    <i class="fa-solid fa-user"></i>
-                    <label>Usuario</label>  
-                  </div>
-                  <a *ngIf="profile?.userName != null">{{profile.userName}}</a>
-                </div>
-              
-                <div class="col-1"></div>  
-
-                <div class="col-5 box">
-                  <div class="d-flex flex-row">
-                  <i class="fa-regular fa-envelope"></i>
-                  <label>Correo electronico</label>
-                  </div>
-                  <a  *ngIf="profile?.email != null"> {{profile.email}}</a>
-                </div>
-              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       
+      <div class="row"> 
+        <div class="col-1"></div>                
+        <div class="col-5 box">
+          <div class="d-flex flex-row">  
+            <i class="fa-regular fa-address-card"></i>
+            <label>Nombre</label>
+          </div>
+          <a *ngIf="profile?.firstName != null">{{profile.firstName}}</a>
+        </div>
+
+        <div class="col-1"></div>
+        <div class="col-5 box">
+          <div class="d-flex flex-row">  
+            <i class="fa-regular fa-address-card"></i>
+            <label>Apellido</label>
+          </div>
+          <a *ngIf="profile?.lastName != null">{{profile.lastName}}</a>
+        </div>
+      </div>
+
+      <div class="row">  
+        <div class="col-1"></div> 
+        <div class="col-5 box">
+          <div class="d-flex flex-row">
+            <i class="fa-solid fa-user"></i>
+            <label>Usuario</label>  
+          </div>
+          <a *ngIf="profile?.userName != null">{{profile.userName}}</a>
+        </div>
+      
+        <div class="col-1"></div>  
+
+        <div class="col-5 box">
+          <div class="d-flex flex-row">
+            <i class="fa-regular fa-envelope"></i>
+            <label>Correo electronico</label>
+          </div>
+          <a *ngIf="profile?.email != null"> {{profile.email}}</a>
+        </div>
+      </div>
      
       <div class="row">
         <div class="d-flex justify-content-center col-12">
-            <button type="button" class="submit"  routerLink="/search">Volver</button> 
+          <button type="button" class="submit"  routerLink="/search">Volver</button> 
         </div>
       </div>
     </div>
+
     <div class="col-3"></div>
   </div>
 </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
