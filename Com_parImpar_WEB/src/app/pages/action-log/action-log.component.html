@@ -121,7 +121,7 @@
             <div class="col-2"></div>
             <div class="col-2">
               <select [(ngModel)]="dateFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
-                <option [ngValue]="null" style="text-align: center;">Fecha</option>
+                <option [ngValue]="null" style="text-align: center;">Seleccionar todas</option>
                 <option [ngValue]="1">Última semana</option>
                 <option [ngValue]="2">Último mes</option>
                 <option [ngValue]="3">Último año</option>
@@ -129,7 +129,7 @@
             </div>
             <div class="col-2">
               <select [(ngModel)]="actionFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
-                <option [ngValue]="null" style="text-align: center;">Acción</option>
+                <option [ngValue]="null" style="text-align: center;">Seleccionar todas</option>
                 <option [ngValue]="type.description" *ngFor="let type of actionLog?.typesActionLo">{{type.description}}</option>
               </select>              
             </div>

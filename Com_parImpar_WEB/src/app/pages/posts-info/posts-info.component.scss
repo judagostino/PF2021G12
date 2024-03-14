@@ -42,6 +42,14 @@ body {
     margin-top: 50px;
   } 
   
+  h2 {
+    color:black;
+    font-size: 16px;
+    font-family: 'Tilt Neon', sans-serif;
+    padding-top: 15px;
+    text-transform: uppercase;
+    font-weight: bolder;
+  }
   
 .post-info {
   padding-left: 40px;
@@ -106,4 +114,25 @@ a {
 	border: 1px solid rgb(48,49,51);
 	border-radius: 50%;
 	box-shadow: inset 0 0 0 2px white, 0 0 0 4px white;
+}
+p {
+  color: black;
+  font-size: 15px;
+  font-family: 'Assistant', sans-serif;
+  text-align:center;
+  padding: 5px;
+  text-align: justify;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+span {
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Assistant',sans-serif;
+  font-weight: normal;
+  background-color: #A1D6E2;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  
 }

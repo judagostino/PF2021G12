@@ -25,12 +25,14 @@
             <li class="nav-item">
               <a 
               class="nav-link" 
+              style="font-family: 'Assistant',sans-serif;" 
               [ngClass]="{'active': ('principal' == tabSelected)}" 
               (click)="selectTab('principal', $event)">Principal</a>
             </li>
             <li class="nav-item">
               <a 
-              class="nav-link" 
+              class="nav-link"
+              style="font-family: 'Assistant',sans-serif;" 
               [ngClass]="{'active': ('foundation' == tabSelected)}" 
               (click)="selectTab('foundation', $event)">Fundación</a>
             </li>
@@ -119,7 +121,7 @@
             <div class="row">        
               <div class="col-1"></div>
                 <div class="col-10">
-                  <p>Al introducir el nombre de una fundación, usted asume la responsabilidad de publicar información en nombre de la misma. En caso de que desee cesar la publicación en representación de una fundación, le instamos a utilizar el botón designado como "Eliminar fundación".</p>
+                  <p style="font-family: 'Assistant',sans-serif;" >Al introducir el nombre de una fundación, usted asume la responsabilidad de publicar información en nombre de la misma. En caso de que desee cesar la publicación en representación de una fundación, le instamos a utilizar el botón designado como "Eliminar fundación".</p>
                 </div>
                 <div class="col-1"></div>
             </div>

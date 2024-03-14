@@ -1,0 +1,10 @@
+2024-03-12 18:29:40.1234 - INFO - 40000036-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"ana@example.com","Password":"123456789Mn","KeepLoggedIn":true}
+
+2024-03-12 18:29:50.3432 - INFO - 40000038-0004-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"ana@example.com","Password":"123456789Mn","KeepLoggedIn":true}
+

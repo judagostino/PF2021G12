@@ -12,6 +12,7 @@ import moment from 'moment';
 })
 export class EventsInfoComponent implements OnInit {
   eventElement: Events;
+  showError: boolean = false;
 
   constructor(
     private router: Router, 
@@ -27,6 +28,9 @@ export class EventsInfoComponent implements OnInit {
       if (id != null && id != 0) {
         this.eventsService.getByIdMoreInfo(id).subscribe(resp => {
           this.eventElement = resp;
+        },
+        err=>{
+          this.showError = true;
         })
       }
     });
