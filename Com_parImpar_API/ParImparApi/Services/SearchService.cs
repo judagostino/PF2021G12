@@ -175,6 +175,11 @@ namespace ParImparApi.Services
                                         {
                                             itemEvent.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
                                         }
+                                        
+                                        if (reader["DateOrder"] != DBNull.Value)
+                                        {
+                                            itemEvent.DateOrder = DateTime.Parse(reader["DateOrder"].ToString());
+                                        }
 
                                         results.Add(itemEvent);
                                     }
@@ -236,6 +241,11 @@ namespace ParImparApi.Services
                                             if (reader["DateEntered"] != DBNull.Value)
                                             {
                                                 itemPost.DateEntered = DateTime.Parse(reader["DateEntered"].ToString());
+                                            }
+
+                                            if (reader["DateOrder"] != DBNull.Value)
+                                            {
+                                                itemPost.DateOrder = DateTime.Parse(reader["DateOrder"].ToString());
                                             }
 
                                             results.Add(itemPost);

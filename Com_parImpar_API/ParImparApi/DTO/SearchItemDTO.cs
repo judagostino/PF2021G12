@@ -23,5 +23,7 @@ namespace ParImparApi.DTO
         public List<TypeImpairmentDTO> TypeImpairment { get; set; }
 
         public DateTime? DateEntered { get; set; }
+
+        public DateTime? DateOrder { get; set; }
     }
 }
