@@ -1,0 +1,84 @@
+
+-- ActionLogs
+ALTER TABLE ActionLog NOCHECK CONSTRAINT ALL;
+DELETE FROM ActionLog;
+DBCC CHECKIDENT ('ActionLog', RESEED, 0);
+ALTER TABLE ActionLog CHECK CONSTRAINT ALL;
+
+
+-- ContactXEvent
+ALTER TABLE ContactXEvent NOCHECK CONSTRAINT ALL;
+DELETE FROM ContactXEvent;
+DBCC CHECKIDENT ('ContactXEvent', RESEED, 0);
+ALTER TABLE ContactXEvent CHECK CONSTRAINT ALL;
+
+
+-- ContactXTypeImplairment
+ALTER TABLE ContactXTypeImplairment NOCHECK CONSTRAINT ALL;
+DELETE FROM ContactXTypeImplairment;
+DBCC CHECKIDENT ('ContactXTypeImplairment', RESEED, 0);
+ALTER TABLE ContactXTypeImplairment CHECK CONSTRAINT ALL;
+
+
+-- PostsXTypesImpairment
+ALTER TABLE PostsXTypesImpairment NOCHECK CONSTRAINT ALL;
+DELETE FROM PostsXTypesImpairment;
+DBCC CHECKIDENT ('PostsXTypesImpairment', RESEED, 0);
+ALTER TABLE PostsXTypesImpairment CHECK CONSTRAINT ALL;
+
+
+-- Tokens
+ALTER TABLE Tokens NOCHECK CONSTRAINT ALL;
+DELETE FROM Tokens;
+DBCC CHECKIDENT ('Tokens', RESEED, 0);
+ALTER TABLE Tokens CHECK CONSTRAINT ALL;
+
+
+-- DenyObject
+ALTER TABLE DenyObject NOCHECK CONSTRAINT ALL;
+DELETE FROM DenyObject;
+DBCC CHECKIDENT ('DenyObject', RESEED, 0);
+ALTER TABLE DenyObject CHECK CONSTRAINT ALL;
+
+
+-- Events
+ALTER TABLE [Events] NOCHECK CONSTRAINT ALL;
+DELETE FROM [Events];
+DBCC CHECKIDENT ('Events', RESEED, 0);
+ALTER TABLE [Events] CHECK CONSTRAINT ALL;
+
+
+-- Posts
+ALTER TABLE Posts NOCHECK CONSTRAINT ALL;
+DELETE FROM Posts;
+DBCC CHECKIDENT ('Posts', RESEED, 0);
+ALTER TABLE Posts CHECK CONSTRAINT ALL;
+
+
+-- Contacts
+ALTER TABLE Contacts NOCHECK CONSTRAINT ALL;
+DELETE FROM Contacts;
+DBCC CHECKIDENT ('Contacts', RESEED, 0);
+ALTER TABLE Contacts CHECK CONSTRAINT ALL;
+
+
+-- Insertando datos en la tabla de Contacts
+SET IDENTITY_INSERT [dbo].[Contacts] ON 
+INSERT [dbo].[Contacts] ([ContactId], [FirstName], [LastName], [dateEntered], [Email], [Password], [UserName], [DateBrirth], [Auditor], [Confirm], [Trusted], [Notifications], [ConfirmCode], [ExpiredRecover], [CodeRecover], [ImageUrl], [DateModify], [Blocked], [DateDeleted], [FoundationName], [Address], [UrlWeb], [Description], [UserFacebook], [UserInstagram], [UserLinkedin], [UserX]) VALUES (1, N'Administrador', N'ParImpar', CAST(N'2024-02-21T20:42:28.987' AS DateTime), N'comunidadparimpar@gmail.com', N'ed78vWPkU9hDRVUf10qkfA==', N'Administrador', CAST(N'2024-02-21' AS Date), 1, 1, 1, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [dbo].[Contacts] ([ContactId], [FirstName], [LastName], [dateEntered], [Email], [Password], [UserName], [DateBrirth], [Auditor], [Confirm], [Trusted], [Notifications], [ConfirmCode], [ExpiredRecover], [CodeRecover], [ImageUrl], [DateModify], [Blocked], [DateDeleted], [FoundationName], [Address], [UrlWeb], [Description], [UserFacebook], [UserInstagram], [UserLinkedin], [UserX]) VALUES (2, N'Julieta', N'Dagostino', CAST(N'2024-02-21T20:46:31.160' AS DateTime), N'judagostino96@gmail.com', N'ed78vWPkU9hDRVUf10qkfA==', N'jdagostino', CAST(N'1996-09-02' AS Date), 0, 1, 1, 0, N'D074E634-237E-4B58-A1A8-B89A839FC567', CAST(N'2024-02-24T20:32:08.613' AS DateTime), N'23A48771-8C1E-4083-8CAE-13C4B27322A8', N'http://comunidad-parimpar.com.ar/Profiles/ContactId_2.jpg                                                                                                                                                                                                      ', CAST(N'2024-02-21T22:02:30.457' AS DateTime), 0, NULL, N'Manos Unidas', N'Av.Florencio Parravicini 2985,Centro America', N'http://www.manosunidas.com.ar', N'Somos Manos Unidas, una fundación comprometida con la inclusión y el bienestar de las personas con discapacidad motora. Nuestro objetivo es ofrecer asistencia integral y actividades recreativas que promuevan la autonomía y la felicidad de nuestros beneficiarios.<br><br>En Manos Unidas, creemos en el poder transformador de la comunidad y en la importancia de brindar oportunidades para que cada individuo desarrolle su máximo potencial. Trabajamos día a día para crear un espacio inclusivo donde las diferencias se celebran y se valoran.<br><br>Desde sesiones de terapia física hasta eventos recreativos y culturales, nuestro equipo está dedicado a proporcionar un apoyo continuo y afectuoso a todas las personas con discapacidad motora que forman parte de nuestra familia.<br><br>¡Únete a nosotros en este viaje hacia la igualdad y la alegría!', N'https://facebook.com/ManosUnidas', N'https://instragram.com/manosUnidas', N'https://linkedin.com/manosUnidas', N'https://twitter.com/manosUnidas')
+INSERT [dbo].[Contacts] ([ContactId], [FirstName], [LastName], [dateEntered], [Email], [Password], [UserName], [DateBrirth], [Auditor], [Confirm], [Trusted], [Notifications], [ConfirmCode], [ExpiredRecover], [CodeRecover], [ImageUrl], [DateModify], [Blocked], [DateDeleted], [FoundationName], [Address], [UrlWeb], [Description], [UserFacebook], [UserInstagram], [UserLinkedin], [UserX]) VALUES (3, N'Macarena', N'Vaca', CAST(N'2024-02-24T20:03:09.230' AS DateTime), N'macarenavaca.mv@gmail.com', N'ed78vWPkU9hDRVUf10qkfA==', N'mvaca', NULL, 1, 1, 1, NULL, N'F3E7F5E5-8501-47AB-92C3-2E4208207FDF', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Contacts] OFF
+
+--Control
+SELECT * FROM ActionLog
+SELECT * FROM ActionType
+SELECT * FROM Contacts
+SELECT * FROM ContactXEvent
+SELECT * FROM ContactXTypeImplairment
+SELECT * FROM DenyObject
+SELECT * FROM Events
+SELECT * FROM Posts
+SELECT * FROM PostsXTypesImpairment
+SELECT * FROM States
+SELECT * FROM Tokens
+SELECT * FROM TypesImpairment
