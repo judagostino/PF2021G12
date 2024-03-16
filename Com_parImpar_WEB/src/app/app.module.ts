@@ -53,6 +53,8 @@ import { DeleteUserDialogComponent } from './components/delete-user/delete-user.
 import { InfoContactComponent } from './pages/info-contact/info-contact.component';
 import { FiltroPagination } from './pipe/filtro-pagination.pipe';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
+import { PaginationAuditPipe } from './pipe/pagination-audit.pipe';
+import { PaginationAuditPostPipe } from './pipe/pagination-audit-post.pipe';
 
 
 registerLocaleData(localeEs, 'es');
@@ -92,7 +94,10 @@ registerLocaleData(localeEs, 'es');
     ReasonRejectDialogComponent,
     DeleteUserDialogComponent,
     InfoContactComponent,
-    TermsAndConditionsComponent
+    TermsAndConditionsComponent,
+    PaginationAuditPipe,
+    PaginationAuditPostPipe
+
   ],
 
   imports: [

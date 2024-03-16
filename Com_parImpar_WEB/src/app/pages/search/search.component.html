@@ -78,6 +78,7 @@
     
                         <div class="col-8">
                             <h3>{{getTitle(result)}}</h3>
+                            <h4 style="font-family: 'Assistant',sans-serif;color: #1995ad;font-weight: bolder;" *ngIf="result.key == 'PostId'"> Fecha de Última Actualización: {{result.dateOrder  | date: 'dd/MM/yyyy HH:mm'}}</h4>
                             <p style="font-family: 'Assistant',sans-serif;">{{(result.description.length > 200)? (result.description | slice:0:200)+'...':(result.description)}}</p>
                             <div *ngIf="result?.typeImpairment?.length > 0" class="d-flex flex-wrap">
                                 <h4 *ngFor="let type of result.typeImpairment;">

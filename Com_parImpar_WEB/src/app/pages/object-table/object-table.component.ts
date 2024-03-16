@@ -16,8 +16,9 @@ export class ObjectTableComponent implements OnInit {
   key = '';
   events: Events[] = [];
   posts: Post[] = [];
-  public actionFilter = null;
+  public statusFilter = null;
   public dateFilter = null;
+  public page = 0;
 
   constructor(
     private eventsService: EventsService,
@@ -115,5 +116,14 @@ export class ObjectTableComponent implements OnInit {
       this.posts = [];
       this.posts = resp;
     });
+  }
+
+  public nextPage(){
+    this.page += 5;
+  }
+
+  public prevPage(){
+    if(this.page > 0)
+    this.page -= 5;
   }
 }
