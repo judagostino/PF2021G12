@@ -95,3 +95,52 @@ p{
   padding-top: 5px;
   text-align: justify;
 }
+
+ .address {
+  margin-right: 10px;
+  font-family: 'Assistant',sans-serif;
+  font-size: 16px;
+  color: #1995ad;
+  font-weight: bold;
+  text-transform: uppercase;
+
+} 
+
+.ubicacion a{
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Assistant',sans-serif;
+  font-weight: normal;
+  background-color: #A1D6E2;
+}
+
+.us label{
+  margin-top: 20px; 
+  margin-left: 65px; 
+  font-weight: bolder; 
+  font-size: 16px;
+  font-family: 'Tilt Neon',sans-serif;
+  color: #1995ad;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+
+.us p {
+  font-family: 'Assistant',sans-serif;
+  text-align: justify;
+}
+
+.user span {
+  border-radius: 10px;
+    padding: 6px;
+    text-align: center;
+    font-family: 'Assistant',sans-serif;
+    font-weight: normal;
+    background-color: #A1D6E2;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    font-size: medium;
+    text-transform: uppercase;
+    font-weight: bolder;
+}

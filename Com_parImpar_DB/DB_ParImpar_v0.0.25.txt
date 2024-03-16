@@ -1,0 +1,78 @@
+USE [ParImpar]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_GetAll]    Script Date: 16/3/2024 18:38:13 ******/
+DROP PROCEDURE [dbo].[Posts_GetAll]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Posts_GetAll]    Script Date: 16/3/2024 18:38:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[Posts_GetAll]
+(
+	@ContactId INT,
+	@audit INT = NULL
+)
+AS
+
+
+/*
+-- para trest
+DECLARE @ContactId INT = 1
+DECLARE @audit INT = 0
+*/
+
+DECLARE @IsAuditor BIT
+
+IF (@audit IS NOT NULL AND @audit = 1) 
+	BEGIN
+		SELECT 
+			@IsAuditor = ISNULL(Auditor, 'False')
+		FROM Contacts 
+		WHERE ContactId = @ContactId 
+	END
+
+SELECT 
+	P.PostId,
+	P.[Description],
+	P.Text,
+	P.Title,
+	P.DateEntered,
+	P.ContacCreate,
+	ISNULL(CC.FoundationName, CC.LastName + ', ' + CC.FirstName) AS 'NameCreate',
+	P.ContactAudit,
+	CASE WHEN P.ContactAudit IS NOT NULL THEN  CA.LastName + ', ' + CA.FirstName ELSE NULL END 'NameAudit',
+	P.StateId,
+	P.ImageUrl,
+	s.[Description] 'DescriptionState',
+	PTI.TypeId,
+	TI.Description 'DescriptionTypeImpairment'
+FROM [Posts] (NOLOCK) P
+	INNER JOIN Contacts (NOLOCK) CC
+		ON CC.ContactId = P.ContacCreate
+	INNER JOIN States (NOLOCK) S
+		ON S.StateId = P.StateId
+	LEFT JOIN Contacts (NOLOCK) CA 
+		ON CA.ContactId = P.ContactAudit
+	LEFT JOIN PostsXTypesImpairment (NOLOCK) PTI
+		ON PTI.PostId = P.PostId
+	LEFT JOIN TypesImpairment (NOLOCK) TI
+		ON PTI.TypeId = TI.TypeId
+WHERE
+		(
+			@ContactId = P.ContacCreate
+			OR
+			@IsAuditor = 'True'
+		)
+	AND P.DateDeleted IS NULL
+ORDER BY P.DateEntered DESC
+GO
+
+

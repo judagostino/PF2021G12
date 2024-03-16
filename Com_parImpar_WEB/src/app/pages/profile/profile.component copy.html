@@ -27,34 +27,35 @@
           <div class="col-8">
             <div class="d-flex justify-content-around">
               <div *ngIf="profile?.urlWeb != null"> 
-                <a style="cursor: pointer;" [title]="profile.urlWeb" [href]="profile.urlWeb" target="_blank"><i class="fa-solid fa-globe"></i></a> 
+                <a style="cursor: pointer;" [title]="profile.urlWeb" [href]="profile.urlWeb" target="_blank"><i class="fa-solid fa-globe fa-lg" style="color: #1995ad;"></i></a> 
               </div>
               <div *ngIf="profile?.userFacebook != null"> 
-                <a style="cursor: pointer;" [title]="profile.userFacebook" [href]="profile.userFacebook" target="_blank"><i class="fa-brands fa-facebook"></i></a> 
+                <a style="cursor: pointer;" [title]="profile.userFacebook" [href]="profile.userFacebook" target="_blank"><i class="fa-brands fa-facebook fa-lg" style="color: #1995ad;"></i></a> 
               </div>
               <div *ngIf="profile?.userInstagram != null"> 
-                <a style="cursor: pointer;" [title]="profile.userInstagram" [href]="profile.userInstagram" target="_blank"><i class="fa-brands fa-square-instagram"></i></a> 
+                <a style="cursor: pointer;" [title]="profile.userInstagram" [href]="profile.userInstagram" target="_blank"><i class="fa-brands fa-square-instagram fa-lg" style="color: #1995ad;"></i></a> 
               </div>
               <div *ngIf="profile?.userX != null"> 
-                <a style="cursor: pointer;" [title]="profile.userX" [href]="profile.userX" target="_blank"><i class="fa-brands fa-square-x-twitter"></i></a> 
+                <a style="cursor: pointer;" [title]="profile.userX" [href]="profile.userX" target="_blank"><i class="fa-brands fa-square-x-twitter fa-lg" style="color: #1995ad;"></i></a> 
               </div>
               <div *ngIf="profile?.userLinkedin != null"> 
-                <a style="cursor: pointer;" [title]="profile.userLinkedin" [href]="profile.userLinkedin" target="_blank"><i class="fa-brands fa-linkedin"></i></a> 
+                <a style="cursor: pointer;" [title]="profile.userLinkedin" [href]="profile.userLinkedin" target="_blank"><i class="fa-brands fa-linkedin fa-lg" style="color: #1995ad;"></i></a> 
               </div>
             </div>
           </div>
           <div class="col-2"></div>
         </div>
         
-        <div class="row">
+        <div class="row ubicacion">
           <div class="col-1"></div>
           <div *ngIf="profile?.address != null" class="col-10">
-            <label style="margin-right: 10px; font-weight: bold;">Dirección: </label> <a [href]="'https://www.google.com/maps/search/'+ profile.address" target="_blank" >{{profile.address}}</a>
+            <label class="address">Ubicación </label> 
+            <a [href]="'https://www.google.com/maps/search/'+ profile.address" target="_blank" >{{profile.address}}</a>
           </div>
         </div>
         
-        <div *ngIf="profile?.descriptionParagraphs != null  && profile?.descriptionParagraphs?.length > 0" class="row">
-          <label style="margin-top: 20px; margin-left: 25px; font-weight: bold; font-size: 20px;">Un poco de nosotros: </label>
+        <div *ngIf="profile?.descriptionParagraphs != null  && profile?.descriptionParagraphs?.length > 0" class="row us">
+          <label>Un poco de nosotros... </label>
           <div class="row">
             <div class="col-1"></div>
             <div class="col-11">
@@ -66,8 +67,17 @@
         </div>
       </div>
       
-      <div class="row"> 
-        <div class="col-1"></div>                
+      <div class="row user">
+        <div class="col-1"></div>
+        <div class="col-10 d-flex justify-content-center align-items-center">
+            <span>Datos del representante</span>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    
+      <div class="row user"> 
+        <div class="col-1"></div>
+
         <div class="col-5 box">
           <div class="d-flex flex-row">  
             <i class="fa-regular fa-address-card"></i>

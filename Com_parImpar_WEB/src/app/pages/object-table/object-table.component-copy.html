@@ -8,6 +8,24 @@
     </div> 
     
     <div style="height: 100%; overflow: auto;">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+          <select [(ngModel)]="dateFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
+            <option [ngValue]="null" style="text-align: center;">Seleccionar todas</option>
+            <option [ngValue]="1">Última semana</option>
+            <option [ngValue]="2">Último mes</option>
+            <option [ngValue]="3">Último año</option>
+          </select>              
+        </div>
+        <div class="col-4">
+          <select [(ngModel)]="actionFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
+            <option [ngValue]="null" style="text-align: center;">Seleccionar todos</option>
+            <option [ngValue]="event.state" *ngFor="let event of events">{{event.state}}</option>
+          </select>              
+        </div>
+        <div class="col-2"></div>
+      </div>
       <table class="table">
         <thead>
             <tr>
@@ -50,6 +68,24 @@
     </div> 
     
     <div style="height: 100%; overflow: auto;">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+          <select [(ngModel)]="dateFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
+            <option [ngValue]="null" style="text-align: center;">Seleccionar todas</option>
+            <option [ngValue]="1">Última semana</option>
+            <option [ngValue]="2">Último mes</option>
+            <option [ngValue]="3">Último año</option>
+          </select>              
+        </div>
+        <div class="col-4">
+          <select [(ngModel)]="actionFilter" class="form-select form-select-sm filterMenu" aria-label="form-select-sm example">
+            <option [ngValue]="null" style="text-align: center;">Seleccionar todos</option>
+            <option [ngValue]="post.state" *ngFor="let post of posts">{{post.state}}</option>
+          </select>              
+        </div>
+        <div class="col-2"></div>
+      </div>
       <table class="table">
         <thead>
             <tr>

@@ -1,0 +1,10 @@
+2024-03-14 14:05:15.2809 - INFO - 4000000c-0001-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Gv","KeepLoggedIn":true}
+
+2024-03-14 14:05:22.6358 - INFO - 4000000e-0001-ff00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Unauthorized
+     Headers: Authorization="", 
+     Body: {"User":"gastonlvottero@gmail.com","Password":"123456789Mn","KeepLoggedIn":true}
+

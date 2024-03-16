@@ -16,6 +16,8 @@ export class ObjectTableComponent implements OnInit {
   key = '';
   events: Events[] = [];
   posts: Post[] = [];
+  public actionFilter = null;
+  public dateFilter = null;
 
   constructor(
     private eventsService: EventsService,
