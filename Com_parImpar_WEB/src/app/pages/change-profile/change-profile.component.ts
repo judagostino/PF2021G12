@@ -113,6 +113,10 @@ export class ChangeProfileComponent implements OnInit {
       let contact: Contact = this.formFundation.value;
       this.contactService.updateFoundation({...contact, id: 0}).subscribe(resp => {
         this.foundationName = contact.foundationName;
+        const contact2 = this.form.value;
+        if (this.uploadForm.value != null && this.uploadForm.get('file').value != null) {
+          this.uploadImage(contact2.id)
+        }
         this.snackBar.open('Su fundación se registro con exito','Aceptar',{duration:5000,panelClass:'snackBar-end'})
       }, errorResponse => {
         let message: string = 'Parece haber ocurrido un error, intentelo de nuevo mas tarde. si el error persiste, comuniquese con nostros.';
