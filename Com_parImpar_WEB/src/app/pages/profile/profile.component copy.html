@@ -11,7 +11,7 @@
         </div>
         <div class="col-12">
           <div class="d-flex justify-content-center">
-            <h1 class="justify-content-center subtitle-profile">{{ profile?.foundationName != null ? profile.foundationName : profile.name}}</h1>
+            <h1 class="justify-content-center subtitle-profile">{{ profile?.foundationName != null ? profile.foundationName : profile?.name}}</h1>
           </div>
         </div>
         <div class="col-12">
@@ -70,7 +70,7 @@
       <div class="row user">
         <div class="col-1"></div>
         <div class="col-10 d-flex justify-content-center align-items-center">
-            <span>Datos del representante</span>
+            <span *ngIf="profile?.foundationName!= null">Datos del representante</span>
         </div>
         <div class="col-1"></div>
     </div>
