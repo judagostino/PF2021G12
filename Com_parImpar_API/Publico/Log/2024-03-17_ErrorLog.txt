@@ -1,0 +1,8 @@
+2024-03-17 20:48:59.1600 - INFO - 40000052-0000-fd00-b63f-84710c7967bb - (POST) http://comunidad-parimpar-api.com.ar/api/v1/Auth/CredentialsLogin (ver: ) - 127.0.0.1
+     Message: Not Confirm User
+     Headers: Authorization="", 
+
+2024-03-17 21:14:37.4154 - INFO - 4000002a-0007-fe00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactTypeImplairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3Y2U0YzNjNC0zMjM0LTQ4MjUtOWFlNy02YmVhNWYzYzYzZjkiLCJDb250YWN0SWQiOiI0IiwiU3RhdHVzIjoiU3VjY2VzcyIsIm5iZiI6MTcxMDcyMDg3MiwiZXhwIjoxNzEwNzIxNzcyLCJpc3MiOiJQYXJJbXBhciIsImF1ZCI6IlBhckltcGFyIn0.CSPnmfMCAeIYysSgDH0PGNVhGbjbitq_Ilw_cWOQdC0", 
+
