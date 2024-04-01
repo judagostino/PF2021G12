@@ -1,0 +1,8 @@
+2024-04-01 15:32:49.5403 - INFO - 80000024-0000-fd00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Contact/7 (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
+2024-04-01 16:09:48.9528 - INFO - 80000099-0000-fc00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/Contact/7 (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="", 
+
