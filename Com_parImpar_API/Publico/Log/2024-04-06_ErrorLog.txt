@@ -1,0 +1,4 @@
+2024-04-06 20:03:35.7285 - INFO - 4000001d-0006-ff00-b63f-84710c7967bb - (GET) http://comunidad-parimpar-api.com.ar/api/v1/ContactTypeImplairment (ver: ) - 127.0.0.1
+     Message: NotFound
+     Headers: Authorization="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMjhmMzg0MC1lNWQxLTQ1MjItYTdjNC05MDE0ZmZkMGI5MTUiLCJDb250YWN0SWQiOiIxMSIsIlN0YXR1cyI6IlN1Y2Nlc3MiLCJuYmYiOjE3MTI0NDQyOTUsImV4cCI6MTcxMjQ0NTE5NSwiaXNzIjoiUGFySW1wYXIiLCJhdWQiOiJQYXJJbXBhciJ9.7Cp1H3mKr62rmTsqcPnQV3F9g2BQHPwe637VtSSZtPA", 
+
